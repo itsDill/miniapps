@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator Widget - iowidgets</title>
+    <link rel="stylesheet" href="../assets/shared.css" />
+    <style>
+      .widget-container {
+        max-width: 600px;
+        margin: 2rem auto;
+        padding: 2rem;
+      }
+
+      .widget-preview {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        display: flex;
+        justify-content: center;
+      }
+
+      .embed-section {
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .embed-section h2 {
+        margin-bottom: 1rem;
+        color: #fff;
+      }
+
+      .code-block {
+        background: #1e1e1e;
+        border-radius: 10px;
+        padding: 1rem;
+        overflow-x: auto;
+        margin: 1rem 0;
+        position: relative;
+      }
+
+      .code-block pre {
+        margin: 0;
+        color: #d4d4d4;
+        font-family: "Courier New", monospace;
+        font-size: 0.9rem;
+      }
+
+      .copy-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(99, 102, 241, 0.8);
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 0.85rem;
+        transition: all 0.3s ease;
+      }
+
+      .copy-btn:hover {
+        background: rgba(99, 102, 241, 1);
+        transform: translateY(-2px);
+      }
+
+      .copy-btn.copied {
+        background: rgba(34, 197, 94, 0.8);
+      }
+
+      .back-btn {
+        display: inline-block;
+        margin: 2rem auto;
+        padding: 0.75rem 1.5rem;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .back-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+      }
+
+      /* Calculator Widget Styles */
+      #calcWidget {
+        max-width: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="widget-container">
+      <a href="../index.html" class="back-btn">← Back to iowidgets</a>
+
+      <h1 style="text-align: center; color: white; margin: 2rem 0">
+        Calculator Widget
+      </h1>
+
+      <!-- Widget Preview -->
+      <div class="widget-preview">
+        <div id="calcWidget"></div>
+      </div>
+
+      <!-- Embed Code Section -->
+      <div class="embed-section">
+        <h2>📋 Embed This Widget</h2>
+        <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 1rem">
+          Copy and paste this code into your website:
+        </p>
+
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyEmbedCode()">Copy Code</button>
+          <pre id="embedCode">
+&lt;!-- iowidgets Calculator Widget --&gt;
+&lt;div id="iowidgets-calculator"&gt;&lt;/div&gt;
+&lt;script&gt;
+(function() {
+    const widget = document.getElementById('iowidgets-calculator');
+    const css = `
+        .calc{max-width:300px;background:linear-gradient(135deg,#667eea,#764ba2);
+        border-radius:15px;padding:1.5rem;box-shadow:0 10px 40px rgba(0,0,0,0.3);}
+        .calc-display{background:#1e1e1e;color:#fff;font-size:2rem;padding:1rem;
+        border-radius:10px;text-align:right;margin-bottom:1rem;min-height:60px;}
+        .calc-buttons{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+        .calc-btn{padding:1rem;background:rgba(255,255,255,0.2);border:none;
+        border-radius:10px;color:#fff;font-size:1.2rem;cursor:pointer;
+        transition:all 0.2s;}
+        .calc-btn:hover{background:rgba(255,255,255,0.3);transform:scale(1.05);}
+        .calc-btn.operator{background:rgba(99,102,241,0.6);}
+        .calc-btn.equals{background:rgba(34,197,94,0.6);grid-column:span 2;}
+    `;
+    
+    const style = document.createElement('style');
+    style.textContent = css;
+    document.head.appendChild(style);
+    
+    let display = '0', prev = '', operator = '', reset = false;
+    
+    widget.innerHTML = \`
+        &lt;div class="calc"&gt;
+            &lt;div class="calc-display" id="calc-display"&gt;0&lt;/div&gt;
+            &lt;div class="calc-buttons"&gt;
+                &lt;button class="calc-btn" onclick="calcClear()"&gt;C&lt;/button&gt;
+                &lt;button class="calc-btn" onclick="calcDelete()"&gt;⌫&lt;/button&gt;
+                &lt;button class="calc-btn operator" onclick="calcOp('/')"&gt;÷&lt;/button&gt;
+                &lt;button class="calc-btn operator" onclick="calcOp('*')"&gt;×&lt;/button&gt;
+                &lt;button class="calc-btn" onclick="calcNum('7')"&gt;7&lt;/button&gt;
+                &lt;button class="calc-btn" onclick="calcNum('8')"&gt;8&lt;/button&gt;
+                &lt;button class="calc-btn" onclick="calcNum('9')"&gt;9&lt;/button&gt;
+                &lt;button class="calc-btn operator" onclick="calcOp('-')"&gt;−&lt;/button&gt;
+                &lt;button class="calc-btn" onclick="calcNum('4')"&gt;4&lt;/button&gt;
+                &lt;button class="calc-btn" onclick="calcNum('5')"&gt;5&lt;/button&gt;
+                &lt;button class="calc-btn" onclick="calcNum('6')"&gt;6&lt;/button&gt;
+                &lt;button class="calc-btn operator" onclick="calcOp('+')"&gt;+&lt;/button&gt;
+                &lt;button class="calc-btn" onclick="calcNum('1')"&gt;1&lt;/button&gt;
+                &lt;button class="calc-btn" onclick="calcNum('2')"&gt;2&lt;/button&gt;
+                &lt;button class="calc-btn" onclick="calcNum('3')"&gt;3&lt;/button&gt;
+                &lt;button class="calc-btn" onclick="calcNum('0')"&gt;0&lt;/button&gt;
+                &lt;button class="calc-btn" onclick="calcNum('.')"&gt;.&lt;/button&gt;
+                &lt;button class="calc-btn equals" onclick="calcEquals()"&gt;=&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    \`;
+    
+    const disp = document.getElementById('calc-display');
+    window.calcNum = (n) => {
+        if(reset){display='0';reset=false;}
+        display = display === '0' ? n : display + n;
+        disp.textContent = display;
+    };
+    window.calcOp = (op) => {
+        prev = display; operator = op; reset = true;
+    };
+    window.calcEquals = () => {
+        const a = parseFloat(prev), b = parseFloat(display);
+        if(operator === '+') display = String(a + b);
+        else if(operator === '-') display = String(a - b);
+        else if(operator === '*') display = String(a * b);
+        else if(operator === '/') display = String(a / b);
+        disp.textContent = display;
+        reset = true;
+    };
+    window.calcClear = () => {
+        display = '0'; prev = ''; operator = ''; reset = false;
+        disp.textContent = display;
+    };
+    window.calcDelete = () => {
+        display = display.length > 1 ? display.slice(0, -1) : '0';
+        disp.textContent = display;
+    };
+})();
+&lt;/script&gt;</pre
+          >
+        </div>
+
+        <p
+          style="
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+          "
+        >
+          💡 Fully functional calculator that works anywhere. No dependencies
+          required!
+        </p>
+      </div>
+    </div>
+
+    <script>
+      // Initialize calculator in preview
+      (function () {
+        const widget = document.getElementById("calcWidget");
+        const css = `
+                .calc{max-width:300px;background:linear-gradient(135deg,#667eea,#764ba2);
+                border-radius:15px;padding:1.5rem;box-shadow:0 10px 40px rgba(0,0,0,0.3);}
+                .calc-display{background:#1e1e1e;color:#fff;font-size:2rem;padding:1rem;
+                border-radius:10px;text-align:right;margin-bottom:1rem;min-height:60px;}
+                .calc-buttons{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+                .calc-btn{padding:1rem;background:rgba(255,255,255,0.2);border:none;
+                border-radius:10px;color:#fff;font-size:1.2rem;cursor:pointer;
+                transition:all 0.2s;}
+                .calc-btn:hover{background:rgba(255,255,255,0.3);transform:scale(1.05);}
+                .calc-btn.operator{background:rgba(99,102,241,0.6);}
+                .calc-btn.equals{background:rgba(34,197,94,0.6);grid-column:span 2;}
+            `;
+
+        const style = document.createElement("style");
+        style.textContent = css;
+        document.head.appendChild(style);
+
+        let display = "0",
+          prev = "",
+          operator = "",
+          reset = false;
+
+        widget.innerHTML = `
+                <div class="calc">
+                    <div class="calc-display" id="calc-display">0</div>
+                    <div class="calc-buttons">
+                        <button class="calc-btn" onclick="calcClear()">C</button>
+                        <button class="calc-btn" onclick="calcDelete()">⌫</button>
+                        <button class="calc-btn operator" onclick="calcOp('/')">÷</button>
+                        <button class="calc-btn operator" onclick="calcOp('*')">×</button>
+                        <button class="calc-btn" onclick="calcNum('7')">7</button>
+                        <button class="calc-btn" onclick="calcNum('8')">8</button>
+                        <button class="calc-btn" onclick="calcNum('9')">9</button>
+                        <button class="calc-btn operator" onclick="calcOp('-')">−</button>
+                        <button class="calc-btn" onclick="calcNum('4')">4</button>
+                        <button class="calc-btn" onclick="calcNum('5')">5</button>
+                        <button class="calc-btn" onclick="calcNum('6')">6</button>
+                        <button class="calc-btn operator" onclick="calcOp('+')">+</button>
+                        <button class="calc-btn" onclick="calcNum('1')">1</button>
+                        <button class="calc-btn" onclick="calcNum('2')">2</button>
+                        <button class="calc-btn" onclick="calcNum('3')">3</button>
+                        <button class="calc-btn" onclick="calcNum('0')">0</button>
+                        <button class="calc-btn" onclick="calcNum('.')">.</button>
+                        <button class="calc-btn equals" onclick="calcEquals()">=</button>
+                    </div>
+                </div>
+            `;
+
+        const disp = document.getElementById("calc-display");
+        window.calcNum = (n) => {
+          if (reset) {
+            display = "0";
+            reset = false;
+          }
+          display = display === "0" ? n : display + n;
+          disp.textContent = display;
+        };
+        window.calcOp = (op) => {
+          prev = display;
+          operator = op;
+          reset = true;
+        };
+        window.calcEquals = () => {
+          const a = parseFloat(prev),
+            b = parseFloat(display);
+          if (operator === "+") display = String(a + b);
+          else if (operator === "-") display = String(a - b);
+          else if (operator === "*") display = String(a * b);
+          else if (operator === "/") display = String(a / b);
+          disp.textContent = display;
+          reset = true;
+        };
+        window.calcClear = () => {
+          display = "0";
+          prev = "";
+          operator = "";
+          reset = false;
+          disp.textContent = display;
+        };
+        window.calcDelete = () => {
+          display = display.length > 1 ? display.slice(0, -1) : "0";
+          disp.textContent = display;
+        };
+      })();
+
+      function copyEmbedCode() {
+        const code = document.getElementById("embedCode").textContent;
+        navigator.clipboard.writeText(code).then(() => {
+          const btn = document.querySelector(".copy-btn");
+          btn.textContent = "✓ Copied!";
+          btn.classList.add("copied");
+
+          setTimeout(() => {
+            btn.textContent = "Copy Code";
+            btn.classList.remove("copied");
+          }, 2000);
+        });
+      }
+    </script>
+  </body>
+</html>

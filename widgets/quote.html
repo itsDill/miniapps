@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Quote Widget - iowidgets</title>
+    <link rel="stylesheet" href="../assets/shared.css" />
+    <style>
+      .widget-container {
+        max-width: 700px;
+        margin: 2rem auto;
+        padding: 2rem;
+      }
+
+      .widget-preview {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .embed-section {
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .code-block {
+        background: #1e1e1e;
+        border-radius: 10px;
+        padding: 1rem;
+        overflow-x: auto;
+        margin: 1rem 0;
+        position: relative;
+      }
+
+      .code-block pre {
+        margin: 0;
+        color: #d4d4d4;
+        font-family: "Courier New", monospace;
+        font-size: 0.85rem;
+      }
+
+      .copy-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(99, 102, 241, 0.8);
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 0.85rem;
+        transition: all 0.3s ease;
+      }
+
+      .copy-btn:hover {
+        background: rgba(99, 102, 241, 1);
+        transform: translateY(-2px);
+      }
+
+      .copy-btn.copied {
+        background: rgba(34, 197, 94, 0.8);
+      }
+
+      .back-btn {
+        display: inline-block;
+        margin: 2rem auto;
+        padding: 0.75rem 1.5rem;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .back-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="widget-container">
+      <a href="../index.html" class="back-btn">← Back to iowidgets</a>
+
+      <h1 style="text-align: center; color: white; margin: 2rem 0">
+        Daily Quote Widget
+      </h1>
+
+      <!-- Widget Preview -->
+      <div class="widget-preview">
+        <div id="quoteWidget"></div>
+      </div>
+
+      <!-- Embed Code Section -->
+      <div class="embed-section">
+        <h2>📋 Embed This Widget</h2>
+        <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 1rem">
+          Copy and paste this code into your website:
+        </p>
+
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyEmbedCode()">Copy Code</button>
+          <pre id="embedCode">
+&lt;!-- iowidgets Daily Quote Widget --&gt;
+&lt;div id="iowidgets-quote"&gt;&lt;/div&gt;
+&lt;script&gt;
+(function() {
+    const quotes = [
+        {text: "The only way to do great work is to love what you do.", author: "Steve Jobs"},
+        {text: "Innovation distinguishes between a leader and a follower.", author: "Steve Jobs"},
+        {text: "Success is not final, failure is not fatal.", author: "Winston Churchill"},
+        {text: "Believe you can and you're halfway there.", author: "Theodore Roosevelt"},
+        {text: "The future belongs to those who believe in their dreams.", author: "Eleanor Roosevelt"},
+        {text: "It does not matter how slowly you go as long as you do not stop.", author: "Confucius"},
+        {text: "Everything you've ever wanted is on the other side of fear.", author: "George Addair"},
+        {text: "Believe in yourself. You are braver than you think.", author: "Roy T. Bennett"},
+        {text: "I alone cannot change the world, but I can cast a stone.", author: "Mother Teresa"},
+        {text: "What lies behind us and what lies before us are tiny matters.", author: "Ralph Waldo Emerson"}
+    ];
+    
+    const widget = document.getElementById('iowidgets-quote');
+    const quote = quotes[Math.floor(Math.random() * quotes.length)];
+    
+    widget.style.cssText = 'background:linear-gradient(135deg,#667eea,#764ba2);border-radius:15px;padding:2rem;color:#fff;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,0.3);max-width:600px;margin:0 auto;';
+    
+    widget.innerHTML = \`
+        &lt;div style="font-size:1.5rem;font-style:italic;margin-bottom:1rem;line-height:1.6;"&gt;
+            "${quote.text}"
+        &lt;/div&gt;
+        &lt;div style="font-size:1rem;opacity:0.9;font-weight:500;"&gt;
+            — ${quote.author}
+        &lt;/div&gt;
+    \`;
+})();
+&lt;/script&gt;</pre
+          >
+        </div>
+
+        <p
+          style="
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+          "
+        >
+          💡 Shows a random inspirational quote each time the page loads.
+          Perfect for motivation!
+        </p>
+      </div>
+    </div>
+
+    <script>
+      // Initialize quote widget in preview
+      (function () {
+        const quotes = [
+          {
+            text: "The only way to do great work is to love what you do.",
+            author: "Steve Jobs",
+          },
+          {
+            text: "Innovation distinguishes between a leader and a follower.",
+            author: "Steve Jobs",
+          },
+          {
+            text: "Success is not final, failure is not fatal.",
+            author: "Winston Churchill",
+          },
+          {
+            text: "Believe you can and you're halfway there.",
+            author: "Theodore Roosevelt",
+          },
+          {
+            text: "The future belongs to those who believe in their dreams.",
+            author: "Eleanor Roosevelt",
+          },
+          {
+            text: "It does not matter how slowly you go as long as you do not stop.",
+            author: "Confucius",
+          },
+          {
+            text: "Everything you've ever wanted is on the other side of fear.",
+            author: "George Addair",
+          },
+          {
+            text: "Believe in yourself. You are braver than you think.",
+            author: "Roy T. Bennett",
+          },
+          {
+            text: "I alone cannot change the world, but I can cast a stone.",
+            author: "Mother Teresa",
+          },
+          {
+            text: "What lies behind us and what lies before us are tiny matters.",
+            author: "Ralph Waldo Emerson",
+          },
+        ];
+
+        const widget = document.getElementById("quoteWidget");
+        const quote = quotes[Math.floor(Math.random() * quotes.length)];
+
+        widget.style.cssText =
+          "background:linear-gradient(135deg,#667eea,#764ba2);border-radius:15px;padding:2rem;color:#fff;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,0.3);";
+
+        widget.innerHTML = `
+                <div style="font-size:1.5rem;font-style:italic;margin-bottom:1rem;line-height:1.6;">
+                    "${quote.text}"
+                </div>
+                <div style="font-size:1rem;opacity:0.9;font-weight:500;">
+                    — ${quote.author}
+                </div>
+            `;
+      })();
+
+      function copyEmbedCode() {
+        const code = document.getElementById("embedCode").textContent;
+        navigator.clipboard.writeText(code).then(() => {
+          const btn = document.querySelector(".copy-btn");
+          btn.textContent = "✓ Copied!";
+          btn.classList.add("copied");
+
+          setTimeout(() => {
+            btn.textContent = "Copy Code";
+            btn.classList.remove("copied");
+          }, 2000);
+        });
+      }
+    </script>
+  </body>
+</html>

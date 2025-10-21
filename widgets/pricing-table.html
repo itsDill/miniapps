@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pricing Table Builder - iowidgets</title>
+    <link rel="stylesheet" href="../assets/shared.css" />
+    <style>
+      .widget-container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 2rem;
+      }
+
+      .tool-section {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .tool-section h2 {
+        color: white;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .tool-section h2 svg {
+        width: 28px;
+        height: 28px;
+      }
+
+      .embed-section {
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .embed-section h2 {
+        color: white;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .embed-section h2 svg {
+        width: 28px;
+        height: 28px;
+      }
+
+      .page-header {
+        text-align: center;
+        margin: 2rem 0 3rem 0;
+      }
+
+      .page-header h1 {
+        color: white;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .page-header h1 svg {
+        width: 48px;
+        height: 48px;
+      }
+
+      .page-header p {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1.1rem;
+      }
+
+      .code-block {
+        background: #1e1e1e;
+        border-radius: 10px;
+        padding: 1rem;
+        overflow-x: auto;
+        margin: 1rem 0;
+        position: relative;
+      }
+
+      .code-block pre {
+        margin: 0;
+        color: #d4d4d4;
+        font-family: "Courier New", monospace;
+        font-size: 0.85rem;
+      }
+
+      .copy-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(99, 102, 241, 0.8);
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 0.85rem;
+        transition: all 0.3s ease;
+      }
+
+      .copy-btn:hover {
+        background: rgba(99, 102, 241, 1);
+        transform: translateY(-2px);
+      }
+
+      .copy-btn.copied {
+        background: rgba(34, 197, 94, 0.8);
+      }
+
+      .back-btn {
+        display: inline-block;
+        margin: 2rem auto;
+        padding: 0.75rem 1.5rem;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .back-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+      }
+
+      .plans-editor {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin: 1.5rem 0;
+      }
+
+      .plan-card {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 1.5rem;
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .plan-card h3 {
+        color: white;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+
+      .plan-input {
+        width: 100%;
+        padding: 0.75rem;
+        margin-bottom: 1rem;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(0, 0, 0, 0.3);
+        color: white;
+        font-size: 0.9rem;
+      }
+
+      .plan-input::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+      }
+
+      .features-input {
+        min-height: 100px;
+        resize: vertical;
+        font-family: inherit;
+      }
+
+      .helper-text {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.85rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .generate-btn {
+        background: linear-gradient(
+          135deg,
+          rgba(99, 102, 241, 0.9),
+          rgba(139, 92, 246, 0.9)
+        );
+        color: white;
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        display: block;
+        margin: 1.5rem auto;
+        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+      }
+
+      .generate-btn:hover {
+        background: linear-gradient(
+          135deg,
+          rgba(99, 102, 241, 1),
+          rgba(139, 92, 246, 1)
+        );
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+      }
+
+      .generate-btn:active {
+        transform: translateY(0);
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .highlight-toggle {
+        margin-top: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .highlight-toggle input {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="widget-container">
+      <a href="../index.html" class="back-btn">← Back to iowidgets</a>
+
+      <div class="page-header">
+        <h1>
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+          </svg>
+          Pricing Table Builder
+        </h1>
+        <p>Create beautiful pricing tables for your website</p>
+      </div>
+
+      <!-- Settings Section -->
+      <div class="tool-section">
+        <h2>
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect x="3" y="3" width="7" height="7" />
+            <rect x="14" y="3" width="7" height="7" />
+            <rect x="14" y="14" width="7" height="7" />
+            <rect x="3" y="14" width="7" height="7" />
+          </svg>
+          Build Your Pricing Plans
+        </h2>
+
+        <div class="plans-editor">
+          <!-- Plan 1: Basic -->
+          <div class="plan-card">
+            <h3>Plan 1</h3>
+            <input
+              type="text"
+              class="plan-input"
+              id="plan1Name"
+              placeholder="Plan Name"
+              value="Basic"
+            />
+            <input
+              type="text"
+              class="plan-input"
+              id="plan1Price"
+              placeholder="$9"
+              value="$9"
+            />
+            <input
+              type="text"
+              class="plan-input"
+              id="plan1Period"
+              placeholder="per month"
+              value="per month"
+            />
+            <p class="helper-text">Features (one per line):</p>
+            <textarea
+              class="plan-input features-input"
+              id="plan1Features"
+              placeholder="Feature 1&#10;Feature 2&#10;Feature 3"
+            >
+5 Projects&#10;10 GB Storage&#10;Email Support&#10;Basic Analytics</textarea
+            >
+            <input
+              type="text"
+              class="plan-input"
+              id="plan1Button"
+              placeholder="Button Text"
+              value="Get Started"
+            />
+            <input
+              type="text"
+              class="plan-input"
+              id="plan1Link"
+              placeholder="Button Link URL"
+              value="https://yoursite.com/signup"
+            />
+            <div class="highlight-toggle">
+              <input type="checkbox" id="plan1Highlight" />
+              <label for="plan1Highlight">Popular / Featured</label>
+            </div>
+          </div>
+
+          <!-- Plan 2: Pro -->
+          <div class="plan-card">
+            <h3>Plan 2</h3>
+            <input
+              type="text"
+              class="plan-input"
+              id="plan2Name"
+              placeholder="Plan Name"
+              value="Pro"
+            />
+            <input
+              type="text"
+              class="plan-input"
+              id="plan2Price"
+              placeholder="$29"
+              value="$29"
+            />
+            <input
+              type="text"
+              class="plan-input"
+              id="plan2Period"
+              placeholder="per month"
+              value="per month"
+            />
+            <p class="helper-text">Features (one per line):</p>
+            <textarea
+              class="plan-input features-input"
+              id="plan2Features"
+              placeholder="Feature 1&#10;Feature 2&#10;Feature 3"
+            >
+Unlimited Projects&#10;100 GB Storage&#10;Priority Support&#10;Advanced Analytics&#10;Custom Domain</textarea
+            >
+            <input
+              type="text"
+              class="plan-input"
+              id="plan2Button"
+              placeholder="Button Text"
+              value="Get Started"
+            />
+            <input
+              type="text"
+              class="plan-input"
+              id="plan2Link"
+              placeholder="Button Link URL"
+              value="https://yoursite.com/signup"
+            />
+            <div class="highlight-toggle">
+              <input type="checkbox" id="plan2Highlight" checked />
+              <label for="plan2Highlight">Popular / Featured</label>
+            </div>
+          </div>
+
+          <!-- Plan 3: Enterprise -->
+          <div class="plan-card">
+            <h3>Plan 3</h3>
+            <input
+              type="text"
+              class="plan-input"
+              id="plan3Name"
+              placeholder="Plan Name"
+              value="Enterprise"
+            />
+            <input
+              type="text"
+              class="plan-input"
+              id="plan3Price"
+              placeholder="$99"
+              value="$99"
+            />
+            <input
+              type="text"
+              class="plan-input"
+              id="plan3Period"
+              placeholder="per month"
+              value="per month"
+            />
+            <p class="helper-text">Features (one per line):</p>
+            <textarea
+              class="plan-input features-input"
+              id="plan3Features"
+              placeholder="Feature 1&#10;Feature 2&#10;Feature 3"
+            >
+Unlimited Everything&#10;1 TB Storage&#10;24/7 Phone Support&#10;Advanced Analytics&#10;White Label&#10;API Access</textarea
+            >
+            <input
+              type="text"
+              class="plan-input"
+              id="plan3Button"
+              placeholder="Button Text"
+              value="Contact Sales"
+            />
+            <input
+              type="text"
+              class="plan-input"
+              id="plan3Link"
+              placeholder="Button Link URL"
+              value="https://yoursite.com/contact"
+            />
+            <div class="highlight-toggle">
+              <input type="checkbox" id="plan3Highlight" />
+              <label for="plan3Highlight">Popular / Featured</label>
+            </div>
+          </div>
+        </div>
+
+        <button class="generate-btn" onclick="generateCode()">
+          Generate Pricing Table
+        </button>
+      </div>
+
+      <!-- Preview Section -->
+      <div class="tool-section" id="previewSection" style="display: none">
+        <h2>
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+            <circle cx="12" cy="12" r="3" />
+          </svg>
+          Live Preview
+        </h2>
+        <div id="pricingPreview"></div>
+      </div>
+
+      <!-- Embed Code Section -->
+      <div class="embed-section" id="embedSection" style="display: none">
+        <h2>
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+            <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+          </svg>
+          Your Embed Code
+        </h2>
+        <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 1rem">
+          Copy and paste this code into your website:
+        </p>
+
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyEmbedCode()">Copy Code</button>
+          <pre id="embedCode"></pre>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function generateCode() {
+        const plans = [
+          {
+            name: document.getElementById("plan1Name").value || "Basic",
+            price: document.getElementById("plan1Price").value || "$9",
+            period: document.getElementById("plan1Period").value || "per month",
+            features: document
+              .getElementById("plan1Features")
+              .value.split("\n")
+              .filter((f) => f.trim()),
+            button:
+              document.getElementById("plan1Button").value || "Get Started",
+            link: document.getElementById("plan1Link").value || "#",
+            highlight: document.getElementById("plan1Highlight").checked,
+          },
+          {
+            name: document.getElementById("plan2Name").value || "Pro",
+            price: document.getElementById("plan2Price").value || "$29",
+            period: document.getElementById("plan2Period").value || "per month",
+            features: document
+              .getElementById("plan2Features")
+              .value.split("\n")
+              .filter((f) => f.trim()),
+            button:
+              document.getElementById("plan2Button").value || "Get Started",
+            link: document.getElementById("plan2Link").value || "#",
+            highlight: document.getElementById("plan2Highlight").checked,
+          },
+          {
+            name: document.getElementById("plan3Name").value || "Enterprise",
+            price: document.getElementById("plan3Price").value || "$99",
+            period: document.getElementById("plan3Period").value || "per month",
+            features: document
+              .getElementById("plan3Features")
+              .value.split("\n")
+              .filter((f) => f.trim()),
+            button:
+              document.getElementById("plan3Button").value || "Contact Sales",
+            link: document.getElementById("plan3Link").value || "#",
+            highlight: document.getElementById("plan3Highlight").checked,
+          },
+        ];
+
+        const plansHTML = plans.map((plan) => generatePlanHTML(plan)).join("");
+
+        const embedCode = `<!-- iowidgets Pricing Table -->
+<div id="iowidgets-pricing-table"></div>
+<script>
+(function() {
+    const container = document.getElementById('iowidgets-pricing-table');
+    container.innerHTML = \\\`
+        <div style="max-width:1200px;margin:2rem auto;padding:2rem;">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;">
+                ${plansHTML}
+            </div>
+        </div>
+    \\\`;
+})();
+<\/script>`;
+
+        // Show preview
+        const previewSection = document.getElementById("previewSection");
+        const embedSection = document.getElementById("embedSection");
+
+        document.getElementById("pricingPreview").innerHTML = `
+                <div style="max-width:1200px;margin:2rem auto;">
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;">
+                        ${plans
+                          .map((plan) => generatePreviewPlanHTML(plan))
+                          .join("")}
+                    </div>
+                </div>
+            `;
+        previewSection.style.display = "block";
+        previewSection.style.animation = "slideIn 0.5s ease";
+
+        // Show embed code
+        document.getElementById("embedCode").textContent = embedCode;
+        embedSection.style.display = "block";
+        embedSection.style.animation = "slideIn 0.5s ease";
+
+        // Scroll to preview
+        setTimeout(() => {
+          previewSection.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+          });
+        }, 100);
+      }
+
+      function generatePlanHTML(plan) {
+        const featuresHTML = plan.features
+          .map(
+            (f) =>
+              `<li style="padding:0.5rem 0;border-bottom:1px solid #e5e7eb;color:#666;">✓ ${f}</li>`
+          )
+          .join("");
+
+        const highlightStyles = plan.highlight
+          ? "transform:scale(1.05);border:2px solid #667eea;box-shadow:0 20px 60px rgba(102,126,234,0.3);"
+          : "border:1px solid #e5e7eb;";
+
+        const buttonStyles = plan.highlight
+          ? "background:#667eea;color:#fff;"
+          : "background:#f3f4f6;color:#333;";
+
+        return `
+                <div style="background:#fff;padding:2rem;border-radius:15px;text-align:center;transition:all 0.3s;${highlightStyles}">
+                    ${
+                      plan.highlight
+                        ? '<div style="background:#667eea;color:#fff;padding:0.5rem;border-radius:8px;margin-bottom:1rem;font-size:0.85rem;font-weight:600;">POPULAR</div>'
+                        : ""
+                    }
+                    <h3 style="font-size:1.5rem;margin-bottom:1rem;color:#333;">${
+                      plan.name
+                    }</h3>
+                    <div style="margin-bottom:1.5rem;">
+                        <div style="font-size:3rem;font-weight:700;color:#667eea;">${
+                          plan.price
+                        }</div>
+                        <div style="color:#666;font-size:0.9rem;">${
+                          plan.period
+                        }</div>
+                    </div>
+                    <ul style="list-style:none;padding:0;margin:2rem 0;text-align:left;">
+                        ${featuresHTML}
+                    </ul>
+                    <a href="${
+                      plan.link
+                    }" style="display:block;padding:1rem;border-radius:10px;text-decoration:none;font-weight:600;transition:all 0.3s;${buttonStyles}">${
+          plan.button
+        }</a>
+                </div>
+            `;
+      }
+
+      function generatePreviewPlanHTML(plan) {
+        const featuresHTML = plan.features
+          .map(
+            (f) =>
+              `<li style="padding:0.5rem 0;border-bottom:1px solid #e5e7eb;color:#666;">✓ ${f}</li>`
+          )
+          .join("");
+
+        const highlightStyles = plan.highlight
+          ? "transform:scale(1.05);border:2px solid #667eea;box-shadow:0 20px 60px rgba(102,126,234,0.3);"
+          : "border:1px solid #e5e7eb;";
+
+        const buttonStyles = plan.highlight
+          ? "background:#667eea;color:#fff;"
+          : "background:#f3f4f6;color:#333;";
+
+        return `
+                <div style="background:#fff;padding:2rem;border-radius:15px;text-align:center;transition:all 0.3s;${highlightStyles}">
+                    ${
+                      plan.highlight
+                        ? '<div style="background:#667eea;color:#fff;padding:0.5rem;border-radius:8px;margin-bottom:1rem;font-size:0.85rem;font-weight:600;">POPULAR</div>'
+                        : ""
+                    }
+                    <h3 style="font-size:1.5rem;margin-bottom:1rem;color:#333;">${
+                      plan.name
+                    }</h3>
+                    <div style="margin-bottom:1.5rem;">
+                        <div style="font-size:3rem;font-weight:700;color:#667eea;">${
+                          plan.price
+                        }</div>
+                        <div style="color:#666;font-size:0.9rem;">${
+                          plan.period
+                        }</div>
+                    </div>
+                    <ul style="list-style:none;padding:0;margin:2rem 0;text-align:left;">
+                        ${featuresHTML}
+                    </ul>
+                    <button style="width:100%;padding:1rem;border:none;border-radius:10px;font-weight:600;cursor:pointer;opacity:0.7;${buttonStyles}">${
+          plan.button
+        }</button>
+                </div>
+            `;
+      }
+
+      function copyEmbedCode() {
+        const code = document.getElementById("embedCode").textContent;
+        navigator.clipboard.writeText(code).then(() => {
+          const btn = document.querySelector(".copy-btn");
+          btn.textContent = "✓ Copied!";
+          btn.classList.add("copied");
+
+          setTimeout(() => {
+            btn.textContent = "Copy Code";
+            btn.classList.remove("copied");
+          }, 2000);
+        });
+      }
+    </script>
+  </body>
+</html>

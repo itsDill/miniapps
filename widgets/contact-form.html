@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Form Builder - iowidgets</title>
+    <link rel="stylesheet" href="../assets/shared.css" />
+    <style>
+      .widget-container {
+        max-width: 900px;
+        margin: 2rem auto;
+        padding: 2rem;
+      }
+
+      .tool-section {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .tool-section h2 {
+        color: white;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .tool-section h2 svg {
+        width: 28px;
+        height: 28px;
+      }
+
+      .embed-section {
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .code-block {
+        background: #1e1e1e;
+        border-radius: 10px;
+        padding: 1rem;
+        overflow-x: auto;
+        margin: 1rem 0;
+        position: relative;
+      }
+
+      .code-block pre {
+        margin: 0;
+        color: #d4d4d4;
+        font-family: "Courier New", monospace;
+        font-size: 0.85rem;
+      }
+
+      .copy-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(99, 102, 241, 0.8);
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 0.85rem;
+        transition: all 0.3s ease;
+      }
+
+      .copy-btn:hover {
+        background: rgba(99, 102, 241, 1);
+        transform: translateY(-2px);
+      }
+
+      .copy-btn.copied {
+        background: rgba(34, 197, 94, 0.8);
+      }
+
+      .back-btn {
+        display: inline-block;
+        margin: 2rem auto;
+        padding: 0.75rem 1.5rem;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .back-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+      }
+
+      .settings-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+        margin: 1.5rem 0;
+      }
+
+      .setting-item {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 1rem;
+        border-radius: 10px;
+      }
+
+      .setting-item label {
+        display: block;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+      }
+
+      .setting-item input[type="text"],
+      .setting-item input[type="email"],
+      .setting-item select {
+        width: 100%;
+        padding: 0.5rem;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(0, 0, 0, 0.3);
+        color: white;
+        font-size: 0.9rem;
+      }
+
+      .setting-item input[type="checkbox"] {
+        margin-right: 0.5rem;
+      }
+
+      .generate-btn {
+        background: linear-gradient(
+          135deg,
+          rgba(99, 102, 241, 0.9),
+          rgba(139, 92, 246, 0.9)
+        );
+        color: white;
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        display: block;
+        margin: 1.5rem auto;
+        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+      }
+
+      .generate-btn:hover {
+        background: linear-gradient(
+          135deg,
+          rgba(99, 102, 241, 1),
+          rgba(139, 92, 246, 1)
+        );
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+      }
+
+      .generate-btn:active {
+        transform: translateY(0);
+      }
+
+      .error-message {
+        background: rgba(239, 68, 68, 0.1);
+        border-left: 3px solid rgba(239, 68, 68, 0.8);
+        padding: 1rem;
+        border-radius: 8px;
+        margin: 1rem 0;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.9rem;
+        display: flex;
+        align-items: start;
+        gap: 0.75rem;
+        animation: slideIn 0.3s ease;
+      }
+
+      .error-message svg {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .note {
+        background: rgba(255, 193, 7, 0.1);
+        border-left: 3px solid rgba(255, 193, 7, 0.8);
+        padding: 1rem;
+        border-radius: 8px;
+        margin: 1rem 0;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.9rem;
+        display: flex;
+        align-items: start;
+        gap: 0.75rem;
+      }
+
+      .note svg {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+
+      .page-header {
+        text-align: center;
+        margin: 2rem 0 3rem 0;
+      }
+
+      .page-header h1 {
+        color: white;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .page-header h1 svg {
+        width: 48px;
+        height: 48px;
+      }
+
+      .page-header p {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1.1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="widget-container">
+      <a href="../index.html" class="back-btn">← Back to iowidgets</a>
+
+      <div class="page-header">
+        <h1>
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+            />
+          </svg>
+          Contact Form Builder
+        </h1>
+        <p>Create a customized contact form and embed it on your website</p>
+      </div>
+
+      <!-- Settings Section -->
+      <div class="tool-section">
+        <h2>
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="12" cy="12" r="3" />
+            <path
+              d="M12 1v6m0 6v6m5.2-14.2l-4.2 4.2m0 6l-4.2 4.2M23 12h-6m-6 0H1m17.8 5.2l-4.2-4.2m0-6l-4.2-4.2"
+            />
+          </svg>
+          Customize Your Form
+        </h2>
+
+        <div class="settings-grid">
+          <div class="setting-item">
+            <label>Your Email Address*</label>
+            <input
+              type="email"
+              id="recipientEmail"
+              placeholder="you@example.com"
+              value=""
+            />
+          </div>
+
+          <div class="setting-item">
+            <label>Form Title</label>
+            <input type="text" id="formTitle" value="Get in Touch" />
+          </div>
+
+          <div class="setting-item">
+            <label>Button Text</label>
+            <input type="text" id="buttonText" value="Send Message" />
+          </div>
+
+          <div class="setting-item">
+            <label>Theme Color</label>
+            <select id="themeColor">
+              <option value="#667eea">Purple (Default)</option>
+              <option value="#3b82f6">Blue</option>
+              <option value="#10b981">Green</option>
+              <option value="#f59e0b">Orange</option>
+              <option value="#ef4444">Red</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="settings-grid">
+          <div class="setting-item">
+            <label>
+              <input type="checkbox" id="includePhone" checked />
+              Include Phone Number Field
+            </label>
+          </div>
+
+          <div class="setting-item">
+            <label>
+              <input type="checkbox" id="includeCompany" />
+              Include Company Field
+            </label>
+          </div>
+        </div>
+
+        <div class="note">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 16v-4m0-4h.01" />
+          </svg>
+          <div>
+            <strong>Note:</strong> This demo uses FormSubmit.co to handle form
+            submissions. In production, you'd want to use your own backend or
+            service like FormSpree, EmailJS, or AWS SES.
+          </div>
+        </div>
+
+        <button class="generate-btn" onclick="generateCode()">
+          Generate Embed Code
+        </button>
+      </div>
+
+      <!-- Preview Section -->
+      <div class="tool-section" id="previewSection" style="display: none">
+        <h2>
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+            <circle cx="12" cy="12" r="3" />
+          </svg>
+          Live Preview
+        </h2>
+        <div id="formPreview"></div>
+      </div>
+
+      <!-- Embed Code Section -->
+      <div class="embed-section" id="embedSection" style="display: none">
+        <h2 style="display: flex; align-items: center; gap: 0.75rem">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            style="width: 28px; height: 28px"
+          >
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+            <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+          </svg>
+          Your Embed Code
+        </h2>
+        <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 1rem">
+          Copy and paste this code into your website:
+        </p>
+
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyEmbedCode()">Copy Code</button>
+          <pre id="embedCode"></pre>
+        </div>
+
+        <p
+          style="
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+          "
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            style="width: 18px; height: 18px; color: #fbbf24"
+          >
+            <path
+              d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+            />
+          </svg>
+          The form will send submissions to:
+          <span id="emailDisplay" style="color: #fbbf24"></span>
+        </p>
+      </div>
+    </div>
+
+    <script>
+      function generateCode() {
+        // Remove any existing error messages
+        const existingError = document.querySelector(".error-message");
+        if (existingError) {
+          existingError.remove();
+        }
+
+        const email = document.getElementById("recipientEmail").value;
+        const title = document.getElementById("formTitle").value;
+        const buttonText = document.getElementById("buttonText").value;
+        const themeColor = document.getElementById("themeColor").value;
+        const includePhone = document.getElementById("includePhone").checked;
+        const includeCompany =
+          document.getElementById("includeCompany").checked;
+
+        if (!email) {
+          const errorDiv = document.createElement("div");
+          errorDiv.className = "error-message";
+          errorDiv.innerHTML = `
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="8" x2="12" y2="12"/>
+              <line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            <div>
+              <strong>Email Required:</strong> Please enter your email address to receive form submissions.
+            </div>
+          `;
+          document
+            .querySelector(".generate-btn")
+            .insertAdjacentElement("beforebegin", errorDiv);
+          document.getElementById("recipientEmail").focus();
+          return;
+        }
+
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          const errorDiv = document.createElement("div");
+          errorDiv.className = "error-message";
+          errorDiv.innerHTML = `
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="8" x2="12" y2="12"/>
+              <line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            <div>
+              <strong>Invalid Email:</strong> Please enter a valid email address (e.g., you@example.com).
+            </div>
+          `;
+          document
+            .querySelector(".generate-btn")
+            .insertAdjacentElement("beforebegin", errorDiv);
+          document.getElementById("recipientEmail").focus();
+          return;
+        }
+
+        // Generate phone field if needed
+        const phoneField = includePhone
+          ? `
+                <div style="margin-bottom:1rem;">
+                    <label style="display:block;margin-bottom:0.5rem;color:#333;">Phone</label>
+                    <input type="tel" name="phone" style="width:100%;padding:0.75rem;border:1px solid #ddd;border-radius:8px;" />
+                </div>`
+          : "";
+
+        // Generate company field if needed
+        const companyField = includeCompany
+          ? `
+                <div style="margin-bottom:1rem;">
+                    <label style="display:block;margin-bottom:0.5rem;color:#333;">Company</label>
+                    <input type="text" name="company" style="width:100%;padding:0.75rem;border:1px solid #ddd;border-radius:8px;" />
+                </div>`
+          : "";
+
+        const embedCode = `<!-- iowidgets Contact Form -->
+<div id="iowidgets-contact-form"></div>
+<script>
+(function() {
+    const container = document.getElementById('iowidgets-contact-form');
+    container.innerHTML = \\\`
+        <div style="max-width:500px;margin:0 auto;background:#fff;padding:2rem;border-radius:15px;box-shadow:0 10px 40px rgba(0,0,0,0.1);">
+            <h2 style="margin-bottom:1.5rem;color:#333;text-align:center;">${title}</h2>
+            <form action="https://formsubmit.co/${email}" method="POST">
+                <div style="margin-bottom:1rem;">
+                    <label style="display:block;margin-bottom:0.5rem;color:#333;">Name*</label>
+                    <input type="text" name="name" required style="width:100%;padding:0.75rem;border:1px solid #ddd;border-radius:8px;" />
+                </div>
+                <div style="margin-bottom:1rem;">
+                    <label style="display:block;margin-bottom:0.5rem;color:#333;">Email*</label>
+                    <input type="email" name="email" required style="width:100%;padding:0.75rem;border:1px solid #ddd;border-radius:8px;" />
+                </div>
+                ${phoneField}
+                ${companyField}
+                <div style="margin-bottom:1rem;">
+                    <label style="display:block;margin-bottom:0.5rem;color:#333;">Message*</label>
+                    <textarea name="message" required rows="5" style="width:100%;padding:0.75rem;border:1px solid #ddd;border-radius:8px;resize:vertical;"></textarea>
+                </div>
+                <button type="submit" style="width:100%;padding:1rem;background:${themeColor};color:#fff;border:none;border-radius:8px;font-size:1rem;font-weight:600;cursor:pointer;transition:all 0.3s;">
+                    ${buttonText}
+                </button>
+            </form>
+        </div>
+    \\\`;
+})();
+<\/script>`;
+
+        // Show preview
+        document.getElementById("formPreview").innerHTML = generatePreviewHTML(
+          title,
+          buttonText,
+          themeColor,
+          includePhone,
+          includeCompany
+        );
+        const previewSection = document.getElementById("previewSection");
+        const embedSection = document.getElementById("embedSection");
+
+        previewSection.style.display = "block";
+        previewSection.style.animation = "slideIn 0.5s ease";
+
+        // Show embed code
+        document.getElementById("embedCode").textContent = embedCode;
+        document.getElementById("emailDisplay").textContent = email;
+        embedSection.style.display = "block";
+        embedSection.style.animation = "slideIn 0.5s ease";
+
+        // Scroll to preview section smoothly
+        setTimeout(() => {
+          previewSection.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+          });
+        }, 100);
+      }
+
+      function generatePreviewHTML(
+        title,
+        buttonText,
+        themeColor,
+        includePhone,
+        includeCompany
+      ) {
+        const phoneField = includePhone
+          ? `
+                <div style="margin-bottom:1rem;">
+                    <label style="display:block;margin-bottom:0.5rem;color:#333;">Phone</label>
+                    <input type="tel" disabled style="width:100%;padding:0.75rem;border:1px solid #ddd;border-radius:8px;" placeholder="Your phone number" />
+                </div>`
+          : "";
+
+        const companyField = includeCompany
+          ? `
+                <div style="margin-bottom:1rem;">
+                    <label style="display:block;margin-bottom:0.5rem;color:#333;">Company</label>
+                    <input type="text" disabled style="width:100%;padding:0.75rem;border:1px solid #ddd;border-radius:8px;" placeholder="Your company name" />
+                </div>`
+          : "";
+
+        return `
+                <div style="max-width:500px;margin:0 auto;background:#fff;padding:2rem;border-radius:15px;box-shadow:0 10px 40px rgba(0,0,0,0.1);">
+                    <h2 style="margin-bottom:1.5rem;color:#333;text-align:center;">${title}</h2>
+                    <form onsubmit="return false;">
+                        <div style="margin-bottom:1rem;">
+                            <label style="display:block;margin-bottom:0.5rem;color:#333;">Name*</label>
+                            <input type="text" disabled style="width:100%;padding:0.75rem;border:1px solid #ddd;border-radius:8px;" placeholder="Your name" />
+                        </div>
+                        <div style="margin-bottom:1rem;">
+                            <label style="display:block;margin-bottom:0.5rem;color:#333;">Email*</label>
+                            <input type="email" disabled style="width:100%;padding:0.75rem;border:1px solid #ddd;border-radius:8px;" placeholder="your@email.com" />
+                        </div>
+                        ${phoneField}
+                        ${companyField}
+                        <div style="margin-bottom:1rem;">
+                            <label style="display:block;margin-bottom:0.5rem;color:#333;">Message*</label>
+                            <textarea disabled rows="5" style="width:100%;padding:0.75rem;border:1px solid #ddd;border-radius:8px;resize:vertical;" placeholder="Your message..."></textarea>
+                        </div>
+                        <button type="button" style="width:100%;padding:1rem;background:${themeColor};color:#fff;border:none;border-radius:8px;font-size:1rem;font-weight:600;cursor:pointer;opacity:0.7;">
+                            ${buttonText}
+                        </button>
+                    </form>
+                </div>
+            `;
+      }
+
+      function copyEmbedCode() {
+        const code = document.getElementById("embedCode").textContent;
+        navigator.clipboard.writeText(code).then(() => {
+          const btn = document.querySelector(".copy-btn");
+          btn.textContent = "✓ Copied!";
+          btn.classList.add("copied");
+
+          setTimeout(() => {
+            btn.textContent = "Copy Code";
+            btn.classList.remove("copied");
+          }, 2000);
+        });
+      }
+    </script>
+  </body>
+</html>
