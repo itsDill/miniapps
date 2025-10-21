@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Testimonial Card - iowidgets</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 20px;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+      }
+      .panel {
+        background: white;
+        border-radius: 16px;
+        padding: 30px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      }
+      h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #333;
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #555;
+      }
+      input,
+      textarea {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-family: inherit;
+      }
+      textarea {
+        min-height: 100px;
+        resize: vertical;
+      }
+      .preview-area {
+        min-height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f5f5f5;
+        border-radius: 12px;
+        padding: 40px;
+        margin: 20px 0;
+      }
+      .testimonial-card {
+        max-width: 400px;
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+      .testimonial-text {
+        font-size: 16px;
+        line-height: 1.6;
+        color: #333;
+        margin-bottom: 20px;
+        font-style: italic;
+      }
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+      .author-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #667eea;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        font-weight: 600;
+      }
+      .author-info {
+        flex: 1;
+      }
+      .author-name {
+        font-weight: 600;
+        color: #333;
+      }
+      .author-role {
+        font-size: 14px;
+        color: #666;
+      }
+      .code-output {
+        background: #1e1e1e;
+        color: #d4d4d4;
+        padding: 20px;
+        border-radius: 8px;
+        font-family: "Courier New", monospace;
+        font-size: 11px;
+        overflow-x: auto;
+        position: relative;
+        max-height: 400px;
+        overflow-y: auto;
+      }
+      .copy-btn {
+        position: sticky;
+        top: 10px;
+        right: 10px;
+        float: right;
+        background: #667eea;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      @media (max-width: 768px) {
+        .container {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="panel">
+        <h1>💬 Testimonial Card</h1>
+        <div class="form-group">
+          <label>Testimonial Text</label>
+          <textarea id="testimonialText" oninput="updatePreview()">
+This product changed my life! Highly recommended for anyone looking to improve their workflow.</textarea
+          >
+        </div>
+        <div class="form-group">
+          <label>Author Name</label>
+          <input
+            type="text"
+            id="authorName"
+            value="Sarah Johnson"
+            oninput="updatePreview()"
+          />
+        </div>
+        <div class="form-group">
+          <label>Author Role</label>
+          <input
+            type="text"
+            id="authorRole"
+            value="CEO at TechCorp"
+            oninput="updatePreview()"
+          />
+        </div>
+        <div class="form-group">
+          <label>Avatar Color</label>
+          <input
+            type="color"
+            id="avatarColor"
+            value="#667eea"
+            oninput="updatePreview()"
+          />
+        </div>
+      </div>
+      <div class="panel">
+        <h1>Preview & Code</h1>
+        <div class="preview-area">
+          <div class="testimonial-card" id="testimonialCard">
+            <div class="testimonial-text" id="previewText"></div>
+            <div class="testimonial-author">
+              <div class="author-avatar" id="previewAvatar"></div>
+              <div class="author-info">
+                <div class="author-name" id="previewName"></div>
+                <div class="author-role" id="previewRole"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h3 style="margin: 20px 0 10px; color: #555">Embed Code:</h3>
+        <div class="code-output">
+          <button class="copy-btn" onclick="copyCode()">Copy</button>
+          <pre id="codeContent"></pre>
+        </div>
+      </div>
+    </div>
+    <script>
+      function updatePreview() {
+        const text = document.getElementById("testimonialText").value;
+        const name = document.getElementById("authorName").value;
+        const role = document.getElementById("authorRole").value;
+        const color = document.getElementById("avatarColor").value;
+        const initial = name.charAt(0).toUpperCase();
+
+        document.getElementById("previewText").textContent = `"${text}"`;
+        document.getElementById("previewName").textContent = name;
+        document.getElementById("previewRole").textContent = role;
+        document.getElementById("previewAvatar").textContent = initial;
+        document.getElementById("previewAvatar").style.backgroundColor = color;
+
+        const code = `<div style="max-width: 400px; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <div style="font-size: 16px; line-height: 1.6; color: #333; margin-bottom: 20px; font-style: italic;">"${text}"</div>
+  <div style="display: flex; align-items: center; gap: 15px;">
+    <div style="width: 50px; height: 50px; border-radius: 50%; background: ${color}; color: white; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 600;">${initial}</div>
+    <div>
+      <div style="font-weight: 600; color: #333;">${name}</div>
+      <div style="font-size: 14px; color: #666;">${role}</div>
+    </div>
+  </div>
+</div>`;
+
+        document.getElementById("codeContent").textContent = code;
+      }
+
+      function copyCode() {
+        const code = document.getElementById("codeContent").textContent;
+        navigator.clipboard.writeText(code).then(() => {
+          const btn = document.querySelector(".copy-btn");
+          btn.textContent = "Copied!";
+          setTimeout(() => (btn.textContent = "Copy"), 2000);
+        });
+      }
+      updatePreview();
+    </script>
+  </body>
+</html>

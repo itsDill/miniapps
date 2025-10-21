@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Badge Maker - iowidgets</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        min-height: 100vh;
+        padding: 20px;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+      }
+      .panel {
+        background: white;
+        border-radius: 16px;
+        padding: 30px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      }
+      h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #333;
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #555;
+      }
+      input,
+      select {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 14px;
+      }
+      input:focus,
+      select:focus {
+        outline: none;
+        border-color: #f093fb;
+      }
+      .preview-area {
+        min-height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f5f5f5;
+        border-radius: 12px;
+        padding: 40px;
+        margin: 20px 0;
+      }
+      .badge {
+        padding: 6px 16px;
+        font-size: 14px;
+        font-weight: 600;
+        border-radius: 20px;
+        display: inline-block;
+      }
+      .code-output {
+        background: #1e1e1e;
+        color: #d4d4d4;
+        padding: 20px;
+        border-radius: 8px;
+        font-family: "Courier New", monospace;
+        font-size: 13px;
+        overflow-x: auto;
+        position: relative;
+      }
+      .copy-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #f093fb;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 12px;
+      }
+      @media (max-width: 768px) {
+        .container {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="panel">
+        <h1>🏷️ Badge Maker</h1>
+        <div class="form-group">
+          <label>Badge Text</label>
+          <input
+            type="text"
+            id="badgeText"
+            value="New"
+            oninput="updatePreview()"
+          />
+        </div>
+        <div class="form-group">
+          <label>Background Color</label>
+          <input
+            type="color"
+            id="bgColor"
+            value="#10b981"
+            oninput="updatePreview()"
+          />
+        </div>
+        <div class="form-group">
+          <label>Text Color</label>
+          <input
+            type="color"
+            id="textColor"
+            value="#ffffff"
+            oninput="updatePreview()"
+          />
+        </div>
+        <div class="form-group">
+          <label>Style</label>
+          <select id="badgeStyle" onchange="updatePreview()">
+            <option value="solid">Solid</option>
+            <option value="outline">Outline</option>
+            <option value="subtle">Subtle</option>
+          </select>
+        </div>
+      </div>
+      <div class="panel">
+        <h1>Preview & Code</h1>
+        <div class="preview-area">
+          <span class="badge" id="previewBadge">New</span>
+        </div>
+        <h3 style="margin: 20px 0 10px; color: #555">Embed Code:</h3>
+        <div class="code-output">
+          <button class="copy-btn" onclick="copyCode()">Copy</button>
+          <pre id="codeContent"></pre>
+        </div>
+      </div>
+    </div>
+    <script>
+      function updatePreview() {
+        const text = document.getElementById("badgeText").value;
+        const bg = document.getElementById("bgColor").value;
+        const color = document.getElementById("textColor").value;
+        const style = document.getElementById("badgeStyle").value;
+        const badge = document.getElementById("previewBadge");
+
+        badge.textContent = text;
+        badge.style.color = color;
+
+        if (style === "solid") {
+          badge.style.backgroundColor = bg;
+          badge.style.border = "none";
+        } else if (style === "outline") {
+          badge.style.backgroundColor = "transparent";
+          badge.style.border = `2px solid ${bg}`;
+          badge.style.color = bg;
+        } else {
+          badge.style.backgroundColor = bg + "20";
+          badge.style.border = "none";
+          badge.style.color = bg;
+        }
+
+        const code = `<span style="display: inline-block; padding: 6px 16px; font-size: 14px; font-weight: 600; border-radius: 20px; ${
+          style === "solid"
+            ? `background-color: ${bg}; color: ${color};`
+            : style === "outline"
+            ? `border: 2px solid ${bg}; color: ${bg}; background: transparent;`
+            : `background-color: ${bg}20; color: ${bg};`
+        }">${text}</span>`;
+
+        document.getElementById("codeContent").textContent = code;
+      }
+
+      function copyCode() {
+        const code = document.getElementById("codeContent").textContent;
+        navigator.clipboard.writeText(code).then(() => {
+          const btn = document.querySelector(".copy-btn");
+          btn.textContent = "Copied!";
+          setTimeout(() => (btn.textContent = "Copy"), 2000);
+        });
+      }
+
+      updatePreview();
+    </script>
+  </body>
+</html>

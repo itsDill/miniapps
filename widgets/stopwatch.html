@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stopwatch - iowidgets</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      .container {
+        background: white;
+        border-radius: 20px;
+        padding: 50px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        max-width: 500px;
+        width: 100%;
+      }
+      h1 {
+        font-size: 32px;
+        margin-bottom: 40px;
+        color: #333;
+      }
+      .time-display {
+        font-size: 72px;
+        font-weight: 700;
+        color: #f093fb;
+        margin: 40px 0;
+        font-variant-numeric: tabular-nums;
+        font-family: "Courier New", monospace;
+      }
+      .controls {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin-bottom: 30px;
+      }
+      button {
+        padding: 16px 32px;
+        border: none;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .start-btn {
+        background: #10b981;
+        color: white;
+      }
+      .start-btn:hover {
+        background: #059669;
+      }
+      .stop-btn {
+        background: #ef4444;
+        color: white;
+      }
+      .stop-btn:hover {
+        background: #dc2626;
+      }
+      .reset-btn {
+        background: #e0e0e0;
+        color: #333;
+      }
+      .reset-btn:hover {
+        background: #d0d0d0;
+      }
+      .laps {
+        max-height: 200px;
+        overflow-y: auto;
+        margin-top: 30px;
+        text-align: left;
+      }
+      .lap-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px;
+        background: #f8f9fa;
+        margin-bottom: 8px;
+        border-radius: 8px;
+        font-family: "Courier New", monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>⏱️ Stopwatch</h1>
+      <div class="time-display" id="display">00:00:00.00</div>
+      <div class="controls">
+        <button class="start-btn" id="startBtn" onclick="start()">Start</button>
+        <button
+          class="stop-btn"
+          id="stopBtn"
+          onclick="stop()"
+          style="display: none"
+        >
+          Stop
+        </button>
+        <button class="reset-btn" onclick="lap()">Lap</button>
+        <button class="reset-btn" onclick="reset()">Reset</button>
+      </div>
+      <div class="laps" id="laps"></div>
+    </div>
+    <script>
+      let startTime = 0;
+      let elapsedTime = 0;
+      let interval;
+      let isRunning = false;
+      let lapCount = 0;
+
+      function start() {
+        if (!isRunning) {
+          startTime = Date.now() - elapsedTime;
+          interval = setInterval(updateTime, 10);
+          isRunning = true;
+          document.getElementById("startBtn").style.display = "none";
+          document.getElementById("stopBtn").style.display = "inline-block";
+        }
+      }
+
+      function stop() {
+        if (isRunning) {
+          clearInterval(interval);
+          isRunning = false;
+          document.getElementById("startBtn").style.display = "inline-block";
+          document.getElementById("stopBtn").style.display = "none";
+        }
+      }
+
+      function reset() {
+        clearInterval(interval);
+        isRunning = false;
+        startTime = 0;
+        elapsedTime = 0;
+        lapCount = 0;
+        document.getElementById("display").textContent = "00:00:00.00";
+        document.getElementById("laps").innerHTML = "";
+        document.getElementById("startBtn").style.display = "inline-block";
+        document.getElementById("stopBtn").style.display = "none";
+      }
+
+      function lap() {
+        if (isRunning) {
+          lapCount++;
+          const lapTime = formatTime(elapsedTime);
+          const lapDiv = document.createElement("div");
+          lapDiv.className = "lap-item";
+          lapDiv.innerHTML = `<span>Lap ${lapCount}</span><span>${lapTime}</span>`;
+          document
+            .getElementById("laps")
+            .insertBefore(lapDiv, document.getElementById("laps").firstChild);
+        }
+      }
+
+      function updateTime() {
+        elapsedTime = Date.now() - startTime;
+        document.getElementById("display").textContent =
+          formatTime(elapsedTime);
+      }
+
+      function formatTime(ms) {
+        const totalSeconds = Math.floor(ms / 1000);
+        const hours = Math.floor(totalSeconds / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+        const centiseconds = Math.floor((ms % 1000) / 10);
+
+        return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(
+          2,
+          "0"
+        )}:${String(seconds).padStart(2, "0")}.${String(centiseconds).padStart(
+          2,
+          "0"
+        )}`;
+      }
+    </script>
+  </body>
+</html>
