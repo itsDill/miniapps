@@ -3,71 +3,356 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Button Generator - iowidgets</title>
+    <title>
+      Button Generator - Create Custom CSS Buttons Online | iowidgets
+    </title>
+    <meta
+      name="description"
+      content="Free button generator tool to create custom CSS buttons with live preview. Choose colors, sizes, styles, icons, shadows, and hover effects. Copy embed code instantly."
+    />
+    <meta
+      name="keywords"
+      content="button generator, CSS button maker, custom buttons, button design tool, HTML buttons, call-to-action buttons, CTA generator, button creator"
+    />
+    <link
+      rel="canonical"
+      href="https://iowidgets.com/widgets/button-generator.html"
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://iowidgets.com/widgets/button-generator.html"
+    />
+    <meta
+      property="og:title"
+      content="Button Generator - Create Custom CSS Buttons Online"
+    />
+    <meta
+      property="og:description"
+      content="Free button generator tool to create custom CSS buttons with live preview. Choose colors, sizes, styles, icons, shadows, and hover effects."
+    />
+    <meta
+      property="og:image"
+      content="https://iowidgets.com/assets/button-generator-preview.jpg"
+    />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:url"
+      content="https://iowidgets.com/widgets/button-generator.html"
+    />
+    <meta
+      name="twitter:title"
+      content="Button Generator - Create Custom CSS Buttons Online"
+    />
+    <meta
+      name="twitter:description"
+      content="Free button generator tool to create custom CSS buttons with live preview. Choose colors, sizes, styles, icons, shadows, and hover effects."
+    />
+    <meta
+      name="twitter:image"
+      content="https://iowidgets.com/assets/button-generator-preview.jpg"
+    />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Button Generator",
+        "url": "https://iowidgets.com/widgets/button-generator.html",
+        "description": "Free button generator tool to create custom CSS buttons with live preview",
+        "applicationCategory": "DesignApplication",
+        "operatingSystem": "Any",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "featureList": "Custom colors, Multiple sizes, Button styles, Icon support, Shadow effects, Hover animations, Gradient backgrounds, Live preview, Copy embed code"
+      }
+    </script>
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
     <style>
+      :root {
+        --primary-color: #667eea;
+        --secondary-color: #764ba2;
+        --text-dark: #333;
+        --text-light: #555;
+        --border-color: #e0e0e0;
+        --bg-light: #f5f5f5;
+        --success-color: #10b981;
+        --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+        --transition-speed: 0.3s;
+        --border-radius: 8px;
+      }
+
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
 
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
       body {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          sans-serif;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          "Helvetica Neue", Arial, sans-serif;
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          var(--secondary-color) 100%
+        );
         min-height: 100vh;
-        padding: 20px;
+        padding: 1rem;
+        line-height: 1.6;
       }
 
       .container {
         max-width: 1200px;
         margin: 0 auto;
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 30px;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
       }
 
       .panel {
         background: white;
         border-radius: 16px;
-        padding: 30px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        padding: 1.5rem;
+        box-shadow: var(--shadow-lg);
+        animation: fadeIn 0.5s ease-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       h1 {
-        font-size: 24px;
-        margin-bottom: 20px;
-        color: #333;
+        font-size: clamp(1.5rem, 4vw, 1.75rem);
+        margin-bottom: 1.25rem;
+        color: var(--text-dark);
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 0.625rem;
+      }
+
+      h3 {
+        font-size: 1rem;
+        color: var(--text-light);
+        margin: 1.25rem 0 0.75rem;
       }
 
       .form-group {
-        margin-bottom: 20px;
+        margin-bottom: 1.25rem;
       }
 
       label {
         display: block;
         font-weight: 600;
-        margin-bottom: 8px;
-        color: #555;
+        margin-bottom: 0.5rem;
+        color: var(--text-light);
+        font-size: 0.875rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
       }
 
-      input,
+      .tooltip {
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        background: var(--text-light);
+        color: white;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 12px;
+        line-height: 18px;
+        cursor: help;
+        position: relative;
+      }
+
+      .tooltip:hover::after {
+        content: attr(data-tip);
+        position: absolute;
+        bottom: 125%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--text-dark);
+        color: white;
+        padding: 0.5rem;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        white-space: nowrap;
+        z-index: 10;
+        box-shadow: var(--shadow-md);
+      }
+
+      input[type="text"],
+      input[type="url"],
+      input[type="number"],
       select {
         width: 100%;
-        padding: 12px;
-        border: 2px solid #e0e0e0;
-        border-radius: 8px;
-        font-size: 14px;
-        transition: border-color 0.3s;
+        padding: 0.75rem;
+        border: 2px solid var(--border-color);
+        border-radius: var(--border-radius);
+        font-size: 0.9375rem;
+        transition: border-color var(--transition-speed),
+          box-shadow var(--transition-speed);
+        min-height: 44px;
+      }
+
+      input[type="color"] {
+        width: 100%;
+        height: 44px;
+        border: 2px solid var(--border-color);
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        transition: border-color var(--transition-speed);
       }
 
       input:focus,
       select:focus {
         outline: none;
-        border-color: #667eea;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      }
+
+      .char-counter {
+        font-size: 0.75rem;
+        color: var(--text-light);
+      }
+
+      .char-counter.warning {
+        color: #ef4444;
+      }
+
+      .color-presets {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(44px, 1fr));
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+      }
+
+      .color-preset {
+        width: 100%;
+        height: 44px;
+        border: 2px solid transparent;
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        transition: all var(--transition-speed);
+        position: relative;
+      }
+
+      .color-preset:hover {
+        transform: scale(1.05);
+        border-color: var(--text-dark);
+      }
+
+      .color-preset:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+      }
+
+      .color-preset.active::after {
+        content: "✓";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-weight: bold;
+        text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+      }
+
+      .slider-group {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      input[type="range"] {
+        flex: 1;
+        height: 6px;
+        border-radius: 3px;
+        background: var(--border-color);
+        outline: none;
+        -webkit-appearance: none;
+        appearance: none;
+      }
+
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--primary-color);
+        cursor: pointer;
+        transition: transform var(--transition-speed);
+      }
+
+      input[type="range"]::-webkit-slider-thumb:hover {
+        transform: scale(1.2);
+      }
+
+      input[type="range"]::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--primary-color);
+        cursor: pointer;
+        border: none;
+        transition: transform var(--transition-speed);
+      }
+
+      input[type="range"]::-moz-range-thumb:hover {
+        transform: scale(1.2);
+      }
+
+      .slider-value {
+        min-width: 3rem;
+        text-align: right;
+        font-weight: 600;
+        color: var(--text-light);
+        font-size: 0.875rem;
+      }
+
+      .checkbox-group {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+      }
+
+      input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        accent-color: var(--primary-color);
       }
 
       .preview-area {
@@ -75,10 +360,39 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: #f5f5f5;
+        background: var(--bg-light);
         border-radius: 12px;
-        padding: 40px;
-        margin: 20px 0;
+        padding: 2.5rem;
+        margin: 1.25rem 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .preview-bg-toggle {
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+        background: white;
+        border: 2px solid var(--border-color);
+        padding: 0.5rem;
+        border-radius: 6px;
+        cursor: pointer;
+        min-height: 44px;
+        min-width: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all var(--transition-speed);
+      }
+
+      .preview-bg-toggle:hover {
+        border-color: var(--primary-color);
+      }
+
+      .preview-bg-toggle:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
       }
 
       .generated-button {
@@ -88,18 +402,84 @@
         border: none;
         border-radius: 8px;
         cursor: pointer;
-        transition: all 0.3s;
+        transition: all var(--transition-speed);
         text-decoration: none;
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        animation: buttonAppear 0.5s ease-out;
+        min-height: 44px;
+      }
+
+      @keyframes buttonAppear {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .button-icon {
+        font-size: 1.2em;
+      }
+
+      .icon-picker {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height var(--transition-speed);
+      }
+
+      .icon-picker.active {
+        max-height: 300px;
+        overflow-y: auto;
+      }
+
+      .icon-btn {
+        width: 100%;
+        height: 44px;
+        border: 2px solid var(--border-color);
+        background: white;
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        font-size: 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all var(--transition-speed);
+      }
+
+      .icon-btn:hover {
+        border-color: var(--primary-color);
+        transform: scale(1.05);
+      }
+
+      .icon-btn:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+      }
+
+      .icon-btn.active {
+        background: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
       }
 
       .code-output {
         background: #1e1e1e;
         color: #d4d4d4;
-        padding: 20px;
-        border-radius: 8px;
-        font-family: "Courier New", monospace;
-        font-size: 13px;
+        padding: 1.25rem;
+        border-radius: var(--border-radius);
+        font-family: "Courier New", Consolas, Monaco, monospace;
+        font-size: 0.8125rem;
         line-height: 1.6;
         overflow-x: auto;
         position: relative;
@@ -107,25 +487,117 @@
 
       .copy-btn {
         position: absolute;
-        top: 10px;
-        right: 10px;
-        background: #667eea;
+        top: 0.75rem;
+        right: 0.75rem;
+        background: var(--primary-color);
         color: white;
         border: none;
-        padding: 8px 16px;
+        padding: 0.5rem 1rem;
         border-radius: 6px;
         cursor: pointer;
-        font-size: 12px;
+        font-size: 0.875rem;
         font-weight: 600;
+        min-height: 44px;
+        transition: all var(--transition-speed);
       }
 
       .copy-btn:hover {
-        background: #5568d3;
+        background: var(--secondary-color);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
       }
 
-      @media (max-width: 768px) {
+      .copy-btn:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+      }
+
+      .copy-btn:active {
+        transform: translateY(0);
+      }
+
+      .copy-btn.success {
+        background: var(--success-color);
+      }
+
+      .toggle-btn {
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 0.625rem 1rem;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.875rem;
+        font-weight: 600;
+        width: 100%;
+        min-height: 44px;
+        transition: all var(--transition-speed);
+        margin-top: 0.5rem;
+      }
+
+      .toggle-btn:hover {
+        background: var(--secondary-color);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .toggle-btn:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+      }
+
+      .gradient-controls {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height var(--transition-speed);
+      }
+
+      .gradient-controls.active {
+        max-height: 500px;
+      }
+
+      /* Tablet breakpoint */
+      @media (min-width: 640px) {
+        body {
+          padding: 1.5rem;
+        }
+
+        .panel {
+          padding: 2rem;
+        }
+
+        .color-presets {
+          grid-template-columns: repeat(6, 1fr);
+        }
+      }
+
+      /* Desktop breakpoint */
+      @media (min-width: 1024px) {
+        body {
+          padding: 2rem;
+        }
+
         .container {
-          grid-template-columns: 1fr;
+          grid-template-columns: 1fr 1fr;
+          gap: 2rem;
+        }
+
+        .panel {
+          padding: 2.5rem;
+        }
+
+        h1 {
+          font-size: 1.75rem;
+        }
+      }
+
+      /* Accessibility - High contrast focus indicators */
+      @media (prefers-contrast: high) {
+        input:focus,
+        select:focus,
+        button:focus {
+          outline: 3px solid currentColor;
+          outline-offset: 2px;
         }
       }
     </style>
@@ -141,6 +613,8 @@
             fill="none"
             stroke="currentColor"
             stroke-width="2"
+            role="img"
+            aria-label="Button icon"
           >
             <rect x="4" y="8" width="16" height="8" rx="2" />
           </svg>
@@ -148,100 +622,633 @@
         </h1>
 
         <div class="form-group">
-          <label>Button Text</label>
+          <label>
+            <span>Button Text</span>
+            <span class="char-counter" id="charCounter">8/50</span>
+          </label>
           <input
             type="text"
             id="buttonText"
             value="Click Me"
+            maxlength="50"
             oninput="updatePreview()"
+            aria-label="Button text content"
           />
         </div>
 
         <div class="form-group">
-          <label>Button URL</label>
+          <label for="buttonUrl">
+            <span>Button URL</span>
+            <span class="tooltip" data-tip="Link destination when clicked"
+              >?</span
+            >
+          </label>
           <input
             type="url"
             id="buttonUrl"
             value="https://example.com"
             oninput="updatePreview()"
+            aria-label="Button link URL"
           />
         </div>
 
         <div class="form-group">
-          <label>Background Color</label>
+          <label>
+            <span>Background Color</span>
+            <span class="tooltip" data-tip="Choose button background color"
+              >?</span
+            >
+          </label>
           <input
             type="color"
             id="bgColor"
             value="#667eea"
             oninput="updatePreview()"
+            aria-label="Button background color"
           />
+          <div
+            class="color-presets"
+            role="group"
+            aria-label="Background color presets"
+          >
+            <button
+              class="color-preset"
+              style="background: #667eea"
+              data-color="#667eea"
+              onclick="setBgColor('#667eea')"
+              aria-label="Purple"
+            ></button>
+            <button
+              class="color-preset"
+              style="background: #3b82f6"
+              data-color="#3b82f6"
+              onclick="setBgColor('#3b82f6')"
+              aria-label="Blue"
+            ></button>
+            <button
+              class="color-preset"
+              style="background: #10b981"
+              data-color="#10b981"
+              onclick="setBgColor('#10b981')"
+              aria-label="Green"
+            ></button>
+            <button
+              class="color-preset"
+              style="background: #ef4444"
+              data-color="#ef4444"
+              onclick="setBgColor('#ef4444')"
+              aria-label="Red"
+            ></button>
+            <button
+              class="color-preset"
+              style="background: #f59e0b"
+              data-color="#f59e0b"
+              onclick="setBgColor('#f59e0b')"
+              aria-label="Orange"
+            ></button>
+            <button
+              class="color-preset"
+              style="background: #ec4899"
+              data-color="#ec4899"
+              onclick="setBgColor('#ec4899')"
+              aria-label="Pink"
+            ></button>
+          </div>
         </div>
 
         <div class="form-group">
-          <label>Text Color</label>
+          <label for="textColor">
+            <span>Text Color</span>
+            <span class="tooltip" data-tip="Choose button text color">?</span>
+          </label>
           <input
             type="color"
             id="textColor"
             value="#ffffff"
             oninput="updatePreview()"
+            aria-label="Button text color"
           />
         </div>
 
         <div class="form-group">
-          <label>Border Radius</label>
-          <select id="borderRadius" onchange="updatePreview()">
+          <label for="buttonStyle">Button Style</label>
+          <select
+            id="buttonStyle"
+            onchange="updatePreview()"
+            aria-label="Button style"
+          >
+            <option value="solid">Solid</option>
+            <option value="outline">Outline</option>
+            <option value="ghost">Ghost</option>
+            <option value="gradient">Gradient</option>
+          </select>
+        </div>
+
+        <div class="form-group" id="gradientControls" style="display: none">
+          <label>
+            <span>Gradient End Color</span>
+            <span class="tooltip" data-tip="Second color for gradient">?</span>
+          </label>
+          <input
+            type="color"
+            id="gradientColor"
+            value="#764ba2"
+            oninput="updatePreview()"
+            aria-label="Gradient end color"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="buttonSize">Size</label>
+          <select
+            id="buttonSize"
+            onchange="updatePreview()"
+            aria-label="Button size"
+          >
+            <option value="small">Small</option>
+            <option value="medium" selected>Medium</option>
+            <option value="large">Large</option>
+            <option value="xlarge">Extra Large</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="borderRadius">Border Radius</label>
+          <select
+            id="borderRadius"
+            onchange="updatePreview()"
+            aria-label="Button border radius"
+          >
+            <option value="0px">None (0px)</option>
             <option value="4px">Small (4px)</option>
             <option value="8px" selected>Medium (8px)</option>
-            <option value="16px">Large (16px)</option>
+            <option value="12px">Large (12px)</option>
             <option value="50px">Pill (50px)</option>
           </select>
         </div>
 
         <div class="form-group">
-          <label>Size</label>
-          <select id="buttonSize" onchange="updatePreview()">
-            <option value="small">Small</option>
-            <option value="medium" selected>Medium</option>
-            <option value="large">Large</option>
+          <label>
+            <span>Shadow Intensity</span>
+            <span class="slider-value" id="shadowValue">2</span>
+          </label>
+          <div class="slider-group">
+            <input
+              type="range"
+              id="shadowIntensity"
+              min="0"
+              max="10"
+              value="2"
+              oninput="updatePreview()"
+              aria-label="Button shadow intensity"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>
+            <span>Width</span>
+            <span class="tooltip" data-tip="Button width setting">?</span>
+          </label>
+          <select
+            id="buttonWidth"
+            onchange="updatePreview()"
+            aria-label="Button width"
+          >
+            <option value="auto" selected>Auto</option>
+            <option value="full">Full Width (100%)</option>
+            <option value="fit">Fit Content</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="linkTarget">Open Link In</label>
+          <select
+            id="linkTarget"
+            onchange="updatePreview()"
+            aria-label="Link target"
+          >
+            <option value="_self">Same Tab</option>
+            <option value="_blank">New Tab</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <div class="checkbox-group">
+            <input
+              type="checkbox"
+              id="uppercase"
+              onchange="updatePreview()"
+              aria-label="Convert text to uppercase"
+            />
+            <label for="uppercase" style="margin-bottom: 0"
+              >Uppercase Text</label
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="checkbox-group">
+            <input
+              type="checkbox"
+              id="boldText"
+              checked
+              onchange="updatePreview()"
+              aria-label="Make text bold"
+            />
+            <label for="boldText" style="margin-bottom: 0">Bold Text</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Icon (Optional)</label>
+          <button
+            class="toggle-btn"
+            onclick="toggleIconPicker()"
+            aria-label="Toggle icon picker"
+            aria-expanded="false"
+            id="iconToggle"
+          >
+            Choose Icon
+          </button>
+          <div
+            class="icon-picker"
+            id="iconPicker"
+            role="group"
+            aria-label="Icon selection"
+          >
+            <button
+              class="icon-btn"
+              onclick="setIcon('', 'left')"
+              aria-label="No icon"
+            >
+              ✕
+            </button>
+            <button
+              class="icon-btn"
+              onclick="setIcon('→', 'right')"
+              aria-label="Arrow right"
+            >
+              →
+            </button>
+            <button
+              class="icon-btn"
+              onclick="setIcon('←', 'left')"
+              aria-label="Arrow left"
+            >
+              ←
+            </button>
+            <button
+              class="icon-btn"
+              onclick="setIcon('↓', 'right')"
+              aria-label="Arrow down"
+            >
+              ↓
+            </button>
+            <button
+              class="icon-btn"
+              onclick="setIcon('⭐', 'left')"
+              aria-label="Star"
+            >
+              ⭐
+            </button>
+            <button
+              class="icon-btn"
+              onclick="setIcon('✓', 'left')"
+              aria-label="Check"
+            >
+              ✓
+            </button>
+            <button
+              class="icon-btn"
+              onclick="setIcon('❤️', 'left')"
+              aria-label="Heart"
+            >
+              ❤️
+            </button>
+            <button
+              class="icon-btn"
+              onclick="setIcon('🔥', 'left')"
+              aria-label="Fire"
+            >
+              🔥
+            </button>
+            <button
+              class="icon-btn"
+              onclick="setIcon('⚡', 'left')"
+              aria-label="Lightning"
+            >
+              ⚡
+            </button>
+            <button
+              class="icon-btn"
+              onclick="setIcon('🚀', 'left')"
+              aria-label="Rocket"
+            >
+              🚀
+            </button>
+            <button
+              class="icon-btn"
+              onclick="setIcon('🎉', 'left')"
+              aria-label="Party"
+            >
+              🎉
+            </button>
+            <button
+              class="icon-btn"
+              onclick="setIcon('💎', 'left')"
+              aria-label="Diamond"
+            >
+              💎
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group" id="iconPositionGroup" style="display: none">
+          <label for="iconPosition">Icon Position</label>
+          <select
+            id="iconPosition"
+            onchange="updatePreview()"
+            aria-label="Icon position"
+          >
+            <option value="left">Left</option>
+            <option value="right">Right</option>
           </select>
         </div>
       </div>
 
       <div class="panel">
-        <h1>Preview & Code</h1>
+        <h1>
+          <span role="img" aria-label="Eyes">👀</span>
+          Preview & Code
+        </h1>
 
-        <div class="preview-area">
+        <div
+          class="preview-area"
+          id="previewArea"
+          role="region"
+          aria-label="Button preview"
+        >
+          <button
+            class="preview-bg-toggle"
+            onclick="togglePreviewBg()"
+            aria-label="Toggle preview background"
+            title="Toggle background"
+          >
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+              <path
+                fill-rule="evenodd"
+                d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
           <a
             href="https://example.com"
             class="generated-button"
             id="previewButton"
-            >Click Me</a
+            role="button"
+            aria-label="Preview button"
           >
+            <span
+              class="button-icon button-icon-left"
+              id="buttonIconLeft"
+            ></span>
+            <span id="buttonTextContent">Click Me</span>
+            <span
+              class="button-icon button-icon-right"
+              id="buttonIconRight"
+            ></span>
+          </a>
         </div>
 
-        <h3 style="margin: 20px 0 10px; color: #555">Embed Code:</h3>
-        <div class="code-output" id="embedCode">
-          <button class="copy-btn" onclick="copyCode()">Copy</button>
-          <pre id="codeContent"></pre>
+        <h3>Embed Code:</h3>
+        <div
+          class="code-output"
+          id="embedCode"
+          role="region"
+          aria-label="HTML embed code"
+        >
+          <button
+            class="copy-btn"
+            onclick="copyCode()"
+            aria-label="Copy code to clipboard"
+          >
+            Copy Code
+          </button>
+          <pre id="codeContent" tabindex="0"></pre>
+        </div>
+
+        <div
+          style="
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f0f9ff;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            color: #0369a1;
+          "
+        >
+          <strong>💡 Tip:</strong> Press
+          <kbd
+            style="
+              padding: 2px 6px;
+              background: white;
+              border: 1px solid #cbd5e1;
+              border-radius: 4px;
+            "
+            >Ctrl+C</kbd
+          >
+          to copy code quickly!
         </div>
       </div>
     </div>
 
     <script>
+      let currentIcon = "";
+      let iconPosition = "left";
+      let previewBgDark = false;
+
+      // HTML escape function for XSS protection
+      function escapeHtml(text) {
+        const div = document.createElement("div");
+        div.textContent = text;
+        return div.innerHTML;
+      }
+
+      // Initialize on load
+      document.addEventListener("DOMContentLoaded", function () {
+        updatePreview();
+
+        // Keyboard shortcut for copy
+        document.addEventListener("keydown", function (e) {
+          if ((e.ctrlKey || e.metaKey) && e.key === "c") {
+            const codeOutput = document.querySelector(".code-output");
+            if (codeOutput && !window.getSelection().toString()) {
+              e.preventDefault();
+              copyCode();
+            }
+          }
+        });
+
+        // Update slider value display
+        document
+          .getElementById("shadowIntensity")
+          .addEventListener("input", function () {
+            document.getElementById("shadowValue").textContent = this.value;
+          });
+
+        // Show/hide gradient controls
+        document
+          .getElementById("buttonStyle")
+          .addEventListener("change", function () {
+            const gradientControls =
+              document.getElementById("gradientControls");
+            if (this.value === "gradient") {
+              gradientControls.style.display = "block";
+            } else {
+              gradientControls.style.display = "none";
+            }
+          });
+
+        // Character counter
+        const buttonTextInput = document.getElementById("buttonText");
+        buttonTextInput.addEventListener("input", function () {
+          const counter = document.getElementById("charCounter");
+          const length = this.value.length;
+          counter.textContent = `${length}/50`;
+          if (length >= 45) {
+            counter.classList.add("warning");
+          } else {
+            counter.classList.remove("warning");
+          }
+        });
+
+        // Set initial character count
+        const initialLength = buttonTextInput.value.length;
+        document.getElementById(
+          "charCounter"
+        ).textContent = `${initialLength}/50`;
+      });
+
+      function setBgColor(color) {
+        document.getElementById("bgColor").value = color;
+        updatePreview();
+
+        // Update active state on presets
+        document.querySelectorAll(".color-preset").forEach((btn) => {
+          if (btn.dataset.color === color) {
+            btn.classList.add("active");
+          } else {
+            btn.classList.remove("active");
+          }
+        });
+      }
+
+      function toggleIconPicker() {
+        const picker = document.getElementById("iconPicker");
+        const toggle = document.getElementById("iconToggle");
+        picker.classList.toggle("active");
+        const isOpen = picker.classList.contains("active");
+        toggle.setAttribute("aria-expanded", isOpen);
+        toggle.textContent = isOpen ? "Close Icons" : "Choose Icon";
+      }
+
+      function setIcon(icon, position = "left") {
+        currentIcon = icon;
+        iconPosition = position;
+
+        // Show/hide icon position selector
+        const iconPositionGroup = document.getElementById("iconPositionGroup");
+        if (icon) {
+          iconPositionGroup.style.display = "block";
+          document.getElementById("iconPosition").value = position;
+        } else {
+          iconPositionGroup.style.display = "none";
+        }
+
+        updatePreview();
+
+        // Update active state on icon buttons
+        document.querySelectorAll(".icon-btn").forEach((btn) => {
+          btn.classList.remove("active");
+        });
+        event.target.classList.add("active");
+      }
+
+      function togglePreviewBg() {
+        const previewArea = document.getElementById("previewArea");
+        previewBgDark = !previewBgDark;
+
+        if (previewBgDark) {
+          previewArea.style.background = "#1e1e1e";
+        } else {
+          previewArea.style.background = "#f5f5f5";
+        }
+      }
+
       function updatePreview() {
-        const buttonText = document.getElementById("buttonText").value;
+        const buttonText =
+          document.getElementById("buttonText").value || "Button";
         const buttonUrl = document.getElementById("buttonUrl").value;
         const bgColor = document.getElementById("bgColor").value;
         const textColor = document.getElementById("textColor").value;
         const borderRadius = document.getElementById("borderRadius").value;
         const buttonSize = document.getElementById("buttonSize").value;
+        const buttonStyle = document.getElementById("buttonStyle").value;
+        const shadow = document.getElementById("shadowIntensity").value;
+        const buttonWidth = document.getElementById("buttonWidth").value;
+        const linkTarget = document.getElementById("linkTarget").value;
+        const uppercase = document.getElementById("uppercase").checked;
+        const boldText = document.getElementById("boldText").checked;
+        const gradientColor = document.getElementById("gradientColor").value;
+        const selectedIconPosition =
+          document.getElementById("iconPosition").value;
 
         const button = document.getElementById("previewButton");
-        button.textContent = buttonText;
+        const buttonTextContent = document.getElementById("buttonTextContent");
+        const buttonIconLeft = document.getElementById("buttonIconLeft");
+        const buttonIconRight = document.getElementById("buttonIconRight");
+
+        // Update text content
+        buttonTextContent.textContent = buttonText;
         button.href = buttonUrl;
-        button.style.backgroundColor = bgColor;
-        button.style.color = textColor;
+        button.target = linkTarget;
+
+        // Update icons
+        buttonIconLeft.style.display = "none";
+        buttonIconRight.style.display = "none";
+        buttonIconLeft.textContent = "";
+        buttonIconRight.textContent = "";
+
+        if (currentIcon) {
+          if (selectedIconPosition === "left") {
+            buttonIconLeft.textContent = currentIcon;
+            buttonIconLeft.style.display = "inline";
+          } else {
+            buttonIconRight.textContent = currentIcon;
+            buttonIconRight.style.display = "inline";
+          }
+          iconPosition = selectedIconPosition;
+        }
+
+        // Base styles
         button.style.borderRadius = borderRadius;
+        button.style.textTransform = uppercase ? "uppercase" : "none";
+        button.style.fontWeight = boldText ? "600" : "400";
+
+        // Width
+        if (buttonWidth === "full") {
+          button.style.width = "100%";
+          button.style.maxWidth = "100%";
+        } else if (buttonWidth === "fit") {
+          button.style.width = "fit-content";
+          button.style.maxWidth = "none";
+        } else {
+          button.style.width = "auto";
+          button.style.maxWidth = "none";
+        }
 
         // Size variations
         if (buttonSize === "small") {
@@ -250,27 +1257,177 @@
         } else if (buttonSize === "large") {
           button.style.padding = "16px 40px";
           button.style.fontSize = "18px";
+        } else if (buttonSize === "xlarge") {
+          button.style.padding = "20px 48px";
+          button.style.fontSize = "20px";
         } else {
           button.style.padding = "12px 32px";
           button.style.fontSize = "16px";
         }
 
-        // Generate embed code
-        const embedCode = `<a href="${buttonUrl}" style="display: inline-block; padding: ${button.style.padding}; font-size: ${button.style.fontSize}; font-weight: 600; color: ${textColor}; background-color: ${bgColor}; border-radius: ${borderRadius}; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.3s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">${buttonText}</a>`;
+        // Shadow
+        if (shadow > 0) {
+          const shadowBlur = shadow * 4;
+          const shadowOpacity = shadow * 0.05;
+          button.style.boxShadow = `0 ${
+            shadow * 2
+          }px ${shadowBlur}px rgba(0, 0, 0, ${shadowOpacity})`;
+        } else {
+          button.style.boxShadow = "none";
+        }
 
-        document.getElementById("codeContent").textContent = embedCode;
+        // Button style
+        if (buttonStyle === "solid") {
+          button.style.backgroundColor = bgColor;
+          button.style.color = textColor;
+          button.style.border = "none";
+        } else if (buttonStyle === "outline") {
+          button.style.backgroundColor = "transparent";
+          button.style.border = `2px solid ${bgColor}`;
+          button.style.color = bgColor;
+        } else if (buttonStyle === "ghost") {
+          button.style.backgroundColor = bgColor + "20";
+          button.style.border = "none";
+          button.style.color = bgColor;
+        } else if (buttonStyle === "gradient") {
+          button.style.background = `linear-gradient(135deg, ${bgColor} 0%, ${gradientColor} 100%)`;
+          button.style.color = textColor;
+          button.style.border = "none";
+        }
+
+        // Generate embed code
+        generateCode();
+      }
+
+      function generateCode() {
+        const buttonText = escapeHtml(
+          document.getElementById("buttonText").value || "Button"
+        );
+        const buttonUrl = escapeHtml(
+          document.getElementById("buttonUrl").value
+        );
+        const bgColor = document.getElementById("bgColor").value;
+        const textColor = document.getElementById("textColor").value;
+        const borderRadius = document.getElementById("borderRadius").value;
+        const buttonSize = document.getElementById("buttonSize").value;
+        const buttonStyle = document.getElementById("buttonStyle").value;
+        const shadow = document.getElementById("shadowIntensity").value;
+        const buttonWidth = document.getElementById("buttonWidth").value;
+        const linkTarget = document.getElementById("linkTarget").value;
+        const uppercase = document.getElementById("uppercase").checked;
+        const boldText = document.getElementById("boldText").checked;
+        const gradientColor = document.getElementById("gradientColor").value;
+
+        let padding, fontSize;
+        if (buttonSize === "small") {
+          padding = "8px 24px";
+          fontSize = "14px";
+        } else if (buttonSize === "large") {
+          padding = "16px 40px";
+          fontSize = "18px";
+        } else if (buttonSize === "xlarge") {
+          padding = "20px 48px";
+          fontSize = "20px";
+        } else {
+          padding = "12px 32px";
+          fontSize = "16px";
+        }
+
+        let styleStr = `display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: ${padding}; font-size: ${fontSize}; font-weight: ${
+          boldText ? "600" : "400"
+        }; border-radius: ${borderRadius}; text-decoration: none; cursor: pointer; transition: all 0.3s;`;
+
+        // Width
+        if (buttonWidth === "full") {
+          styleStr += " width: 100%;";
+        } else if (buttonWidth === "fit") {
+          styleStr += " width: fit-content;";
+        }
+
+        // Text transform
+        if (uppercase) {
+          styleStr += " text-transform: uppercase;";
+        }
+
+        // Shadow
+        if (shadow > 0) {
+          const shadowBlur = shadow * 4;
+          const shadowOpacity = shadow * 0.05;
+          styleStr += ` box-shadow: 0 ${
+            shadow * 2
+          }px ${shadowBlur}px rgba(0, 0, 0, ${shadowOpacity});`;
+        }
+
+        // Button style
+        if (buttonStyle === "solid") {
+          styleStr += ` background-color: ${bgColor}; color: ${textColor}; border: none;`;
+        } else if (buttonStyle === "outline") {
+          styleStr += ` background-color: transparent; border: 2px solid ${bgColor}; color: ${bgColor};`;
+        } else if (buttonStyle === "ghost") {
+          styleStr += ` background-color: ${bgColor}20; color: ${bgColor}; border: none;`;
+        } else if (buttonStyle === "gradient") {
+          styleStr += ` background: linear-gradient(135deg, ${bgColor} 0%, ${gradientColor} 100%); color: ${textColor}; border: none;`;
+        }
+
+        // Build HTML with icon if present
+        let iconHtml = "";
+        if (currentIcon) {
+          const iconEscaped = escapeHtml(currentIcon);
+          if (iconPosition === "left") {
+            iconHtml = `<span style="font-size: 1.2em;">${iconEscaped}</span> `;
+          } else {
+            iconHtml = ` <span style="font-size: 1.2em;">${iconEscaped}</span>`;
+          }
+        }
+
+        const targetAttr =
+          linkTarget === "_blank"
+            ? ' target="_blank" rel="noopener noreferrer"'
+            : "";
+        const hoverEffect =
+          buttonStyle === "solid" || buttonStyle === "gradient"
+            ? "this.style.opacity='0.85'"
+            : "this.style.transform='scale(1.02)'";
+        const hoverRestore =
+          buttonStyle === "solid" || buttonStyle === "gradient"
+            ? "this.style.opacity='1'"
+            : "this.style.transform='scale(1)'";
+
+        let code;
+        if (iconPosition === "left" && currentIcon) {
+          code = `<a href="${buttonUrl}"${targetAttr} style="${styleStr}" onmouseover="${hoverEffect}" onmouseout="${hoverRestore}">${iconHtml}${buttonText}</a>`;
+        } else if (iconPosition === "right" && currentIcon) {
+          code = `<a href="${buttonUrl}"${targetAttr} style="${styleStr}" onmouseover="${hoverEffect}" onmouseout="${hoverRestore}">${buttonText}${iconHtml}</a>`;
+        } else {
+          code = `<a href="${buttonUrl}"${targetAttr} style="${styleStr}" onmouseover="${hoverEffect}" onmouseout="${hoverRestore}">${buttonText}</a>`;
+        }
+
+        document.getElementById("codeContent").textContent = code;
       }
 
       function copyCode() {
         const code = document.getElementById("codeContent").textContent;
-        navigator.clipboard.writeText(code).then(() => {
-          const btn = document.querySelector(".copy-btn");
-          btn.textContent = "Copied!";
-          setTimeout(() => (btn.textContent = "Copy"), 2000);
-        });
-      }
+        navigator.clipboard
+          .writeText(code)
+          .then(() => {
+            const btn = document.querySelector(".copy-btn");
+            btn.textContent = "✓ Copied!";
+            btn.classList.add("success");
 
-      updatePreview();
+            setTimeout(() => {
+              btn.textContent = "Copy Code";
+              btn.classList.remove("success");
+            }, 2000);
+          })
+          .catch((err) => {
+            console.error("Failed to copy:", err);
+            const btn = document.querySelector(".copy-btn");
+            btn.textContent = "✗ Failed";
+            setTimeout(() => {
+              btn.textContent = "Copy Code";
+            }, 2000);
+          });
+      }
     </script>
   </body>
 </html>

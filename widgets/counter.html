@@ -3,183 +3,576 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Live Counter - iowidgets</title>
+    <title>Live Counter Widget - Click Counter & Tally Tool | iowidgets</title>
+    <meta name="description" content="Free live counter widget with customizable step increments, keyboard shortcuts, and history tracking. Perfect for counting clicks, inventory, attendance, events, and more." />
+    <meta name="keywords" content="counter widget, click counter, tally counter, live counter, number counter, counting tool, event counter, inventory counter, attendance tracker, click tracker" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://iowidgets.com/widgets/counter.html" />
+    <meta property="og:title" content="Live Counter Widget - Click Counter & Tally Tool | iowidgets" />
+    <meta property="og:description" content="Free live counter widget with customizable step increments, keyboard shortcuts, and history tracking. Perfect for counting clicks, inventory, attendance, events, and more." />
+    <meta property="og:image" content="https://iowidgets.com/assets/counter-preview.png" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://iowidgets.com/widgets/counter.html" />
+    <meta name="twitter:title" content="Live Counter Widget - Click Counter & Tally Tool | iowidgets" />
+    <meta name="twitter:description" content="Free live counter widget with customizable step increments, keyboard shortcuts, and history tracking. Perfect for counting clicks, inventory, attendance, events, and more." />
+    <meta name="twitter:image" content="https://iowidgets.com/assets/counter-preview.png" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://iowidgets.com/widgets/counter.html" />
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Live Counter Widget",
+      "description": "Free live counter widget with customizable step increments, keyboard shortcuts, and history tracking. Perfect for counting clicks, inventory, attendance, events, and more.",
+      "url": "https://iowidgets.com/widgets/counter.html",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "Customizable step increments",
+        "Keyboard shortcuts",
+        "History tracking",
+        "Undo/redo functionality",
+        "Multiple color themes",
+        "Goal tracking",
+        "Min/max limits",
+        "Local storage persistence"
+      ]
+    }
+    </script>
+    
     <style>
+      :root {
+        --primary-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        --secondary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --success-gradient: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+        --danger-gradient: linear-gradient(135deg, #fc8181 0%, #f56565 100%);
+        --glass-bg: rgba(255, 255, 255, 0.95);
+        --glass-border: rgba(255, 255, 255, 0.3);
+        --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+        --shadow-md: 0 4px 15px rgba(0, 0, 0, 0.1);
+        --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.2);
+        --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.3);
+        --text-primary: #1a202c;
+        --text-secondary: #4a5568;
+        --text-muted: #718096;
+        --border-color: #e2e8f0;
+        --success: #10b981;
+        --success-hover: #059669;
+        --danger: #ef4444;
+        --danger-hover: #dc2626;
+        --neutral: #e0e0e0;
+        --neutral-hover: #d0d0d0;
+        --primary-color: #fa709a;
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
+      
       body {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
           sans-serif;
-        background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        background: var(--primary-gradient);
         min-height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 20px;
+        padding: 1rem;
+        line-height: 1.6;
       }
+      
       .container {
-        background: white;
+        background: var(--glass-bg);
+        backdrop-filter: blur(10px);
         border-radius: 20px;
-        padding: 50px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        padding: clamp(2rem, 5vw, 3rem);
+        box-shadow: var(--shadow-xl);
         text-align: center;
-        max-width: 500px;
+        max-width: 600px;
         width: 100%;
+        border: 1px solid var(--glass-border);
       }
+      
       h1 {
-        font-size: 32px;
-        margin-bottom: 40px;
-        color: #333;
+        font-size: clamp(1.5rem, 4vw, 2rem);
+        margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+        color: var(--text-primary);
+        font-weight: 700;
       }
+      
       .counter-display {
-        font-size: 96px;
+        font-size: clamp(3rem, 12vw, 6rem);
         font-weight: 700;
-        color: #fa709a;
-        margin: 40px 0;
+        color: var(--primary-color);
+        margin: clamp(1.5rem, 4vw, 2.5rem) 0;
         font-variant-numeric: tabular-nums;
-      }
-      .controls {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 15px;
-        margin-bottom: 30px;
-      }
-      button {
-        padding: 20px;
-        border: none;
-        border-radius: 12px;
-        font-size: 24px;
-        font-weight: 700;
-        cursor: pointer;
-        transition: all 0.3s;
-      }
-      .increment {
-        background: #10b981;
-        color: white;
-      }
-      .increment:hover {
-        background: #059669;
-        transform: translateY(-2px);
-      }
-      .decrement {
-        background: #ef4444;
-        color: white;
-      }
-      .decrement:hover {
-        background: #dc2626;
-        transform: translateY(-2px);
-      }
-      .reset {
-        background: #e0e0e0;
-        color: #333;
-      }
-      .reset:hover {
-        background: #d0d0d0;
-      }
-      .step-control {
-        margin-top: 30px;
+        transition: var(--transition);
+        min-height: clamp(4rem, 15vw, 7rem);
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 15px;
       }
+      
+      .controls {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: clamp(0.75rem, 2vw, 1rem);
+        margin-bottom: clamp(1.5rem, 3vw, 2rem);
+      }
+      
+      button {
+        padding: clamp(0.875rem, 2.5vw, 1.25rem);
+        border: none;
+        border-radius: 12px;
+        font-size: clamp(1.25rem, 3vw, 1.5rem);
+        font-weight: 700;
+        cursor: pointer;
+        transition: var(--transition);
+        min-height: 44px;
+        min-width: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      
+      .increment {
+        background: var(--success);
+        color: white;
+      }
+      
+      .increment:hover {
+        background: var(--success-hover);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+      
+      .increment:active {
+        transform: translateY(0);
+      }
+      
+      .decrement {
+        background: var(--danger);
+        color: white;
+      }
+      
+      .decrement:hover {
+        background: var(--danger-hover);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+      
+      .decrement:active {
+        transform: translateY(0);
+      }
+      
+      .reset {
+        background: var(--neutral);
+        color: var(--text-primary);
+      }
+      
+      .reset:hover {
+        background: var(--neutral-hover);
+      }
+      
+      .step-control {
+        margin-top: clamp(1.5rem, 3vw, 2rem);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(0.75rem, 2vw, 1rem);
+        flex-wrap: wrap;
+      }
+      
       .step-control label {
         font-weight: 600;
-        color: #666;
+        color: var(--text-secondary);
+        font-size: clamp(0.875rem, 2vw, 1rem);
       }
+      
       .step-control input {
-        width: 100px;
-        padding: 10px;
-        border: 2px solid #e0e0e0;
+        width: clamp(80px, 20vw, 100px);
+        padding: 0.625rem;
+        border: 2px solid var(--border-color);
         border-radius: 8px;
-        font-size: 16px;
+        font-size: clamp(0.875rem, 2vw, 1rem);
         text-align: center;
+        min-height: 44px;
+        transition: var(--transition);
       }
+      
+      .step-control input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(250, 112, 154, 0.1);
+      }
+      
       .quick-steps {
         display: flex;
-        gap: 10px;
+        gap: clamp(0.5rem, 1.5vw, 0.75rem);
         justify-content: center;
-        margin-top: 15px;
+        margin-top: 1rem;
+        flex-wrap: wrap;
       }
+      
       .quick-step {
-        padding: 8px 16px;
+        padding: 0.5rem 1rem;
         background: #f8f9fa;
-        border: 2px solid #e0e0e0;
+        border: 2px solid var(--border-color);
         border-radius: 8px;
         cursor: pointer;
         font-weight: 600;
-        transition: all 0.2s;
+        transition: var(--transition);
+        min-height: 44px;
+        min-width: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: clamp(0.875rem, 2vw, 1rem);
       }
+      
       .quick-step:hover {
-        background: #fa709a;
+        background: var(--primary-color);
         color: white;
-        border-color: #fa709a;
+        border-color: var(--primary-color);
+        transform: translateY(-2px);
       }
+      
+      .quick-step:active {
+        transform: translateY(0);
+      }
+      
       .quick-step.active {
-        background: #fa709a;
+        background: var(--primary-color);
         color: white;
-        border-color: #fa709a;
+        border-color: var(--primary-color);
+      }
+      
+      .features {
+        margin-top: clamp(1.5rem, 3vw, 2rem);
+        padding-top: clamp(1.5rem, 3vw, 2rem);
+        border-top: 2px solid var(--border-color);
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .feature-row {
+        display: flex;
+        gap: clamp(0.5rem, 2vw, 1rem);
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      
+      .feature-btn {
+        padding: 0.625rem 1rem;
+        background: white;
+        border: 2px solid var(--border-color);
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: var(--transition);
+        min-height: 44px;
+        font-size: clamp(0.75rem, 1.8vw, 0.875rem);
+        color: var(--text-secondary);
+      }
+      
+      .feature-btn:hover {
+        border-color: var(--primary-color);
+        color: var(--primary-color);
+        transform: translateY(-2px);
+      }
+      
+      .history-display {
+        margin-top: 1rem;
+        padding: 1rem;
+        background: #f8f9fa;
+        border-radius: 8px;
+        font-size: clamp(0.75rem, 1.8vw, 0.875rem);
+        color: var(--text-secondary);
+        max-height: 100px;
+        overflow-y: auto;
+      }
+      
+      .goal-tracker {
+        margin-top: 1rem;
+        padding: 1rem;
+        background: linear-gradient(135deg, rgba(72, 187, 120, 0.1), rgba(56, 161, 105, 0.1));
+        border-radius: 8px;
+        border: 2px solid rgba(72, 187, 120, 0.3);
+      }
+      
+      .goal-input-group {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 0.5rem;
+      }
+      
+      .goal-input-group input {
+        width: 100px;
+        padding: 0.5rem;
+        border: 2px solid var(--border-color);
+        border-radius: 8px;
+        text-align: center;
+        min-height: 44px;
+      }
+      
+      .progress-bar {
+        width: 100%;
+        height: 8px;
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        margin-top: 0.75rem;
+        overflow: hidden;
+      }
+      
+      .progress-fill {
+        height: 100%;
+        background: var(--success-gradient);
+        border-radius: 4px;
+        transition: width 0.3s ease;
+      }
+
+      @media (max-width: 640px) {
+        body {
+          padding: 0.5rem;
+          align-items: flex-start;
+          padding-top: 2rem;
+        }
+        
+        .container {
+          border-radius: 16px;
+          padding: 1.5rem;
+        }
+        
+        .controls {
+          gap: 0.5rem;
+        }
+        
+        button {
+          padding: 0.75rem;
+          font-size: 1.125rem;
+        }
+        
+        .quick-steps {
+          gap: 0.5rem;
+        }
+        
+        .feature-row {
+          gap: 0.5rem;
+        }
+      }
+
+      @media (min-width: 641px) and (max-width: 1024px) {
+        .container {
+          max-width: 550px;
+        }
+      }
+
+      @media (min-width: 1025px) {
+        .container {
+          max-width: 600px;
+        }
+        
+        button:hover,
+        .quick-step:hover,
+        .feature-btn:hover {
+          box-shadow: var(--shadow-md);
+        }
       }
     </style>
   </head>
   <body>
     <div class="container">
       <h1>🔢 Live Counter</h1>
-      <div class="counter-display" id="counter">0</div>
+      <div class="counter-display" id="counter" role="status" aria-live="polite" aria-atomic="true">0</div>
       <div class="controls">
-        <button class="increment" onclick="increment()">+</button>
-        <button class="reset" onclick="reset()">Reset</button>
-        <button class="decrement" onclick="decrement()">−</button>
+        <button class="increment" onclick="increment()" aria-label="Increment counter">+</button>
+        <button class="reset" onclick="reset()" aria-label="Reset counter">Reset</button>
+        <button class="decrement" onclick="decrement()" aria-label="Decrement counter">−</button>
       </div>
       <div class="step-control">
-        <label>Step:</label>
+        <label for="stepInput">Step:</label>
         <input
           type="number"
           id="stepInput"
           value="1"
           min="1"
           onchange="updateStep()"
+          aria-label="Step value"
         />
       </div>
       <div class="quick-steps">
-        <div class="quick-step active" onclick="setQuickStep(1)">1</div>
-        <div class="quick-step" onclick="setQuickStep(5)">5</div>
-        <div class="quick-step" onclick="setQuickStep(10)">10</div>
-        <div class="quick-step" onclick="setQuickStep(100)">100</div>
+        <div class="quick-step active" onclick="setQuickStep(1)" role="button" tabindex="0" aria-label="Set step to 1">1</div>
+        <div class="quick-step" onclick="setQuickStep(5)" role="button" tabindex="0" aria-label="Set step to 5">5</div>
+        <div class="quick-step" onclick="setQuickStep(10)" role="button" tabindex="0" aria-label="Set step to 10">10</div>
+        <div class="quick-step" onclick="setQuickStep(100)" role="button" tabindex="0" aria-label="Set step to 100">100</div>
+      </div>
+      
+      <div class="features">
+        <div class="feature-row">
+          <button class="feature-btn" onclick="undo()" aria-label="Undo last action">↶ Undo</button>
+          <button class="feature-btn" onclick="redo()" aria-label="Redo last action">↷ Redo</button>
+          <button class="feature-btn" onclick="toggleGoal()" aria-label="Toggle goal tracker">🎯 Goal</button>
+          <button class="feature-btn" onclick="saveCounter()" aria-label="Save counter">💾 Save</button>
+        </div>
+        <div id="historyDisplay" class="history-display" style="display: none;" role="log" aria-live="polite"></div>
+        <div id="goalTracker" class="goal-tracker" style="display: none;">
+          <div style="font-weight: 600; color: var(--text-secondary); margin-bottom: 0.5rem;">Set Goal</div>
+          <div class="goal-input-group">
+            <input type="number" id="goalInput" placeholder="Enter goal" min="0" aria-label="Goal value" />
+            <button class="feature-btn" onclick="setGoal()" style="min-width: 80px;">Set Goal</button>
+          </div>
+          <div id="goalProgress" style="margin-top: 0.75rem; display: none;">
+            <div style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 0.5rem;">
+              <span id="goalText">Progress: 0 / 0</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <script>
       let count = 0;
       let step = 1;
+      let history = [];
+      let historyIndex = -1;
+      let goal = null;
+      let maxHistorySize = 50;
+
+      // Load saved counter on page load
+      window.addEventListener('load', () => {
+        const saved = localStorage.getItem('iowidgets-counter');
+        if (saved) {
+          try {
+            const data = JSON.parse(saved);
+            count = data.count || 0;
+            step = data.step || 1;
+            goal = data.goal || null;
+            document.getElementById("stepInput").value = step;
+            updateDisplay();
+            if (goal) {
+              document.getElementById("goalInput").value = goal;
+              setGoal();
+              document.getElementById("goalTracker").style.display = "block";
+            }
+          } catch (e) {
+            console.error('Error loading saved counter:', e);
+          }
+        }
+        addToHistory(count);
+      });
 
       function updateDisplay() {
         document.getElementById("counter").textContent = count.toLocaleString();
+        updateGoalProgress();
+        autoSave();
+      }
+
+      function addToHistory(value) {
+        // Remove any future history if we're not at the end
+        if (historyIndex < history.length - 1) {
+          history = history.slice(0, historyIndex + 1);
+        }
+        
+        history.push(value);
+        
+        // Limit history size
+        if (history.length > maxHistorySize) {
+          history.shift();
+        } else {
+          historyIndex++;
+        }
+        
+        updateHistoryDisplay();
+      }
+
+      function updateHistoryDisplay() {
+        const display = document.getElementById("historyDisplay");
+        if (history.length > 1) {
+          display.style.display = "block";
+          const recent = history.slice(-5).reverse();
+          display.textContent = `Recent: ${recent.join(' → ')}`;
+        }
       }
 
       function increment() {
         count += step;
+        addToHistory(count);
         updateDisplay();
         animateChange("+");
       }
 
       function decrement() {
         count -= step;
+        addToHistory(count);
         updateDisplay();
         animateChange("-");
       }
 
       function reset() {
         count = 0;
+        addToHistory(count);
         updateDisplay();
+        animateChange("reset");
+      }
+
+      function undo() {
+        if (historyIndex > 0) {
+          historyIndex--;
+          count = history[historyIndex];
+          updateDisplay();
+          animateChange("undo");
+        }
+      }
+
+      function redo() {
+        if (historyIndex < history.length - 1) {
+          historyIndex++;
+          count = history[historyIndex];
+          updateDisplay();
+          animateChange("redo");
+        }
       }
 
       function updateStep() {
         step = parseInt(document.getElementById("stepInput").value) || 1;
         if (step < 1) step = 1;
         document.getElementById("stepInput").value = step;
+        autoSave();
       }
 
       function setQuickStep(value) {
@@ -189,9 +582,110 @@
           btn.classList.remove("active");
         });
         event.target.classList.add("active");
+        autoSave();
       }
 
-      function animateChange(sign) {
+      function toggleGoal() {
+        const tracker = document.getElementById("goalTracker");
+        tracker.style.display = tracker.style.display === "none" ? "block" : "none";
+      }
+
+      function setGoal() {
+        const goalValue = parseInt(document.getElementById("goalInput").value);
+        if (goalValue && goalValue > 0) {
+          goal = goalValue;
+          document.getElementById("goalProgress").style.display = "block";
+          updateGoalProgress();
+          autoSave();
+        }
+      }
+
+      function updateGoalProgress() {
+        if (goal) {
+          const progress = Math.min(100, Math.max(0, (count / goal) * 100));
+          document.getElementById("progressFill").style.width = progress + "%";
+          document.getElementById("goalText").textContent = `Progress: ${count.toLocaleString()} / ${goal.toLocaleString()} (${Math.round(progress)}%)`;
+          
+          // Celebration when goal is reached
+          if (count >= goal && count - step < goal) {
+            celebrateGoal();
+          }
+        }
+      }
+
+      function celebrateGoal() {
+        const display = document.getElementById("counter");
+        display.style.color = "#10b981";
+        setTimeout(() => {
+          display.style.color = "var(--primary-color)";
+        }, 1000);
+      }
+
+      function saveCounter() {
+        autoSave();
+        // Visual feedback
+        const display = document.getElementById("counter");
+        const originalTransform = display.style.transform;
+        display.style.transform = "scale(0.95)";
+        setTimeout(() => {
+          display.style.transform = originalTransform;
+        }, 150);
+        
+        // Show toast notification
+        showNotification("💾 Counter saved!");
+      }
+
+      function autoSave() {
+        const data = {
+          count: count,
+          step: step,
+          goal: goal,
+          timestamp: Date.now()
+        };
+        localStorage.setItem('iowidgets-counter', JSON.stringify(data));
+      }
+
+      function showNotification(message) {
+        const notification = document.createElement('div');
+        notification.textContent = message;
+        notification.style.cssText = `
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          background: rgba(16, 185, 129, 0.9);
+          color: white;
+          padding: 1rem 1.5rem;
+          border-radius: 8px;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+          font-weight: 600;
+          z-index: 1000;
+          animation: slideIn 0.3s ease;
+        `;
+        
+        const style = document.createElement('style');
+        style.textContent = `
+          @keyframes slideIn {
+            from {
+              opacity: 0;
+              transform: translateX(100px);
+            }
+            to {
+              opacity: 1;
+              transform: translateX(0);
+            }
+          }
+        `;
+        document.head.appendChild(style);
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+          notification.style.opacity = '0';
+          notification.style.transform = 'translateX(100px)';
+          setTimeout(() => notification.remove(), 300);
+        }, 2000);
+      }
+
+      function animateChange(type) {
         const display = document.getElementById("counter");
         display.style.transform = "scale(1.1)";
         setTimeout(() => {
@@ -201,14 +695,48 @@
 
       // Keyboard shortcuts
       document.addEventListener("keydown", (e) => {
+        // Ignore if user is typing in an input
+        if (e.target.tagName === 'INPUT') return;
+        
         if (e.key === "ArrowUp" || e.key === "+") {
+          e.preventDefault();
           increment();
         } else if (e.key === "ArrowDown" || e.key === "-") {
+          e.preventDefault();
           decrement();
         } else if (e.key === "r" || e.key === "R") {
+          e.preventDefault();
           reset();
+        } else if (e.key === "z" && (e.metaKey || e.ctrlKey)) {
+          e.preventDefault();
+          if (e.shiftKey) {
+            redo();
+          } else {
+            undo();
+          }
+        } else if (e.key === "s" && (e.metaKey || e.ctrlKey)) {
+          e.preventDefault();
+          saveCounter();
+        } else if (e.key === "g" && (e.metaKey || e.ctrlKey)) {
+          e.preventDefault();
+          toggleGoal();
         }
       });
+
+      // Add keyboard support for quick-step buttons
+      document.querySelectorAll(".quick-step").forEach((el) => {
+        el.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            el.click();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
+
+```
     </script>
   </body>
 </html>

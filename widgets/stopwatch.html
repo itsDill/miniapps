@@ -3,116 +3,896 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stopwatch - iowidgets</title>
+    <title>
+      Professional Stopwatch - Precision Timer with Lap Tracking | iowidgets
+    </title>
+    <meta
+      name="description"
+      content="High-precision stopwatch with lap timing, split times, statistics, export features, and multiple themes. Perfect for sports, workouts, and time tracking."
+    />
+    <meta
+      name="keywords"
+      content="stopwatch, timer, lap timer, split timer, precision stopwatch, interval timer, workout timer, sports timer, time tracking"
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://iowidgets.com/widgets/stopwatch.html"
+    />
+    <meta
+      property="og:title"
+      content="Professional Stopwatch - Precision Timer with Lap Tracking"
+    />
+    <meta
+      property="og:description"
+      content="High-precision stopwatch with lap timing, split times, statistics, and export features. Perfect for sports and workouts."
+    />
+    <meta
+      property="og:image"
+      content="https://iowidgets.com/assets/stopwatch-preview.png"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:url"
+      content="https://iowidgets.com/widgets/stopwatch.html"
+    />
+    <meta
+      property="twitter:title"
+      content="Professional Stopwatch - Precision Timer with Lap Tracking"
+    />
+    <meta
+      property="twitter:description"
+      content="High-precision stopwatch with lap timing, split times, statistics, and export features. Perfect for sports and workouts."
+    />
+    <meta
+      property="twitter:image"
+      content="https://iowidgets.com/assets/stopwatch-preview.png"
+    />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://iowidgets.com/widgets/stopwatch.html" />
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Professional Stopwatch",
+        "description": "High-precision stopwatch with lap timing, split times, and comprehensive statistics tracking",
+        "url": "https://iowidgets.com/widgets/stopwatch.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "featureList": [
+          "High-precision timing (10ms accuracy)",
+          "Lap and split timing",
+          "Comprehensive lap statistics",
+          "Export data (CSV/JSON)",
+          "Multiple color themes",
+          "Keyboard shortcuts",
+          "Sound alerts",
+          "Session history",
+          "Best/worst lap highlighting"
+        ]
+      }
+    </script>
     <style>
+      :root {
+        --color-primary: #f093fb;
+        --color-primary-dark: #e082ea;
+        --color-secondary: #f5576c;
+        --color-success: #10b981;
+        --color-danger: #ef4444;
+        --color-warning: #f59e0b;
+        --color-info: #3b82f6;
+        --color-bg-primary: #ffffff;
+        --color-bg-secondary: #f9fafb;
+        --color-text-primary: #1f2937;
+        --color-text-secondary: #6b7280;
+        --color-border: #e5e7eb;
+        --spacing-xs: 0.5rem;
+        --spacing-sm: 0.75rem;
+        --spacing-md: 1rem;
+        --spacing-lg: 1.5rem;
+        --spacing-xl: 2rem;
+        --spacing-2xl: 3rem;
+        --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, sans-serif;
+        --font-family-mono: "SF Mono", Monaco, "Courier New", monospace;
+        --font-size-xs: 0.75rem;
+        --font-size-sm: 0.875rem;
+        --font-size-base: 1rem;
+        --font-size-lg: 1.125rem;
+        --font-size-xl: 1.25rem;
+        --font-size-2xl: 1.5rem;
+        --font-size-3xl: 2rem;
+        --font-size-4xl: 3rem;
+        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        --radius-sm: 0.375rem;
+        --radius-md: 0.5rem;
+        --radius-lg: 0.75rem;
+        --radius-xl: 1rem;
+        --radius-full: 9999px;
+        --transition-fast: 0.15s ease;
+        --transition-base: 0.3s ease;
+      }
+
+      [data-theme="blue"] {
+        --color-primary: #3b82f6;
+        --color-primary-dark: #2563eb;
+        --color-secondary: #60a5fa;
+      }
+
+      [data-theme="green"] {
+        --color-primary: #10b981;
+        --color-primary-dark: #059669;
+        --color-secondary: #34d399;
+      }
+
+      [data-theme="purple"] {
+        --color-primary: #8b5cf6;
+        --color-primary-dark: #7c3aed;
+        --color-secondary: #a78bfa;
+      }
+
+      [data-theme="orange"] {
+        --color-primary: #f59e0b;
+        --color-primary-dark: #d97706;
+        --color-secondary: #fbbf24;
+      }
+
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
+
       body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          sans-serif;
-        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        font-family: var(--font-family);
+        background: linear-gradient(
+          135deg,
+          var(--color-primary) 0%,
+          var(--color-secondary) 100%
+        );
         min-height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 20px;
+        padding: var(--spacing-md);
       }
+
       .container {
-        background: white;
-        border-radius: 20px;
-        padding: 50px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: var(--radius-xl);
+        padding: var(--spacing-lg);
+        box-shadow: var(--shadow-xl);
         text-align: center;
-        max-width: 500px;
+        max-width: 600px;
         width: 100%;
+        backdrop-filter: blur(10px);
       }
+
       h1 {
-        font-size: 32px;
-        margin-bottom: 40px;
-        color: #333;
-      }
-      .time-display {
-        font-size: 72px;
+        font-size: clamp(1.5rem, 5vw, 2rem);
+        margin-bottom: var(--spacing-xs);
+        color: var(--color-text-primary);
         font-weight: 700;
-        color: #f093fb;
-        margin: 40px 0;
-        font-variant-numeric: tabular-nums;
-        font-family: "Courier New", monospace;
       }
+
+      .subtitle {
+        color: var(--color-text-secondary);
+        font-size: var(--font-size-sm);
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .progress-ring {
+        position: relative;
+        width: 280px;
+        height: 280px;
+        margin: 0 auto var(--spacing-xl);
+      }
+
+      .progress-ring svg {
+        transform: rotate(-90deg);
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+      }
+
+      .progress-ring-circle {
+        stroke: var(--color-border);
+        fill: transparent;
+        stroke-width: 8;
+      }
+
+      .progress-ring-progress {
+        stroke: var(--color-primary);
+        fill: transparent;
+        stroke-width: 8;
+        stroke-linecap: round;
+        transition: stroke-dashoffset 0.1s linear;
+      }
+
+      .time-display {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: clamp(2rem, 8vw, 3.5rem);
+        font-weight: 700;
+        color: var(--color-text-primary);
+        font-variant-numeric: tabular-nums;
+        font-family: var(--font-family-mono);
+        line-height: 1;
+      }
+
+      .milliseconds {
+        font-size: 0.5em;
+        color: var(--color-text-secondary);
+      }
+
       .controls {
         display: flex;
-        gap: 15px;
+        gap: var(--spacing-md);
         justify-content: center;
-        margin-bottom: 30px;
+        margin-bottom: var(--spacing-xl);
+        flex-wrap: wrap;
       }
+
       button {
-        padding: 16px 32px;
+        padding: 0.875rem var(--spacing-lg);
         border: none;
-        border-radius: 12px;
-        font-size: 16px;
+        border-radius: var(--radius-md);
+        font-size: var(--font-size-base);
         font-weight: 600;
         cursor: pointer;
-        transition: all 0.3s;
+        transition: all var(--transition-base);
+        font-family: var(--font-family);
+        min-height: 44px;
+        min-width: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--spacing-xs);
       }
-      .start-btn {
-        background: #10b981;
+
+      .btn-primary {
+        background: linear-gradient(
+          135deg,
+          var(--color-success) 0%,
+          #059669 100%
+        );
         color: white;
       }
-      .start-btn:hover {
-        background: #059669;
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
       }
-      .stop-btn {
-        background: #ef4444;
+
+      .btn-danger {
+        background: linear-gradient(
+          135deg,
+          var(--color-danger) 0%,
+          #dc2626 100%
+        );
         color: white;
       }
-      .stop-btn:hover {
-        background: #dc2626;
+
+      .btn-danger:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
       }
-      .reset-btn {
-        background: #e0e0e0;
-        color: #333;
+
+      .btn-secondary {
+        background: var(--color-bg-secondary);
+        color: var(--color-text-primary);
+        border: 2px solid var(--color-border);
       }
-      .reset-btn:hover {
-        background: #d0d0d0;
+
+      .btn-secondary:hover {
+        border-color: var(--color-primary);
+        background: var(--color-bg-primary);
       }
+
+      button:active {
+        transform: translateY(0);
+      }
+
+      button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none !important;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: var(--spacing-md);
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .stat-card {
+        background: var(--color-bg-secondary);
+        padding: var(--spacing-md);
+        border-radius: var(--radius-lg);
+        border: 2px solid var(--color-border);
+      }
+
+      .stat-label {
+        font-size: var(--font-size-xs);
+        color: var(--color-text-secondary);
+        text-transform: uppercase;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        margin-bottom: var(--spacing-xs);
+      }
+
+      .stat-value {
+        font-size: var(--font-size-xl);
+        font-weight: 700;
+        color: var(--color-text-primary);
+        font-family: var(--font-family-mono);
+      }
+
+      .tabs {
+        display: flex;
+        gap: var(--spacing-sm);
+        margin-bottom: var(--spacing-lg);
+        border-bottom: 2px solid var(--color-border);
+        overflow-x: auto;
+      }
+
+      .tab {
+        padding: var(--spacing-sm) var(--spacing-lg);
+        border: none;
+        background: none;
+        cursor: pointer;
+        font-weight: 600;
+        color: var(--color-text-secondary);
+        border-bottom: 3px solid transparent;
+        transition: all var(--transition-base);
+        white-space: nowrap;
+        min-height: 44px;
+      }
+
+      .tab:hover {
+        color: var(--color-primary);
+      }
+
+      .tab.active {
+        color: var(--color-primary);
+        border-bottom-color: var(--color-primary);
+      }
+
+      .tab-content {
+        display: none;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
       .laps {
-        max-height: 200px;
+        max-height: 400px;
         overflow-y: auto;
-        margin-top: 30px;
         text-align: left;
       }
+
       .lap-item {
+        display: grid;
+        grid-template-columns: auto 1fr auto auto;
+        gap: var(--spacing-md);
+        align-items: center;
+        padding: var(--spacing-md);
+        background: var(--color-bg-secondary);
+        margin-bottom: var(--spacing-sm);
+        border-radius: var(--radius-md);
+        font-family: var(--font-family-mono);
+        border: 2px solid var(--color-border);
+        transition: all var(--transition-base);
+      }
+
+      .lap-item:hover {
+        border-color: var(--color-primary);
+        transform: translateX(4px);
+      }
+
+      .lap-item.best {
+        background: rgba(16, 185, 129, 0.1);
+        border-color: var(--color-success);
+      }
+
+      .lap-item.worst {
+        background: rgba(239, 68, 68, 0.1);
+        border-color: var(--color-danger);
+      }
+
+      .lap-number {
+        font-weight: 700;
+        color: var(--color-text-secondary);
+        font-size: var(--font-size-sm);
+      }
+
+      .lap-time {
+        font-weight: 700;
+        color: var(--color-text-primary);
+      }
+
+      .lap-split {
+        font-size: var(--font-size-sm);
+        color: var(--color-text-secondary);
+      }
+
+      .lap-badge {
+        padding: 0.25rem 0.5rem;
+        border-radius: var(--radius-sm);
+        font-size: var(--font-size-xs);
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .lap-badge.best {
+        background: var(--color-success);
+        color: white;
+      }
+
+      .lap-badge.worst {
+        background: var(--color-danger);
+        color: white;
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: var(--spacing-2xl);
+        color: var(--color-text-secondary);
+      }
+
+      .theme-selector {
         display: flex;
+        gap: var(--spacing-sm);
+        justify-content: center;
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .theme-btn {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        cursor: pointer;
+        transition: all var(--transition-base);
+      }
+
+      .theme-btn:hover {
+        transform: scale(1.1);
+      }
+
+      .theme-btn.active {
+        border-color: var(--color-text-primary);
+        box-shadow: var(--shadow-md);
+      }
+
+      .theme-btn.pink {
+        background: linear-gradient(135deg, #f093fb, #f5576c);
+      }
+      .theme-btn.blue {
+        background: linear-gradient(135deg, #3b82f6, #60a5fa);
+      }
+      .theme-btn.green {
+        background: linear-gradient(135deg, #10b981, #34d399);
+      }
+      .theme-btn.purple {
+        background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+      }
+      .theme-btn.orange {
+        background: linear-gradient(135deg, #f59e0b, #fbbf24);
+      }
+
+      .settings-group {
+        display: flex;
+        align-items: center;
         justify-content: space-between;
-        padding: 12px;
-        background: #f8f9fa;
-        margin-bottom: 8px;
-        border-radius: 8px;
-        font-family: "Courier New", monospace;
+        padding: var(--spacing-md);
+        background: var(--color-bg-secondary);
+        border-radius: var(--radius-md);
+        margin-bottom: var(--spacing-sm);
+      }
+
+      .toggle {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 26px;
+      }
+
+      .toggle input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .toggle-slider {
+        position: absolute;
+        cursor: pointer;
+        inset: 0;
+        background-color: #ccc;
+        transition: var(--transition-base);
+        border-radius: var(--radius-full);
+      }
+
+      .toggle-slider:before {
+        position: absolute;
+        content: "";
+        height: 20px;
+        width: 20px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: var(--transition-base);
+        border-radius: 50%;
+      }
+
+      .toggle input:checked + .toggle-slider {
+        background-color: var(--color-primary);
+      }
+
+      .toggle input:checked + .toggle-slider:before {
+        transform: translateX(24px);
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+      }
+
+      @media (min-width: 640px) {
+        .container {
+          padding: var(--spacing-xl);
+        }
+
+        .progress-ring {
+          width: 320px;
+          height: 320px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      @media (prefers-contrast: high) {
+        .container {
+          border: 3px solid var(--color-text-primary);
+        }
+        button {
+          border-width: 3px;
+        }
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --color-bg-primary: #1f2937;
+          --color-bg-secondary: #111827;
+          --color-text-primary: #f9fafb;
+          --color-text-secondary: #d1d5db;
+          --color-border: #374151;
+        }
+        .container {
+          background: rgba(31, 41, 55, 0.95);
+        }
+      }
+
+      *:focus-visible {
+        outline: 3px solid var(--color-primary);
+        outline-offset: 2px;
+      }
+
+      @media print {
+        body {
+          background: white;
+        }
+        .container {
+          box-shadow: none;
+        }
+        .controls,
+        .theme-selector,
+        .tabs {
+          display: none;
+        }
       }
     </style>
   </head>
-  <body>
+  <body data-theme="pink">
     <div class="container">
-      <h1>⏱️ Stopwatch</h1>
-      <div class="time-display" id="display">00:00:00.00</div>
-      <div class="controls">
-        <button class="start-btn" id="startBtn" onclick="start()">Start</button>
-        <button
-          class="stop-btn"
-          id="stopBtn"
-          onclick="stop()"
-          style="display: none"
+      <header role="banner">
+        <h1>⏱️ Professional Stopwatch</h1>
+        <p class="subtitle">High-precision timing with lap tracking</p>
+      </header>
+
+      <main role="main">
+        <div class="theme-selector" role="group" aria-label="Theme selection">
+          <button
+            class="theme-btn pink active"
+            data-theme="pink"
+            aria-label="Pink theme"
+            aria-pressed="true"
+          ></button>
+          <button
+            class="theme-btn blue"
+            data-theme="blue"
+            aria-label="Blue theme"
+            aria-pressed="false"
+          ></button>
+          <button
+            class="theme-btn green"
+            data-theme="green"
+            aria-label="Green theme"
+            aria-pressed="false"
+          ></button>
+          <button
+            class="theme-btn purple"
+            data-theme="purple"
+            aria-label="Purple theme"
+            aria-pressed="false"
+          ></button>
+          <button
+            class="theme-btn orange"
+            data-theme="orange"
+            aria-label="Orange theme"
+            aria-pressed="false"
+          ></button>
+        </div>
+
+        <div class="progress-ring" role="img" aria-label="Stopwatch display">
+          <svg width="280" height="280">
+            <circle class="progress-ring-circle" cx="140" cy="140" r="130" />
+            <circle
+              class="progress-ring-progress"
+              id="progressCircle"
+              cx="140"
+              cy="140"
+              r="130"
+            />
+          </svg>
+          <div
+            class="time-display"
+            id="display"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            <span id="timeMain">00:00:00</span
+            ><span class="milliseconds" id="timeMs">.00</span>
+          </div>
+        </div>
+
+        <div class="stats-grid" role="region" aria-label="Statistics">
+          <div class="stat-card">
+            <div class="stat-label">Laps</div>
+            <div class="stat-value" id="statLaps">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Best Lap</div>
+            <div class="stat-value" id="statBest">-</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Worst Lap</div>
+            <div class="stat-value" id="statWorst">-</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Avg Lap</div>
+            <div class="stat-value" id="statAvg">-</div>
+          </div>
+        </div>
+
+        <div class="controls" role="group" aria-label="Stopwatch controls">
+          <button
+            class="btn-primary"
+            id="startBtn"
+            aria-label="Start stopwatch"
+          >
+            <span aria-hidden="true">▶</span>
+            Start
+          </button>
+          <button
+            class="btn-danger"
+            id="stopBtn"
+            style="display: none"
+            aria-label="Stop stopwatch"
+          >
+            <span aria-hidden="true">⏸</span>
+            Stop
+          </button>
+          <button
+            class="btn-secondary"
+            id="lapBtn"
+            aria-label="Record lap time"
+            disabled
+          >
+            <span aria-hidden="true">⏱</span>
+            Lap
+          </button>
+          <button
+            class="btn-secondary"
+            id="resetBtn"
+            aria-label="Reset stopwatch"
+          >
+            <span aria-hidden="true">🔄</span>
+            Reset
+          </button>
+        </div>
+
+        <div class="tabs" role="tablist">
+          <button
+            class="tab active"
+            data-tab="laps"
+            role="tab"
+            aria-selected="true"
+            aria-controls="laps-panel"
+          >
+            Laps
+          </button>
+          <button
+            class="tab"
+            data-tab="settings"
+            role="tab"
+            aria-selected="false"
+            aria-controls="settings-panel"
+          >
+            Settings
+          </button>
+          <button
+            class="tab"
+            data-tab="export"
+            role="tab"
+            aria-selected="false"
+            aria-controls="export-panel"
+          >
+            Export
+          </button>
+        </div>
+
+        <div
+          class="tab-content active"
+          id="laps-panel"
+          role="tabpanel"
+          aria-labelledby="laps-tab"
         >
-          Stop
-        </button>
-        <button class="reset-btn" onclick="lap()">Lap</button>
-        <button class="reset-btn" onclick="reset()">Reset</button>
-      </div>
-      <div class="laps" id="laps"></div>
+          <div class="laps" id="laps" role="list">
+            <div class="empty-state">
+              <p>No laps recorded yet</p>
+              <p
+                style="
+                  font-size: var(--font-size-sm);
+                  margin-top: var(--spacing-xs);
+                "
+              >
+                Start the timer and press Lap (or L key)
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="tab-content"
+          id="settings-panel"
+          role="tabpanel"
+          aria-labelledby="settings-tab"
+        >
+          <div class="settings-group">
+            <label for="soundToggle">
+              <span aria-hidden="true">🔊</span>
+              Sound Effects
+            </label>
+            <label class="toggle">
+              <input
+                type="checkbox"
+                id="soundToggle"
+                checked
+                aria-label="Toggle sound effects"
+              />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="settings-group">
+            <label for="autoLapToggle">
+              <span aria-hidden="true">⚡</span>
+              Auto-Lap Every Minute
+            </label>
+            <label class="toggle">
+              <input
+                type="checkbox"
+                id="autoLapToggle"
+                aria-label="Toggle auto-lap"
+              />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="settings-group">
+            <label for="highlightToggle">
+              <span aria-hidden="true">✨</span>
+              Highlight Best/Worst
+            </label>
+            <label class="toggle">
+              <input
+                type="checkbox"
+                id="highlightToggle"
+                checked
+                aria-label="Toggle lap highlighting"
+              />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div
+          class="tab-content"
+          id="export-panel"
+          role="tabpanel"
+          aria-labelledby="export-tab"
+        >
+          <div class="controls" style="flex-direction: column">
+            <button
+              class="btn-secondary"
+              id="exportCSVBtn"
+              aria-label="Export laps as CSV"
+            >
+              <span aria-hidden="true">📊</span>
+              Export as CSV
+            </button>
+            <button
+              class="btn-secondary"
+              id="exportJSONBtn"
+              aria-label="Export laps as JSON"
+            >
+              <span aria-hidden="true">📄</span>
+              Export as JSON
+            </button>
+            <button
+              class="btn-secondary"
+              id="saveSessionBtn"
+              aria-label="Save current session"
+            >
+              <span aria-hidden="true">💾</span>
+              Save Session
+            </button>
+            <button
+              class="btn-secondary"
+              id="clearHistoryBtn"
+              aria-label="Clear all saved sessions"
+            >
+              <span aria-hidden="true">🗑️</span>
+              Clear History
+            </button>
+          </div>
+        </div>
+      </main>
     </div>
     <script>
       let startTime = 0;
@@ -120,6 +900,114 @@
       let interval;
       let isRunning = false;
       let lapCount = 0;
+      let laps = [];
+      let lastLapTime = 0;
+      let soundEnabled = true;
+      let autoLapEnabled = false;
+      let highlightEnabled = true;
+      let sessions = [];
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      let audioContext = null;
+
+      function init() {
+        loadSettings();
+        setupEventListeners();
+        updateProgressRing();
+      }
+
+      function setupEventListeners() {
+        document.getElementById("startBtn").addEventListener("click", start);
+        document.getElementById("stopBtn").addEventListener("click", stop);
+        document.getElementById("lapBtn").addEventListener("click", recordLap);
+        document.getElementById("resetBtn").addEventListener("click", reset);
+
+        document
+          .getElementById("soundToggle")
+          .addEventListener("change", (e) => {
+            soundEnabled = e.target.checked;
+            saveSettings();
+          });
+
+        document
+          .getElementById("autoLapToggle")
+          .addEventListener("change", (e) => {
+            autoLapEnabled = e.target.checked;
+            saveSettings();
+          });
+
+        document
+          .getElementById("highlightToggle")
+          .addEventListener("change", (e) => {
+            highlightEnabled = e.target.checked;
+            updateLapsDisplay();
+            saveSettings();
+          });
+
+        document.querySelectorAll(".theme-btn").forEach((btn) => {
+          btn.addEventListener("click", function () {
+            document.querySelectorAll(".theme-btn").forEach((b) => {
+              b.classList.remove("active");
+              b.setAttribute("aria-pressed", "false");
+            });
+            this.classList.add("active");
+            this.setAttribute("aria-pressed", "true");
+            document.body.dataset.theme = this.dataset.theme;
+            saveSettings();
+          });
+        });
+
+        document.querySelectorAll(".tab").forEach((tab) => {
+          tab.addEventListener("click", function () {
+            const tabName = this.dataset.tab;
+            document.querySelectorAll(".tab").forEach((t) => {
+              t.classList.remove("active");
+              t.setAttribute("aria-selected", "false");
+            });
+            document
+              .querySelectorAll(".tab-content")
+              .forEach((c) => c.classList.remove("active"));
+            this.classList.add("active");
+            this.setAttribute("aria-selected", "true");
+            document.getElementById(`${tabName}-panel`).classList.add("active");
+          });
+        });
+
+        document
+          .getElementById("exportCSVBtn")
+          .addEventListener("click", exportCSV);
+        document
+          .getElementById("exportJSONBtn")
+          .addEventListener("click", exportJSON);
+        document
+          .getElementById("saveSessionBtn")
+          .addEventListener("click", saveSession);
+        document
+          .getElementById("clearHistoryBtn")
+          .addEventListener("click", clearHistory);
+
+        document.addEventListener("keydown", handleKeyPress);
+      }
+
+      function handleKeyPress(e) {
+        if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA")
+          return;
+
+        switch (e.key.toLowerCase()) {
+          case " ":
+            e.preventDefault();
+            if (isRunning) stop();
+            else start();
+            break;
+          case "l":
+            e.preventDefault();
+            if (isRunning) recordLap();
+            break;
+          case "r":
+            e.preventDefault();
+            reset();
+            break;
+        }
+      }
 
       function start() {
         if (!isRunning) {
@@ -127,7 +1015,10 @@
           interval = setInterval(updateTime, 10);
           isRunning = true;
           document.getElementById("startBtn").style.display = "none";
-          document.getElementById("stopBtn").style.display = "inline-block";
+          document.getElementById("stopBtn").style.display = "inline-flex";
+          document.getElementById("lapBtn").disabled = false;
+          playSound("start");
+          announceToScreenReader("Stopwatch started");
         }
       }
 
@@ -135,48 +1026,170 @@
         if (isRunning) {
           clearInterval(interval);
           isRunning = false;
-          document.getElementById("startBtn").style.display = "inline-block";
+          document.getElementById("startBtn").style.display = "inline-flex";
           document.getElementById("stopBtn").style.display = "none";
+          playSound("stop");
+          announceToScreenReader("Stopwatch stopped");
         }
       }
 
       function reset() {
-        clearInterval(interval);
-        isRunning = false;
-        startTime = 0;
-        elapsedTime = 0;
-        lapCount = 0;
-        document.getElementById("display").textContent = "00:00:00.00";
-        document.getElementById("laps").innerHTML = "";
-        document.getElementById("startBtn").style.display = "inline-block";
-        document.getElementById("stopBtn").style.display = "none";
+        if (confirm("Reset stopwatch and clear all laps?")) {
+          clearInterval(interval);
+          isRunning = false;
+          startTime = 0;
+          elapsedTime = 0;
+          lapCount = 0;
+          laps = [];
+          lastLapTime = 0;
+          updateDisplay();
+          updateStats();
+          updateLapsDisplay();
+          updateProgressRing();
+          document.getElementById("startBtn").style.display = "inline-flex";
+          document.getElementById("stopBtn").style.display = "none";
+          document.getElementById("lapBtn").disabled = true;
+          announceToScreenReader("Stopwatch reset");
+        }
       }
 
-      function lap() {
+      function recordLap() {
         if (isRunning) {
           lapCount++;
-          const lapTime = formatTime(elapsedTime);
-          const lapDiv = document.createElement("div");
-          lapDiv.className = "lap-item";
-          lapDiv.innerHTML = `<span>Lap ${lapCount}</span><span>${lapTime}</span>`;
-          document
-            .getElementById("laps")
-            .insertBefore(lapDiv, document.getElementById("laps").firstChild);
+          const currentTime = elapsedTime;
+          const splitTime = currentTime - lastLapTime;
+
+          laps.push({
+            number: lapCount,
+            time: currentTime,
+            split: splitTime,
+            timestamp: new Date().toISOString(),
+          });
+
+          lastLapTime = currentTime;
+          updateLapsDisplay();
+          updateStats();
+          playSound("lap");
+          announceToScreenReader(
+            `Lap ${lapCount} recorded: ${formatTime(splitTime)}`
+          );
         }
       }
 
       function updateTime() {
         elapsedTime = Date.now() - startTime;
-        document.getElementById("display").textContent =
-          formatTime(elapsedTime);
+        updateDisplay();
+        updateProgressRing();
+
+        if (autoLapEnabled && elapsedTime > 0 && elapsedTime % 60000 < 10) {
+          if (lapCount === 0 || elapsedTime - lastLapTime >= 60000) {
+            recordLap();
+          }
+        }
       }
 
-      function formatTime(ms) {
+      function updateDisplay() {
+        const formatted = formatTime(elapsedTime);
+        const parts = formatted.split(".");
+        document.getElementById("timeMain").textContent = parts[0];
+        document.getElementById("timeMs").textContent = "." + parts[1];
+      }
+
+      function updateProgressRing() {
+        const circle = document.getElementById("progressCircle");
+        const radius = 130;
+        const circumference = 2 * Math.PI * radius;
+        const seconds = (elapsedTime / 1000) % 60;
+        const progress = seconds / 60;
+        const offset = circumference - progress * circumference;
+
+        circle.style.strokeDasharray = `${circumference} ${circumference}`;
+        circle.style.strokeDashoffset = offset;
+      }
+
+      function updateLapsDisplay() {
+        const lapsContainer = document.getElementById("laps");
+
+        if (laps.length === 0) {
+          lapsContainer.innerHTML = `
+            <div class="empty-state">
+              <p>No laps recorded yet</p>
+              <p style="font-size: var(--font-size-sm); margin-top: var(--spacing-xs);">Start the timer and press Lap (or L key)</p>
+            </div>`;
+          return;
+        }
+
+        const splits = laps.map((l) => l.split);
+        const bestSplit = Math.min(...splits);
+        const worstSplit = Math.max(...splits);
+
+        lapsContainer.innerHTML = laps
+          .slice()
+          .reverse()
+          .map((lap) => {
+            const isBest =
+              highlightEnabled && lap.split === bestSplit && laps.length > 1;
+            const isWorst =
+              highlightEnabled && lap.split === worstSplit && laps.length > 1;
+            const className = isBest
+              ? "lap-item best"
+              : isWorst
+              ? "lap-item worst"
+              : "lap-item";
+
+            let badge = "";
+            if (isBest) badge = '<span class="lap-badge best">Best</span>';
+            if (isWorst) badge = '<span class="lap-badge worst">Worst</span>';
+
+            return `
+            <div class="${className}" role="listitem">
+              <span class="lap-number">Lap ${lap.number}</span>
+              <span class="lap-time">${formatTime(lap.time)}</span>
+              <span class="lap-split">+${formatTime(lap.split)}</span>
+              ${badge}
+            </div>`;
+          })
+          .join("");
+      }
+
+      function updateStats() {
+        document.getElementById("statLaps").textContent = laps.length;
+
+        if (laps.length === 0) {
+          document.getElementById("statBest").textContent = "-";
+          document.getElementById("statWorst").textContent = "-";
+          document.getElementById("statAvg").textContent = "-";
+          return;
+        }
+
+        const splits = laps.map((l) => l.split);
+        const best = Math.min(...splits);
+        const worst = Math.max(...splits);
+        const avg = splits.reduce((a, b) => a + b, 0) / splits.length;
+
+        document.getElementById("statBest").textContent = formatTime(
+          best,
+          true
+        );
+        document.getElementById("statWorst").textContent = formatTime(
+          worst,
+          true
+        );
+        document.getElementById("statAvg").textContent = formatTime(avg, true);
+      }
+
+      function formatTime(ms, short = false) {
         const totalSeconds = Math.floor(ms / 1000);
         const hours = Math.floor(totalSeconds / 3600);
         const minutes = Math.floor((totalSeconds % 3600) / 60);
         const seconds = totalSeconds % 60;
         const centiseconds = Math.floor((ms % 1000) / 10);
+
+        if (short && hours === 0) {
+          return `${String(minutes).padStart(2, "0")}:${String(
+            seconds
+          ).padStart(2, "0")}`;
+        }
 
         return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(
           2,
@@ -186,6 +1199,196 @@
           "0"
         )}`;
       }
+
+      function playSound(type) {
+        if (!soundEnabled) return;
+
+        if (!audioContext) {
+          audioContext = new AudioContext();
+        }
+
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+
+        if (type === "start") {
+          oscillator.frequency.value = 880;
+          gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(
+            0.01,
+            audioContext.currentTime + 0.1
+          );
+        } else if (type === "stop") {
+          oscillator.frequency.value = 440;
+          gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(
+            0.01,
+            audioContext.currentTime + 0.15
+          );
+        } else if (type === "lap") {
+          oscillator.frequency.value = 1320;
+          gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(
+            0.01,
+            audioContext.currentTime + 0.08
+          );
+        }
+
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 0.2);
+      }
+
+      function exportCSV() {
+        if (laps.length === 0) {
+          alert("No laps to export!");
+          return;
+        }
+
+        const headers = ["Lap Number", "Total Time", "Split Time", "Timestamp"];
+        const rows = laps.map((lap) => [
+          lap.number,
+          formatTime(lap.time),
+          formatTime(lap.split),
+          new Date(lap.timestamp).toLocaleString(),
+        ]);
+
+        const csv = [headers, ...rows].map((row) => row.join(",")).join("\n");
+        const blob = new Blob([csv], { type: "text/csv" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `stopwatch-laps-${Date.now()}.csv`;
+        a.click();
+        URL.revokeObjectURL(url);
+        announceToScreenReader("Laps exported as CSV");
+      }
+
+      function exportJSON() {
+        if (laps.length === 0) {
+          alert("No laps to export!");
+          return;
+        }
+
+        const data = {
+          totalTime: elapsedTime,
+          totalTimeFormatted: formatTime(elapsedTime),
+          lapCount: laps.length,
+          laps: laps.map((lap) => ({
+            ...lap,
+            timeFormatted: formatTime(lap.time),
+            splitFormatted: formatTime(lap.split),
+          })),
+          exportDate: new Date().toISOString(),
+        };
+
+        const json = JSON.stringify(data, null, 2);
+        const blob = new Blob([json], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `stopwatch-laps-${Date.now()}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+        announceToScreenReader("Laps exported as JSON");
+      }
+
+      function saveSession() {
+        if (laps.length === 0) {
+          alert("No laps to save!");
+          return;
+        }
+
+        const session = {
+          id: Date.now(),
+          date: new Date().toISOString(),
+          totalTime: elapsedTime,
+          laps: laps,
+        };
+
+        sessions.push(session);
+        try {
+          localStorage.setItem("stopwatchSessions", JSON.stringify(sessions));
+          alert("Session saved successfully!");
+          announceToScreenReader("Session saved");
+        } catch (e) {
+          alert("Failed to save session");
+        }
+      }
+
+      function clearHistory() {
+        if (confirm("Clear all saved sessions?")) {
+          sessions = [];
+          localStorage.removeItem("stopwatchSessions");
+          alert("History cleared!");
+          announceToScreenReader("History cleared");
+        }
+      }
+
+      function saveSettings() {
+        const settings = {
+          theme: document.body.dataset.theme,
+          soundEnabled,
+          autoLapEnabled,
+          highlightEnabled,
+        };
+        try {
+          localStorage.setItem("stopwatchSettings", JSON.stringify(settings));
+        } catch (e) {
+          console.error("Failed to save settings:", e);
+        }
+      }
+
+      function loadSettings() {
+        try {
+          const saved = localStorage.getItem("stopwatchSettings");
+          if (saved) {
+            const settings = JSON.parse(saved);
+            document.body.dataset.theme = settings.theme || "pink";
+            soundEnabled = settings.soundEnabled !== false;
+            autoLapEnabled = settings.autoLapEnabled || false;
+            highlightEnabled = settings.highlightEnabled !== false;
+
+            document.getElementById("soundToggle").checked = soundEnabled;
+            document.getElementById("autoLapToggle").checked = autoLapEnabled;
+            document.getElementById("highlightToggle").checked =
+              highlightEnabled;
+
+            document.querySelectorAll(".theme-btn").forEach((btn) => {
+              if (btn.dataset.theme === settings.theme) {
+                btn.classList.add("active");
+                btn.setAttribute("aria-pressed", "true");
+              } else {
+                btn.classList.remove("active");
+                btn.setAttribute("aria-pressed", "false");
+              }
+            });
+          }
+
+          const savedSessions = localStorage.getItem("stopwatchSessions");
+          if (savedSessions) {
+            sessions = JSON.parse(savedSessions);
+          }
+        } catch (e) {
+          console.error("Failed to load settings:", e);
+        }
+      }
+
+      function announceToScreenReader(message) {
+        const announcement = document.createElement("div");
+        announcement.setAttribute("role", "status");
+        announcement.setAttribute("aria-live", "polite");
+        announcement.className = "sr-only";
+        announcement.textContent = message;
+        document.body.appendChild(announcement);
+
+        setTimeout(() => {
+          document.body.removeChild(announcement);
+        }, 1000);
+      }
+
+      init();
     </script>
   </body>
 </html>

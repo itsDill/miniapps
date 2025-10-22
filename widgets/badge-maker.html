@@ -3,102 +3,600 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Badge Maker - iowidgets</title>
+    <title>
+      Badge Maker - Create Custom Badges & Labels Online | iowidgets
+    </title>
+    <meta
+      name="description"
+      content="Free badge maker tool to create custom badges, labels, and tags with live preview. Choose colors, styles, shapes, icons, and gradients. Copy embed code instantly."
+    />
+    <meta
+      name="keywords"
+      content="badge maker, custom badges, label creator, tag generator, badge design tool, HTML badges, CSS badges, status badges, notification badges"
+    />
+    <link
+      rel="canonical"
+      href="https://iowidgets.com/widgets/badge-maker.html"
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://iowidgets.com/widgets/badge-maker.html"
+    />
+    <meta
+      property="og:title"
+      content="Badge Maker - Create Custom Badges & Labels Online"
+    />
+    <meta
+      property="og:description"
+      content="Free badge maker tool to create custom badges, labels, and tags with live preview. Choose colors, styles, shapes, icons, and gradients."
+    />
+    <meta
+      property="og:image"
+      content="https://iowidgets.com/assets/badge-maker-preview.jpg"
+    />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:url"
+      content="https://iowidgets.com/widgets/badge-maker.html"
+    />
+    <meta
+      name="twitter:title"
+      content="Badge Maker - Create Custom Badges & Labels Online"
+    />
+    <meta
+      name="twitter:description"
+      content="Free badge maker tool to create custom badges, labels, and tags with live preview. Choose colors, styles, shapes, icons, and gradients."
+    />
+    <meta
+      name="twitter:image"
+      content="https://iowidgets.com/assets/badge-maker-preview.jpg"
+    />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Badge Maker",
+        "url": "https://iowidgets.com/widgets/badge-maker.html",
+        "description": "Free badge maker tool to create custom badges, labels, and tags with live preview",
+        "applicationCategory": "DesignApplication",
+        "operatingSystem": "Any",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "featureList": "Custom colors, Multiple styles, Shape options, Icon support, Gradient backgrounds, Live preview, Copy embed code"
+      }
+    </script>
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
     <style>
+      :root {
+        --primary-color: #f093fb;
+        --secondary-color: #f5576c;
+        --text-dark: #333;
+        --text-light: #555;
+        --border-color: #e0e0e0;
+        --bg-light: #f5f5f5;
+        --success-color: #10b981;
+        --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+        --transition-speed: 0.3s;
+        --border-radius: 8px;
+      }
+
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
       body {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          sans-serif;
-        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+          "Helvetica Neue", Arial, sans-serif;
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          var(--secondary-color) 100%
+        );
         min-height: 100vh;
-        padding: 20px;
+        padding: 1rem;
+        line-height: 1.6;
       }
+
       .container {
         max-width: 1200px;
         margin: 0 auto;
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 30px;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
       }
+
       .panel {
         background: white;
         border-radius: 16px;
-        padding: 30px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        padding: 1.5rem;
+        box-shadow: var(--shadow-lg);
+        animation: fadeIn 0.5s ease-out;
       }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
       h1 {
-        font-size: 24px;
-        margin-bottom: 20px;
-        color: #333;
+        font-size: clamp(1.5rem, 4vw, 1.75rem);
+        margin-bottom: 1.25rem;
+        color: var(--text-dark);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
       }
+
+      h3 {
+        font-size: 1rem;
+        color: var(--text-light);
+        margin: 1.25rem 0 0.75rem;
+      }
+
       .form-group {
-        margin-bottom: 20px;
+        margin-bottom: 1.25rem;
       }
+
       label {
         display: block;
         font-weight: 600;
-        margin-bottom: 8px;
-        color: #555;
+        margin-bottom: 0.5rem;
+        color: var(--text-light);
+        font-size: 0.875rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
       }
-      input,
+
+      .tooltip {
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        background: var(--text-light);
+        color: white;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 12px;
+        line-height: 18px;
+        cursor: help;
+        position: relative;
+      }
+
+      .tooltip:hover::after {
+        content: attr(data-tip);
+        position: absolute;
+        bottom: 125%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--text-dark);
+        color: white;
+        padding: 0.5rem;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        white-space: nowrap;
+        z-index: 10;
+        box-shadow: var(--shadow-md);
+      }
+
+      input[type="text"],
+      input[type="number"],
       select {
         width: 100%;
-        padding: 12px;
-        border: 2px solid #e0e0e0;
-        border-radius: 8px;
-        font-size: 14px;
+        padding: 0.75rem;
+        border: 2px solid var(--border-color);
+        border-radius: var(--border-radius);
+        font-size: 0.9375rem;
+        transition: border-color var(--transition-speed),
+          box-shadow var(--transition-speed);
+        min-height: 44px;
       }
+
+      input[type="color"] {
+        width: 100%;
+        height: 44px;
+        border: 2px solid var(--border-color);
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        transition: border-color var(--transition-speed);
+      }
+
       input:focus,
       select:focus {
         outline: none;
-        border-color: #f093fb;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(240, 147, 251, 0.1);
       }
+
+      .char-counter {
+        font-size: 0.75rem;
+        color: var(--text-light);
+      }
+
+      .char-counter.warning {
+        color: #ef4444;
+      }
+
+      .color-presets {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(44px, 1fr));
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+      }
+
+      .color-preset {
+        width: 100%;
+        height: 44px;
+        border: 2px solid transparent;
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        transition: all var(--transition-speed);
+        position: relative;
+      }
+
+      .color-preset:hover {
+        transform: scale(1.05);
+        border-color: var(--text-dark);
+      }
+
+      .color-preset:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(240, 147, 251, 0.2);
+      }
+
+      .color-preset.active::after {
+        content: "✓";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-weight: bold;
+        text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+      }
+
+      .slider-group {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      input[type="range"] {
+        flex: 1;
+        height: 6px;
+        border-radius: 3px;
+        background: var(--border-color);
+        outline: none;
+        -webkit-appearance: none;
+        appearance: none;
+      }
+
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--primary-color);
+        cursor: pointer;
+        transition: transform var(--transition-speed);
+      }
+
+      input[type="range"] {
+        -webkit-appearance: none;
+        appearance: none;
+      }
+
+      input[type="range"]::-webkit-slider-thumb:hover {
+        transform: scale(1.2);
+      }
+
+      input[type="range"]::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--primary-color);
+        cursor: pointer;
+        border: none;
+        transition: transform var(--transition-speed);
+      }
+
+      input[type="range"]::-moz-range-thumb:hover {
+        transform: scale(1.2);
+      }
+
+      .slider-value {
+        min-width: 3rem;
+        text-align: right;
+        font-weight: 600;
+        color: var(--text-light);
+        font-size: 0.875rem;
+      }
+
+      .checkbox-group {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+      }
+
+      input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        accent-color: var(--primary-color);
+      }
+
       .preview-area {
         min-height: 200px;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: #f5f5f5;
+        background: var(--bg-light);
         border-radius: 12px;
-        padding: 40px;
-        margin: 20px 0;
+        padding: 2.5rem;
+        margin: 1.25rem 0;
+        position: relative;
+        overflow: hidden;
       }
+
+      .preview-bg-toggle {
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+        background: white;
+        border: 2px solid var(--border-color);
+        padding: 0.5rem;
+        border-radius: 6px;
+        cursor: pointer;
+        min-height: 44px;
+        min-width: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all var(--transition-speed);
+      }
+
+      .preview-bg-toggle:hover {
+        border-color: var(--primary-color);
+      }
+
+      .preview-bg-toggle:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(240, 147, 251, 0.2);
+      }
+
       .badge {
         padding: 6px 16px;
         font-size: 14px;
         font-weight: 600;
         border-radius: 20px;
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all var(--transition-speed);
+        animation: badgeAppear 0.5s ease-out;
       }
+
+      @keyframes badgeAppear {
+        from {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .badge-icon {
+        font-size: 1em;
+      }
+
+      .icon-picker {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height var(--transition-speed);
+      }
+
+      .icon-picker.active {
+        max-height: 300px;
+        overflow-y: auto;
+      }
+
+      .icon-btn {
+        width: 100%;
+        height: 44px;
+        border: 2px solid var(--border-color);
+        background: white;
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        font-size: 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all var(--transition-speed);
+      }
+
+      .icon-btn:hover {
+        border-color: var(--primary-color);
+        transform: scale(1.05);
+      }
+
+      .icon-btn:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(240, 147, 251, 0.2);
+      }
+
+      .icon-btn.active {
+        background: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+      }
+
       .code-output {
         background: #1e1e1e;
         color: #d4d4d4;
-        padding: 20px;
-        border-radius: 8px;
-        font-family: "Courier New", monospace;
-        font-size: 13px;
+        padding: 1.25rem;
+        border-radius: var(--border-radius);
+        font-family: "Courier New", Consolas, Monaco, monospace;
+        font-size: 0.8125rem;
         overflow-x: auto;
         position: relative;
+        line-height: 1.5;
       }
+
       .copy-btn {
         position: absolute;
-        top: 10px;
-        right: 10px;
-        background: #f093fb;
+        top: 0.75rem;
+        right: 0.75rem;
+        background: var(--primary-color);
         color: white;
         border: none;
-        padding: 8px 16px;
+        padding: 0.5rem 1rem;
         border-radius: 6px;
         cursor: pointer;
-        font-size: 12px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        min-height: 44px;
+        transition: all var(--transition-speed);
       }
-      @media (max-width: 768px) {
+
+      .copy-btn:hover {
+        background: var(--secondary-color);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .copy-btn:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(240, 147, 251, 0.3);
+      }
+
+      .copy-btn:active {
+        transform: translateY(0);
+      }
+
+      .copy-btn.success {
+        background: var(--success-color);
+      }
+
+      .toggle-btn {
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 0.625rem 1rem;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.875rem;
+        font-weight: 600;
+        width: 100%;
+        min-height: 44px;
+        transition: all var(--transition-speed);
+        margin-top: 0.5rem;
+      }
+
+      .toggle-btn:hover {
+        background: var(--secondary-color);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .toggle-btn:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(240, 147, 251, 0.3);
+      }
+
+      .gradient-controls {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height var(--transition-speed);
+      }
+
+      .gradient-controls.active {
+        max-height: 500px;
+      }
+
+      /* Tablet breakpoint */
+      @media (min-width: 640px) {
+        body {
+          padding: 1.5rem;
+        }
+
+        .panel {
+          padding: 2rem;
+        }
+
+        .color-presets {
+          grid-template-columns: repeat(6, 1fr);
+        }
+      }
+
+      /* Desktop breakpoint */
+      @media (min-width: 1024px) {
+        body {
+          padding: 2rem;
+        }
+
         .container {
-          grid-template-columns: 1fr;
+          grid-template-columns: 1fr 1fr;
+          gap: 2rem;
+        }
+
+        .panel {
+          padding: 2.5rem;
+        }
+
+        h1 {
+          font-size: 1.75rem;
+        }
+      }
+
+      /* Accessibility - High contrast focus indicators */
+      @media (prefers-contrast: high) {
+        input:focus,
+        select:focus,
+        button:focus {
+          outline: 3px solid currentColor;
+          outline-offset: 2px;
         }
       }
     </style>
@@ -106,100 +604,665 @@
   <body>
     <div class="container">
       <div class="panel">
-        <h1>🏷️ Badge Maker</h1>
+        <h1>
+          <span role="img" aria-label="Label">🏷️</span>
+          Badge Maker
+        </h1>
+
         <div class="form-group">
-          <label>Badge Text</label>
+          <label>
+            <span>Badge Text</span>
+            <span class="char-counter" id="charCounter">0/30</span>
+          </label>
           <input
             type="text"
             id="badgeText"
             value="New"
+            maxlength="30"
             oninput="updatePreview()"
+            aria-label="Badge text content"
           />
         </div>
+
         <div class="form-group">
-          <label>Background Color</label>
+          <label>
+            <span>Background Color</span>
+            <span class="tooltip" data-tip="Choose the badge background color"
+              >?</span
+            >
+          </label>
           <input
             type="color"
             id="bgColor"
             value="#10b981"
             oninput="updatePreview()"
+            aria-label="Badge background color"
           />
+          <div
+            class="color-presets"
+            role="group"
+            aria-label="Background color presets"
+          >
+            <button
+              class="color-preset"
+              style="background: #10b981"
+              data-color="#10b981"
+              onclick="setBgColor('#10b981')"
+              aria-label="Green"
+            ></button>
+            <button
+              class="color-preset"
+              style="background: #3b82f6"
+              data-color="#3b82f6"
+              onclick="setBgColor('#3b82f6')"
+              aria-label="Blue"
+            ></button>
+            <button
+              class="color-preset"
+              style="background: #ef4444"
+              data-color="#ef4444"
+              onclick="setBgColor('#ef4444')"
+              aria-label="Red"
+            ></button>
+            <button
+              class="color-preset"
+              style="background: #f59e0b"
+              data-color="#f59e0b"
+              onclick="setBgColor('#f59e0b')"
+              aria-label="Orange"
+            ></button>
+            <button
+              class="color-preset"
+              style="background: #8b5cf6"
+              data-color="#8b5cf6"
+              onclick="setBgColor('#8b5cf6')"
+              aria-label="Purple"
+            ></button>
+            <button
+              class="color-preset"
+              style="background: #ec4899"
+              data-color="#ec4899"
+              onclick="setBgColor('#ec4899')"
+              aria-label="Pink"
+            ></button>
+          </div>
         </div>
+
         <div class="form-group">
-          <label>Text Color</label>
+          <label>
+            <span>Text Color</span>
+            <span class="tooltip" data-tip="Choose the badge text color"
+              >?</span
+            >
+          </label>
           <input
             type="color"
             id="textColor"
             value="#ffffff"
             oninput="updatePreview()"
+            aria-label="Badge text color"
           />
         </div>
+
         <div class="form-group">
-          <label>Style</label>
-          <select id="badgeStyle" onchange="updatePreview()">
+          <label for="badgeStyle">Style</label>
+          <select
+            id="badgeStyle"
+            onchange="updatePreview()"
+            aria-label="Badge style"
+          >
             <option value="solid">Solid</option>
             <option value="outline">Outline</option>
             <option value="subtle">Subtle</option>
+            <option value="gradient">Gradient</option>
           </select>
         </div>
-      </div>
-      <div class="panel">
-        <h1>Preview & Code</h1>
-        <div class="preview-area">
-          <span class="badge" id="previewBadge">New</span>
+
+        <div class="form-group" id="gradientControls" style="display: none">
+          <label>
+            <span>Gradient End Color</span>
+            <span class="tooltip" data-tip="Second color for gradient">?</span>
+          </label>
+          <input
+            type="color"
+            id="gradientColor"
+            value="#3b82f6"
+            oninput="updatePreview()"
+            aria-label="Gradient end color"
+          />
         </div>
-        <h3 style="margin: 20px 0 10px; color: #555">Embed Code:</h3>
-        <div class="code-output">
-          <button class="copy-btn" onclick="copyCode()">Copy</button>
-          <pre id="codeContent"></pre>
+
+        <div class="form-group">
+          <label for="badgeShape">Shape</label>
+          <select
+            id="badgeShape"
+            onchange="updatePreview()"
+            aria-label="Badge shape"
+          >
+            <option value="rounded">Rounded</option>
+            <option value="pill">Pill</option>
+            <option value="square">Square</option>
+            <option value="circle">Circle</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>
+            <span>Size</span>
+            <span class="slider-value" id="sizeValue">14px</span>
+          </label>
+          <div class="slider-group">
+            <input
+              type="range"
+              id="badgeSize"
+              min="10"
+              max="24"
+              value="14"
+              oninput="updatePreview()"
+              aria-label="Badge font size"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>
+            <span>Border Radius</span>
+            <span class="slider-value" id="radiusValue">20px</span>
+          </label>
+          <div class="slider-group">
+            <input
+              type="range"
+              id="borderRadius"
+              min="0"
+              max="50"
+              value="20"
+              oninput="updatePreview()"
+              aria-label="Badge border radius"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>
+            <span>Shadow Intensity</span>
+            <span class="slider-value" id="shadowValue">0</span>
+          </label>
+          <div class="slider-group">
+            <input
+              type="range"
+              id="shadowIntensity"
+              min="0"
+              max="10"
+              value="0"
+              oninput="updatePreview()"
+              aria-label="Badge shadow intensity"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="checkbox-group">
+            <input
+              type="checkbox"
+              id="uppercase"
+              onchange="updatePreview()"
+              aria-label="Convert text to uppercase"
+            />
+            <label for="uppercase" style="margin-bottom: 0"
+              >Uppercase Text</label
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Icon (Optional)</label>
+          <button
+            class="toggle-btn"
+            onclick="toggleIconPicker()"
+            aria-label="Toggle icon picker"
+            aria-expanded="false"
+            id="iconToggle"
+          >
+            Choose Icon
+          </button>
+          <div
+            class="icon-picker"
+            id="iconPicker"
+            role="group"
+            aria-label="Icon selection"
+          >
+            <button class="icon-btn" onclick="setIcon('')" aria-label="No icon">
+              ✕
+            </button>
+            <button class="icon-btn" onclick="setIcon('⭐')" aria-label="Star">
+              ⭐
+            </button>
+            <button class="icon-btn" onclick="setIcon('✓')" aria-label="Check">
+              ✓
+            </button>
+            <button class="icon-btn" onclick="setIcon('❤️')" aria-label="Heart">
+              ❤️
+            </button>
+            <button class="icon-btn" onclick="setIcon('🔥')" aria-label="Fire">
+              🔥
+            </button>
+            <button
+              class="icon-btn"
+              onclick="setIcon('⚡')"
+              aria-label="Lightning"
+            >
+              ⚡
+            </button>
+            <button
+              class="icon-btn"
+              onclick="setIcon('💎')"
+              aria-label="Diamond"
+            >
+              💎
+            </button>
+            <button
+              class="icon-btn"
+              onclick="setIcon('🎯')"
+              aria-label="Target"
+            >
+              🎯
+            </button>
+            <button
+              class="icon-btn"
+              onclick="setIcon('🚀')"
+              aria-label="Rocket"
+            >
+              🚀
+            </button>
+            <button class="icon-btn" onclick="setIcon('🎉')" aria-label="Party">
+              🎉
+            </button>
+            <button
+              class="icon-btn"
+              onclick="setIcon('⚠️')"
+              aria-label="Warning"
+            >
+              ⚠️
+            </button>
+            <button class="icon-btn" onclick="setIcon('ℹ️')" aria-label="Info">
+              ℹ️
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h1>
+          <span role="img" aria-label="Eyes">👀</span>
+          Preview & Code
+        </h1>
+        <div
+          class="preview-area"
+          id="previewArea"
+          role="region"
+          aria-label="Badge preview"
+        >
+          <button
+            class="preview-bg-toggle"
+            onclick="togglePreviewBg()"
+            aria-label="Toggle preview background"
+            title="Toggle background"
+          >
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+              <path
+                fill-rule="evenodd"
+                d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
+          <span
+            class="badge"
+            id="previewBadge"
+            role="status"
+            aria-live="polite"
+          >
+            <span class="badge-icon" id="badgeIcon"></span>
+            <span id="badgeTextContent">New</span>
+          </span>
+        </div>
+
+        <h3>Embed Code:</h3>
+        <div class="code-output" role="region" aria-label="HTML embed code">
+          <button
+            class="copy-btn"
+            onclick="copyCode()"
+            aria-label="Copy code to clipboard"
+          >
+            Copy Code
+          </button>
+          <pre id="codeContent" tabindex="0"></pre>
+        </div>
+
+        <div
+          style="
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f0f9ff;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            color: #0369a1;
+          "
+        >
+          <strong>💡 Tip:</strong> Press
+          <kbd
+            style="
+              padding: 2px 6px;
+              background: white;
+              border: 1px solid #cbd5e1;
+              border-radius: 4px;
+            "
+            >Ctrl+C</kbd
+          >
+          to copy code quickly!
         </div>
       </div>
     </div>
     <script>
+      let currentIcon = "";
+      let previewBgDark = false;
+
+      // HTML escape function for XSS protection
+      function escapeHtml(text) {
+        const div = document.createElement("div");
+        div.textContent = text;
+        return div.innerHTML;
+      }
+
+      // Initialize on load
+      document.addEventListener("DOMContentLoaded", function () {
+        updatePreview();
+
+        // Keyboard shortcut for copy
+        document.addEventListener("keydown", function (e) {
+          if ((e.ctrlKey || e.metaKey) && e.key === "c") {
+            const codeOutput = document.querySelector(".code-output");
+            if (codeOutput && !window.getSelection().toString()) {
+              e.preventDefault();
+              copyCode();
+            }
+          }
+        });
+
+        // Update slider values display
+        document
+          .getElementById("badgeSize")
+          .addEventListener("input", function () {
+            document.getElementById("sizeValue").textContent =
+              this.value + "px";
+          });
+
+        document
+          .getElementById("borderRadius")
+          .addEventListener("input", function () {
+            document.getElementById("radiusValue").textContent =
+              this.value + "px";
+          });
+
+        document
+          .getElementById("shadowIntensity")
+          .addEventListener("input", function () {
+            document.getElementById("shadowValue").textContent = this.value;
+          });
+
+        // Show/hide gradient controls
+        document
+          .getElementById("badgeStyle")
+          .addEventListener("change", function () {
+            const gradientControls =
+              document.getElementById("gradientControls");
+            if (this.value === "gradient") {
+              gradientControls.style.display = "block";
+            } else {
+              gradientControls.style.display = "none";
+            }
+          });
+
+        // Character counter
+        const badgeTextInput = document.getElementById("badgeText");
+        badgeTextInput.addEventListener("input", function () {
+          const counter = document.getElementById("charCounter");
+          const length = this.value.length;
+          counter.textContent = `${length}/30`;
+          if (length >= 25) {
+            counter.classList.add("warning");
+          } else {
+            counter.classList.remove("warning");
+          }
+        });
+      });
+
+      function setBgColor(color) {
+        document.getElementById("bgColor").value = color;
+        updatePreview();
+
+        // Update active state on presets
+        document.querySelectorAll(".color-preset").forEach((btn) => {
+          if (btn.dataset.color === color) {
+            btn.classList.add("active");
+          } else {
+            btn.classList.remove("active");
+          }
+        });
+      }
+
+      function toggleIconPicker() {
+        const picker = document.getElementById("iconPicker");
+        const toggle = document.getElementById("iconToggle");
+        picker.classList.toggle("active");
+        const isOpen = picker.classList.contains("active");
+        toggle.setAttribute("aria-expanded", isOpen);
+        toggle.textContent = isOpen ? "Close Icons" : "Choose Icon";
+      }
+
+      function setIcon(icon) {
+        currentIcon = icon;
+        updatePreview();
+
+        // Update active state on icon buttons
+        document.querySelectorAll(".icon-btn").forEach((btn) => {
+          btn.classList.remove("active");
+        });
+        event.target.classList.add("active");
+      }
+
+      function togglePreviewBg() {
+        const previewArea = document.getElementById("previewArea");
+        previewBgDark = !previewBgDark;
+
+        if (previewBgDark) {
+          previewArea.style.background = "#1e1e1e";
+        } else {
+          previewArea.style.background = "#f5f5f5";
+        }
+      }
+
       function updatePreview() {
-        const text = document.getElementById("badgeText").value;
+        const text = document.getElementById("badgeText").value || "Badge";
         const bg = document.getElementById("bgColor").value;
         const color = document.getElementById("textColor").value;
         const style = document.getElementById("badgeStyle").value;
+        const shape = document.getElementById("badgeShape").value;
+        const size = document.getElementById("badgeSize").value;
+        const radius = document.getElementById("borderRadius").value;
+        const shadow = document.getElementById("shadowIntensity").value;
+        const uppercase = document.getElementById("uppercase").checked;
+        const gradientColor = document.getElementById("gradientColor").value;
+
         const badge = document.getElementById("previewBadge");
+        const badgeTextContent = document.getElementById("badgeTextContent");
+        const badgeIcon = document.getElementById("badgeIcon");
 
-        badge.textContent = text;
-        badge.style.color = color;
+        // Update text content
+        badgeTextContent.textContent = text;
 
+        // Update icon
+        if (currentIcon) {
+          badgeIcon.textContent = currentIcon;
+          badgeIcon.style.display = "inline";
+        } else {
+          badgeIcon.style.display = "none";
+        }
+
+        // Base styles
+        badge.style.fontSize = size + "px";
+        badge.style.textTransform = uppercase ? "uppercase" : "none";
+        badge.style.borderRadius = radius + "px";
+
+        // Shape-specific styles
+        if (shape === "circle") {
+          badge.style.borderRadius = "50%";
+          badge.style.width = "44px";
+          badge.style.height = "44px";
+          badge.style.padding = "0";
+          badge.style.display = "inline-flex";
+          badge.style.alignItems = "center";
+          badge.style.justifyContent = "center";
+        } else if (shape === "square") {
+          badge.style.borderRadius = "4px";
+          badge.style.width = "auto";
+          badge.style.height = "auto";
+          badge.style.padding = "6px 16px";
+        } else if (shape === "pill") {
+          badge.style.borderRadius = "50px";
+          badge.style.width = "auto";
+          badge.style.height = "auto";
+          badge.style.padding = "6px 16px";
+        } else {
+          badge.style.width = "auto";
+          badge.style.height = "auto";
+          badge.style.padding = "6px 16px";
+        }
+
+        // Shadow
+        if (shadow > 0) {
+          const shadowBlur = shadow * 4;
+          const shadowOpacity = shadow * 0.05;
+          badge.style.boxShadow = `0 ${
+            shadow * 2
+          }px ${shadowBlur}px rgba(0, 0, 0, ${shadowOpacity})`;
+        } else {
+          badge.style.boxShadow = "none";
+        }
+
+        // Style-specific appearance
         if (style === "solid") {
           badge.style.backgroundColor = bg;
+          badge.style.color = color;
           badge.style.border = "none";
         } else if (style === "outline") {
           badge.style.backgroundColor = "transparent";
           badge.style.border = `2px solid ${bg}`;
           badge.style.color = bg;
-        } else {
+        } else if (style === "subtle") {
           badge.style.backgroundColor = bg + "20";
           badge.style.border = "none";
           badge.style.color = bg;
+        } else if (style === "gradient") {
+          badge.style.background = `linear-gradient(135deg, ${bg} 0%, ${gradientColor} 100%)`;
+          badge.style.color = color;
+          badge.style.border = "none";
         }
 
-        const code = `<span style="display: inline-block; padding: 6px 16px; font-size: 14px; font-weight: 600; border-radius: 20px; ${
-          style === "solid"
-            ? `background-color: ${bg}; color: ${color};`
-            : style === "outline"
-            ? `border: 2px solid ${bg}; color: ${bg}; background: transparent;`
-            : `background-color: ${bg}20; color: ${bg};`
-        }">${text}</span>`;
+        // Generate code
+        generateCode();
+      }
+
+      function generateCode() {
+        const text = escapeHtml(
+          document.getElementById("badgeText").value || "Badge"
+        );
+        const bg = document.getElementById("bgColor").value;
+        const color = document.getElementById("textColor").value;
+        const style = document.getElementById("badgeStyle").value;
+        const shape = document.getElementById("badgeShape").value;
+        const size = document.getElementById("badgeSize").value;
+        const radius = document.getElementById("borderRadius").value;
+        const shadow = document.getElementById("shadowIntensity").value;
+        const uppercase = document.getElementById("uppercase").checked;
+        const gradientColor = document.getElementById("gradientColor").value;
+
+        let styleStr = `display: inline-flex; align-items: center; gap: 0.5rem; padding: 6px 16px; font-size: ${size}px; font-weight: 600; border-radius: ${radius}px;`;
+
+        // Add uppercase
+        if (uppercase) {
+          styleStr += " text-transform: uppercase;";
+        }
+
+        // Shape-specific styles
+        if (shape === "circle") {
+          styleStr = `display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0; font-size: ${size}px; font-weight: 600; border-radius: 50%;`;
+          if (uppercase) styleStr += " text-transform: uppercase;";
+        } else if (shape === "square") {
+          styleStr = styleStr.replace(
+            `border-radius: ${radius}px`,
+            "border-radius: 4px"
+          );
+        } else if (shape === "pill") {
+          styleStr = styleStr.replace(
+            `border-radius: ${radius}px`,
+            "border-radius: 50px"
+          );
+        }
+
+        // Shadow
+        if (shadow > 0) {
+          const shadowBlur = shadow * 4;
+          const shadowOpacity = shadow * 0.05;
+          styleStr += ` box-shadow: 0 ${
+            shadow * 2
+          }px ${shadowBlur}px rgba(0, 0, 0, ${shadowOpacity});`;
+        }
+
+        // Style-specific appearance
+        if (style === "solid") {
+          styleStr += ` background-color: ${bg}; color: ${color};`;
+        } else if (style === "outline") {
+          styleStr += ` border: 2px solid ${bg}; color: ${bg}; background: transparent;`;
+        } else if (style === "subtle") {
+          styleStr += ` background-color: ${bg}20; color: ${bg};`;
+        } else if (style === "gradient") {
+          styleStr += ` background: linear-gradient(135deg, ${bg} 0%, ${gradientColor} 100%); color: ${color};`;
+        }
+
+        // Build HTML with icon if present
+        let iconHtml = currentIcon
+          ? `<span style="font-size: 1em;">${escapeHtml(currentIcon)}</span> `
+          : "";
+        const code = `<span style="${styleStr}">${iconHtml}${text}</span>`;
 
         document.getElementById("codeContent").textContent = code;
       }
 
       function copyCode() {
         const code = document.getElementById("codeContent").textContent;
-        navigator.clipboard.writeText(code).then(() => {
-          const btn = document.querySelector(".copy-btn");
-          btn.textContent = "Copied!";
-          setTimeout(() => (btn.textContent = "Copy"), 2000);
-        });
-      }
+        navigator.clipboard
+          .writeText(code)
+          .then(() => {
+            const btn = document.querySelector(".copy-btn");
+            btn.textContent = "✓ Copied!";
+            btn.classList.add("success");
 
-      updatePreview();
+            setTimeout(() => {
+              btn.textContent = "Copy Code";
+              btn.classList.remove("success");
+            }, 2000);
+          })
+          .catch((err) => {
+            console.error("Failed to copy:", err);
+            const btn = document.querySelector(".copy-btn");
+            btn.textContent = "✗ Failed";
+            setTimeout(() => {
+              btn.textContent = "Copy Code";
+            }, 2000);
+          });
+      }
     </script>
   </body>
 </html>

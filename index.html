@@ -54,6 +54,9 @@
         -moz-osx-font-smoothing: grayscale;
         backface-visibility: hidden;
         -webkit-backface-visibility: hidden;
+        /* Improve scrolling on mobile */
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: none;
       }
 
       body {
@@ -215,7 +218,7 @@
         border-radius: 20px;
         font-size: 0.85rem;
         font-weight: 400;
-        z-index: 1100;
+        z-index: 10000;
         transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
         backdrop-filter: blur(20px);
         border: 1px solid rgba(255, 255, 255, 0.1);
@@ -252,6 +255,16 @@
         padding: 4px;
         border: 1px solid rgba(255, 255, 255, 0.2);
         transition: all 0.3s ease;
+      }
+
+      @media (max-width: 768px) {
+        .mode-toggle-container {
+          position: relative;
+          top: auto;
+          right: auto;
+          margin: 0 auto 1rem;
+          max-width: 90%;
+        }
       }
 
       .mode-toggle {
@@ -413,6 +426,17 @@
         text-transform: uppercase;
         letter-spacing: 0.025em;
         user-select: none;
+      }
+
+      @media (max-width: 768px) {
+        .favorites-toggle {
+          position: relative;
+          top: auto;
+          left: auto;
+          margin: 0 auto 1rem;
+          display: block;
+          width: fit-content;
+        }
       }
 
       .favorites-toggle:hover {
@@ -979,12 +1003,13 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.7);
+        background: rgba(0, 0, 0, 0.8);
         display: none;
         align-items: center;
         justify-content: center;
-        z-index: 1000;
+        z-index: 9999;
         backdrop-filter: blur(10px);
+        padding: 1rem;
       }
 
       .modal-content {
@@ -995,9 +1020,11 @@
         padding: 2rem;
         max-width: 500px;
         width: 90%;
-        max-height: 90vh;
+        max-height: 85vh;
         overflow-y: auto;
         position: relative;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        -webkit-overflow-scrolling: touch;
       }
 
       .modal-header {
@@ -1168,104 +1195,247 @@
       }
 
       @media (max-width: 768px) {
+        .header {
+          padding: 2rem 1rem 1rem;
+          margin-top: 0;
+        }
+
         .header h1 {
-          font-size: 2.5rem;
+          font-size: 2rem;
+          margin-bottom: 0.75rem;
         }
 
         .header p {
-          font-size: 1rem;
+          font-size: 0.95rem;
         }
 
-        .subtitle {
-          font-size: 0.85rem;
-        }
-
-        .filter-container {
-          gap: 0.5rem;
-          padding: 0 1rem;
-        }
-
-        .filter-btn {
-          padding: 0.6rem 1rem;
-          font-size: 0.85rem;
-        }
-
-        .apps-grid {
-          grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-          gap: 1rem;
-          padding: 1rem;
-        }
-
-        .app-bubble {
-          min-height: 140px;
-        }
-
-        .widget-badge {
-          font-size: 0.55rem;
-          padding: 0.2rem 0.4rem;
-        }
-
-        .mode-toggle-container {
-          padding: 0.5rem;
-          gap: 0.5rem;
+        .header .subtitle {
+          font-size: 0.8rem;
+          margin-bottom: 1rem;
         }
 
         .mode-toggle {
-          padding: 0.6rem 1.2rem;
-          font-size: 0.85rem;
+          padding: 0.5rem 0.8rem;
+          font-size: 0.75rem;
+          letter-spacing: 0.01em;
         }
 
+        .mode-toggle-container {
+          padding: 3px;
+          gap: 0.25rem;
+        }
+
+        /* Improve search on mobile */
+        .search-container {
+          padding: 0 1rem 1rem;
+        }
+
+        .search-box {
+          padding: 0.875rem 1.25rem 0.875rem 2.25rem;
+          font-size: 0.9rem;
+        }
+
+        /* Better filter buttons on mobile */
+        .filter-container {
+          gap: 0.4rem;
+          padding: 0 1rem 1.5rem;
+          justify-content: center;
+        }
+
+        .filter-btn {
+          padding: 0.5rem 0.85rem;
+          font-size: 0.7rem;
+          border-radius: 15px;
+        }
+
+        /* Optimize grid for mobile */
         .apps-container {
           padding: 1rem;
+          min-height: auto;
         }
 
         .apps-grid {
-          grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-          gap: 1.5rem;
+          grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+          gap: 1rem;
+          padding: 0;
         }
 
         .app-bubble {
-          width: 140px;
-          height: 140px;
+          width: 100%;
+          height: 130px;
+          border-radius: 20px;
         }
 
         .app-icon {
-          font-size: 2.5rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .app-icon svg {
+          width: 28px;
+          height: 28px;
+        }
+
+        .app-name {
+          font-size: 0.75rem;
+          padding: 0 0.25rem;
+        }
+
+        .widget-badge {
+          font-size: 0.5rem;
+          padding: 0.2rem 0.4rem;
+          border-radius: 4px;
+        }
+
+        .favorite-heart {
+          width: 18px;
+          height: 18px;
+          font-size: 12px;
+          top: 0.5rem;
+          right: 0.5rem;
+        }
+
+        /* Improve modal on mobile */
+        .modal-content {
+          width: 95%;
+          max-width: none;
+          padding: 1.5rem;
+          max-height: 85vh;
+          border-radius: 20px;
+        }
+
+        .modal-title {
+          font-size: 1.25rem;
+        }
+
+        .form-input,
+        .form-select {
+          padding: 0.875rem;
+          font-size: 0.95rem;
+        }
+
+        /* Better notifications on mobile */
+        .notification {
+          max-width: 85%;
+          font-size: 0.8rem;
+          padding: 0.625rem 1.25rem;
+        }
+
+        /* Hide shortcuts hint on mobile */
+        .shortcuts-hint {
+          display: none;
         }
       }
 
       @media (max-width: 480px) {
-        .filter-container {
-          gap: 0.4rem;
-          padding: 0.5rem 1rem 2rem;
+        /* Stack mode toggle vertically on very small screens */
+        .mode-toggle-container {
+          flex-direction: column;
+          width: 90%;
+          padding: 4px;
+          gap: 4px;
         }
 
-        .filter-btn {
-          padding: 0.4rem 0.8rem;
+        .mode-toggle {
+          width: 100%;
+          padding: 0.6rem;
+          text-align: center;
+        }
+
+        /* Adjust header for small screens */
+        .header {
+          padding: 1.5rem 0.75rem 0.75rem;
+        }
+
+        .header h1 {
+          font-size: 1.75rem;
+        }
+
+        .header p {
+          font-size: 0.875rem;
+        }
+
+        .header .subtitle {
           font-size: 0.75rem;
         }
 
+        /* Make filters more compact */
+        .filter-container {
+          gap: 0.35rem;
+          padding: 0 0.75rem 1.25rem;
+        }
+
+        .filter-btn {
+          padding: 0.4rem 0.7rem;
+          font-size: 0.65rem;
+        }
+
+        /* Optimize grid for very small screens */
         .apps-grid {
           grid-template-columns: repeat(2, 1fr);
-          gap: 1rem;
+          gap: 0.875rem;
         }
 
         .app-bubble {
-          width: 120px;
-          height: 120px;
+          width: 100%;
+          height: 115px;
         }
 
-        .app-icon {
+        .app-icon svg {
+          width: 24px;
+          height: 24px;
+        }
+
+        .app-icon span {
           font-size: 2rem;
         }
 
         .app-name {
-          font-size: 0.8rem;
+          font-size: 0.7rem;
+          line-height: 1.1;
+        }
+
+        /* Smaller badges */
+        .widget-badge {
+          font-size: 0.45rem;
+          padding: 0.15rem 0.35rem;
+          top: 0.5rem;
+          left: 0.5rem;
+        }
+
+        .favorite-heart {
+          width: 16px;
+          height: 16px;
+          font-size: 11px;
+        }
+
+        /* Modal adjustments */
+        .modal-content {
+          width: 98%;
+          padding: 1.25rem;
+          border-radius: 18px;
+        }
+
+        .modal-title {
+          font-size: 1.1rem;
+        }
+
+        .btn {
+          padding: 0.875rem 1.25rem;
+          font-size: 0.9rem;
         }
       }
     </style>
   </head>
   <body>
+    <div class="header">
+      <h1>iowidgets</h1>
+      <p>Build Professional Web Widgets in Minutes</p>
+      <div class="subtitle">
+        Create customizable, embeddable widgets for your website. Copy, paste,
+        and deploy instantly.
+      </div>
+    </div>
+
     <!-- Elegant Mode Toggle -->
     <div class="mode-toggle-container">
       <button
@@ -1302,15 +1472,6 @@
     >
       ★ Favorites
     </button>
-
-    <div class="header">
-      <h1>iowidgets</h1>
-      <p>Build Professional Web Widgets in Minutes</p>
-      <div class="subtitle">
-        Create customizable, embeddable widgets for your website. Copy, paste,
-        and deploy instantly.
-      </div>
-    </div>
 
     <div class="search-container">
       <div class="search-wrapper">
@@ -1457,24 +1618,6 @@
           badge: "builder",
         },
         // Blog subcategory
-        {
-          id: "progress-bar",
-          name: "Progress Bar Builder",
-          icon: "progress",
-          category: "blog",
-          url: "widgets/progress-bar.html",
-          builtin: true,
-          badge: "builder",
-        },
-        {
-          id: "social-share",
-          name: "Social Share Buttons",
-          icon: "share",
-          category: "blog",
-          url: "widgets/social-share.html",
-          builtin: true,
-          badge: "builder",
-        },
 
         // TOOLS CATEGORY - Utilities & Calculators
         // SEO subcategory

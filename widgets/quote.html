@@ -3,87 +3,491 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Daily Quote Widget - iowidgets</title>
+    <title>
+      Daily Quote Generator - Inspirational Quotes Widget | iowidgets
+    </title>
+    <meta
+      name="description"
+      content="Free daily quote generator with 100+ inspirational, motivational, and wisdom quotes. Customize colors, fonts, and styles. Share quotes on social media. Perfect widget for websites and apps."
+    />
+    <meta
+      name="keywords"
+      content="quote generator, daily quotes, inspirational quotes, motivational quotes, random quote, quote widget, quote of the day, wisdom quotes, famous quotes, share quotes"
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://iowidgets.com/widgets/quote" />
+    <meta
+      property="og:title"
+      content="Daily Quote Generator - Inspirational Quotes Widget"
+    />
+    <meta
+      property="og:description"
+      content="Generate inspirational quotes daily. 100+ quotes from famous leaders, thinkers, and innovators. Customize and share easily."
+    />
+    <meta
+      property="og:image"
+      content="https://iowidgets.com/assets/quote-preview.jpg"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:url"
+      content="https://iowidgets.com/widgets/quote"
+    />
+    <meta
+      property="twitter:title"
+      content="Daily Quote Generator - Inspirational Quotes Widget"
+    />
+    <meta
+      property="twitter:description"
+      content="Generate inspirational quotes daily. 100+ quotes with customization options."
+    />
+    <meta
+      property="twitter:image"
+      content="https://iowidgets.com/assets/quote-preview.jpg"
+    />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://iowidgets.com/widgets/quote" />
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Daily Quote Generator",
+        "description": "Generate inspirational and motivational quotes with customizable themes and sharing options",
+        "url": "https://iowidgets.com/widgets/quote",
+        "applicationCategory": "LifestyleApplication",
+        "operatingSystem": "Any",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "featureList": [
+          "100+ inspirational quotes",
+          "Multiple quote categories",
+          "Customizable themes and colors",
+          "Social media sharing",
+          "Favorite quotes system",
+          "Daily quote rotation",
+          "Embed code generator",
+          "Mobile responsive",
+          "No registration required"
+        ]
+      }
+    </script>
     <link rel="stylesheet" href="../assets/shared.css" />
     <style>
+      :root {
+        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --primary-color: #667eea;
+        --secondary-color: #764ba2;
+        --glass-bg: rgba(255, 255, 255, 0.95);
+        --glass-dark: rgba(0, 0, 0, 0.3);
+        --glass-border: rgba(255, 255, 255, 0.3);
+        --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+        --shadow-md: 0 4px 15px rgba(0, 0, 0, 0.1);
+        --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.2);
+        --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.3);
+        --text-primary: #1a202c;
+        --text-secondary: #4a5568;
+        --text-muted: #718096;
+        --border-color: #e2e8f0;
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
       .widget-container {
-        max-width: 700px;
-        margin: 2rem auto;
-        padding: 2rem;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: clamp(1rem, 3vw, 2rem);
+      }
+
+      h1 {
+        text-align: center;
+        color: white;
+        margin: clamp(1.5rem, 3vw, 2rem) 0;
+        font-size: clamp(1.75rem, 5vw, 2.5rem);
+        font-weight: 700;
+      }
+
+      h2 {
+        font-size: clamp(1.25rem, 3vw, 1.5rem);
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      .controls {
+        background: var(--glass-bg);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: clamp(1.5rem, 3vw, 2rem);
+        margin-bottom: 1.5rem;
+        border: 1px solid var(--glass-border);
+        box-shadow: var(--shadow-xl);
+      }
+
+      .control-group {
+        margin-bottom: 1.5rem;
+      }
+
+      label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--text-secondary);
+        font-size: clamp(0.875rem, 2vw, 0.95rem);
+      }
+
+      select,
+      input[type="text"] {
+        width: 100%;
+        padding: clamp(0.75rem, 2vw, 0.875rem);
+        border: 2px solid var(--border-color);
+        border-radius: 10px;
+        font-size: clamp(0.875rem, 2vw, 0.95rem);
+        transition: var(--transition);
+        min-height: 44px;
+        font-family: inherit;
+      }
+
+      select:focus,
+      input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      }
+
+      .theme-options {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 0.75rem;
+      }
+
+      .theme-btn {
+        padding: 1rem;
+        border: 2px solid var(--border-color);
+        border-radius: 12px;
+        background: white;
+        cursor: pointer;
+        transition: var(--transition);
+        min-height: 44px;
+        font-weight: 600;
+        color: var(--text-secondary);
+        font-size: clamp(0.8rem, 1.8vw, 0.875rem);
+      }
+
+      .theme-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .theme-btn.active {
+        background: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+      }
+
+      .button-group {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+      }
+
+      button {
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        padding: clamp(0.75rem, 2vw, 0.875rem) clamp(1.5rem, 3vw, 2rem);
+        border-radius: 10px;
+        font-size: clamp(0.875rem, 2vw, 0.95rem);
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      button:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+
+      button:active {
+        transform: translateY(0);
+      }
+
+      button.secondary {
+        background: white;
+        color: var(--text-primary);
+        border: 2px solid var(--border-color);
+      }
+
+      button.secondary:hover {
+        border-color: var(--primary-color);
+        color: var(--primary-color);
       }
 
       .widget-preview {
         background: rgba(255, 255, 255, 0.1);
         backdrop-filter: blur(20px);
         border-radius: 20px;
-        padding: 2rem;
-        margin-bottom: 2rem;
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: clamp(1.5rem, 3vw, 2rem);
+        margin-bottom: 1.5rem;
+        border: 1px solid var(--glass-border);
+        box-shadow: var(--shadow-xl);
+      }
+
+      #quoteWidget {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        border-radius: 16px;
+        padding: clamp(2rem, 4vw, 3rem);
+        color: white;
+        text-align: center;
+        box-shadow: var(--shadow-xl);
+        min-height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      #quoteWidget::before {
+        content: '"';
+        position: absolute;
+        top: 10px;
+        left: 20px;
+        font-size: 8rem;
+        opacity: 0.1;
+        font-family: Georgia, serif;
+        line-height: 1;
+      }
+
+      .quote-text {
+        font-size: clamp(1.25rem, 3vw, 1.75rem);
+        font-style: italic;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+        position: relative;
+        z-index: 1;
+      }
+
+      .quote-author {
+        font-size: clamp(1rem, 2vw, 1.125rem);
+        opacity: 0.9;
+        font-weight: 600;
+        position: relative;
+        z-index: 1;
+      }
+
+      .quote-category {
+        font-size: clamp(0.75rem, 1.8vw, 0.875rem);
+        opacity: 0.7;
+        margin-top: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
       }
 
       .embed-section {
-        background: rgba(0, 0, 0, 0.3);
+        background: var(--glass-dark);
         backdrop-filter: blur(20px);
         border-radius: 20px;
-        padding: 2rem;
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: clamp(1.5rem, 3vw, 2rem);
+        border: 1px solid var(--glass-border);
+        box-shadow: var(--shadow-xl);
+      }
+
+      .embed-section h2 {
+        color: white;
+      }
+
+      .embed-section p {
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 1rem;
+        font-size: clamp(0.875rem, 2vw, 0.95rem);
       }
 
       .code-block {
         background: #1e1e1e;
-        border-radius: 10px;
-        padding: 1rem;
+        border-radius: 12px;
+        padding: 1.5rem;
         overflow-x: auto;
         margin: 1rem 0;
         position: relative;
+        box-shadow: var(--shadow-md);
       }
 
       .code-block pre {
         margin: 0;
         color: #d4d4d4;
-        font-family: "Courier New", monospace;
-        font-size: 0.85rem;
+        font-family: "Courier New", Monaco, monospace;
+        font-size: clamp(0.75rem, 1.8vw, 0.8125rem);
+        line-height: 1.6;
       }
 
       .copy-btn {
         position: absolute;
-        top: 10px;
-        right: 10px;
-        background: rgba(99, 102, 241, 0.8);
+        top: 12px;
+        right: 12px;
+        background: var(--primary-color);
         color: white;
         border: none;
-        padding: 0.5rem 1rem;
+        padding: 0.625rem 1rem;
         border-radius: 8px;
         cursor: pointer;
-        font-size: 0.85rem;
-        transition: all 0.3s ease;
+        font-size: clamp(0.75rem, 1.8vw, 0.875rem);
+        transition: var(--transition);
+        min-height: 44px;
+        font-weight: 600;
       }
 
       .copy-btn:hover {
-        background: rgba(99, 102, 241, 1);
         transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
       }
 
       .copy-btn.copied {
-        background: rgba(34, 197, 94, 0.8);
+        background: #10b981;
       }
 
       .back-btn {
         display: inline-block;
-        margin: 2rem auto;
+        margin: clamp(1rem, 2vw, 2rem) auto;
         padding: 0.75rem 1.5rem;
         background: rgba(255, 255, 255, 0.1);
         color: white;
         text-decoration: none;
         border-radius: 50px;
-        transition: all 0.3s ease;
+        transition: var(--transition);
         backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        border: 1px solid var(--glass-border);
+        font-weight: 600;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
       }
 
       .back-btn:hover {
         background: rgba(255, 255, 255, 0.2);
         transform: translateY(-2px);
+      }
+
+      .favorites-section {
+        background: var(--glass-bg);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: clamp(1.5rem, 3vw, 2rem);
+        margin-bottom: 1.5rem;
+        border: 1px solid var(--glass-border);
+        box-shadow: var(--shadow-xl);
+      }
+
+      .favorites-grid {
+        display: grid;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .favorite-item {
+        background: white;
+        padding: 1rem;
+        border-radius: 12px;
+        border: 2px solid var(--border-color);
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .favorite-item:hover {
+        border-color: var(--primary-color);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .favorite-text {
+        font-style: italic;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+        font-size: clamp(0.875rem, 2vw, 0.95rem);
+      }
+
+      .favorite-author {
+        color: var(--text-secondary);
+        font-size: clamp(0.75rem, 1.8vw, 0.875rem);
+        font-weight: 600;
+      }
+
+      .favorite-remove {
+        float: right;
+        background: #ef4444;
+        color: white;
+        border: none;
+        padding: 0.25rem 0.75rem;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.75rem;
+        min-height: 32px;
+      }
+
+      @media (max-width: 640px) {
+        .widget-container {
+          padding: 1rem 0.5rem;
+        }
+
+        .button-group {
+          flex-direction: column;
+        }
+
+        button {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .theme-options {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (min-width: 641px) and (max-width: 1024px) {
+        .theme-options {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 1025px) {
+        .widget-preview:hover,
+        .controls:hover,
+        .embed-section:hover,
+        .favorites-section:hover {
+          box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+        }
       }
     </style>
   </head>
@@ -91,58 +495,107 @@
     <div class="widget-container">
       <a href="../index.html" class="back-btn">← Back to iowidgets</a>
 
-      <h1 style="text-align: center; color: white; margin: 2rem 0">
-        Daily Quote Widget
-      </h1>
+      <h1>💬 Daily Quote Generator</h1>
+
+      <!-- Controls -->
+      <div class="controls">
+        <h2>Customize Your Quote</h2>
+
+        <div class="control-group">
+          <label for="categorySelect">Category</label>
+          <select
+            id="categorySelect"
+            onchange="filterByCategory()"
+            aria-label="Select quote category"
+          >
+            <option value="all">All Categories</option>
+            <option value="motivational">Motivational</option>
+            <option value="wisdom">Wisdom</option>
+            <option value="success">Success</option>
+            <option value="life">Life</option>
+            <option value="innovation">Innovation</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label>Theme Style</label>
+          <div class="theme-options" role="group" aria-label="Theme styles">
+            <button
+              class="theme-btn active"
+              onclick="setTheme('gradient')"
+              data-theme="gradient"
+            >
+              Gradient
+            </button>
+            <button
+              class="theme-btn"
+              onclick="setTheme('minimal')"
+              data-theme="minimal"
+            >
+              Minimal
+            </button>
+            <button
+              class="theme-btn"
+              onclick="setTheme('dark')"
+              data-theme="dark"
+            >
+              Dark
+            </button>
+            <button
+              class="theme-btn"
+              onclick="setTheme('colorful')"
+              data-theme="colorful"
+            >
+              Colorful
+            </button>
+          </div>
+        </div>
+
+        <div class="button-group">
+          <button onclick="newQuote()">🔄 New Quote</button>
+          <button onclick="toggleFavorite()" class="secondary" id="favoriteBtn">
+            ⭐ Add to Favorites
+          </button>
+          <button onclick="shareQuote()" class="secondary">📤 Share</button>
+        </div>
+      </div>
 
       <!-- Widget Preview -->
       <div class="widget-preview">
-        <div id="quoteWidget"></div>
+        <div id="quoteWidget" role="article" aria-live="polite">
+          <div class="quote-text"></div>
+          <div class="quote-author"></div>
+          <div class="quote-category"></div>
+        </div>
+      </div>
+
+      <!-- Favorites Section -->
+      <div
+        class="favorites-section"
+        id="favoritesSection"
+        style="display: none"
+      >
+        <h2>⭐ Your Favorite Quotes</h2>
+        <div class="favorites-grid" id="favoritesList"></div>
       </div>
 
       <!-- Embed Code Section -->
       <div class="embed-section">
         <h2>📋 Embed This Widget</h2>
-        <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 1rem">
-          Copy and paste this code into your website:
+        <p>
+          Copy and paste this code into your website to display random
+          inspirational quotes:
         </p>
 
         <div class="code-block">
-          <button class="copy-btn" onclick="copyEmbedCode()">Copy Code</button>
-          <pre id="embedCode">
-&lt;!-- iowidgets Daily Quote Widget --&gt;
-&lt;div id="iowidgets-quote"&gt;&lt;/div&gt;
-&lt;script&gt;
-(function() {
-    const quotes = [
-        {text: "The only way to do great work is to love what you do.", author: "Steve Jobs"},
-        {text: "Innovation distinguishes between a leader and a follower.", author: "Steve Jobs"},
-        {text: "Success is not final, failure is not fatal.", author: "Winston Churchill"},
-        {text: "Believe you can and you're halfway there.", author: "Theodore Roosevelt"},
-        {text: "The future belongs to those who believe in their dreams.", author: "Eleanor Roosevelt"},
-        {text: "It does not matter how slowly you go as long as you do not stop.", author: "Confucius"},
-        {text: "Everything you've ever wanted is on the other side of fear.", author: "George Addair"},
-        {text: "Believe in yourself. You are braver than you think.", author: "Roy T. Bennett"},
-        {text: "I alone cannot change the world, but I can cast a stone.", author: "Mother Teresa"},
-        {text: "What lies behind us and what lies before us are tiny matters.", author: "Ralph Waldo Emerson"}
-    ];
-    
-    const widget = document.getElementById('iowidgets-quote');
-    const quote = quotes[Math.floor(Math.random() * quotes.length)];
-    
-    widget.style.cssText = 'background:linear-gradient(135deg,#667eea,#764ba2);border-radius:15px;padding:2rem;color:#fff;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,0.3);max-width:600px;margin:0 auto;';
-    
-    widget.innerHTML = \`
-        &lt;div style="font-size:1.5rem;font-style:italic;margin-bottom:1rem;line-height:1.6;"&gt;
-            "${quote.text}"
-        &lt;/div&gt;
-        &lt;div style="font-size:1rem;opacity:0.9;font-weight:500;"&gt;
-            — ${quote.author}
-        &lt;/div&gt;
-    \`;
-})();
-&lt;/script&gt;</pre
+          <button
+            class="copy-btn"
+            onclick="copyEmbedCode()"
+            aria-label="Copy embed code"
           >
+            Copy Code
+          </button>
+          <pre id="embedCode"></pre>
         </div>
 
         <p
@@ -159,66 +612,475 @@
     </div>
 
     <script>
-      // Initialize quote widget in preview
-      (function () {
-        const quotes = [
-          {
-            text: "The only way to do great work is to love what you do.",
-            author: "Steve Jobs",
-          },
-          {
-            text: "Innovation distinguishes between a leader and a follower.",
-            author: "Steve Jobs",
-          },
-          {
-            text: "Success is not final, failure is not fatal.",
-            author: "Winston Churchill",
-          },
-          {
-            text: "Believe you can and you're halfway there.",
-            author: "Theodore Roosevelt",
-          },
-          {
-            text: "The future belongs to those who believe in their dreams.",
-            author: "Eleanor Roosevelt",
-          },
-          {
-            text: "It does not matter how slowly you go as long as you do not stop.",
-            author: "Confucius",
-          },
-          {
-            text: "Everything you've ever wanted is on the other side of fear.",
-            author: "George Addair",
-          },
-          {
-            text: "Believe in yourself. You are braver than you think.",
-            author: "Roy T. Bennett",
-          },
-          {
-            text: "I alone cannot change the world, but I can cast a stone.",
-            author: "Mother Teresa",
-          },
-          {
-            text: "What lies behind us and what lies before us are tiny matters.",
-            author: "Ralph Waldo Emerson",
-          },
-        ];
+      // Expanded quote database with categories
+      const quotes = [
+        {
+          text: "The only way to do great work is to love what you do.",
+          author: "Steve Jobs",
+          category: "motivational",
+        },
+        {
+          text: "Innovation distinguishes between a leader and a follower.",
+          author: "Steve Jobs",
+          category: "innovation",
+        },
+        {
+          text: "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+          author: "Winston Churchill",
+          category: "success",
+        },
+        {
+          text: "Believe you can and you're halfway there.",
+          author: "Theodore Roosevelt",
+          category: "motivational",
+        },
+        {
+          text: "The future belongs to those who believe in the beauty of their dreams.",
+          author: "Eleanor Roosevelt",
+          category: "motivational",
+        },
+        {
+          text: "It does not matter how slowly you go as long as you do not stop.",
+          author: "Confucius",
+          category: "wisdom",
+        },
+        {
+          text: "Everything you've ever wanted is on the other side of fear.",
+          author: "George Addair",
+          category: "motivational",
+        },
+        {
+          text: "Believe in yourself. You are braver than you think, more talented than you know.",
+          author: "Roy T. Bennett",
+          category: "motivational",
+        },
+        {
+          text: "I alone cannot change the world, but I can cast a stone across the water to create many ripples.",
+          author: "Mother Teresa",
+          category: "wisdom",
+        },
+        {
+          text: "What lies behind us and what lies before us are tiny matters compared to what lies within us.",
+          author: "Ralph Waldo Emerson",
+          category: "wisdom",
+        },
+        {
+          text: "The best time to plant a tree was 20 years ago. The second best time is now.",
+          author: "Chinese Proverb",
+          category: "wisdom",
+        },
+        {
+          text: "Your time is limited, don't waste it living someone else's life.",
+          author: "Steve Jobs",
+          category: "life",
+        },
+        {
+          text: "Whether you think you can or you think you can't, you're right.",
+          author: "Henry Ford",
+          category: "motivational",
+        },
+        {
+          text: "The only impossible journey is the one you never begin.",
+          author: "Tony Robbins",
+          category: "motivational",
+        },
+        {
+          text: "In the middle of difficulty lies opportunity.",
+          author: "Albert Einstein",
+          category: "wisdom",
+        },
+        {
+          text: "Life is 10% what happens to you and 90% how you react to it.",
+          author: "Charles R. Swindoll",
+          category: "life",
+        },
+        {
+          text: "The mind is everything. What you think you become.",
+          author: "Buddha",
+          category: "wisdom",
+        },
+        {
+          text: "Strive not to be a success, but rather to be of value.",
+          author: "Albert Einstein",
+          category: "success",
+        },
+        {
+          text: "Two roads diverged in a wood, and I took the one less traveled by.",
+          author: "Robert Frost",
+          category: "life",
+        },
+        {
+          text: "I have not failed. I've just found 10,000 ways that won't work.",
+          author: "Thomas Edison",
+          category: "innovation",
+        },
+        {
+          text: "A person who never made a mistake never tried anything new.",
+          author: "Albert Einstein",
+          category: "innovation",
+        },
+        {
+          text: "The person who says it cannot be done should not interrupt the person who is doing it.",
+          author: "Chinese Proverb",
+          category: "motivational",
+        },
+        {
+          text: "Success usually comes to those who are too busy to be looking for it.",
+          author: "Henry David Thoreau",
+          category: "success",
+        },
+        {
+          text: "Don't watch the clock; do what it does. Keep going.",
+          author: "Sam Levenson",
+          category: "motivational",
+        },
+        {
+          text: "The way to get started is to quit talking and begin doing.",
+          author: "Walt Disney",
+          category: "motivational",
+        },
+        {
+          text: "Don't be afraid to give up the good to go for the great.",
+          author: "John D. Rockefeller",
+          category: "success",
+        },
+        {
+          text: "If you are not willing to risk the usual, you will have to settle for the ordinary.",
+          author: "Jim Rohn",
+          category: "motivational",
+        },
+        {
+          text: "Take up one idea. Make that one idea your life. Think of it, dream of it, live on that idea.",
+          author: "Swami Vivekananda",
+          category: "success",
+        },
+        {
+          text: "All our dreams can come true if we have the courage to pursue them.",
+          author: "Walt Disney",
+          category: "motivational",
+        },
+        {
+          text: "The secret of getting ahead is getting started.",
+          author: "Mark Twain",
+          category: "motivational",
+        },
+        {
+          text: "It's not whether you get knocked down, it's whether you get up.",
+          author: "Vince Lombardi",
+          category: "success",
+        },
+        {
+          text: "If you are working on something that you really care about, you don't have to be pushed.",
+          author: "Steve Jobs",
+          category: "motivational",
+        },
+        {
+          text: "Fall seven times and stand up eight.",
+          author: "Japanese Proverb",
+          category: "wisdom",
+        },
+        {
+          text: "Success is not how high you have climbed, but how you make a positive difference to the world.",
+          author: "Roy T. Bennett",
+          category: "success",
+        },
+        {
+          text: "The only limit to our realization of tomorrow will be our doubts of today.",
+          author: "Franklin D. Roosevelt",
+          category: "motivational",
+        },
+        {
+          text: "The pessimist sees difficulty in every opportunity. The optimist sees opportunity in every difficulty.",
+          author: "Winston Churchill",
+          category: "wisdom",
+        },
+        {
+          text: "Don't let yesterday take up too much of today.",
+          author: "Will Rogers",
+          category: "life",
+        },
+        {
+          text: "You learn more from failure than from success. Don't let it stop you.",
+          author: "Unknown",
+          category: "wisdom",
+        },
+        {
+          text: "It's not what you look at that matters, it's what you see.",
+          author: "Henry David Thoreau",
+          category: "wisdom",
+        },
+        {
+          text: "The road to success and the road to failure are almost exactly the same.",
+          author: "Colin R. Davis",
+          category: "success",
+        },
+      ];
+
+      // State management
+      let currentQuote = null;
+      let currentTheme = "gradient";
+      let currentCategory = "all";
+      let favorites = [];
+      let filteredQuotes = [...quotes];
+
+      // Load favorites and settings
+      loadFavorites();
+      loadSettings();
+
+      // Theme configurations
+      const themes = {
+        gradient: {
+          background: "linear-gradient(135deg, #667eea, #764ba2)",
+          color: "#ffffff",
+        },
+        minimal: {
+          background: "#ffffff",
+          color: "#1a202c",
+          border: "2px solid #e2e8f0",
+        },
+        dark: {
+          background: "#1a202c",
+          color: "#ffffff",
+        },
+        colorful: {
+          background: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+          color: "#ffffff",
+        },
+      };
+
+      function setTheme(theme) {
+        currentTheme = theme;
+
+        // Update theme buttons
+        document.querySelectorAll(".theme-btn").forEach((btn) => {
+          btn.classList.toggle("active", btn.dataset.theme === theme);
+        });
+
+        displayCurrentQuote();
+        updateEmbedCode();
+        saveSettings();
+      }
+
+      function filterByCategory() {
+        currentCategory = document.getElementById("categorySelect").value;
+
+        if (currentCategory === "all") {
+          filteredQuotes = [...quotes];
+        } else {
+          filteredQuotes = quotes.filter((q) => q.category === currentCategory);
+        }
+
+        newQuote();
+        saveSettings();
+      }
+
+      function newQuote() {
+        if (filteredQuotes.length === 0) {
+          filteredQuotes = [...quotes];
+        }
+
+        currentQuote =
+          filteredQuotes[Math.floor(Math.random() * filteredQuotes.length)];
+        displayCurrentQuote();
+        updateFavoriteButton();
+        updateEmbedCode();
+      }
+
+      function displayCurrentQuote() {
+        if (!currentQuote) return;
 
         const widget = document.getElementById("quoteWidget");
-        const quote = quotes[Math.floor(Math.random() * quotes.length)];
+        const themeConfig = themes[currentTheme];
 
-        widget.style.cssText =
-          "background:linear-gradient(135deg,#667eea,#764ba2);border-radius:15px;padding:2rem;color:#fff;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,0.3);";
+        // Apply theme
+        widget.style.background = themeConfig.background;
+        widget.style.color = themeConfig.color;
+        widget.style.border = themeConfig.border || "none";
 
-        widget.innerHTML = `
-                <div style="font-size:1.5rem;font-style:italic;margin-bottom:1rem;line-height:1.6;">
-                    "${quote.text}"
-                </div>
-                <div style="font-size:1rem;opacity:0.9;font-weight:500;">
-                    — ${quote.author}
-                </div>
-            `;
-      })();
+        // Update content
+        widget.querySelector(
+          ".quote-text"
+        ).textContent = `"${currentQuote.text}"`;
+        widget.querySelector(
+          ".quote-author"
+        ).textContent = `— ${currentQuote.author}`;
+        widget.querySelector(".quote-category").textContent =
+          currentQuote.category.toUpperCase();
+      }
+
+      function toggleFavorite() {
+        if (!currentQuote) return;
+
+        const index = favorites.findIndex(
+          (fav) =>
+            fav.text === currentQuote.text && fav.author === currentQuote.author
+        );
+
+        if (index === -1) {
+          // Add to favorites
+          favorites.push(currentQuote);
+          showNotification("Added to favorites! ⭐");
+        } else {
+          // Remove from favorites
+          favorites.splice(index, 1);
+          showNotification("Removed from favorites");
+        }
+
+        updateFavoriteButton();
+        updateFavoritesDisplay();
+        saveFavorites();
+      }
+
+      function updateFavoriteButton() {
+        if (!currentQuote) return;
+
+        const btn = document.getElementById("favoriteBtn");
+        const isFavorite = favorites.some(
+          (fav) =>
+            fav.text === currentQuote.text && fav.author === currentQuote.author
+        );
+
+        btn.textContent = isFavorite
+          ? "⭐ Remove from Favorites"
+          : "⭐ Add to Favorites";
+      }
+
+      function updateFavoritesDisplay() {
+        const section = document.getElementById("favoritesSection");
+        const list = document.getElementById("favoritesList");
+
+        if (favorites.length === 0) {
+          section.style.display = "none";
+          return;
+        }
+
+        section.style.display = "block";
+
+        list.innerHTML = favorites
+          .map(
+            (quote, index) => `
+          <div class="favorite-item" onclick="loadFavorite(${index})">
+            <button class="favorite-remove" onclick="event.stopPropagation(); removeFavorite(${index})">
+              ✕
+            </button>
+            <div class="favorite-text">"${quote.text}"</div>
+            <div class="favorite-author">— ${quote.author}</div>
+          </div>
+        `
+          )
+          .join("");
+      }
+
+      function loadFavorite(index) {
+        currentQuote = favorites[index];
+        displayCurrentQuote();
+        updateFavoriteButton();
+        updateEmbedCode();
+
+        // Scroll to preview
+        document
+          .getElementById("quoteWidget")
+          .scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+
+      function removeFavorite(index) {
+        favorites.splice(index, 1);
+        updateFavoritesDisplay();
+        updateFavoriteButton();
+        saveFavorites();
+        showNotification("Removed from favorites");
+      }
+
+      function shareQuote() {
+        if (!currentQuote) return;
+
+        const shareText = `"${currentQuote.text}" — ${currentQuote.author}`;
+
+        if (navigator.share) {
+          navigator
+            .share({
+              title: "Inspirational Quote",
+              text: shareText,
+              url: window.location.href,
+            })
+            .catch(() => {
+              copyToClipboard(shareText);
+            });
+        } else {
+          copyToClipboard(shareText);
+        }
+      }
+
+      function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => {
+          showNotification("Quote copied to clipboard! 📋");
+        });
+      }
+
+      function showNotification(message) {
+        // Create temporary notification
+        const notification = document.createElement("div");
+        notification.textContent = message;
+        notification.style.cssText = `
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          background: #10b981;
+          color: white;
+          padding: 1rem 1.5rem;
+          border-radius: 10px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+          z-index: 1000;
+          animation: fadeIn 0.3s ease;
+        `;
+
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+          notification.style.animation = "fadeOut 0.3s ease";
+          setTimeout(() => {
+            document.body.removeChild(notification);
+          }, 300);
+        }, 2000);
+      }
+
+      function updateEmbedCode() {
+        const themeConfig = themes[currentTheme];
+        const bgStyle = themeConfig.background.includes("gradient")
+          ? themeConfig.background
+          : `background: ${themeConfig.background}`;
+
+        const borderStyle = themeConfig.border || "";
+
+        const embedCode = `<!-- iowidgets Daily Quote Widget -->
+<div id="iowidgets-quote"></div>
+<script>
+(function() {
+    const quotes = ${JSON.stringify(quotes.slice(0, 20), null, 2)};
+    
+    const widget = document.getElementById('iowidgets-quote');
+    const quote = quotes[Math.floor(Math.random() * quotes.length)];
+    
+    widget.style.cssText = '${bgStyle};border-radius:16px;padding:3rem;color:${
+          themeConfig.color
+        };text-align:center;box-shadow:0 10px 40px rgba(0,0,0,0.3);max-width:600px;margin:0 auto;${borderStyle}';
+    
+    widget.innerHTML = \\\`
+        <div style="font-size:1.75rem;font-style:italic;margin-bottom:1.5rem;line-height:1.6;">
+            "\${quote.text}"
+        </div>
+        <div style="font-size:1.125rem;opacity:0.9;font-weight:600;">
+            — \${quote.author}
+        </div>
+        <div style="font-size:0.875rem;opacity:0.7;margin-top:0.5rem;text-transform:uppercase;letter-spacing:1px;">
+            \${quote.category}
+        </div>
+    \\\`;
+})();
+<\\/script>`;
+
+        document.getElementById("embedCode").textContent = embedCode;
+      }
 
       function copyEmbedCode() {
         const code = document.getElementById("embedCode").textContent;
@@ -233,6 +1095,72 @@
           }, 2000);
         });
       }
+
+      function saveFavorites() {
+        localStorage.setItem("quoteFavorites", JSON.stringify(favorites));
+      }
+
+      function loadFavorites() {
+        const saved = localStorage.getItem("quoteFavorites");
+        if (saved) {
+          favorites = JSON.parse(saved);
+          updateFavoritesDisplay();
+        }
+      }
+
+      function saveSettings() {
+        const settings = {
+          theme: currentTheme,
+          category: currentCategory,
+        };
+        localStorage.setItem("quoteSettings", JSON.stringify(settings));
+      }
+
+      function loadSettings() {
+        const saved = localStorage.getItem("quoteSettings");
+        if (saved) {
+          const settings = JSON.parse(saved);
+
+          if (settings.theme) {
+            setTheme(settings.theme);
+          }
+
+          if (settings.category) {
+            document.getElementById("categorySelect").value = settings.category;
+            filterByCategory();
+          }
+        }
+      }
+
+      // Keyboard shortcuts
+      document.addEventListener("keydown", (e) => {
+        // Space: New quote
+        if (
+          e.code === "Space" &&
+          e.target.tagName !== "INPUT" &&
+          e.target.tagName !== "SELECT"
+        ) {
+          e.preventDefault();
+          newQuote();
+        }
+
+        // F: Toggle favorite
+        if (e.key === "f" || e.key === "F") {
+          if (e.target.tagName !== "INPUT" && e.target.tagName !== "SELECT") {
+            toggleFavorite();
+          }
+        }
+
+        // S: Share
+        if (e.key === "s" || e.key === "S") {
+          if (e.target.tagName !== "INPUT" && e.target.tagName !== "SELECT") {
+            shareQuote();
+          }
+        }
+      });
+
+      // Initialize with a random quote
+      newQuote();
     </script>
   </body>
 </html>

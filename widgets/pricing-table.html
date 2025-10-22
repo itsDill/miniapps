@@ -2,23 +2,156 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pricing Table Builder - iowidgets</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <!-- Primary Meta Tags -->
+    <title>
+      Pricing Table Builder - Create Beautiful Pricing Tables | iowidgets
+    </title>
+    <meta
+      name="title"
+      content="Pricing Table Builder - Create Beautiful Pricing Tables | iowidgets"
+    />
+    <meta
+      name="description"
+      content="Build stunning, responsive pricing tables for your website in minutes. Fully customizable, mobile-friendly, and easy to embed. No coding required."
+    />
+    <meta
+      name="keywords"
+      content="pricing table builder, pricing page generator, subscription pricing, pricing plans, comparison table, pricing widget, SaaS pricing"
+    />
+    <meta name="author" content="iowidgets" />
+    <meta name="robots" content="index, follow" />
+    <link
+      rel="canonical"
+      href="https://iowidgets.com/widgets/pricing-table.html"
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://iowidgets.com/widgets/pricing-table.html"
+    />
+    <meta
+      property="og:title"
+      content="Pricing Table Builder - Create Beautiful Pricing Tables"
+    />
+    <meta
+      property="og:description"
+      content="Build stunning, responsive pricing tables for your website in minutes. Fully customizable and easy to embed."
+    />
+    <meta
+      property="og:image"
+      content="https://iowidgets.com/assets/pricing-table-preview.png"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:url"
+      content="https://iowidgets.com/widgets/pricing-table.html"
+    />
+    <meta
+      property="twitter:title"
+      content="Pricing Table Builder - Create Beautiful Pricing Tables"
+    />
+    <meta
+      property="twitter:description"
+      content="Build stunning, responsive pricing tables for your website in minutes. No coding required."
+    />
+    <meta
+      property="twitter:image"
+      content="https://iowidgets.com/assets/pricing-table-preview.png"
+    />
+
     <link rel="stylesheet" href="../assets/shared.css" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Pricing Table Builder",
+        "applicationCategory": "DesignApplication",
+        "description": "Build stunning, responsive pricing tables for your website in minutes. Fully customizable and easy to embed.",
+        "url": "https://iowidgets.com/widgets/pricing-table.html",
+        "operatingSystem": "Any",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "featureList": [
+          "Customizable pricing plans",
+          "Mobile responsive design",
+          "Popular plan highlighting",
+          "Feature comparison",
+          "Easy embed code"
+        ]
+      }
+    </script>
     <style>
+      /* Mobile-first approach */
+      * {
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-color: #667eea;
+        --secondary-color: #8b5cf6;
+        --transition-speed: 0.3s;
+      }
+
+      /* Respect user's motion preferences */
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
       .widget-container {
         max-width: 1200px;
-        margin: 2rem auto;
-        padding: 2rem;
+        margin: 0 auto;
+        padding: 1rem;
+      }
+
+      @media (min-width: 768px) {
+        .widget-container {
+          padding: 2rem;
+          margin: 2rem auto;
+        }
       }
 
       .tool-section {
         background: rgba(255, 255, 255, 0.1);
         backdrop-filter: blur(20px);
-        border-radius: 20px;
-        padding: 2rem;
-        margin-bottom: 2rem;
+        border-radius: 15px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
         border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: transform var(--transition-speed) ease,
+          box-shadow var(--transition-speed) ease;
+      }
+
+      @media (min-width: 768px) {
+        .tool-section {
+          border-radius: 20px;
+          padding: 2rem;
+          margin-bottom: 2rem;
+        }
+      }
+
+      .tool-section:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
       }
 
       .tool-section h2 {
@@ -27,19 +160,42 @@
         display: flex;
         align-items: center;
         gap: 0.75rem;
+        font-size: 1.5rem;
+      }
+
+      @media (max-width: 767px) {
+        .tool-section h2 {
+          font-size: 1.25rem;
+        }
       }
 
       .tool-section h2 svg {
-        width: 28px;
-        height: 28px;
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+      }
+
+      @media (min-width: 768px) {
+        .tool-section h2 svg {
+          width: 28px;
+          height: 28px;
+        }
       }
 
       .embed-section {
         background: rgba(0, 0, 0, 0.3);
         backdrop-filter: blur(20px);
-        border-radius: 20px;
-        padding: 2rem;
+        border-radius: 15px;
+        padding: 1.5rem;
         border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: transform var(--transition-speed) ease;
+      }
+
+      @media (min-width: 768px) {
+        .embed-section {
+          border-radius: 20px;
+          padding: 2rem;
+        }
       }
 
       .embed-section h2 {
@@ -48,36 +204,82 @@
         display: flex;
         align-items: center;
         gap: 0.75rem;
+        font-size: 1.5rem;
+      }
+
+      @media (max-width: 767px) {
+        .embed-section h2 {
+          font-size: 1.25rem;
+        }
       }
 
       .embed-section h2 svg {
-        width: 28px;
-        height: 28px;
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+      }
+
+      @media (min-width: 768px) {
+        .embed-section h2 svg {
+          width: 28px;
+          height: 28px;
+        }
       }
 
       .page-header {
         text-align: center;
-        margin: 2rem 0 3rem 0;
+        margin: 1.5rem 0 2rem 0;
+        padding: 0 1rem;
+      }
+
+      @media (min-width: 768px) {
+        .page-header {
+          margin: 2rem 0 3rem 0;
+        }
       }
 
       .page-header h1 {
         color: white;
-        font-size: 2.5rem;
+        font-size: 2rem;
         margin-bottom: 1rem;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 1rem;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        line-height: 1.2;
+      }
+
+      @media (min-width: 768px) {
+        .page-header h1 {
+          font-size: 2.5rem;
+          gap: 1rem;
+        }
       }
 
       .page-header h1 svg {
-        width: 48px;
-        height: 48px;
+        width: 36px;
+        height: 36px;
+        flex-shrink: 0;
+      }
+
+      @media (min-width: 768px) {
+        .page-header h1 svg {
+          width: 48px;
+          height: 48px;
+        }
       }
 
       .page-header p {
         color: rgba(255, 255, 255, 0.8);
-        font-size: 1.1rem;
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+
+      @media (min-width: 768px) {
+        .page-header p {
+          font-size: 1.1rem;
+        }
       }
 
       .code-block {
@@ -87,13 +289,41 @@
         overflow-x: auto;
         margin: 1rem 0;
         position: relative;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+      }
+
+      .code-block::-webkit-scrollbar {
+        height: 8px;
+      }
+
+      .code-block::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      .code-block::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 4px;
+      }
+
+      .code-block::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.5);
       }
 
       .code-block pre {
         margin: 0;
         color: #d4d4d4;
-        font-family: "Courier New", monospace;
-        font-size: 0.85rem;
+        font-family: "SF Mono", "Monaco", "Inconsolata", "Fira Code",
+          "Droid Sans Mono", "Source Code Pro", monospace;
+        font-size: 0.8rem;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      @media (min-width: 768px) {
+        .code-block pre {
+          font-size: 0.85rem;
+        }
       }
 
       .copy-btn {
@@ -107,12 +337,28 @@
         border-radius: 8px;
         cursor: pointer;
         font-size: 0.85rem;
-        transition: all 0.3s ease;
+        transition: all var(--transition-speed) ease;
+        font-weight: 500;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
       }
 
       .copy-btn:hover {
         background: rgba(99, 102, 241, 1);
         transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+      }
+
+      .copy-btn:active {
+        transform: translateY(0);
+      }
+
+      .copy-btn:focus-visible {
+        outline: 2px solid #fff;
+        outline-offset: 2px;
       }
 
       .copy-btn.copied {
@@ -120,28 +366,44 @@
       }
 
       .back-btn {
-        display: inline-block;
-        margin: 2rem auto;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin: 1rem auto 2rem;
         padding: 0.75rem 1.5rem;
         background: rgba(255, 255, 255, 0.1);
         color: white;
         text-decoration: none;
         border-radius: 50px;
-        transition: all 0.3s ease;
+        transition: all var(--transition-speed) ease;
         backdrop-filter: blur(20px);
         border: 1px solid rgba(255, 255, 255, 0.2);
+        font-weight: 500;
+        min-height: 44px;
       }
 
       .back-btn:hover {
         background: rgba(255, 255, 255, 0.2);
         transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      .back-btn:focus-visible {
+        outline: 2px solid #fff;
+        outline-offset: 2px;
       }
 
       .plans-editor {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: 1fr;
         gap: 1.5rem;
         margin: 1.5rem 0;
+      }
+
+      @media (min-width: 768px) {
+        .plans-editor {
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
       }
 
       .plan-card {
@@ -149,12 +411,19 @@
         padding: 1.5rem;
         border-radius: 15px;
         border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all var(--transition-speed) ease;
+      }
+
+      .plan-card:focus-within {
+        background: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
       }
 
       .plan-card h3 {
         color: white;
         margin-bottom: 1rem;
         text-align: center;
+        font-size: 1.25rem;
       }
 
       .plan-input {
@@ -166,6 +435,16 @@
         background: rgba(0, 0, 0, 0.3);
         color: white;
         font-size: 0.9rem;
+        transition: all var(--transition-speed) ease;
+        font-family: inherit;
+        min-height: 44px;
+      }
+
+      .plan-input:focus {
+        outline: none;
+        border-color: rgba(99, 102, 241, 0.8);
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        background: rgba(0, 0, 0, 0.4);
       }
 
       .plan-input::placeholder {
@@ -173,15 +452,17 @@
       }
 
       .features-input {
-        min-height: 100px;
+        min-height: 120px;
         resize: vertical;
         font-family: inherit;
+        line-height: 1.5;
       }
 
       .helper-text {
         color: rgba(255, 255, 255, 0.6);
         font-size: 0.85rem;
         margin-bottom: 0.5rem;
+        font-weight: 500;
       }
 
       .generate-btn {
@@ -197,13 +478,19 @@
         cursor: pointer;
         font-size: 1rem;
         font-weight: 600;
-        transition: all 0.3s ease;
-        display: block;
+        transition: all var(--transition-speed) ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
         margin: 1.5rem auto;
         box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        min-height: 48px;
+        width: 100%;
+        max-width: 300px;
       }
 
-      .generate-btn:hover {
+      .generate-btn:hover:not(:disabled) {
         background: linear-gradient(
           135deg,
           rgba(99, 102, 241, 1),
@@ -213,8 +500,38 @@
         box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
       }
 
-      .generate-btn:active {
+      .generate-btn:active:not(:disabled) {
         transform: translateY(0);
+      }
+
+      .generate-btn:focus-visible {
+        outline: 2px solid #fff;
+        outline-offset: 2px;
+      }
+
+      .generate-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .generate-btn .spinner {
+        width: 16px;
+        height: 16px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-top-color: white;
+        border-radius: 50%;
+        animation: spin 0.6s linear infinite;
+        display: none;
+      }
+
+      .generate-btn.loading .spinner {
+        display: block;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
       }
 
       @keyframes slideIn {
@@ -228,48 +545,172 @@
         }
       }
 
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
       .highlight-toggle {
         margin-top: 1rem;
         display: flex;
         align-items: center;
         gap: 0.5rem;
         color: rgba(255, 255, 255, 0.9);
+        cursor: pointer;
+        user-select: none;
       }
 
       .highlight-toggle input {
         width: 20px;
         height: 20px;
         cursor: pointer;
+        accent-color: #667eea;
+      }
+
+      .highlight-toggle:hover {
+        color: white;
+      }
+
+      .success-message {
+        background: rgba(34, 197, 94, 0.1);
+        border-left: 3px solid rgba(34, 197, 94, 0.8);
+        padding: 1rem;
+        border-radius: 8px;
+        margin: 1rem 0;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.9rem;
+        display: flex;
+        align-items: start;
+        gap: 0.75rem;
+        animation: slideIn 0.3s ease;
+      }
+
+      .success-message svg {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+
+      .settings-bar {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 1rem;
+        border-radius: 10px;
+        margin-bottom: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      @media (min-width: 768px) {
+        .settings-bar {
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+        }
+      }
+
+      .setting-group {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .setting-group label {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.9rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .setting-group select {
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(0, 0, 0, 0.3);
+        color: white;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all var(--transition-speed) ease;
+        min-height: 40px;
+      }
+
+      .setting-group select:focus {
+        outline: none;
+        border-color: rgba(99, 102, 241, 0.8);
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+      }
+
+      .color-preview {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        transition: transform var(--transition-speed) ease;
+      }
+
+      .setting-group:hover .color-preview {
+        transform: scale(1.1);
+      }
+
+      .preview-container {
+        animation: fadeIn 0.5s ease;
       }
     </style>
   </head>
   <body>
     <div class="widget-container">
-      <a href="../index.html" class="back-btn">← Back to iowidgets</a>
+      <a
+        href="../index.html"
+        class="back-btn"
+        aria-label="Back to iowidgets home"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          width="20"
+          height="20"
+          aria-hidden="true"
+        >
+          <path d="M19 12H5M12 19l-7-7 7-7" />
+        </svg>
+        Back to iowidgets
+      </a>
 
-      <div class="page-header">
+      <header class="page-header">
         <h1>
           <svg
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
             stroke-width="2"
+            aria-hidden="true"
           >
             <path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
           </svg>
           Pricing Table Builder
         </h1>
         <p>Create beautiful pricing tables for your website</p>
-      </div>
+      </header>
 
       <!-- Settings Section -->
-      <div class="tool-section">
-        <h2>
+      <section class="tool-section" aria-labelledby="settings-heading">
+        <h2 id="settings-heading">
           <svg
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
             stroke-width="2"
+            aria-hidden="true"
           >
             <rect x="3" y="3" width="7" height="7" />
             <rect x="14" y="3" width="7" height="7" />
@@ -279,194 +720,305 @@
           Build Your Pricing Plans
         </h2>
 
+        <!-- Global Settings -->
+        <div class="settings-bar">
+          <div class="setting-group">
+            <label for="colorScheme">
+              <span
+                class="color-preview"
+                id="colorPreview"
+                style="background: #667eea"
+              ></span>
+              Color Scheme:
+            </label>
+            <select id="colorScheme" aria-label="Select color scheme">
+              <option value="#667eea">Purple (Default)</option>
+              <option value="#3b82f6">Blue</option>
+              <option value="#10b981">Green</option>
+              <option value="#f59e0b">Orange</option>
+              <option value="#ef4444">Red</option>
+              <option value="#ec4899">Pink</option>
+              <option value="#14b8a6">Teal</option>
+            </select>
+          </div>
+          <div class="setting-group">
+            <label for="billingPeriod">Billing Period:</label>
+            <select
+              id="billingPeriod"
+              aria-label="Select billing period display"
+            >
+              <option value="per month">Monthly</option>
+              <option value="per year">Yearly</option>
+              <option value="per week">Weekly</option>
+              <option value="one-time">One-time</option>
+              <option value="custom">Custom</option>
+            </select>
+          </div>
+        </div>
+
         <div class="plans-editor">
           <!-- Plan 1: Basic -->
           <div class="plan-card">
             <h3>Plan 1</h3>
+            <label for="plan1Name" class="helper-text">Plan Name:</label>
             <input
               type="text"
               class="plan-input"
               id="plan1Name"
-              placeholder="Plan Name"
+              placeholder="Basic"
               value="Basic"
+              aria-label="Plan 1 name"
             />
+            <label for="plan1Price" class="helper-text">Price:</label>
             <input
               type="text"
               class="plan-input"
               id="plan1Price"
               placeholder="$9"
               value="$9"
+              aria-label="Plan 1 price"
             />
+            <label for="plan1Period" class="helper-text"
+              >Period (optional, overrides global):</label
+            >
             <input
               type="text"
               class="plan-input"
               id="plan1Period"
-              placeholder="per month"
-              value="per month"
+              placeholder="Leave empty to use global setting"
+              value=""
+              aria-label="Plan 1 billing period"
             />
-            <p class="helper-text">Features (one per line):</p>
+            <label for="plan1Features" class="helper-text"
+              >Features (one per line):</label
+            >
             <textarea
               class="plan-input features-input"
               id="plan1Features"
               placeholder="Feature 1&#10;Feature 2&#10;Feature 3"
+              aria-label="Plan 1 features"
             >
 5 Projects&#10;10 GB Storage&#10;Email Support&#10;Basic Analytics</textarea
             >
+            <label for="plan1Button" class="helper-text">Button Text:</label>
             <input
               type="text"
               class="plan-input"
               id="plan1Button"
-              placeholder="Button Text"
+              placeholder="Get Started"
               value="Get Started"
+              aria-label="Plan 1 button text"
             />
+            <label for="plan1Link" class="helper-text">Button Link URL:</label>
             <input
-              type="text"
+              type="url"
               class="plan-input"
               id="plan1Link"
-              placeholder="Button Link URL"
+              placeholder="https://yoursite.com/signup"
               value="https://yoursite.com/signup"
+              aria-label="Plan 1 button link"
             />
-            <div class="highlight-toggle">
-              <input type="checkbox" id="plan1Highlight" />
-              <label for="plan1Highlight">Popular / Featured</label>
-            </div>
+            <label class="highlight-toggle">
+              <input
+                type="checkbox"
+                id="plan1Highlight"
+                aria-label="Mark plan 1 as popular"
+              />
+              <span>Popular / Featured</span>
+            </label>
           </div>
 
           <!-- Plan 2: Pro -->
           <div class="plan-card">
             <h3>Plan 2</h3>
+            <label for="plan2Name" class="helper-text">Plan Name:</label>
             <input
               type="text"
               class="plan-input"
               id="plan2Name"
-              placeholder="Plan Name"
+              placeholder="Pro"
               value="Pro"
+              aria-label="Plan 2 name"
             />
+            <label for="plan2Price" class="helper-text">Price:</label>
             <input
               type="text"
               class="plan-input"
               id="plan2Price"
               placeholder="$29"
               value="$29"
+              aria-label="Plan 2 price"
             />
+            <label for="plan2Period" class="helper-text"
+              >Period (optional, overrides global):</label
+            >
             <input
               type="text"
               class="plan-input"
               id="plan2Period"
-              placeholder="per month"
-              value="per month"
+              placeholder="Leave empty to use global setting"
+              value=""
+              aria-label="Plan 2 billing period"
             />
-            <p class="helper-text">Features (one per line):</p>
+            <label for="plan2Features" class="helper-text"
+              >Features (one per line):</label
+            >
             <textarea
               class="plan-input features-input"
               id="plan2Features"
               placeholder="Feature 1&#10;Feature 2&#10;Feature 3"
+              aria-label="Plan 2 features"
             >
 Unlimited Projects&#10;100 GB Storage&#10;Priority Support&#10;Advanced Analytics&#10;Custom Domain</textarea
             >
+            <label for="plan2Button" class="helper-text">Button Text:</label>
             <input
               type="text"
               class="plan-input"
               id="plan2Button"
-              placeholder="Button Text"
+              placeholder="Get Started"
               value="Get Started"
+              aria-label="Plan 2 button text"
             />
+            <label for="plan2Link" class="helper-text">Button Link URL:</label>
             <input
-              type="text"
+              type="url"
               class="plan-input"
               id="plan2Link"
-              placeholder="Button Link URL"
+              placeholder="https://yoursite.com/signup"
               value="https://yoursite.com/signup"
+              aria-label="Plan 2 button link"
             />
-            <div class="highlight-toggle">
-              <input type="checkbox" id="plan2Highlight" checked />
-              <label for="plan2Highlight">Popular / Featured</label>
-            </div>
+            <label class="highlight-toggle">
+              <input
+                type="checkbox"
+                id="plan2Highlight"
+                checked
+                aria-label="Mark plan 2 as popular"
+              />
+              <span>Popular / Featured</span>
+            </label>
           </div>
 
           <!-- Plan 3: Enterprise -->
           <div class="plan-card">
             <h3>Plan 3</h3>
+            <label for="plan3Name" class="helper-text">Plan Name:</label>
             <input
               type="text"
               class="plan-input"
               id="plan3Name"
-              placeholder="Plan Name"
+              placeholder="Enterprise"
               value="Enterprise"
+              aria-label="Plan 3 name"
             />
+            <label for="plan3Price" class="helper-text">Price:</label>
             <input
               type="text"
               class="plan-input"
               id="plan3Price"
               placeholder="$99"
               value="$99"
+              aria-label="Plan 3 price"
             />
+            <label for="plan3Period" class="helper-text"
+              >Period (optional, overrides global):</label
+            >
             <input
               type="text"
               class="plan-input"
               id="plan3Period"
-              placeholder="per month"
-              value="per month"
+              placeholder="Leave empty to use global setting"
+              value=""
+              aria-label="Plan 3 billing period"
             />
-            <p class="helper-text">Features (one per line):</p>
+            <label for="plan3Features" class="helper-text"
+              >Features (one per line):</label
+            >
             <textarea
               class="plan-input features-input"
               id="plan3Features"
               placeholder="Feature 1&#10;Feature 2&#10;Feature 3"
+              aria-label="Plan 3 features"
             >
 Unlimited Everything&#10;1 TB Storage&#10;24/7 Phone Support&#10;Advanced Analytics&#10;White Label&#10;API Access</textarea
             >
+            <label for="plan3Button" class="helper-text">Button Text:</label>
             <input
               type="text"
               class="plan-input"
               id="plan3Button"
-              placeholder="Button Text"
+              placeholder="Contact Sales"
               value="Contact Sales"
+              aria-label="Plan 3 button text"
             />
+            <label for="plan3Link" class="helper-text">Button Link URL:</label>
             <input
-              type="text"
+              type="url"
               class="plan-input"
               id="plan3Link"
-              placeholder="Button Link URL"
+              placeholder="https://yoursite.com/contact"
               value="https://yoursite.com/contact"
+              aria-label="Plan 3 button link"
             />
-            <div class="highlight-toggle">
-              <input type="checkbox" id="plan3Highlight" />
-              <label for="plan3Highlight">Popular / Featured</label>
-            </div>
+            <label class="highlight-toggle">
+              <input
+                type="checkbox"
+                id="plan3Highlight"
+                aria-label="Mark plan 3 as popular"
+              />
+              <span>Popular / Featured</span>
+            </label>
           </div>
         </div>
 
-        <button class="generate-btn" onclick="generateCode()">
-          Generate Pricing Table
+        <button
+          class="generate-btn"
+          onclick="generateCode()"
+          aria-label="Generate pricing table embed code"
+        >
+          <span class="spinner"></span>
+          <span class="btn-text">Generate Pricing Table</span>
         </button>
-      </div>
+      </section>
 
       <!-- Preview Section -->
-      <div class="tool-section" id="previewSection" style="display: none">
-        <h2>
+      <section
+        class="tool-section"
+        id="previewSection"
+        style="display: none"
+        aria-labelledby="preview-heading"
+      >
+        <h2 id="preview-heading">
           <svg
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
             stroke-width="2"
+            aria-hidden="true"
           >
             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
             <circle cx="12" cy="12" r="3" />
           </svg>
           Live Preview
         </h2>
-        <div id="pricingPreview"></div>
-      </div>
+        <div id="pricingPreview" class="preview-container"></div>
+      </section>
 
       <!-- Embed Code Section -->
-      <div class="embed-section" id="embedSection" style="display: none">
-        <h2>
+      <section
+        class="embed-section"
+        id="embedSection"
+        style="display: none"
+        aria-labelledby="embed-heading"
+      >
+        <h2 id="embed-heading">
           <svg
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
             stroke-width="2"
+            aria-hidden="true"
           >
             <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
             <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
@@ -478,66 +1030,133 @@ Unlimited Everything&#10;1 TB Storage&#10;24/7 Phone Support&#10;Advanced Analyt
         </p>
 
         <div class="code-block">
-          <button class="copy-btn" onclick="copyEmbedCode()">Copy Code</button>
-          <pre id="embedCode"></pre>
+          <button
+            class="copy-btn"
+            onclick="copyEmbedCode()"
+            aria-label="Copy embed code to clipboard"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              width="16"
+              height="16"
+              aria-hidden="true"
+            >
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+              <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+            </svg>
+            <span>Copy Code</span>
+          </button>
+          <pre
+            id="embedCode"
+            role="textbox"
+            aria-label="Embed code"
+            aria-readonly="true"
+          ></pre>
         </div>
-      </div>
+      </section>
     </div>
 
     <script>
+      // Color scheme update
+      const colorSchemeSelect = document.getElementById("colorScheme");
+      const colorPreview = document.getElementById("colorPreview");
+
+      colorSchemeSelect.addEventListener("change", function () {
+        colorPreview.style.background = this.value;
+        document.documentElement.style.setProperty(
+          "--primary-color",
+          this.value
+        );
+      });
+
+      // Auto-apply global billing period
+      const billingPeriodSelect = document.getElementById("billingPeriod");
+
+      function escapeHtml(text) {
+        const map = {
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#039;",
+        };
+        return text.replace(/[&<>"']/g, (m) => map[m]);
+      }
+
       function generateCode() {
-        const plans = [
-          {
-            name: document.getElementById("plan1Name").value || "Basic",
-            price: document.getElementById("plan1Price").value || "$9",
-            period: document.getElementById("plan1Period").value || "per month",
-            features: document
-              .getElementById("plan1Features")
-              .value.split("\n")
-              .filter((f) => f.trim()),
-            button:
-              document.getElementById("plan1Button").value || "Get Started",
-            link: document.getElementById("plan1Link").value || "#",
-            highlight: document.getElementById("plan1Highlight").checked,
-          },
-          {
-            name: document.getElementById("plan2Name").value || "Pro",
-            price: document.getElementById("plan2Price").value || "$29",
-            period: document.getElementById("plan2Period").value || "per month",
-            features: document
-              .getElementById("plan2Features")
-              .value.split("\n")
-              .filter((f) => f.trim()),
-            button:
-              document.getElementById("plan2Button").value || "Get Started",
-            link: document.getElementById("plan2Link").value || "#",
-            highlight: document.getElementById("plan2Highlight").checked,
-          },
-          {
-            name: document.getElementById("plan3Name").value || "Enterprise",
-            price: document.getElementById("plan3Price").value || "$99",
-            period: document.getElementById("plan3Period").value || "per month",
-            features: document
-              .getElementById("plan3Features")
-              .value.split("\n")
-              .filter((f) => f.trim()),
-            button:
-              document.getElementById("plan3Button").value || "Contact Sales",
-            link: document.getElementById("plan3Link").value || "#",
-            highlight: document.getElementById("plan3Highlight").checked,
-          },
-        ];
+        // Remove existing messages
+        const existingMessages = document.querySelectorAll(".success-message");
+        existingMessages.forEach((msg) => msg.remove());
 
-        const plansHTML = plans.map((plan) => generatePlanHTML(plan)).join("");
+        const generateBtn = document.querySelector(".generate-btn");
+        generateBtn.classList.add("loading");
+        generateBtn.disabled = true;
 
-        const embedCode = `<!-- iowidgets Pricing Table -->
+        // Get global settings
+        const globalPeriod = billingPeriodSelect.value;
+        const themeColor = colorSchemeSelect.value;
+
+        setTimeout(() => {
+          const plans = [
+            {
+              name: document.getElementById("plan1Name").value || "Basic",
+              price: document.getElementById("plan1Price").value || "$9",
+              period:
+                document.getElementById("plan1Period").value || globalPeriod,
+              features: document
+                .getElementById("plan1Features")
+                .value.split("\n")
+                .filter((f) => f.trim()),
+              button:
+                document.getElementById("plan1Button").value || "Get Started",
+              link: document.getElementById("plan1Link").value || "#",
+              highlight: document.getElementById("plan1Highlight").checked,
+            },
+            {
+              name: document.getElementById("plan2Name").value || "Pro",
+              price: document.getElementById("plan2Price").value || "$29",
+              period:
+                document.getElementById("plan2Period").value || globalPeriod,
+              features: document
+                .getElementById("plan2Features")
+                .value.split("\n")
+                .filter((f) => f.trim()),
+              button:
+                document.getElementById("plan2Button").value || "Get Started",
+              link: document.getElementById("plan2Link").value || "#",
+              highlight: document.getElementById("plan2Highlight").checked,
+            },
+            {
+              name: document.getElementById("plan3Name").value || "Enterprise",
+              price: document.getElementById("plan3Price").value || "$99",
+              period:
+                document.getElementById("plan3Period").value || globalPeriod,
+              features: document
+                .getElementById("plan3Features")
+                .value.split("\n")
+                .filter((f) => f.trim()),
+              button:
+                document.getElementById("plan3Button").value || "Contact Sales",
+              link: document.getElementById("plan3Link").value || "#",
+              highlight: document.getElementById("plan3Highlight").checked,
+            },
+          ];
+
+          const plansHTML = plans
+            .map((plan) => generatePlanHTML(plan, themeColor))
+            .join("");
+
+          const embedCode = `<!-- iowidgets Pricing Table -->
 <div id="iowidgets-pricing-table"></div>
 <script>
 (function() {
     const container = document.getElementById('iowidgets-pricing-table');
     container.innerHTML = \\\`
-        <div style="max-width:1200px;margin:2rem auto;padding:2rem;">
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;">
+        <div style="max-width:1200px;margin:2rem auto;padding:1rem;">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;">
                 ${plansHTML}
             </div>
         </div>
@@ -545,139 +1164,226 @@ Unlimited Everything&#10;1 TB Storage&#10;24/7 Phone Support&#10;Advanced Analyt
 })();
 <\/script>`;
 
-        // Show preview
-        const previewSection = document.getElementById("previewSection");
-        const embedSection = document.getElementById("embedSection");
+          // Show preview
+          const previewSection = document.getElementById("previewSection");
+          const embedSection = document.getElementById("embedSection");
 
-        document.getElementById("pricingPreview").innerHTML = `
-                <div style="max-width:1200px;margin:2rem auto;">
-                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;">
+          document.getElementById("pricingPreview").innerHTML = `
+                <div style="max-width:1200px;margin:2rem auto;padding:1rem;">
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;">
                         ${plans
-                          .map((plan) => generatePreviewPlanHTML(plan))
+                          .map((plan) =>
+                            generatePreviewPlanHTML(plan, themeColor)
+                          )
                           .join("")}
                     </div>
                 </div>
             `;
-        previewSection.style.display = "block";
-        previewSection.style.animation = "slideIn 0.5s ease";
+          previewSection.style.display = "block";
+          previewSection.style.animation = "slideIn 0.5s ease";
 
-        // Show embed code
-        document.getElementById("embedCode").textContent = embedCode;
-        embedSection.style.display = "block";
-        embedSection.style.animation = "slideIn 0.5s ease";
+          // Show embed code
+          document.getElementById("embedCode").textContent = embedCode;
+          embedSection.style.display = "block";
+          embedSection.style.animation = "slideIn 0.5s ease";
 
-        // Scroll to preview
-        setTimeout(() => {
-          previewSection.scrollIntoView({
-            behavior: "smooth",
-            block: "nearest",
-          });
-        }, 100);
+          // Remove loading state
+          generateBtn.classList.remove("loading");
+          generateBtn.disabled = false;
+
+          // Show success message
+          showSuccess(
+            "Pricing Table Generated!",
+            "Your pricing table embed code is ready."
+          );
+
+          // Scroll to preview
+          setTimeout(() => {
+            previewSection.scrollIntoView({
+              behavior: "smooth",
+              block: "nearest",
+            });
+          }, 100);
+        }, 500);
       }
 
-      function generatePlanHTML(plan) {
+      function generatePlanHTML(plan, themeColor) {
         const featuresHTML = plan.features
           .map(
             (f) =>
-              `<li style="padding:0.5rem 0;border-bottom:1px solid #e5e7eb;color:#666;">✓ ${f}</li>`
+              `<li style="padding:0.75rem 0;border-bottom:1px solid #e5e7eb;color:#666;display:flex;align-items:start;gap:0.5rem;"><svg style="width:20px;height:20px;color:${themeColor};flex-shrink:0;margin-top:2px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>${escapeHtml(
+                f
+              )}</span></li>`
           )
           .join("");
 
         const highlightStyles = plan.highlight
-          ? "transform:scale(1.05);border:2px solid #667eea;box-shadow:0 20px 60px rgba(102,126,234,0.3);"
+          ? `transform:scale(1.05);border:2px solid ${themeColor};box-shadow:0 20px 60px rgba(102,126,234,0.3);`
           : "border:1px solid #e5e7eb;";
 
         const buttonStyles = plan.highlight
-          ? "background:#667eea;color:#fff;"
+          ? `background:${themeColor};color:#fff;`
           : "background:#f3f4f6;color:#333;";
 
         return `
-                <div style="background:#fff;padding:2rem;border-radius:15px;text-align:center;transition:all 0.3s;${highlightStyles}">
+                <div style="background:#fff;padding:2rem;border-radius:15px;text-align:center;transition:all 0.3s;position:relative;${highlightStyles}">
                     ${
                       plan.highlight
-                        ? '<div style="background:#667eea;color:#fff;padding:0.5rem;border-radius:8px;margin-bottom:1rem;font-size:0.85rem;font-weight:600;">POPULAR</div>'
+                        ? `<div style="background:${themeColor};color:#fff;padding:0.5rem 1rem;border-radius:8px;margin-bottom:1rem;font-size:0.85rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">POPULAR</div>`
                         : ""
                     }
-                    <h3 style="font-size:1.5rem;margin-bottom:1rem;color:#333;">${
+                    <h3 style="font-size:1.75rem;margin-bottom:1rem;color:#1f2937;font-weight:700;">${escapeHtml(
                       plan.name
-                    }</h3>
-                    <div style="margin-bottom:1.5rem;">
-                        <div style="font-size:3rem;font-weight:700;color:#667eea;">${
-                          plan.price
-                        }</div>
-                        <div style="color:#666;font-size:0.9rem;">${
+                    )}</h3>
+                    <div style="margin-bottom:2rem;">
+                        <div style="font-size:3rem;font-weight:800;color:${themeColor};line-height:1;">${escapeHtml(
+          plan.price
+        )}</div>
+                        <div style="color:#6b7280;font-size:0.95rem;margin-top:0.5rem;">${escapeHtml(
                           plan.period
-                        }</div>
+                        )}</div>
                     </div>
                     <ul style="list-style:none;padding:0;margin:2rem 0;text-align:left;">
                         ${featuresHTML}
                     </ul>
-                    <a href="${
+                    <a href="${escapeHtml(
                       plan.link
-                    }" style="display:block;padding:1rem;border-radius:10px;text-decoration:none;font-weight:600;transition:all 0.3s;${buttonStyles}">${
+                    )}" style="display:block;padding:1rem 1.5rem;border-radius:10px;text-decoration:none;font-weight:600;transition:all 0.3s;${buttonStyles};box-shadow:0 2px 8px rgba(0,0,0,0.1);" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(0,0,0,0.15)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'">${escapeHtml(
           plan.button
-        }</a>
+        )}</a>
                 </div>
             `;
       }
 
-      function generatePreviewPlanHTML(plan) {
+      function generatePreviewPlanHTML(plan, themeColor) {
         const featuresHTML = plan.features
           .map(
             (f) =>
-              `<li style="padding:0.5rem 0;border-bottom:1px solid #e5e7eb;color:#666;">✓ ${f}</li>`
+              `<li style="padding:0.75rem 0;border-bottom:1px solid #e5e7eb;color:#666;display:flex;align-items:start;gap:0.5rem;"><svg style="width:20px;height:20px;color:${themeColor};flex-shrink:0;margin-top:2px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>${escapeHtml(
+                f
+              )}</span></li>`
           )
           .join("");
 
         const highlightStyles = plan.highlight
-          ? "transform:scale(1.05);border:2px solid #667eea;box-shadow:0 20px 60px rgba(102,126,234,0.3);"
+          ? `transform:scale(1.05);border:2px solid ${themeColor};box-shadow:0 20px 60px rgba(102,126,234,0.3);`
           : "border:1px solid #e5e7eb;";
 
         const buttonStyles = plan.highlight
-          ? "background:#667eea;color:#fff;"
+          ? `background:${themeColor};color:#fff;`
           : "background:#f3f4f6;color:#333;";
 
         return `
-                <div style="background:#fff;padding:2rem;border-radius:15px;text-align:center;transition:all 0.3s;${highlightStyles}">
+                <div style="background:#fff;padding:2rem;border-radius:15px;text-align:center;transition:all 0.3s;position:relative;${highlightStyles}">
                     ${
                       plan.highlight
-                        ? '<div style="background:#667eea;color:#fff;padding:0.5rem;border-radius:8px;margin-bottom:1rem;font-size:0.85rem;font-weight:600;">POPULAR</div>'
+                        ? `<div style="background:${themeColor};color:#fff;padding:0.5rem 1rem;border-radius:8px;margin-bottom:1rem;font-size:0.85rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">POPULAR</div>`
                         : ""
                     }
-                    <h3 style="font-size:1.5rem;margin-bottom:1rem;color:#333;">${
+                    <h3 style="font-size:1.75rem;margin-bottom:1rem;color:#1f2937;font-weight:700;">${escapeHtml(
                       plan.name
-                    }</h3>
-                    <div style="margin-bottom:1.5rem;">
-                        <div style="font-size:3rem;font-weight:700;color:#667eea;">${
-                          plan.price
-                        }</div>
-                        <div style="color:#666;font-size:0.9rem;">${
+                    )}</h3>
+                    <div style="margin-bottom:2rem;">
+                        <div style="font-size:3rem;font-weight:800;color:${themeColor};line-height:1;">${escapeHtml(
+          plan.price
+        )}</div>
+                        <div style="color:#6b7280;font-size:0.95rem;margin-top:0.5rem;">${escapeHtml(
                           plan.period
-                        }</div>
+                        )}</div>
                     </div>
                     <ul style="list-style:none;padding:0;margin:2rem 0;text-align:left;">
                         ${featuresHTML}
                     </ul>
-                    <button style="width:100%;padding:1rem;border:none;border-radius:10px;font-weight:600;cursor:pointer;opacity:0.7;${buttonStyles}">${
+                    <button style="width:100%;padding:1rem 1.5rem;border:none;border-radius:10px;font-weight:600;cursor:not-allowed;opacity:0.7;${buttonStyles};box-shadow:0 2px 8px rgba(0,0,0,0.1);">${escapeHtml(
           plan.button
-        }</button>
+        )}</button>
                 </div>
             `;
+      }
+
+      function showSuccess(title, message) {
+        const successDiv = document.createElement("div");
+        successDiv.className = "success-message";
+        successDiv.setAttribute("role", "status");
+        successDiv.innerHTML = `
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+            <div>
+              <strong>${title}</strong> ${message}
+            </div>
+          `;
+        document
+          .querySelector(".generate-btn")
+          .insertAdjacentElement("beforebegin", successDiv);
+
+        // Auto-remove after 5 seconds
+        setTimeout(() => {
+          successDiv.style.opacity = "0";
+          setTimeout(() => successDiv.remove(), 300);
+        }, 5000);
       }
 
       function copyEmbedCode() {
         const code = document.getElementById("embedCode").textContent;
-        navigator.clipboard.writeText(code).then(() => {
-          const btn = document.querySelector(".copy-btn");
-          btn.textContent = "✓ Copied!";
-          btn.classList.add("copied");
 
-          setTimeout(() => {
-            btn.textContent = "Copy Code";
-            btn.classList.remove("copied");
-          }, 2000);
-        });
+        navigator.clipboard
+          .writeText(code)
+          .then(() => {
+            const btn = document.querySelector(".copy-btn");
+            const btnText = btn.querySelector("span:last-child");
+            const originalText = btnText.textContent;
+
+            btnText.textContent = "Copied!";
+            btn.classList.add("copied");
+
+            // Show success feedback
+            const toast = document.createElement("div");
+            toast.className = "success-message";
+            toast.style.position = "fixed";
+            toast.style.bottom = "2rem";
+            toast.style.right = "2rem";
+            toast.style.zIndex = "9999";
+            toast.style.maxWidth = "300px";
+            toast.setAttribute("role", "status");
+            toast.innerHTML = `
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+            <div>
+              <strong>Copied!</strong> Embed code copied to clipboard.
+            </div>
+          `;
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+              btnText.textContent = originalText;
+              btn.classList.remove("copied");
+              toast.style.opacity = "0";
+              setTimeout(() => toast.remove(), 300);
+            }, 2000);
+          })
+          .catch((err) => {
+            console.error("Failed to copy:", err);
+          });
       }
+
+      // Keyboard shortcuts
+      document.addEventListener("keydown", (e) => {
+        // Ctrl/Cmd + Enter to generate
+        if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+          e.preventDefault();
+          generateCode();
+        }
+      });
+
+      // Initialize
+      document.documentElement.style.setProperty(
+        "--primary-color",
+        colorSchemeSelect.value
+      );
     </script>
   </body>
 </html>
