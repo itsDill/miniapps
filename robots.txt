@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://iowidgets.com/sitemap.xml
+
+# Disallow backup files
+Disallow: /*.bak$
+Disallow: /*.bak2$
+Disallow: /*.bak3$
+Disallow: /*.bak4$
+Disallow: /index_backup.html
+
+# Allow all widgets
+Allow: /widgets/
+
+# Crawl-delay
+Crawl-delay: 1
