@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#667eea">
+    
+    <title>iowidgets - Free Online Calculators & Financial Tools | Mortgage, Loan, BMI, Salary Calculator</title>
+    
+    <meta name="description" content="Free online calculators for mortgage, loans, BMI, salary, savings, investment, and more. Accurate calculations with detailed breakdowns and expert guidance.">
+    <meta name="keywords" content="calculator, mortgage calculator, loan calculator, BMI calculator, salary calculator, financial calculator, savings calculator, retirement calculator, investment calculator, ROI calculator, profit margin calculator">
+    <meta name="author" content="iowidgets">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://iowidgets.com/">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://iowidgets.com/">
+    <meta property="og:title" content="iowidgets - Free Online Calculators & Financial Tools">
+    <meta property="og:description" content="Comprehensive collection of free calculators for finance, health, business, and more. Calculate mortgage payments, BMI, salaries, investments, and much more.">
+    <meta property="og:site_name" content="iowidgets">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="iowidgets - Free Online Calculators">
+    <meta name="twitter:description" content="Free calculators for mortgage, loans, BMI, salary, and more with detailed results.">
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2456627863532019" crossorigin="anonymous"></script>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S15806B1HW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-S15806B1HW');
+    </script>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "iowidgets",
+      "url": "https://iowidgets.com",
+      "description": "Free online calculators for mortgage, loans, BMI, salary, and more",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-bottom: 2rem;
+        }
+
+        header h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.8) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        header p {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            position: relative;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 1.25rem 1.5rem 1.25rem 3rem;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            border-radius: 20px;
+            color: #fff;
+            font-size: 1.1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-box::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .search-box:focus {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            opacity: 0.6;
+        }
+
+        .category-filters {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .calculators-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .calculator-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: #fff;
+            display: block;
+        }
+
+        .calculator-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .calculator-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .calculator-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .calculator-description {
+            font-size: 0.95rem;
+            opacity: 0.85;
+            line-height: 1.5;
+        }
+
+        .category-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #000;
+            padding: 0.4rem 0.8rem;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .calculator-card {
+            position: relative;
+        }
+
+        .content-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .content-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-section h3 {
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-section p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .content-section ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-section li {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            opacity: 0.8;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 1rem;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        footer a:hover {
+            opacity: 1;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            opacity: 0.7;
+        }
+
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            header {
+                padding: 2rem 1rem;
+            }
+
+            .calculators-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .content-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>iowidgets</h1>
+            <p>Free Online Calculators & Tools for Finance, Health, Business & More</p>
+        </header>
+
+        <div class="search-container">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-box" id="searchBox" placeholder="Search calculators...">
+        </div>
+
+        <div class="category-filters">
+            <button class="filter-btn active" data-category="all">All</button>
+            <button class="filter-btn" data-category="financial">Financial</button>
+            <button class="filter-btn" data-category="health">Health</button>
+            <button class="filter-btn" data-category="business">Business</button>
+            <button class="filter-btn" data-category="real-estate">Real Estate</button>
+            <button class="filter-btn" data-category="conversion">Conversion</button>
+        </div>
+
+        <div class="calculators-grid" id="calculatorsGrid">
+            <!-- Calculators will be inserted here by JavaScript -->
+        </div>
+
+        <div class="content-section">
+            <h2>Why Choose iowidgets Calculators?</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">⚡</span>
+                    <h3 class="feature-title">Instant Results</h3>
+                    <p>Get accurate calculations in real-time. No waiting, no delays - just fast, reliable results.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🎯</span>
+                    <h3 class="feature-title">100% Accurate</h3>
+                    <p>All calculators use verified formulas and industry-standard methods to ensure accuracy.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🔒</span>
+                    <h3 class="feature-title">Privacy First</h3>
+                    <p>All calculations happen in your browser. Your data never leaves your device.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">📱</span>
+                    <h3 class="feature-title">Mobile Friendly</h3>
+                    <p>Use on any device - desktop, tablet, or smartphone. Optimized for all screen sizes.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">💰</span>
+                    <h3 class="feature-title">Completely Free</h3>
+                    <p>No hidden fees, no subscriptions, no sign-ups required. Free forever.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">📊</span>
+                    <h3 class="feature-title">Detailed Breakdowns</h3>
+                    <p>Get comprehensive results with charts, schedules, and step-by-step explanations.</p>
+                </div>
+            </div>
+
+            <h3>Popular Calculator Categories</h3>
+            
+            <p><strong>Financial Calculators:</strong> Make smarter money decisions with our mortgage calculator, loan calculator, savings calculator, and investment calculators. Calculate monthly payments, interest rates, total costs, and compare different scenarios.</p>
+
+            <p><strong>Health & Fitness Calculators:</strong> Track your health goals with BMI calculator, calorie calculator, ideal weight calculator, and body fat calculator. Get personalized recommendations based on your measurements.</p>
+
+            <p><strong>Business Calculators:</strong> Optimize your business with profit margin calculator, ROI calculator, break-even calculator, and pricing calculator. Make data-driven decisions for your business growth.</p>
+
+            <p><strong>Real Estate Calculators:</strong> Whether buying or selling, use our mortgage affordability calculator, rent vs buy calculator, and property investment calculators to make informed real estate decisions.</p>
+
+            <h3>How to Use Our Calculators</h3>
+            <p>Using our calculators is simple:</p>
+            <ul>
+                <li>Choose the calculator you need from the list above</li>
+                <li>Enter your values in the input fields</li>
+                <li>Get instant results with detailed breakdowns</li>
+                <li>Adjust values to compare different scenarios</li>
+                <li>Use the insights to make informed decisions</li>
+            </ul>
+
+            <h3>Frequently Asked Questions</h3>
+            
+            <p><strong>Q: Are these calculators accurate?</strong><br>
+            A: Yes! All our calculators use industry-standard formulas and are regularly tested for accuracy. However, results should be used as estimates - consult professionals for specific financial or medical advice.</p>
+
+            <p><strong>Q: Do I need to create an account?</strong><br>
+            A: No! All calculators are free to use without any registration or sign-up required.</p>
+
+            <p><strong>Q: Is my data safe?</strong><br>
+            A: Absolutely. All calculations happen directly in your browser. We don't store, collect, or transmit your personal data.</p>
+
+            <p><strong>Q: Can I use these for commercial purposes?</strong><br>
+            A: Yes! Our calculators are free to use for both personal and commercial purposes.</p>
+
+            <p><strong>Q: How often are calculators updated?</strong><br>
+            A: We regularly update our calculators to ensure accuracy and add new features based on user feedback.</p>
+        </div>
+
+        <footer>
+            <div style="margin-bottom: 1.5rem;">
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms-of-service.html">Terms of Service</a>
+            </div>
+            <p>&copy; 2025 iowidgets. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        const calculators = [
+            {
+                title: 'Mortgage Calculator',
+                description: 'Calculate monthly mortgage payments, total interest, and view amortization schedule.',
+                icon: '🏠',
+                url: 'calculators/mortgage-calculator.html',
+                category: 'financial',
+                popular: true
+            },
+            {
+                title: 'Loan Calculator',
+                description: 'Calculate payments for personal, auto, and student loans with detailed breakdown.',
+                icon: '💳',
+                url: 'calculators/loan-calculator.html',
+                category: 'financial',
+                popular: true
+            },
+            {
+                title: 'BMI Calculator',
+                description: 'Calculate your Body Mass Index and get personalized health recommendations.',
+                icon: '🏃',
+                url: 'calculators/bmi-calculator.html',
+                category: 'health',
+                popular: true
+            },
+            {
+                title: 'Salary Calculator',
+                description: 'Convert between hourly, weekly, monthly, and annual salary with tax estimates.',
+                icon: '💵',
+                url: 'calculators/salary-calculator.html',
+                category: 'business',
+                popular: true
+            },
+            {
+                title: 'Savings Calculator',
+                description: 'Calculate how much your savings will grow over time with compound interest.',
+                icon: '💰',
+                url: 'calculators/savings-calculator.html',
+                category: 'financial',
+                popular: false
+            },
+            {
+                title: 'Investment Calculator',
+                description: 'Calculate returns on investments with different contribution schedules.',
+                icon: '📈',
+                url: 'calculators/investment-calculator.html',
+                category: 'financial',
+                popular: false
+            },
+            {
+                title: 'Retirement Calculator',
+                description: 'Plan for retirement with detailed projections and savings recommendations.',
+                icon: '🏖️',
+                url: 'calculators/retirement-calculator.html',
+                category: 'financial',
+                popular: false
+            },
+            {
+                title: 'Calorie Calculator',
+                description: 'Calculate daily calorie needs for weight loss, maintenance, or gain.',
+                icon: '🍎',
+                url: 'calculators/calorie-calculator.html',
+                category: 'health',
+                popular: false
+            },
+            {
+                title: 'Profit Margin Calculator',
+                description: 'Calculate profit margins, markup, and gross profit for your business.',
+                icon: '📊',
+                url: 'calculators/profit-calculator.html',
+                category: 'business',
+                popular: false
+            },
+            {
+                title: 'ROI Calculator',
+                description: 'Calculate return on investment and compare different investment opportunities.',
+                icon: '💹',
+                url: 'calculators/roi-calculator.html',
+                category: 'business',
+                popular: false
+            },
+            {
+                title: 'Rent vs Buy Calculator',
+                description: 'Compare the costs of renting versus buying a home over time.',
+                icon: '🏘️',
+                url: 'calculators/rent-vs-buy.html',
+                category: 'real-estate',
+                popular: false
+            },
+            {
+                title: 'Affordability Calculator',
+                description: 'Calculate how much house you can afford based on your income.',
+                icon: '🏡',
+                url: 'calculators/affordability-calculator.html',
+                category: 'real-estate',
+                popular: false
+            },
+            {
+                title: 'Unit Converter',
+                description: 'Convert between different units of measurement instantly.',
+                icon: '📏',
+                url: 'widgets/unit-converter.html',
+                category: 'conversion',
+                popular: false
+            },
+            {
+                title: 'Currency Converter',
+                description: 'Convert between currencies with live exchange rates.',
+                icon: '💱',
+                url: 'calculators/currency-converter.html',
+                category: 'conversion',
+                popular: false
+            },
+            {
+                title: 'Tax Calculator',
+                description: 'Estimate federal and state income taxes on your earnings.',
+                icon: '🧾',
+                url: 'calculators/tax-calculator.html',
+                category: 'financial',
+                popular: false
+            }
+        ];
+
+        function renderCalculators(filteredCalculators) {
+            const grid = document.getElementById('calculatorsGrid');
+            
+            if (filteredCalculators.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state" style="grid-column: 1 / -1;">
+                        <h3>No calculators found</h3>
+                        <p>Try adjusting your search or filter</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filteredCalculators.map(calc => `
+                <a href="${calc.url}" class="calculator-card" data-category="${calc.category}">
+                    ${calc.popular ? '<span class="popular-badge">⭐ Popular</span>' : ''}
+                    <span class="calculator-icon">${calc.icon}</span>
+                    <h3 class="calculator-title">${calc.title}</h3>
+                    <p class="calculator-description">${calc.description}</p>
+                    <span class="category-badge">${calc.category}</span>
+                </a>
+            `).join('');
+        }
+
+        // Initial render
+        renderCalculators(calculators);
+
+        // Search functionality
+        document.getElementById('searchBox').addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const activeCategory = document.querySelector('.filter-btn.active').dataset.category;
+            
+            let filtered = calculators.filter(calc => 
+                calc.title.toLowerCase().includes(searchTerm) ||
+                calc.description.toLowerCase().includes(searchTerm)
+            );
+
+            if (activeCategory !== 'all') {
+                filtered = filtered.filter(calc => calc.category === activeCategory);
+            }
+
+            renderCalculators(filtered);
+        });
+
+        // Category filtering
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const category = btn.dataset.category;
+                const searchTerm = document.getElementById('searchBox').value.toLowerCase();
+                
+                let filtered = calculators;
+                
+                if (category !== 'all') {
+                    filtered = filtered.filter(calc => calc.category === category);
+                }
+                
+                if (searchTerm) {
+                    filtered = filtered.filter(calc => 
+                        calc.title.toLowerCase().includes(searchTerm) ||
+                        calc.description.toLowerCase().includes(searchTerm)
+                    );
+                }
+                
+                renderCalculators(filtered);
+            });
+        });
+    </script>
+</body>
+</html>
