@@ -1,529 +1,1055 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no"
-    />
-    <meta name="theme-color" content="#667eea" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta
-      name="apple-mobile-web-app-status-bar-style"
-      content="black-translucent"
-    />
+<!DOCTYPE html><!DOCTYPE html>
 
-    <title>iowidgets - Free Online Calculators & Financial Tools</title>
+<html lang="en"><html lang="en">
 
-    <meta
-      name="description"
-      content="Free online calculators for mortgage, loans, BMI, salary, and more. Accurate calculations with detailed breakdowns. Embeddable on any website."
-    />
-    <meta
-      name="keywords"
-      content="calculator, mortgage calculator, loan calculator, BMI calculator, salary calculator, financial calculator, embeddable calculator"
-    />
-    <meta name="author" content="iowidgets" />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://iowidgets.com/" />
+<head>  <head>
 
-    <!-- Google AdSense -->
-    <script
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2456627863532019"
-      crossorigin="anonymous"
-    ></script>
+    <meta charset="UTF-8">    <meta charset="UTF-8" />
 
-    <!-- Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-S15806B1HW"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-S15806B1HW");
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <meta
 
-    <link rel="manifest" href="manifest.json" />
+    <title>ioWidgets - Dashboard Builder</title>      name="viewport"
 
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+    <script src="https://cdn.tailwindcss.com"></script>      content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no"
 
-      html,
-      body {
-        height: 100%;
-        overflow-x: hidden;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
+    <script>    />
 
-      body {
-        font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont,
-          "Segoe UI", Roboto, sans-serif;
-        background: linear-gradient(
-          135deg,
-          #1e3a8a 0%,
-          #3730a3 25%,
-          #6366f1 50%,
-          #8b5cf6 75%,
-          #a855f7 100%
-        );
-        background-size: 400% 400%;
-        animation: gradientShift 15s ease infinite;
-        min-height: 100vh;
-        color: #fff;
-        position: relative;
-        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-      }
+        tailwind.config = {    <meta name="theme-color" content="#667eea" />
 
-      @keyframes gradientShift {
-        0%,
-        100% {
-          background-position: 0% 50%;
-        }
-        50% {
-          background-position: 100% 50%;
-        }
-      }
+            darkMode: 'class',    <meta name="apple-mobile-web-app-capable" content="yes" />
 
-      body::before {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(
-            circle at 20% 50%,
-            rgba(255, 255, 255, 0.02) 0%,
-            transparent 50%
-          ),
-          radial-gradient(
-            circle at 80% 20%,
-            rgba(255, 255, 255, 0.02) 0%,
-            transparent 50%
-          ),
-          radial-gradient(
-            circle at 40% 80%,
-            rgba(255, 255, 255, 0.02) 0%,
-            transparent 50%
-          );
-        pointer-events: none;
-        z-index: 1;
-        opacity: 0.7;
-      }
+            theme: {    <meta
 
-      .mode-toggle-container {
-        position: fixed;
-        top: 2rem;
-        right: 2rem;
-        z-index: 1000;
-        display: flex;
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(20px);
-        border-radius: 50px;
-        padding: 4px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-      }
+                extend: {      name="apple-mobile-web-app-status-bar-style"
 
-      .mode-toggle {
-        padding: 0.75rem 1.5rem;
-        border-radius: 50px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        font-size: 0.85rem;
-        font-weight: 500;
-        letter-spacing: 0.025em;
-        text-transform: uppercase;
-        border: none;
-        background: none;
-        color: rgba(255, 255, 255, 0.6);
-      }
+                    colors: {      content="black-translucent"
 
-      .mode-toggle.active {
-        background: rgba(255, 255, 255, 0.2);
-        color: #ffffff;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-      }
+                        primary: {    />
 
-      .header {
-        text-align: center;
-        padding: 4rem 2rem 2rem;
-        position: relative;
-        z-index: 10;
-        max-width: 800px;
-        margin: 0 auto;
-      }
+                            50: '#f0f9ff',
 
-      .header h1 {
-        font-size: clamp(2.5rem, 8vw, 4rem);
-        font-weight: 200;
-        margin-bottom: 1rem;
-        letter-spacing: -0.02em;
-        background: linear-gradient(
-          135deg,
-          #ffffff 0%,
-          rgba(255, 255, 255, 0.8) 100%
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
+                            100: '#e0f2fe',    <title>iowidgets - Free Online Calculators & Financial Tools</title>
 
-      .header p {
-        font-size: 1.1rem;
-        opacity: 0.75;
-        font-weight: 300;
-      }
+                            200: '#bae6fd',
 
-      .search-container {
-        display: flex;
-        justify-content: center;
-        padding: 0 2rem 1.5rem;
-        position: relative;
-        z-index: 10;
-      }
+                            300: '#7dd3fc',    <meta
 
-      .search-wrapper {
-        position: relative;
-        width: 100%;
-        max-width: 400px;
-      }
+                            400: '#38bdf8',      name="description"
 
-      .search-box {
-        width: 100%;
-        padding: 1rem 1.5rem 1rem 2.5rem;
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(20px);
-        border-radius: 25px;
-        color: white;
-        font-size: 0.95rem;
-        font-weight: 300;
-        outline: none;
-        transition: all 0.4s ease;
-      }
+                            500: '#0ea5e9',      content="Free online calculators for mortgage, loans, BMI, salary, and more. Accurate calculations with detailed breakdowns. Embeddable on any website."
 
-      .search-box::placeholder {
-        color: rgba(255, 255, 255, 0.5);
-      }
+                            600: '#0284c7',    />
 
-      .search-box:focus {
-        background: rgba(255, 255, 255, 0.12);
-        border-color: rgba(255, 255, 255, 0.3);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-      }
+                            700: '#0369a1',    <meta
 
-      .search-icon {
-        position: absolute;
-        left: 0.875rem;
-        top: 50%;
-        transform: translateY(-50%);
-        color: rgba(255, 255, 255, 0.4);
-        font-size: 1rem;
-      }
+                            800: '#075985',      name="keywords"
 
-      .apps-container {
-        position: relative;
-        width: 100%;
-        padding: 2rem;
-        display: flex;
-        justify-content: center;
-      }
+                            900: '#0c4a6e',      content="calculator, mortgage calculator, loan calculator, BMI calculator, salary calculator, financial calculator, embeddable calculator"
 
-      .apps-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        gap: clamp(1rem, 3vw, 2rem);
-        max-width: 1200px;
-        width: 100%;
-      }
+                        },    />
 
-      .app-bubble {
-        width: 140px;
-        height: 140px;
-        background: rgba(255, 255, 255, 0.06);
-        backdrop-filter: blur(25px);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 24px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-        position: relative;
-        text-decoration: none;
-        color: #fff;
-        justify-self: center;
-      }
+                    },    <meta name="author" content="iowidgets" />
 
-      .app-bubble:hover {
-        background: rgba(255, 255, 255, 0.12);
-        transform: translateY(-8px) scale(1.05);
-        border-color: rgba(255, 255, 255, 0.25);
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-      }
+                },    <meta name="robots" content="index, follow" />
 
-      .app-icon {
-        width: 48px;
-        height: 48px;
-        margin-bottom: 0.75rem;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
+            },    <link rel="canonical" href="https://iowidgets.com/" />
 
-      .app-icon svg {
-        width: 48px;
-        height: 48px;
-        filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
-        transition: all 0.3s ease;
-      }
-
-      .app-bubble:hover .app-icon svg {
-        transform: scale(1.1);
-        filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2)) brightness(1.1);
-      }
-
-      .app-name {
-        font-size: 0.8rem;
-        font-weight: 400;
-        text-align: center;
-        padding: 0 0.5rem;
-        color: rgba(255, 255, 255, 0.8);
-        transition: all 0.3s ease;
-        letter-spacing: 0.025em;
-        line-height: 1.2;
-      }
-
-      .app-bubble:hover .app-name {
-        color: rgba(255, 255, 255, 1);
-      }
-
-      .popular-badge {
-        position: absolute;
-        top: 0.5rem;
-        right: 0.5rem;
-        background: linear-gradient(135deg, #fbbf24, #f59e0b);
-        color: #000;
-        padding: 0.2rem 0.5rem;
-        border-radius: 8px;
-        font-size: 0.6rem;
-        font-weight: 700;
-        text-transform: uppercase;
-      }
-
-      .embed-btn {
-        position: absolute;
-        top: 0.5rem;
-        left: 0.5rem;
-        width: 24px;
-        height: 24px;
-        background: rgba(99, 102, 241, 0.9);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.7rem;
-        opacity: 0;
-        transition: all 0.3s ease;
-        cursor: pointer;
-        z-index: 10;
-      }
-
-      .app-bubble:hover .embed-btn {
-        opacity: 1;
-      }
-
-      .embed-btn:hover {
-        background: rgba(99, 102, 241, 1);
-        transform: scale(1.1);
-      }
-
-      .modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.8);
-        backdrop-filter: blur(10px);
-        display: none;
-        align-items: center;
-        justify-content: center;
-        z-index: 10000;
-        padding: 2rem;
-      }
-
-      .modal.show {
-        display: flex;
-      }
-
-      .modal-content {
-        background: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(30px);
-        border: 2px solid rgba(255, 255, 255, 0.3);
-        border-radius: 25px;
-        padding: 2rem;
-        max-width: 600px;
-        width: 100%;
-        position: relative;
-      }
-
-      .modal-close {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        background: none;
-        border: none;
-        color: #fff;
-        font-size: 2rem;
-        cursor: pointer;
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        transition: background 0.3s ease;
-      }
-
-      .modal-close:hover {
-        background: rgba(255, 255, 255, 0.2);
-      }
-
-      .modal-title {
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin-bottom: 1.5rem;
-      }
-
-      .embed-code {
-        background: rgba(0, 0, 0, 0.3);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 12px;
-        padding: 1rem;
-        font-family: "Monaco", "Courier New", monospace;
-        font-size: 0.85rem;
-        color: #4ade80;
-        margin-bottom: 1rem;
-        max-height: 200px;
-        overflow-y: auto;
-        word-wrap: break-word;
-      }
-
-      .copy-btn {
-        width: 100%;
-        padding: 1rem;
-        background: rgba(34, 197, 94, 0.3);
-        border: 2px solid rgba(34, 197, 94, 0.5);
-        border-radius: 15px;
-        color: #fff;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-      }
-
-      .copy-btn:hover {
-        background: rgba(34, 197, 94, 0.5);
-      }
-
-      .empty-state {
-        text-align: center;
-        padding: 4rem 2rem;
-        opacity: 0.7;
-        grid-column: 1 / -1;
-      }
-
-      footer {
-        text-align: center;
-        padding: 3rem 2rem 2rem;
-        color: rgba(255, 255, 255, 0.6);
-        font-size: 0.9rem;
-      }
-
-      footer a {
-        color: rgba(255, 255, 255, 0.7);
-        text-decoration: none;
-        margin: 0 1rem;
-        transition: color 0.3s ease;
-      }
-
-      footer a:hover {
-        color: rgba(255, 255, 255, 1);
-      }
-
-      @media (max-width: 768px) {
-        .mode-toggle-container {
-          position: relative;
-          top: auto;
-          right: auto;
-          margin: 0 auto 1rem;
-          max-width: 90%;
         }
 
-        .mode-toggle {
-          padding: 0.5rem 0.8rem;
-          font-size: 0.75rem;
+    </script>    <!-- Google AdSense -->
+
+    <style>    <script
+
+        body {      async
+
+            margin: 0;      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2456627863532019"
+
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;      crossorigin="anonymous"
+
+        }    ></script>
+
+        
+
+        .widget-container {    <!-- Google Analytics -->
+
+            background: white;    <script
+
+            border-radius: 0.5rem;      async
+
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);      src="https://www.googletagmanager.com/gtag/js?id=G-S15806B1HW"
+
+            border: 1px solid #e5e7eb;    ></script>
+
+            overflow: hidden;    <script>
+
+            height: 100%;      window.dataLayer = window.dataLayer || [];
+
+            display: flex;      function gtag() {
+
+            flex-direction: column;        dataLayer.push(arguments);
+
+        }      }
+
+              gtag("js", new Date());
+
+        .dark .widget-container {      gtag("config", "G-S15806B1HW");
+
+            background: #1f2937;    </script>
+
+            border-color: #374151;
+
+        }    <link rel="manifest" href="manifest.json" />
+
+        
+
+        .widget-header {    <style>
+
+            display: flex;      * {
+
+            align-items: center;        margin: 0;
+
+            justify-content: space-between;        padding: 0;
+
+            padding: 0.5rem 1rem;        box-sizing: border-box;
+
+            background: #f9fafb;      }
+
+            border-bottom: 1px solid #e5e7eb;
+
+            cursor: move;      html,
+
+        }      body {
+
+                height: 100%;
+
+        .dark .widget-header {        overflow-x: hidden;
+
+            background: #111827;        -webkit-font-smoothing: antialiased;
+
+            border-color: #374151;        -moz-osx-font-smoothing: grayscale;
+
+        }      }
+
+        
+
+        .widget-content {      body {
+
+            padding: 1rem;        font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont,
+
+            flex: 1;          "Segoe UI", Roboto, sans-serif;
+
+            overflow: auto;        background: linear-gradient(
+
+        }          135deg,
+
+                  #1e3a8a 0%,
+
+        .grid-container {          #3730a3 25%,
+
+            display: grid;          #6366f1 50%,
+
+            grid-template-columns: repeat(12, 1fr);          #8b5cf6 75%,
+
+            gap: 1rem;          #a855f7 100%
+
+            padding: 1.5rem;        );
+
+            min-height: calc(100vh - 5rem);        background-size: 400% 400%;
+
+        }        animation: gradientShift 15s ease infinite;
+
+                min-height: 100vh;
+
+        .widget-item {        color: #fff;
+
+            position: relative;        position: relative;
+
+        }        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+
+              }
+
+        .resize-handle {
+
+            position: absolute;      @keyframes gradientShift {
+
+            bottom: 0;        0%,
+
+            right: 0;        100% {
+
+            width: 20px;          background-position: 0% 50%;
+
+            height: 20px;        }
+
+            cursor: se-resize;        50% {
+
+        }          background-position: 100% 50%;
+
+                }
+
+        .resize-handle::after {      }
+
+            content: "";
+
+            position: absolute;      body::before {
+
+            right: 3px;        content: "";
+
+            bottom: 3px;        position: fixed;
+
+            width: 5px;        top: 0;
+
+            height: 5px;        left: 0;
+
+            border-right: 2px solid rgba(0, 0, 0, 0.4);        right: 0;
+
+            border-bottom: 2px solid rgba(0, 0, 0, 0.4);        bottom: 0;
+
+        }        background: radial-gradient(
+
+                    circle at 20% 50%,
+
+        .dark .resize-handle::after {            rgba(255, 255, 255, 0.02) 0%,
+
+            border-color: rgba(255, 255, 255, 0.4);            transparent 50%
+
+        }          ),
+
+    </style>          radial-gradient(
+
+</head>            circle at 80% 20%,
+
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">            rgba(255, 255, 255, 0.02) 0%,
+
+    <div id="app"></div>            transparent 50%
+
+              ),
+
+    <script type="module">          radial-gradient(
+
+        // Simple state management            circle at 40% 80%,
+
+        const state = {            rgba(255, 255, 255, 0.02) 0%,
+
+            dashboards: [],            transparent 50%
+
+            currentDashboardId: null,          );
+
+            isDarkMode: false,        pointer-events: none;
+
+            showWelcome: true,        z-index: 1;
+
+                    opacity: 0.7;
+
+            load() {      }
+
+                const saved = localStorage.getItem('iowidgets-data');
+
+                if (saved) {      .mode-toggle-container {
+
+                    const data = JSON.parse(saved);        position: fixed;
+
+                    this.dashboards = data.dashboards || [];        top: 2rem;
+
+                    this.currentDashboardId = data.currentDashboardId;        right: 2rem;
+
+                    this.isDarkMode = data.isDarkMode || false;        z-index: 1000;
+
+                    this.showWelcome = data.showWelcome !== false;        display: flex;
+
+                }        background: rgba(255, 255, 255, 0.1);
+
+                if (this.isDarkMode) {        backdrop-filter: blur(20px);
+
+                    document.documentElement.classList.add('dark');        border-radius: 50px;
+
+                }        padding: 4px;
+
+            },        border: 1px solid rgba(255, 255, 255, 0.2);
+
+                  }
+
+            save() {
+
+                localStorage.setItem('iowidgets-data', JSON.stringify({      .mode-toggle {
+
+                    dashboards: this.dashboards,        padding: 0.75rem 1.5rem;
+
+                    currentDashboardId: this.currentDashboardId,        border-radius: 50px;
+
+                    isDarkMode: this.isDarkMode,        cursor: pointer;
+
+                    showWelcome: this.showWelcome        transition: all 0.3s ease;
+
+                }));        font-size: 0.85rem;
+
+            },        font-weight: 500;
+
+                    letter-spacing: 0.025em;
+
+            getCurrentDashboard() {        text-transform: uppercase;
+
+                return this.dashboards.find(d => d.id === this.currentDashboardId);        border: none;
+
+            },        background: none;
+
+                    color: rgba(255, 255, 255, 0.6);
+
+            createDashboard(name) {      }
+
+                const dashboard = {
+
+                    id: 'dash-' + Date.now(),      .mode-toggle.active {
+
+                    name,        background: rgba(255, 255, 255, 0.2);
+
+                    widgets: [],        color: #ffffff;
+
+                    createdAt: new Date().toISOString()        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+
+                };      }
+
+                this.dashboards.push(dashboard);
+
+                this.currentDashboardId = dashboard.id;      .header {
+
+                this.save();        text-align: center;
+
+                render();        padding: 4rem 2rem 2rem;
+
+            },        position: relative;
+
+                    z-index: 10;
+
+            addWidget(type) {        max-width: 800px;
+
+                const dashboard = this.getCurrentDashboard();        margin: 0 auto;
+
+                if (!dashboard) return;      }
+
+                
+
+                const widget = {      .header h1 {
+
+                    id: 'widget-' + Date.now(),        font-size: clamp(2.5rem, 8vw, 4rem);
+
+                    type,        font-weight: 200;
+
+                    x: 0,        margin-bottom: 1rem;
+
+                    y: dashboard.widgets.length * 2,        letter-spacing: -0.02em;
+
+                    w: 3,        background: linear-gradient(
+
+                    h: 2,          135deg,
+
+                    config: {}          #ffffff 0%,
+
+                };          rgba(255, 255, 255, 0.8) 100%
+
+                        );
+
+                dashboard.widgets.push(widget);        -webkit-background-clip: text;
+
+                this.save();        -webkit-text-fill-color: transparent;
+
+                render();        background-clip: text;
+
+            },      }
+
+            
+
+            removeWidget(widgetId) {      .header p {
+
+                const dashboard = this.getCurrentDashboard();        font-size: 1.1rem;
+
+                if (!dashboard) return;        opacity: 0.75;
+
+                        font-weight: 300;
+
+                dashboard.widgets = dashboard.widgets.filter(w => w.id !== widgetId);      }
+
+                this.save();
+
+                render();      .search-container {
+
+            },        display: flex;
+
+                    justify-content: center;
+
+            toggleDarkMode() {        padding: 0 2rem 1.5rem;
+
+                this.isDarkMode = !this.isDarkMode;        position: relative;
+
+                if (this.isDarkMode) {        z-index: 10;
+
+                    document.documentElement.classList.add('dark');      }
+
+                } else {
+
+                    document.documentElement.classList.remove('dark');      .search-wrapper {
+
+                }        position: relative;
+
+                this.save();        width: 100%;
+
+                render();        max-width: 400px;
+
+            }      }
+
+        };
+
+              .search-box {
+
+        // Widget definitions        width: 100%;
+
+        const WIDGETS = [        padding: 1rem 1.5rem 1rem 2.5rem;
+
+            { type: 'clock', name: 'Clock', icon: '🕐', description: 'Display current time' },        background: rgba(255, 255, 255, 0.08);
+
+            { type: 'weather', name: 'Weather', icon: '🌤️', description: 'Weather info' },        border: 1px solid rgba(255, 255, 255, 0.15);
+
+            { type: 'todo', name: 'To-Do', icon: '✓', description: 'Task list' },        backdrop-filter: blur(20px);
+
+            { type: 'notes', name: 'Notes', icon: '📝', description: 'Quick notes' },        border-radius: 25px;
+
+            { type: 'calendar', name: 'Calendar', icon: '📅', description: 'Month view' },        color: white;
+
+            { type: 'timer', name: 'Timer', icon: '⏱️', description: 'Countdown timer' },        font-size: 0.95rem;
+
+        ];        font-weight: 300;
+
+                outline: none;
+
+        // Widget components        transition: all 0.4s ease;
+
+        const widgets = {      }
+
+            clock: () => {
+
+                const now = new Date();      .search-box::placeholder {
+
+                return `        color: rgba(255, 255, 255, 0.5);
+
+                    <div class="flex flex-col items-center justify-center h-full">      }
+
+                        <div class="text-5xl font-bold mb-2">
+
+                            ${now.toLocaleTimeString()}      .search-box:focus {
+
+                        </div>        background: rgba(255, 255, 255, 0.12);
+
+                        <div class="text-lg text-gray-600 dark:text-gray-400">        border-color: rgba(255, 255, 255, 0.3);
+
+                            ${now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+
+                        </div>      }
+
+                    </div>
+
+                `;      .search-icon {
+
+            },        position: absolute;
+
+                    left: 0.875rem;
+
+            weather: () => `        top: 50%;
+
+                <div class="flex flex-col h-full justify-between">        transform: translateY(-50%);
+
+                    <div>        color: rgba(255, 255, 255, 0.4);
+
+                        <div class="text-xl font-semibold mb-1">London</div>        font-size: 1rem;
+
+                        <div class="text-4xl font-bold mb-2">22°C</div>      }
+
+                        <div class="text-sm text-gray-600 dark:text-gray-400">Partly cloudy</div>
+
+                    </div>      .apps-container {
+
+                    <div class="grid grid-cols-2 gap-2 text-sm mt-4">        position: relative;
+
+                        <div class="bg-gray-100 dark:bg-gray-700 p-2 rounded">        width: 100%;
+
+                            <div class="text-gray-600 dark:text-gray-400">Humidity</div>        padding: 2rem;
+
+                            <div class="font-semibold">65%</div>        display: flex;
+
+                        </div>        justify-content: center;
+
+                        <div class="bg-gray-100 dark:bg-gray-700 p-2 rounded">      }
+
+                            <div class="text-gray-600 dark:text-gray-400">Wind</div>
+
+                            <div class="font-semibold">5.5 m/s</div>      .apps-grid {
+
+                        </div>        display: grid;
+
+                    </div>        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+
+                </div>        gap: clamp(1rem, 3vw, 2rem);
+
+            `,        max-width: 1200px;
+
+                    width: 100%;
+
+            todo: (widget) => {      }
+
+                const items = widget.config.items || [];
+
+                return `      .app-bubble {
+
+                    <div class="flex flex-col h-full">        width: 140px;
+
+                        <div class="flex gap-2 mb-4">        height: 140px;
+
+                            <input type="text"         background: rgba(255, 255, 255, 0.06);
+
+                                   id="todo-input-${widget.id}"        backdrop-filter: blur(25px);
+
+                                   class="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800"         border: 1px solid rgba(255, 255, 255, 0.12);
+
+                                   placeholder="Add a task...">        border-radius: 24px;
+
+                            <button onclick="addTodoItem('${widget.id}')"         display: flex;
+
+                                    class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700">        flex-direction: column;
+
+                                +        align-items: center;
+
+                            </button>        justify-content: center;
+
+                        </div>        cursor: pointer;
+
+                        <div class="flex-1 overflow-auto space-y-2">        transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+
+                            ${items.length === 0 ?         position: relative;
+
+                                '<div class="text-center text-gray-500 py-8">No tasks yet</div>' :        text-decoration: none;
+
+                                items.map((item, i) => `        color: #fff;
+
+                                    <div class="flex items-center gap-2 p-2 bg-gray-50 dark:bg-gray-700 rounded group">        justify-self: center;
+
+                                        <input type="checkbox"       }
+
+                                               ${item.done ? 'checked' : ''} 
+
+                                               onchange="toggleTodo('${widget.id}', ${i})"      .app-bubble:hover {
+
+                                               class="w-5 h-5">        background: rgba(255, 255, 255, 0.12);
+
+                                        <span class="${item.done ? 'line-through text-gray-500' : ''} flex-1">        transform: translateY(-8px) scale(1.05);
+
+                                            ${item.text}        border-color: rgba(255, 255, 255, 0.25);
+
+                                        </span>        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+
+                                        <button onclick="deleteTodo('${widget.id}', ${i})"       }
+
+                                                class="text-red-500 opacity-0 group-hover:opacity-100">
+
+                                            ✕      .app-icon {
+
+                                        </button>        width: 48px;
+
+                                    </div>        height: 48px;
+
+                                `).join('')        margin-bottom: 0.75rem;
+
+                            }        transition: all 0.3s ease;
+
+                        </div>        display: flex;
+
+                    </div>        align-items: center;
+
+                `;        justify-content: center;
+
+            },      }
+
+            
+
+            notes: (widget) => {      .app-icon svg {
+
+                const content = widget.config.content || '';        width: 48px;
+
+                return `        height: 48px;
+
+                    <div class="h-full bg-yellow-100 dark:bg-yellow-900/30 rounded-lg p-4">        filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
+
+                        <textarea         transition: all 0.3s ease;
+
+                            class="w-full h-full bg-transparent resize-none outline-none text-gray-800 dark:text-gray-200"      }
+
+                            placeholder="Type your notes here..."
+
+                            onchange="updateNotes('${widget.id}', this.value)"      .app-bubble:hover .app-icon svg {
+
+                        >${content}</textarea>        transform: scale(1.1);
+
+                    </div>        filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2)) brightness(1.1);
+
+                `;      }
+
+            },
+
+                  .app-name {
+
+            calendar: () => {        font-size: 0.8rem;
+
+                const now = new Date();        font-weight: 400;
+
+                const year = now.getFullYear();        text-align: center;
+
+                const month = now.getMonth();        padding: 0 0.5rem;
+
+                const firstDay = new Date(year, month, 1).getDay();        color: rgba(255, 255, 255, 0.8);
+
+                const daysInMonth = new Date(year, month + 1, 0).getDate();        transition: all 0.3s ease;
+
+                const today = now.getDate();        letter-spacing: 0.025em;
+
+                        line-height: 1.2;
+
+                const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',      }
+
+                                   'July', 'August', 'September', 'October', 'November', 'December'];
+
+                      .app-bubble:hover .app-name {
+
+                let days = '';        color: rgba(255, 255, 255, 1);
+
+                for (let i = 0; i < firstDay; i++) {      }
+
+                    days += '<div></div>';
+
+                }      .popular-badge {
+
+                for (let day = 1; day <= daysInMonth; day++) {        position: absolute;
+
+                    const isToday = day === today;        top: 0.5rem;
+
+                    days += `<div class="aspect-square flex items-center justify-center rounded text-sm ${        right: 0.5rem;
+
+                        isToday ? 'bg-primary-500 text-white font-bold' : 'hover:bg-gray-100 dark:hover:bg-gray-700'        background: linear-gradient(135deg, #fbbf24, #f59e0b);
+
+                    }">${day}</div>`;        color: #000;
+
+                }        padding: 0.2rem 0.5rem;
+
+                        border-radius: 8px;
+
+                return `        font-size: 0.6rem;
+
+                    <div class="flex flex-col h-full">        font-weight: 700;
+
+                        <div class="font-semibold text-center mb-4">        text-transform: uppercase;
+
+                            ${monthNames[month]} ${year}      }
+
+                        </div>
+
+                        <div class="grid grid-cols-7 gap-1 text-xs flex-1">      .embed-btn {
+
+                            ${['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'].map(d =>         position: absolute;
+
+                                `<div class="text-center font-semibold text-gray-600 dark:text-gray-400 pb-1">${d}</div>`        top: 0.5rem;
+
+                            ).join('')}        left: 0.5rem;
+
+                            ${days}        width: 24px;
+
+                        </div>        height: 24px;
+
+                    </div>        background: rgba(99, 102, 241, 0.9);
+
+                `;        border-radius: 50%;
+
+            },        display: flex;
+
+                    align-items: center;
+
+            timer: (widget) => {        justify-content: center;
+
+                const time = widget.config.time || 1500; // 25 minutes default        font-size: 0.7rem;
+
+                const minutes = Math.floor(time / 60);        opacity: 0;
+
+                const seconds = time % 60;        transition: all 0.3s ease;
+
+                        cursor: pointer;
+
+                return `        z-index: 10;
+
+                    <div class="flex flex-col items-center justify-center h-full">      }
+
+                        <div class="text-5xl font-bold mb-4">
+
+                            ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}      .app-bubble:hover .embed-btn {
+
+                        </div>        opacity: 1;
+
+                        <div class="flex gap-2">      }
+
+                            <button class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700">
+
+                                ▶️ Start      .embed-btn:hover {
+
+                            </button>        background: rgba(99, 102, 241, 1);
+
+                            <button class="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600">        transform: scale(1.1);
+
+                                🔄 Reset      }
+
+                            </button>
+
+                        </div>      .modal {
+
+                    </div>        position: fixed;
+
+                `;        top: 0;
+
+            }        left: 0;
+
+        };        right: 0;
+
+                bottom: 0;
+
+        // Global functions for widget interactions        background: rgba(0, 0, 0, 0.8);
+
+        window.addTodoItem = (widgetId) => {        backdrop-filter: blur(10px);
+
+            const dashboard = state.getCurrentDashboard();        display: none;
+
+            const widget = dashboard.widgets.find(w => w.id === widgetId);        align-items: center;
+
+            const input = document.getElementById(`todo-input-${widgetId}`);        justify-content: center;
+
+                    z-index: 10000;
+
+            if (input.value.trim()) {        padding: 2rem;
+
+                if (!widget.config.items) widget.config.items = [];      }
+
+                widget.config.items.push({ text: input.value, done: false });
+
+                input.value = '';      .modal.show {
+
+                state.save();        display: flex;
+
+                render();      }
+
+            }
+
+        };      .modal-content {
+
+                background: rgba(255, 255, 255, 0.15);
+
+        window.toggleTodo = (widgetId, index) => {        backdrop-filter: blur(30px);
+
+            const dashboard = state.getCurrentDashboard();        border: 2px solid rgba(255, 255, 255, 0.3);
+
+            const widget = dashboard.widgets.find(w => w.id === widgetId);        border-radius: 25px;
+
+            widget.config.items[index].done = !widget.config.items[index].done;        padding: 2rem;
+
+            state.save();        max-width: 600px;
+
+            render();        width: 100%;
+
+        };        position: relative;
+
+              }
+
+        window.deleteTodo = (widgetId, index) => {
+
+            const dashboard = state.getCurrentDashboard();      .modal-close {
+
+            const widget = dashboard.widgets.find(w => w.id === widgetId);        position: absolute;
+
+            widget.config.items.splice(index, 1);        top: 1rem;
+
+            state.save();        right: 1rem;
+
+            render();        background: none;
+
+        };        border: none;
+
+                color: #fff;
+
+        window.updateNotes = (widgetId, content) => {        font-size: 2rem;
+
+            const dashboard = state.getCurrentDashboard();        cursor: pointer;
+
+            const widget = dashboard.widgets.find(w => w.id === widgetId);        width: 40px;
+
+            widget.config.content = content;        height: 40px;
+
+            state.save();        display: flex;
+
+        };        align-items: center;
+
+                justify-content: center;
+
+        // Render functions        border-radius: 50%;
+
+        function renderWidget(widget) {        transition: background 0.3s ease;
+
+            const widgetFn = widgets[widget.type];      }
+
+            const content = widgetFn ? widgetFn(widget) : '<div>Widget not found</div>';
+
+                  .modal-close:hover {
+
+            return `        background: rgba(255, 255, 255, 0.2);
+
+                <div class="widget-item" style="grid-column: span ${widget.w}; grid-row: span ${widget.h};">      }
+
+                    <div class="widget-container">
+
+                        <div class="widget-header">      .modal-title {
+
+                            <span class="text-sm font-medium capitalize">${widget.type}</span>        font-size: 1.5rem;
+
+                            <button onclick="state.removeWidget('${widget.id}'); render();"         font-weight: 600;
+
+                                    class="text-red-500 hover:text-red-600">        margin-bottom: 1.5rem;
+
+                                ✕      }
+
+                            </button>
+
+                        </div>      .embed-code {
+
+                        <div class="widget-content">        background: rgba(0, 0, 0, 0.3);
+
+                            ${content}        border: 1px solid rgba(255, 255, 255, 0.2);
+
+                        </div>        border-radius: 12px;
+
+                    </div>        padding: 1rem;
+
+                </div>        font-family: "Monaco", "Courier New", monospace;
+
+            `;        font-size: 0.85rem;
+
+        }        color: #4ade80;
+
+                margin-bottom: 1rem;
+
+        function render() {        max-height: 200px;
+
+            const dashboard = state.getCurrentDashboard();        overflow-y: auto;
+
+                    word-wrap: break-word;
+
+            const app = document.getElementById('app');      }
+
+            app.innerHTML = `
+
+                <!-- Header -->      .copy-btn {
+
+                <header class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4">        width: 100%;
+
+                    <div class="flex items-center justify-between">        padding: 1rem;
+
+                        <div class="flex items-center gap-4">        background: rgba(34, 197, 94, 0.3);
+
+                            <h1 class="text-2xl font-bold bg-gradient-to-r from-primary-600 to-primary-400 bg-clip-text text-transparent">        border: 2px solid rgba(34, 197, 94, 0.5);
+
+                                ioWidgets        border-radius: 15px;
+
+                            </h1>        color: #fff;
+
+                            ${state.dashboards.length > 0 ? `        font-size: 1rem;
+
+                                <select onchange="state.currentDashboardId = this.value; state.save(); render();"         font-weight: 600;
+
+                                        class="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800">        cursor: pointer;
+
+                                    ${state.dashboards.map(d => `        transition: all 0.3s ease;
+
+                                        <option value="${d.id}" ${d.id === state.currentDashboardId ? 'selected' : ''}>      }
+
+                                            ${d.name}
+
+                                        </option>      .copy-btn:hover {
+
+                                    `).join('')}        background: rgba(34, 197, 94, 0.5);
+
+                                </select>      }
+
+                            ` : ''}
+
+                        </div>      .empty-state {
+
+                        <div class="flex items-center gap-2">        text-align: center;
+
+                            <button onclick="const name = prompt('Dashboard name:'); if(name) { state.createDashboard(name); }"         padding: 4rem 2rem;
+
+                                    class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700">        opacity: 0.7;
+
+                                + New Dashboard        grid-column: 1 / -1;
+
+                            </button>      }
+
+                            <button onclick="state.toggleDarkMode()" 
+
+                                    class="p-2 bg-gray-200 dark:bg-gray-700 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600">      footer {
+
+                                ${state.isDarkMode ? '☀️' : '🌙'}        text-align: center;
+
+                            </button>        padding: 3rem 2rem 2rem;
+
+                        </div>        color: rgba(255, 255, 255, 0.6);
+
+                    </div>        font-size: 0.9rem;
+
+                </header>      }
+
+                
+
+                <div class="flex" style="height: calc(100vh - 5rem);">      footer a {
+
+                    <!-- Sidebar -->        color: rgba(255, 255, 255, 0.7);
+
+                    <aside class="w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 p-4 overflow-y-auto">        text-decoration: none;
+
+                        <h2 class="text-lg font-semibold mb-4">Widget Library</h2>        margin: 0 1rem;
+
+                        <div class="space-y-2">        transition: color 0.3s ease;
+
+                            ${WIDGETS.map(w => `      }
+
+                                <button onclick="state.addWidget('${w.type}')" 
+
+                                        class="w-full text-left p-3 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 rounded-lg transition-colors">      footer a:hover {
+
+                                    <div class="flex items-center gap-3">        color: rgba(255, 255, 255, 1);
+
+                                        <span class="text-2xl">${w.icon}</span>      }
+
+                                        <div class="flex-1 min-w-0">
+
+                                            <div class="font-medium text-sm">${w.name}</div>      @media (max-width: 768px) {
+
+                                            <div class="text-xs text-gray-600 dark:text-gray-400 truncate">${w.description}</div>        .mode-toggle-container {
+
+                                        </div>          position: relative;
+
+                                    </div>          top: auto;
+
+                                </button>          right: auto;
+
+                            `).join('')}          margin: 0 auto 1rem;
+
+                        </div>          max-width: 90%;
+
+                    </aside>        }
+
+                    
+
+                    <!-- Main Content -->        .mode-toggle {
+
+                    <main class="flex-1 bg-gray-50 dark:bg-gray-900 overflow-auto">          padding: 0.5rem 0.8rem;
+
+                        ${!dashboard ? `          font-size: 0.75rem;
+
+                            <div class="flex items-center justify-center h-full">        }
+
+                                <div class="text-center">
+
+                                    <p class="text-xl text-gray-600 dark:text-gray-400 mb-4">No dashboard selected</p>        .header {
+
+                                    <button onclick="state.createDashboard('My Dashboard')"           padding: 2rem 1rem 1rem;
+
+                                            class="px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700">        }
+
+                                        Create Your First Dashboard
+
+                                    </button>        .apps-grid {
+
+                                </div>          grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+
+                            </div>          gap: 1rem;
+
+                        ` : dashboard.widgets.length === 0 ? `        }
+
+                            <div class="flex items-center justify-center h-full">
+
+                                <div class="text-center max-w-md p-8">        .app-bubble {
+
+                                    <div class="text-6xl mb-4">📊</div>          width: 100%;
+
+                                    <h2 class="text-2xl font-bold mb-2">Your canvas is empty</h2>          height: 130px;
+
+                                    <p class="text-gray-600 dark:text-gray-400 mb-6">        }
+
+                                        Click on any widget from the sidebar to add it to your dashboard.      }
+
+                                    </p>    </style>
+
+                                </div>  </head>
+
+                            </div>  <body>
+
+                        ` : `    <div class="mode-toggle-container">
+
+                            <div class="grid-container">      <button class="mode-toggle active" data-category="all">All</button>
+
+                                ${dashboard.widgets.map(w => renderWidget(w)).join('')}      <button class="mode-toggle" data-category="financial">Financial</button>
+
+                            </div>      <button class="mode-toggle" data-category="health">Health</button>
+
+                        `}      <button class="mode-toggle" data-category="business">Business</button>
+
+                    </main>    </div>
+
+                </div>
+
+            `;    <div class="header">
+
+                  <h1>iowidgets</h1>
+
+            // Update clock every second if visible      <p>Free Online Calculators & Tools</p>
+
+            if (dashboard && dashboard.widgets.some(w => w.type === 'clock')) {    </div>
+
+                setTimeout(render, 1000);
+
+            }    <div class="search-container">
+
+        }      <div class="search-wrapper">
+
+                <span class="search-icon">⌕</span>
+
+        // Initialize        <input
+
+        state.load();          type="text"
+
+                  class="search-box"
+
+        // Show welcome modal if first time          id="searchBox"
+
+        if (state.showWelcome && state.dashboards.length === 0) {          placeholder="Search calculators..."
+
+            state.createDashboard('My Dashboard');        />
+
+            state.showWelcome = false;      </div>
+
+            state.save();    </div>
+
         }
 
-        .header {
-          padding: 2rem 1rem 1rem;
-        }
+            <div class="apps-container">
 
-        .apps-grid {
-          grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-          gap: 1rem;
-        }
+        render();      <div class="apps-grid" id="appsGrid"></div>
 
-        .app-bubble {
-          width: 100%;
-          height: 130px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="mode-toggle-container">
-      <button class="mode-toggle active" data-category="all">All</button>
-      <button class="mode-toggle" data-category="financial">Financial</button>
-      <button class="mode-toggle" data-category="health">Health</button>
-      <button class="mode-toggle" data-category="business">Business</button>
-    </div>
+    </script>    </div>
 
-    <div class="header">
-      <h1>iowidgets</h1>
-      <p>Free Online Calculators & Tools</p>
-    </div>
+</body>
 
-    <div class="search-container">
-      <div class="search-wrapper">
-        <span class="search-icon">⌕</span>
-        <input
-          type="text"
-          class="search-box"
-          id="searchBox"
-          placeholder="Search calculators..."
-        />
-      </div>
-    </div>
+</html>    <footer>
 
-    <div class="apps-container">
-      <div class="apps-grid" id="appsGrid"></div>
-    </div>
-
-    <footer>
       <div style="margin-bottom: 1rem">
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
