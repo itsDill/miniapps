@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Builder - DashCraft</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="builder-page">
+    <!-- Header -->
+    <header class="builder-header">
+      <div class="header-left">
+        <a href="index.html" class="logo-link">
+          <div class="logo-icon">D</div>
+          <span class="logo-text">DashCraft</span>
+        </a>
+        <select id="dashboardSelect" class="dashboard-select">
+          <option value="default">My Dashboard</option>
+        </select>
+      </div>
+      <div class="header-right">
+        <button id="newDashboardBtn" class="btn btn-small btn-primary">
+          + New Dashboard
+        </button>
+        <button
+          id="darkModeBtn"
+          class="btn btn-small btn-icon"
+          title="Toggle dark mode"
+        >
+          <svg
+            id="moonIcon"
+            width="20"
+            height="20"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+            />
+          </svg>
+          <svg
+            id="sunIcon"
+            width="20"
+            height="20"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            style="display: none"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+            />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="builder-container">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <h3 class="sidebar-title">Add Widgets</h3>
+        <div class="widget-list">
+          <button class="widget-btn" data-widget="clock">
+            <span class="widget-icon">🕐</span>
+            <span>Clock</span>
+          </button>
+          <button class="widget-btn" data-widget="weather">
+            <span class="widget-icon">☁️</span>
+            <span>Weather</span>
+          </button>
+          <button class="widget-btn" data-widget="todo">
+            <span class="widget-icon">✅</span>
+            <span>Todo List</span>
+          </button>
+          <button class="widget-btn" data-widget="notes">
+            <span class="widget-icon">📝</span>
+            <span>Notes</span>
+          </button>
+          <button class="widget-btn" data-widget="calendar">
+            <span class="widget-icon">📅</span>
+            <span>Calendar</span>
+          </button>
+          <button class="widget-btn" data-widget="timer">
+            <span class="widget-icon">⏱️</span>
+            <span>Timer</span>
+          </button>
+          <button class="widget-btn" data-widget="quote">
+            <span class="widget-icon">💬</span>
+            <span>Quote</span>
+          </button>
+          <button class="widget-btn" data-widget="links">
+            <span class="widget-icon">🔗</span>
+            <span>Quick Links</span>
+          </button>
+        </div>
+      </aside>
+
+      <!-- Canvas -->
+      <main class="canvas" id="canvas">
+        <div class="empty-state" id="emptyState">
+          <div class="empty-icon">📊</div>
+          <h2 class="empty-title">Start Building Your Dashboard</h2>
+          <p class="empty-desc">
+            Click on widgets from the sidebar to add them to your dashboard
+          </p>
+        </div>
+      </main>
+    </div>
+
+    <!-- New Dashboard Modal -->
+    <div id="newDashboardModal" class="modal">
+      <div class="modal-content">
+        <h3 class="modal-title">Create New Dashboard</h3>
+        <input
+          type="text"
+          id="dashboardNameInput"
+          class="modal-input"
+          placeholder="Dashboard name"
+          autofocus
+        />
+        <div class="modal-buttons">
+          <button id="createDashboardBtn" class="btn btn-primary">
+            Create
+          </button>
+          <button id="cancelDashboardBtn" class="btn btn-secondary">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+    <script src="widgets.js"></script>
+  </body>
+</html>

@@ -2,16 +2,379 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ioWidgets - Dashboard Builder</title>
+    <title>DashCraft - Build Your Perfect Dashboard</title>
     <meta
       name="description"
-      content="Build beautiful, customizable dashboards with widgets"
+      content="Create beautiful, customizable dashboards with drag-and-drop widgets. Choose from stunning templates or build from scratch."
     />
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <!-- Navigation -->
+    <nav class="nav">
+      <div class="container nav-content">
+        <div class="logo">
+          <div class="logo-icon">D</div>
+          <span class="logo-text">DashCraft</span>
+        </div>
+        <a href="builder.html" class="btn btn-primary">Start Building</a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container hero-content">
+        <h1 class="hero-title">Build Your Perfect Dashboard</h1>
+        <p class="hero-subtitle">
+          Choose from beautiful pre-made templates or start from scratch. Drag,
+          drop, and customize widgets to create your ideal workspace.
+        </p>
+        <div class="hero-buttons">
+          <a href="builder.html" class="btn btn-large btn-primary"
+            >Start from Blank</a
+          >
+          <a href="#templates" class="btn btn-large btn-secondary"
+            >Browse Templates</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+      <div class="container">
+        <div class="features-grid">
+          <div class="feature-card">
+            <div
+              class="feature-icon"
+              style="
+                background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+              "
+            >
+              <svg
+                width="32"
+                height="32"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-3zM14 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1h-4a1 1 0 01-1-1v-3z"
+                />
+              </svg>
+            </div>
+            <h3 class="feature-title">Drag & Drop</h3>
+            <p class="feature-desc">
+              Intuitive drag-and-drop interface. Arrange widgets exactly how you
+              want them.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div
+              class="feature-icon"
+              style="
+                background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+              "
+            >
+              <svg
+                width="32"
+                height="32"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
+                />
+              </svg>
+            </div>
+            <h3 class="feature-title">Fully Customizable</h3>
+            <p class="feature-desc">
+              Personalize every aspect. Colors, sizes, content - make it truly
+              yours.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div
+              class="feature-icon"
+              style="
+                background: linear-gradient(135deg, #f472b6 0%, #ec4899 100%);
+              "
+            >
+              <svg
+                width="32"
+                height="32"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                />
+              </svg>
+            </div>
+            <h3 class="feature-title">Lightning Fast</h3>
+            <p class="feature-desc">
+              Built with modern tech. Smooth animations and instant updates.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Templates Section -->
+    <section id="templates" class="templates">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Choose Your Template</h2>
+          <p class="section-subtitle">
+            Start with a professionally designed template and customize it to
+            your needs
+          </p>
+        </div>
+
+        <div class="templates-grid">
+          <div class="template-card">
+            <div
+              class="template-preview"
+              style="
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+              "
+            >
+              <div class="template-widgets">
+                <div class="widget-preview"></div>
+                <div class="widget-preview"></div>
+                <div class="widget-preview"></div>
+                <div class="widget-preview"></div>
+              </div>
+              <span class="template-badge">4 widgets</span>
+            </div>
+            <div class="template-info">
+              <h3 class="template-title">Productivity Pro</h3>
+              <p class="template-desc">
+                Everything you need to stay organized and focused. Perfect for
+                professionals and students.
+              </p>
+              <div class="template-tags">
+                <span class="tag">Work</span>
+                <span class="tag">Focus</span>
+                <span class="tag">Organization</span>
+              </div>
+              <a
+                href="builder.html?template=productivity"
+                class="btn btn-primary btn-full"
+                >Use This Template</a
+              >
+            </div>
+          </div>
+
+          <div class="template-card">
+            <div
+              class="template-preview"
+              style="
+                background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+              "
+            >
+              <div class="template-widgets">
+                <div class="widget-preview"></div>
+                <div class="widget-preview"></div>
+                <div class="widget-preview"></div>
+                <div class="widget-preview"></div>
+                <div class="widget-preview"></div>
+              </div>
+              <span class="template-badge">5 widgets</span>
+            </div>
+            <div class="template-info">
+              <h3 class="template-title">Personal Hub</h3>
+              <p class="template-desc">
+                Your daily companion with weather, quotes, and personal tracking
+                tools.
+              </p>
+              <div class="template-tags">
+                <span class="tag">Daily</span>
+                <span class="tag">Personal</span>
+                <span class="tag">Lifestyle</span>
+              </div>
+              <a
+                href="builder.html?template=personal"
+                class="btn btn-primary btn-full"
+                >Use This Template</a
+              >
+            </div>
+          </div>
+
+          <div class="template-card">
+            <div
+              class="template-preview"
+              style="
+                background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+              "
+            >
+              <div class="template-widgets">
+                <div class="widget-preview"></div>
+                <div class="widget-preview"></div>
+                <div class="widget-preview"></div>
+                <div class="widget-preview"></div>
+              </div>
+              <span class="template-badge">4 widgets</span>
+            </div>
+            <div class="template-info">
+              <h3 class="template-title">Developer Workspace</h3>
+              <p class="template-desc">
+                Optimized for developers with quick access to tools and time
+                tracking.
+              </p>
+              <div class="template-tags">
+                <span class="tag">Developer</span>
+                <span class="tag">Tech</span>
+                <span class="tag">Coding</span>
+              </div>
+              <a
+                href="builder.html?template=developer"
+                class="btn btn-primary btn-full"
+                >Use This Template</a
+              >
+            </div>
+          </div>
+
+          <div class="template-card">
+            <div
+              class="template-preview"
+              style="
+                background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+              "
+            >
+              <div class="template-widgets">
+                <div class="widget-preview"></div>
+                <div class="widget-preview"></div>
+                <div class="widget-preview"></div>
+              </div>
+              <span class="template-badge">3 widgets</span>
+            </div>
+            <div class="template-info">
+              <h3 class="template-title">Minimalist</h3>
+              <p class="template-desc">
+                Clean and simple. Just the essentials for a distraction-free
+                experience.
+              </p>
+              <div class="template-tags">
+                <span class="tag">Simple</span>
+                <span class="tag">Clean</span>
+                <span class="tag">Minimal</span>
+              </div>
+              <a
+                href="builder.html?template=minimalist"
+                class="btn btn-primary btn-full"
+                >Use This Template</a
+              >
+            </div>
+          </div>
+
+          <div class="template-card">
+            <div
+              class="template-preview"
+              style="
+                background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+              "
+            >
+              <div class="template-widgets">
+                <div class="widget-preview"></div>
+                <div class="widget-preview"></div>
+                <div class="widget-preview"></div>
+                <div class="widget-preview"></div>
+                <div class="widget-preview"></div>
+              </div>
+              <span class="template-badge">5 widgets</span>
+            </div>
+            <div class="template-info">
+              <h3 class="template-title">Content Creator</h3>
+              <p class="template-desc">
+                Perfect for creators tracking progress, managing tasks, and
+                staying inspired.
+              </p>
+              <div class="template-tags">
+                <span class="tag">Creative</span>
+                <span class="tag">Content</span>
+                <span class="tag">Projects</span>
+              </div>
+              <a
+                href="builder.html?template=creator"
+                class="btn btn-primary btn-full"
+                >Use This Template</a
+              >
+            </div>
+          </div>
+
+          <div class="template-card">
+            <div
+              class="template-preview"
+              style="
+                background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+              "
+            >
+              <div class="template-widgets">
+                <div class="widget-preview"></div>
+                <div class="widget-preview"></div>
+                <div class="widget-preview"></div>
+                <div class="widget-preview"></div>
+              </div>
+              <span class="template-badge">4 widgets</span>
+            </div>
+            <div class="template-info">
+              <h3 class="template-title">News & Information</h3>
+              <p class="template-desc">
+                Stay informed with RSS feeds, weather updates, and organized
+                reading lists.
+              </p>
+              <div class="template-tags">
+                <span class="tag">News</span>
+                <span class="tag">Reading</span>
+                <span class="tag">Information</span>
+              </div>
+              <a
+                href="builder.html?template=news"
+                class="btn btn-primary btn-full"
+                >Use This Template</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+      <div class="container">
+        <div class="cta-box">
+          <h2 class="cta-title">Ready to Build Your Dashboard?</h2>
+          <p class="cta-subtitle">
+            Join thousands of users creating their perfect workspace
+          </p>
+          <a href="builder.html" class="btn btn-large btn-white"
+            >Get Started Free</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p class="footer-text">Built with ❤️ using HTML, CSS & JavaScript</p>
+        <p class="footer-copy">© 2025 DashCraft. All rights reserved.</p>
+      </div>
+    </footer>
   </body>
 </html>
