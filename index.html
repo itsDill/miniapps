@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AgriSense - Smart Farm Monitoring Dashboard</title>
+    <title>HomeSense - Smart Home Monitoring Dashboard</title>
     <meta
       name="description"
-      content="Connect your IoT sensors and monitor your farm in real-time. Soil moisture, weather forecasting, flood prediction, and more."
+      content="Connect your IoT devices and monitor your home in real-time. Smart lighting, climate control, security, and more."
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -15,8 +15,8 @@
     <nav class="nav">
       <div class="container nav-content">
         <a href="index.html" class="logo">
-          <div class="logo-icon">🌱</div>
-          <span class="logo-text">AgriSense</span>
+          <div class="logo-icon">�</div>
+          <span class="logo-text">HomeSense</span>
         </a>
         <div class="nav-links">
           <a href="tools.html" class="nav-link">Tools</a>
@@ -25,6 +25,16 @@
           <a href="blog.html" class="nav-link">Blog</a>
         </div>
         <div class="nav-buttons">
+          <div class="mode-toggle">
+            <span class="mode-label home">Home</span>
+            <label class="toggle-switch">
+              <input type="checkbox" id="modeToggle" onchange="toggleMode()" />
+              <span class="toggle-slider"></span>
+              <span class="toggle-icon home-icon">🏠</span>
+              <span class="toggle-icon agri-icon">🌱</span>
+            </label>
+            <span class="mode-label agri">Agri</span>
+          </div>
           <a href="login.html" class="btn btn-secondary btn-small">Log In</a>
           <a href="builder.html" class="btn btn-primary btn-small">Try Free</a>
         </div>
@@ -34,27 +44,33 @@
     <!-- Hero Section -->
     <section class="hero hero-agri">
       <div class="container hero-content">
-        <h1 class="hero-title">Smart Farming Starts Here</h1>
+        <h1 class="hero-title">Smart Home Living Starts Here</h1>
         <p class="hero-subtitle">
-          Connect your IoT sensors and unlock powerful tools for monitoring soil, 
-          predicting weather, and optimizing your farm operations in real-time.
+          Connect your IoT devices and unlock powerful tools for monitoring
+          energy, security, and climate control throughout your home.
         </p>
         <div class="hero-buttons">
-          <a href="builder.html" class="btn btn-large btn-primary">Try Dashboard Free</a>
-          <a href="tools.html" class="btn btn-large btn-secondary">Explore Tools</a>
+          <a
+            href="builder-home.html"
+            class="btn btn-large btn-primary dashboard-link"
+            >Try Dashboard Free</a
+          >
+          <a href="tools.html" class="btn btn-large btn-secondary"
+            >Explore Tools</a
+          >
         </div>
         <div class="hero-stats">
           <div class="hero-stat">
-            <span class="stat-number">12K+</span>
-            <span class="stat-label">Farmers</span>
+            <span class="stat-number">25K+</span>
+            <span class="stat-label">Homes</span>
           </div>
           <div class="hero-stat">
-            <span class="stat-number">50K+</span>
-            <span class="stat-label">Sensors Connected</span>
+            <span class="stat-number">120K+</span>
+            <span class="stat-label">Devices Connected</span>
           </div>
           <div class="hero-stat">
-            <span class="stat-number">30%</span>
-            <span class="stat-label">Avg. Yield Increase</span>
+            <span class="stat-number">40%</span>
+            <span class="stat-label">Energy Savings</span>
           </div>
         </div>
       </div>
@@ -64,41 +80,46 @@
     <section class="tools-preview">
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title">Powerful Tools for Every Farm</h2>
-          <p class="section-subtitle">
-            From indoor growing to flood prediction, we have got you covered
+          <h2 class="section-title tools-title">
+            Powerful Tools for Every Home
+          </h2>
+          <p class="section-subtitle tools-subtitle">
+            From smart lighting to security, we have got you covered
           </p>
         </div>
 
         <div class="tools-preview-grid">
-          <!-- Grow Anywhere -->
+          <!-- Smart Lighting -->
           <a href="tools.html" class="tool-preview-card">
-            <div class="tool-preview-icon" style="background: linear-gradient(135deg, #22c55e, #16a34a);">
-              🌿
-            </div>
-            <h3>Grow Anywhere</h3>
-            <p>Complete environment control for indoor, greenhouse, and vertical farming. Automate lighting, climate, and more.</p>
+            <div class="tool-preview-icon tool-icon-1">💡</div>
+            <h3>Smart Lighting</h3>
+            <p>
+              Complete lighting control with scheduling, scenes, and automation.
+              Save energy while living comfortably.
+            </p>
             <span class="tool-link">Learn more →</span>
           </a>
 
-          <!-- Weather & Floods -->
+          <!-- Climate Control -->
           <a href="tools.html" class="tool-preview-card featured">
             <span class="tool-preview-badge">New</span>
-            <div class="tool-preview-icon" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">
-              🌧️
-            </div>
-            <h3>Weather & Floods</h3>
-            <p>Advanced weather forecasting with flood risk prediction. Get early warnings for extreme weather events.</p>
+            <div class="tool-preview-icon tool-icon-2">🌡️</div>
+            <h3>Climate Control</h3>
+            <p>
+              Intelligent thermostat management with zone control. Optimize
+              comfort and reduce heating/cooling costs.
+            </p>
             <span class="tool-link">Learn more →</span>
           </a>
 
-          <!-- Soil Health -->
+          <!-- Home Security -->
           <a href="tools.html" class="tool-preview-card">
-            <div class="tool-preview-icon" style="background: linear-gradient(135deg, #a16207, #854d0e);">
-              🌍
-            </div>
-            <h3>Soil Health</h3>
-            <p>Track nutrients, pH levels, and organic matter. Get fertilizer recommendations based on real data.</p>
+            <div class="tool-preview-icon tool-icon-3">🔒</div>
+            <h3>Home Security</h3>
+            <p>
+              Monitor cameras, locks, and sensors. Get instant alerts for any
+              unusual activity.
+            </p>
             <span class="tool-link">Learn more →</span>
           </a>
         </div>
@@ -114,7 +135,9 @@
       <div class="container">
         <div class="section-header">
           <h2 class="section-title">Connect Your Sensors in Minutes</h2>
-          <p class="section-subtitle">Bring your own IoT sensors or choose from our compatible devices</p>
+          <p class="section-subtitle">
+            Bring your own IoT sensors or choose from our compatible devices
+          </p>
         </div>
         <div class="steps-grid">
           <div class="step-card">
@@ -134,7 +157,9 @@
           </div>
         </div>
         <div class="steps-cta">
-          <a href="sensors.html" class="btn btn-primary">See Compatible Sensors</a>
+          <a href="sensors.html" class="btn btn-primary"
+            >See Compatible Sensors</a
+          >
         </div>
       </div>
     </section>
@@ -150,38 +175,89 @@
         </div>
         <div class="features-grid">
           <div class="feature-card">
-            <div class="feature-icon" style="background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);">
-              <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            <div
+              class="feature-icon"
+              style="
+                background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+              "
+            >
+              <svg
+                width="32"
+                height="32"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                />
               </svg>
             </div>
             <h3 class="feature-title">Real-Time Data</h3>
             <p class="feature-desc">
-              Live updates from all your sensors. Track everything 24/7 from anywhere.
+              Live updates from all your sensors. Track everything 24/7 from
+              anywhere.
             </p>
           </div>
 
           <div class="feature-card">
-            <div class="feature-icon" style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);">
-              <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            <div
+              class="feature-icon"
+              style="
+                background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+              "
+            >
+              <svg
+                width="32"
+                height="32"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                />
               </svg>
             </div>
             <h3 class="feature-title">Smart Analytics</h3>
             <p class="feature-desc">
-              Historical trends, AI predictions, and actionable insights for better decisions.
+              Historical trends, AI predictions, and actionable insights for
+              better decisions.
             </p>
           </div>
 
           <div class="feature-card">
-            <div class="feature-icon" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
-              <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+            <div
+              class="feature-icon"
+              style="
+                background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+              "
+            >
+              <svg
+                width="32"
+                height="32"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                />
               </svg>
             </div>
             <h3 class="feature-title">Instant Alerts</h3>
             <p class="feature-desc">
-              Get notified immediately when conditions change. Email, SMS, or push.
+              Get notified immediately when conditions change. Email, SMS, or
+              push.
             </p>
           </div>
         </div>
@@ -196,7 +272,9 @@
       <div class="container">
         <div class="testimonial-card">
           <blockquote>
-            "AgriSense helped us reduce water usage by 35% while actually increasing our tomato yield. The flood prediction tool saved our crops during the last monsoon season."
+            "AgriSense helped us reduce water usage by 35% while actually
+            increasing our tomato yield. The flood prediction tool saved our
+            crops during the last monsoon season."
           </blockquote>
           <div class="testimonial-author">
             <div class="author-avatar">👨‍🌾</div>
@@ -228,7 +306,9 @@
               <li>✓ 7-day data history</li>
               <li>✓ Email alerts</li>
             </ul>
-            <a href="signup.html" class="btn btn-secondary btn-full">Get Started</a>
+            <a href="signup.html" class="btn btn-secondary btn-full"
+              >Get Started</a
+            >
           </div>
           <div class="pricing-card pricing-featured">
             <span class="pricing-badge">Most Popular</span>
@@ -244,7 +324,9 @@
               <li>✓ SMS & push alerts</li>
               <li>✓ Export reports</li>
             </ul>
-            <a href="signup.html" class="btn btn-primary btn-full">Start Free Trial</a>
+            <a href="signup.html" class="btn btn-primary btn-full"
+              >Start Free Trial</a
+            >
           </div>
           <div class="pricing-card">
             <h3 class="pricing-tier">Enterprise</h3>
@@ -269,24 +351,203 @@
     <section class="cta">
       <div class="container">
         <div class="cta-box">
-          <h2 class="cta-title">Ready to Transform Your Farm?</h2>
+          <h2 class="cta-title">Ready to Transform Your Home?</h2>
           <p class="cta-subtitle">
             Start your free trial today. No credit card required.
           </p>
-          <a href="builder.html" class="btn btn-large btn-white">Try Dashboard Free</a>
+          <a
+            href="builder-home.html"
+            class="btn btn-large btn-white dashboard-link"
+            >Try Dashboard Free</a
+          >
         </div>
       </div>
     </section>
+
+    <!-- Mode Toggle Script -->
+    <script>
+      // Content for each mode
+      const modeContent = {
+        agri: {
+          title: "AgriSense",
+          icon: "🌱",
+          heroTitle: "Smart Farming Starts Here",
+          heroSubtitle:
+            "Connect your IoT sensors and unlock powerful tools for monitoring soil, predicting weather, and optimizing your farm operations in real-time.",
+          stats: [
+            { number: "12K+", label: "Farmers" },
+            { number: "50K+", label: "Sensors Connected" },
+            { number: "30%", label: "Avg. Yield Increase" },
+          ],
+          tools: [
+            {
+              icon: "🌿",
+              title: "Grow Anywhere",
+              desc: "Complete environment control for indoor, greenhouse, and vertical farming. Automate lighting, climate, and more.",
+            },
+            {
+              icon: "🌧️",
+              title: "Weather & Floods",
+              desc: "Advanced weather forecasting with flood risk prediction. Get early warnings for extreme weather events.",
+            },
+            {
+              icon: "🌍",
+              title: "Soil Health",
+              desc: "Track nutrients, pH levels, and organic matter. Get fertilizer recommendations based on real data.",
+            },
+          ],
+          ctaTitle: "Ready to Transform Your Farm?",
+        },
+        home: {
+          title: "HomeSense",
+          icon: "🏠",
+          heroTitle: "Smart Home Living Starts Here",
+          heroSubtitle:
+            "Connect your IoT devices and unlock powerful tools for monitoring energy, security, and climate control throughout your home.",
+          stats: [
+            { number: "25K+", label: "Homes" },
+            { number: "120K+", label: "Devices Connected" },
+            { number: "40%", label: "Energy Savings" },
+          ],
+          tools: [
+            {
+              icon: "💡",
+              title: "Smart Lighting",
+              desc: "Complete lighting control with scheduling, scenes, and automation. Save energy while living comfortably.",
+            },
+            {
+              icon: "🌡️",
+              title: "Climate Control",
+              desc: "Intelligent thermostat management with zone control. Optimize comfort and reduce heating/cooling costs.",
+            },
+            {
+              icon: "🔒",
+              title: "Home Security",
+              desc: "Monitor cameras, locks, and sensors. Get instant alerts for any unusual activity.",
+            },
+          ],
+          ctaTitle: "Ready to Transform Your Home?",
+          toolsTitle: "Powerful Tools for Every Home",
+          toolsSubtitle:
+            "From smart lighting to security, we have got you covered",
+          stepsTitle: "Connect Your Devices in Minutes",
+          featuresTitle: "Why Homeowners Choose HomeSense",
+        },
+      };
+
+      // Add missing content to agri mode
+      modeContent.agri.toolsTitle = "Powerful Tools for Every Farm";
+      modeContent.agri.toolsSubtitle =
+        "From indoor growing to flood prediction, we have got you covered";
+      modeContent.agri.stepsTitle = "Connect Your Sensors in Minutes";
+      modeContent.agri.featuresTitle = "Why Farmers Choose AgriSense";
+
+      function toggleMode() {
+        const isAgriMode = document.getElementById("modeToggle").checked;
+        const body = document.body;
+        const content = isAgriMode ? modeContent.agri : modeContent.home;
+
+        // Toggle body class - agri mode uses the alternate styling
+        body.classList.toggle("agri-mode", isAgriMode);
+        body.classList.remove("home-mode"); // Remove old class if present
+
+        // Update logo
+        document
+          .querySelectorAll(".logo-icon")
+          .forEach((el) => (el.textContent = content.icon));
+        document
+          .querySelectorAll(".logo-text")
+          .forEach((el) => (el.textContent = content.title));
+
+        // Update hero
+        const heroTitle = document.querySelector(".hero-title");
+        const heroSubtitle = document.querySelector(".hero-subtitle");
+        if (heroTitle) heroTitle.textContent = content.heroTitle;
+        if (heroSubtitle) heroSubtitle.textContent = content.heroSubtitle;
+
+        // Update stats
+        const statNumbers = document.querySelectorAll(".stat-number");
+        const statLabels = document.querySelectorAll(".stat-label");
+        content.stats.forEach((stat, i) => {
+          if (statNumbers[i]) statNumbers[i].textContent = stat.number;
+          if (statLabels[i]) statLabels[i].textContent = stat.label;
+        });
+
+        // Update tool cards
+        const toolCards = document.querySelectorAll(".tool-preview-card");
+        content.tools.forEach((tool, i) => {
+          if (toolCards[i]) {
+            const iconEl = toolCards[i].querySelector(".tool-preview-icon");
+            const titleEl = toolCards[i].querySelector("h3");
+            const descEl = toolCards[i].querySelector("p");
+            if (iconEl) iconEl.textContent = tool.icon;
+            if (titleEl) titleEl.textContent = tool.title;
+            if (descEl) descEl.textContent = tool.desc;
+          }
+        });
+
+        // Update section titles
+        const toolsTitle = document.querySelector(".tools-title");
+        const toolsSubtitle = document.querySelector(".tools-subtitle");
+        if (toolsTitle) toolsTitle.textContent = content.toolsTitle;
+        if (toolsSubtitle) toolsSubtitle.textContent = content.toolsSubtitle;
+
+        // Update steps section
+        const stepsSection = document.querySelector(
+          ".how-it-works-home .section-title",
+        );
+        if (stepsSection) stepsSection.textContent = content.stepsTitle;
+
+        // Update features section
+        const featuresSection = document.querySelector(
+          ".features .section-title",
+        );
+        if (featuresSection)
+          featuresSection.textContent = content.featuresTitle;
+
+        // Update CTA
+        const ctaTitle = document.querySelector(".cta-title");
+        if (ctaTitle) ctaTitle.textContent = content.ctaTitle;
+
+        // Update dashboard links
+        const dashboardLinks = document.querySelectorAll(".dashboard-link");
+        dashboardLinks.forEach((link) => {
+          link.href = isAgriMode ? "builder.html" : "builder-home.html";
+        });
+
+        // Update footer tagline
+        const footerTagline = document.querySelector(".footer-tagline");
+        if (footerTagline)
+          footerTagline.textContent = isAgriMode
+            ? "Smart farming for everyone."
+            : "Smart living for everyone.";
+
+        // Update page title
+        document.title = `${content.title} - Smart ${isAgriMode ? "Farm" : "Home"} Monitoring Dashboard`;
+
+        // Save preference
+        localStorage.setItem("senseMode", isAgriMode ? "agri" : "home");
+      }
+
+      // Load saved preference on page load
+      document.addEventListener("DOMContentLoaded", () => {
+        const savedMode = localStorage.getItem("senseMode");
+        if (savedMode === "agri") {
+          document.getElementById("modeToggle").checked = true;
+          toggleMode();
+        }
+      });
+    </script>
 
     <!-- Footer -->
     <footer class="footer">
       <div class="container footer-grid">
         <div class="footer-brand">
           <div class="logo">
-            <div class="logo-icon">🌱</div>
-            <span class="logo-text">AgriSense</span>
+            <div class="logo-icon">�</div>
+            <span class="logo-text">HomeSense</span>
           </div>
-          <p>Smart farming for everyone.</p>
+          <p class="footer-tagline">Smart living for everyone.</p>
         </div>
         <div class="footer-links">
           <h4>Product</h4>
