@@ -9,9 +9,60 @@ let draggedWidgetType = null;
 let pendingWidgetDrop = null; // For storing drop position before config
 let activeResizeWidget = null;
 let resizeStartX, resizeStartY, resizeStartW, resizeStartH;
+let isUserLoggedIn = false;
+
+// Sensor widget types that require login
+const sensorWidgets = [
+  "soilMoisture",
+  "temperature",
+  "cropHealth",
+  "weatherStation",
+  "sensorStatus",
+  "irrigationControl",
+  "yieldForecast",
+];
+
+// Check if user is logged in
+function checkLoginStatus() {
+  const userData = localStorage.getItem("agrisense-user");
+  if (userData) {
+    const user = JSON.parse(userData);
+    isUserLoggedIn = user.loggedIn === true;
+  }
+
+  // Show/hide trial banner
+  const trialBanner = document.getElementById("trialBanner");
+  if (trialBanner) {
+    trialBanner.style.display = isUserLoggedIn ? "none" : "block";
+  }
+
+  return isUserLoggedIn;
+}
+
+// Show login modal
+function showLoginModal() {
+  const modal = document.getElementById("loginModal");
+  if (modal) {
+    modal.classList.add("active");
+  }
+}
+
+// Close login modal
+function closeLoginModal() {
+  const modal = document.getElementById("loginModal");
+  if (modal) {
+    modal.classList.remove("active");
+  }
+}
+
+// Check if widget requires login
+function requiresLogin(widgetType) {
+  return sensorWidgets.includes(widgetType) && !isUserLoggedIn;
+}
 
 // Initialize
 document.addEventListener("DOMContentLoaded", () => {
+  checkLoginStatus();
   loadDashboards();
   setupEventListeners();
   setupFreeformDragAndDrop();
@@ -28,7 +79,7 @@ function loadDashboards() {
   } else {
     dashboards = {
       default: {
-        name: "My Dashboard",
+        name: "My Farm",
         widgets: [],
       },
     };
@@ -49,7 +100,7 @@ function saveWidgetPositions() {
 
   widgets.forEach((widget) => {
     const widgetData = dashboards[currentDashboardId].widgets.find(
-      (w) => w.id === widget.id
+      (w) => w.id === widget.id,
     );
     if (widgetData) {
       widgetData.position = {
@@ -70,6 +121,13 @@ function setupEventListeners() {
   document.querySelectorAll(".widget-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
       const widgetType = btn.getAttribute("data-widget");
+
+      // Check if sensor widget requires login
+      if (requiresLogin(widgetType)) {
+        showLoginModal();
+        return;
+      }
+
       // Open config modal for new widget at center
       const canvas = document.getElementById("canvasGrid");
       const rect = canvas.getBoundingClientRect();
@@ -171,6 +229,13 @@ function setupFreeformDragAndDrop() {
     const y = e.clientY - rect.top - 20;
 
     if (draggedWidgetType && !draggedWidget) {
+      // Check if sensor widget requires login
+      if (requiresLogin(draggedWidgetType)) {
+        showLoginModal();
+        draggedWidgetType = null;
+        return;
+      }
+
       // Store drop position and open config modal
       pendingWidgetDrop = {
         type: draggedWidgetType,
@@ -692,7 +757,7 @@ function renderCurrentDashboard() {
     const widgetDiv = document.createElement("div");
     widgetDiv.innerHTML = template.create(
       widgetData.id,
-      widgetData.config || widgetData.data
+      widgetData.config || widgetData.data,
     );
     const widgetElement = widgetDiv.firstElementChild;
 

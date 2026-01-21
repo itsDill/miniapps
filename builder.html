@@ -1,23 +1,57 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard Builder - DashCraft</title>
+    <title>Farm Dashboard - AgriSense</title>
     <link rel="stylesheet" href="styles.css" />
     <!-- PapaParse for CSV parsing -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
   </head>
   <body class="builder-page">
+    <!-- Trial Banner (shown when not logged in) -->
+    <div class="trial-banner" id="trialBanner" style="display: none">
+      🌱 You're using AgriSense in trial mode.
+      <a href="signup.html">Sign up free</a> to save your dashboard and connect
+      sensors.
+    </div>
+
+    <!-- Login Modal -->
+    <div class="login-modal" id="loginModal">
+      <div class="login-modal-content">
+        <h3>Connect Your Sensors</h3>
+        <p>
+          Create a free account to connect your sensors and unlock all features.
+        </p>
+        <div class="login-modal-buttons">
+          <a
+            href="signup.html"
+            class="btn btn-primary"
+            style="text-decoration: none"
+            >Start Free Trial</a
+          >
+          <a
+            href="login.html"
+            class="btn btn-secondary"
+            style="text-decoration: none"
+            >Log In</a
+          >
+          <button class="btn btn-text" onclick="closeLoginModal()">
+            Continue in Trial Mode
+          </button>
+        </div>
+      </div>
+    </div>
+
     <!-- Header -->
     <header class="builder-header">
       <div class="header-left">
         <a href="index.html" class="logo-link">
-          <div class="logo-icon">D</div>
-          <span class="logo-text">DashCraft</span>
+          <div class="logo-icon">🌱</div>
+          <span class="logo-text">AgriSense</span>
         </a>
         <select id="dashboardSelect" class="dashboard-select">
-          <option value="default">My Dashboard</option>
+          <option value="default">My Farm</option>
         </select>
       </div>
       <div class="header-right">
@@ -90,48 +124,68 @@
     <div class="builder-container">
       <!-- Sidebar -->
       <aside class="sidebar">
-        <h3 class="sidebar-title">Add Widgets</h3>
-        <p class="sidebar-hint">Drag widgets to the canvas or click to add</p>
+        <h3 class="sidebar-title">Sensor Widgets</h3>
+        <p class="sidebar-hint">Add widgets to monitor your farm</p>
         <div class="widget-list">
-          <button class="widget-btn" data-widget="clock" draggable="true">
-            <span class="widget-icon">🕐</span>
-            <span>Clock</span>
+          <button
+            class="widget-btn"
+            data-widget="soilMoisture"
+            draggable="true"
+          >
+            <span class="widget-icon">💧</span>
+            <span>Soil Moisture</span>
           </button>
-          <button class="widget-btn" data-widget="weather" draggable="true">
-            <span class="widget-icon">☁️</span>
+          <button class="widget-btn" data-widget="temperature" draggable="true">
+            <span class="widget-icon">🌡️</span>
+            <span>Temperature</span>
+          </button>
+          <button class="widget-btn" data-widget="cropHealth" draggable="true">
+            <span class="widget-icon">🌱</span>
+            <span>Crop Health</span>
+          </button>
+          <button
+            class="widget-btn"
+            data-widget="weatherStation"
+            draggable="true"
+          >
+            <span class="widget-icon">🌤️</span>
             <span>Weather</span>
           </button>
-          <button class="widget-btn" data-widget="todo" draggable="true">
-            <span class="widget-icon">✅</span>
-            <span>Todo List</span>
+          <button
+            class="widget-btn"
+            data-widget="sensorStatus"
+            draggable="true"
+          >
+            <span class="widget-icon">📡</span>
+            <span>Sensor Status</span>
           </button>
-          <button class="widget-btn" data-widget="notes" draggable="true">
-            <span class="widget-icon">📝</span>
-            <span>Notes</span>
+          <button
+            class="widget-btn"
+            data-widget="irrigationControl"
+            draggable="true"
+          >
+            <span class="widget-icon">💦</span>
+            <span>Irrigation</span>
           </button>
-          <button class="widget-btn" data-widget="calendar" draggable="true">
-            <span class="widget-icon">📅</span>
-            <span>Calendar</span>
-          </button>
-          <button class="widget-btn" data-widget="timer" draggable="true">
-            <span class="widget-icon">⏱️</span>
-            <span>Timer</span>
-          </button>
-          <button class="widget-btn" data-widget="quote" draggable="true">
-            <span class="widget-icon">💬</span>
-            <span>Quote</span>
-          </button>
-          <button class="widget-btn" data-widget="links" draggable="true">
-            <span class="widget-icon">🔗</span>
-            <span>Quick Links</span>
-          </button>
-          <button class="widget-btn" data-widget="datatable" draggable="true">
+          <button
+            class="widget-btn"
+            data-widget="yieldForecast"
+            draggable="true"
+          >
             <span class="widget-icon">📊</span>
-            <span>Data Table</span>
+            <span>Yield Forecast</span>
           </button>
           <button class="widget-btn" data-widget="chart" draggable="true">
             <span class="widget-icon">📈</span>
             <span>Chart</span>
+          </button>
+          <button class="widget-btn" data-widget="datatable" draggable="true">
+            <span class="widget-icon">📋</span>
+            <span>Data Table</span>
+          </button>
+          <button class="widget-btn" data-widget="notes" draggable="true">
+            <span class="widget-icon">📝</span>
+            <span>Notes</span>
           </button>
         </div>
       </aside>
@@ -140,11 +194,11 @@
       <main class="canvas" id="canvas">
         <div class="canvas-grid" id="canvasGrid">
           <div class="empty-state" id="emptyState">
-            <div class="empty-icon">📊</div>
-            <h2 class="empty-title">Start Building Your Dashboard</h2>
+            <div class="empty-icon">🌾</div>
+            <h2 class="empty-title">Build Your Farm Dashboard</h2>
             <p class="empty-desc">
-              Drag widgets from the sidebar or click to add them to your
-              dashboard
+              Add widgets to monitor soil, weather, crops and more from your
+              sensors
             </p>
             <div class="drop-zone-hint">
               <svg

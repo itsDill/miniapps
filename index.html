@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DashCraft - Build Your Perfect Dashboard</title>
+    <title>AgriSense - Smart Farm Monitoring Dashboard</title>
     <meta
       name="description"
-      content="Create beautiful, customizable dashboards with drag-and-drop widgets. Choose from stunning templates or build from scratch."
+      content="Connect your IoT sensors and monitor your farm in real-time. Soil moisture, weather forecasting, flood prediction, and more."
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -14,341 +14,252 @@
     <!-- Navigation -->
     <nav class="nav">
       <div class="container nav-content">
-        <div class="logo">
-          <div class="logo-icon">D</div>
-          <span class="logo-text">DashCraft</span>
+        <a href="index.html" class="logo">
+          <div class="logo-icon">🌱</div>
+          <span class="logo-text">AgriSense</span>
+        </a>
+        <div class="nav-links">
+          <a href="tools.html" class="nav-link">Tools</a>
+          <a href="features.html" class="nav-link">Features</a>
+          <a href="sensors.html" class="nav-link">Sensors</a>
+          <a href="blog.html" class="nav-link">Blog</a>
         </div>
-        <a href="builder.html" class="btn btn-primary">Start Building</a>
+        <div class="nav-buttons">
+          <a href="login.html" class="btn btn-secondary btn-small">Log In</a>
+          <a href="builder.html" class="btn btn-primary btn-small">Try Free</a>
+        </div>
       </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero hero-agri">
       <div class="container hero-content">
-        <h1 class="hero-title">Build Your Perfect Dashboard</h1>
+        <h1 class="hero-title">Smart Farming Starts Here</h1>
         <p class="hero-subtitle">
-          Choose from beautiful pre-made templates or start from scratch. Drag,
-          drop, and customize widgets to create your ideal workspace.
+          Connect your IoT sensors and unlock powerful tools for monitoring soil, 
+          predicting weather, and optimizing your farm operations in real-time.
         </p>
         <div class="hero-buttons">
-          <a href="builder.html" class="btn btn-large btn-primary"
-            >Start from Blank</a
-          >
-          <a href="#templates" class="btn btn-large btn-secondary"
-            >Browse Templates</a
-          >
+          <a href="builder.html" class="btn btn-large btn-primary">Try Dashboard Free</a>
+          <a href="tools.html" class="btn btn-large btn-secondary">Explore Tools</a>
         </div>
-      </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features">
-      <div class="container">
-        <div class="features-grid">
-          <div class="feature-card">
-            <div
-              class="feature-icon"
-              style="
-                background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
-              "
-            >
-              <svg
-                width="32"
-                height="32"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-3zM14 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1h-4a1 1 0 01-1-1v-3z"
-                />
-              </svg>
-            </div>
-            <h3 class="feature-title">Drag & Drop</h3>
-            <p class="feature-desc">
-              Intuitive drag-and-drop interface. Arrange widgets exactly how you
-              want them.
-            </p>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="stat-number">12K+</span>
+            <span class="stat-label">Farmers</span>
           </div>
-
-          <div class="feature-card">
-            <div
-              class="feature-icon"
-              style="
-                background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
-              "
-            >
-              <svg
-                width="32"
-                height="32"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
-                />
-              </svg>
-            </div>
-            <h3 class="feature-title">Fully Customizable</h3>
-            <p class="feature-desc">
-              Personalize every aspect. Colors, sizes, content - make it truly
-              yours.
-            </p>
+          <div class="hero-stat">
+            <span class="stat-number">50K+</span>
+            <span class="stat-label">Sensors Connected</span>
           </div>
-
-          <div class="feature-card">
-            <div
-              class="feature-icon"
-              style="
-                background: linear-gradient(135deg, #f472b6 0%, #ec4899 100%);
-              "
-            >
-              <svg
-                width="32"
-                height="32"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M13 10V3L4 14h7v7l9-11h-7z"
-                />
-              </svg>
-            </div>
-            <h3 class="feature-title">Lightning Fast</h3>
-            <p class="feature-desc">
-              Built with modern tech. Smooth animations and instant updates.
-            </p>
+          <div class="hero-stat">
+            <span class="stat-number">30%</span>
+            <span class="stat-label">Avg. Yield Increase</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Templates Section -->
-    <section id="templates" class="templates">
+    <!-- Tools Preview Section -->
+    <section class="tools-preview">
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title">Choose Your Template</h2>
+          <h2 class="section-title">Powerful Tools for Every Farm</h2>
           <p class="section-subtitle">
-            Start with a professionally designed template and customize it to
-            your needs
+            From indoor growing to flood prediction, we have got you covered
           </p>
         </div>
 
-        <div class="templates-grid">
-          <div class="template-card">
-            <div
-              class="template-preview"
-              style="
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-              "
-            >
-              <div class="template-widgets">
-                <div class="widget-preview"></div>
-                <div class="widget-preview"></div>
-                <div class="widget-preview"></div>
-                <div class="widget-preview"></div>
-              </div>
-              <span class="template-badge">4 widgets</span>
+        <div class="tools-preview-grid">
+          <!-- Grow Anywhere -->
+          <a href="tools.html" class="tool-preview-card">
+            <div class="tool-preview-icon" style="background: linear-gradient(135deg, #22c55e, #16a34a);">
+              🌿
             </div>
-            <div class="template-info">
-              <h3 class="template-title">Productivity Pro</h3>
-              <p class="template-desc">
-                Everything you need to stay organized and focused. Perfect for
-                professionals and students.
-              </p>
-              <div class="template-tags">
-                <span class="tag">Work</span>
-                <span class="tag">Focus</span>
-                <span class="tag">Organization</span>
-              </div>
-              <a
-                href="builder.html?template=productivity"
-                class="btn btn-primary btn-full"
-                >Use This Template</a
-              >
+            <h3>Grow Anywhere</h3>
+            <p>Complete environment control for indoor, greenhouse, and vertical farming. Automate lighting, climate, and more.</p>
+            <span class="tool-link">Learn more →</span>
+          </a>
+
+          <!-- Weather & Floods -->
+          <a href="tools.html" class="tool-preview-card featured">
+            <span class="tool-preview-badge">New</span>
+            <div class="tool-preview-icon" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">
+              🌧️
             </div>
+            <h3>Weather & Floods</h3>
+            <p>Advanced weather forecasting with flood risk prediction. Get early warnings for extreme weather events.</p>
+            <span class="tool-link">Learn more →</span>
+          </a>
+
+          <!-- Soil Health -->
+          <a href="tools.html" class="tool-preview-card">
+            <div class="tool-preview-icon" style="background: linear-gradient(135deg, #a16207, #854d0e);">
+              🌍
+            </div>
+            <h3>Soil Health</h3>
+            <p>Track nutrients, pH levels, and organic matter. Get fertilizer recommendations based on real data.</p>
+            <span class="tool-link">Learn more →</span>
+          </a>
+        </div>
+
+        <div class="tools-preview-cta">
+          <a href="tools.html" class="btn btn-secondary">View All Tools</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works-home">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Connect Your Sensors in Minutes</h2>
+          <p class="section-subtitle">Bring your own IoT sensors or choose from our compatible devices</p>
+        </div>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <h3>Sign Up Free</h3>
+            <p>Create your account and access the dashboard instantly</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <h3>Add Sensors</h3>
+            <p>Connect your IoT sensors via WiFi, LoRaWAN, or API</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <h3>Start Monitoring</h3>
+            <p>See real-time data and get insights immediately</p>
+          </div>
+        </div>
+        <div class="steps-cta">
+          <a href="sensors.html" class="btn btn-primary">See Compatible Sensors</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Preview -->
+    <section id="features" class="features">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Why Farmers Choose AgriSense</h2>
+          <p class="section-subtitle">
+            Everything you need to modernize your farm operations
+          </p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon" style="background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);">
+              <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h3 class="feature-title">Real-Time Data</h3>
+            <p class="feature-desc">
+              Live updates from all your sensors. Track everything 24/7 from anywhere.
+            </p>
           </div>
 
-          <div class="template-card">
-            <div
-              class="template-preview"
-              style="
-                background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-              "
-            >
-              <div class="template-widgets">
-                <div class="widget-preview"></div>
-                <div class="widget-preview"></div>
-                <div class="widget-preview"></div>
-                <div class="widget-preview"></div>
-                <div class="widget-preview"></div>
-              </div>
-              <span class="template-badge">5 widgets</span>
+          <div class="feature-card">
+            <div class="feature-icon" style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);">
+              <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
             </div>
-            <div class="template-info">
-              <h3 class="template-title">Personal Hub</h3>
-              <p class="template-desc">
-                Your daily companion with weather, quotes, and personal tracking
-                tools.
-              </p>
-              <div class="template-tags">
-                <span class="tag">Daily</span>
-                <span class="tag">Personal</span>
-                <span class="tag">Lifestyle</span>
-              </div>
-              <a
-                href="builder.html?template=personal"
-                class="btn btn-primary btn-full"
-                >Use This Template</a
-              >
-            </div>
+            <h3 class="feature-title">Smart Analytics</h3>
+            <p class="feature-desc">
+              Historical trends, AI predictions, and actionable insights for better decisions.
+            </p>
           </div>
 
-          <div class="template-card">
-            <div
-              class="template-preview"
-              style="
-                background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-              "
-            >
-              <div class="template-widgets">
-                <div class="widget-preview"></div>
-                <div class="widget-preview"></div>
-                <div class="widget-preview"></div>
-                <div class="widget-preview"></div>
-              </div>
-              <span class="template-badge">4 widgets</span>
+          <div class="feature-card">
+            <div class="feature-icon" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+              <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+              </svg>
             </div>
-            <div class="template-info">
-              <h3 class="template-title">Developer Workspace</h3>
-              <p class="template-desc">
-                Optimized for developers with quick access to tools and time
-                tracking.
-              </p>
-              <div class="template-tags">
-                <span class="tag">Developer</span>
-                <span class="tag">Tech</span>
-                <span class="tag">Coding</span>
-              </div>
-              <a
-                href="builder.html?template=developer"
-                class="btn btn-primary btn-full"
-                >Use This Template</a
-              >
+            <h3 class="feature-title">Instant Alerts</h3>
+            <p class="feature-desc">
+              Get notified immediately when conditions change. Email, SMS, or push.
+            </p>
+          </div>
+        </div>
+        <div class="features-cta">
+          <a href="features.html" class="btn btn-secondary">See All Features</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonial/Social Proof -->
+    <section class="testimonials">
+      <div class="container">
+        <div class="testimonial-card">
+          <blockquote>
+            "AgriSense helped us reduce water usage by 35% while actually increasing our tomato yield. The flood prediction tool saved our crops during the last monsoon season."
+          </blockquote>
+          <div class="testimonial-author">
+            <div class="author-avatar">👨‍🌾</div>
+            <div class="author-info">
+              <strong>Rajesh Patel</strong>
+              <span>Greenhouse Farmer, Gujarat</span>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
 
-          <div class="template-card">
-            <div
-              class="template-preview"
-              style="
-                background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-              "
-            >
-              <div class="template-widgets">
-                <div class="widget-preview"></div>
-                <div class="widget-preview"></div>
-                <div class="widget-preview"></div>
-              </div>
-              <span class="template-badge">3 widgets</span>
+    <!-- Pricing Preview -->
+    <section id="pricing" class="pricing-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Simple, Transparent Pricing</h2>
+          <p class="section-subtitle">Start free, upgrade when you need more</p>
+        </div>
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <h3 class="pricing-tier">Free</h3>
+            <div class="pricing-price">
+              <span class="price-amount">$0</span>
             </div>
-            <div class="template-info">
-              <h3 class="template-title">Minimalist</h3>
-              <p class="template-desc">
-                Clean and simple. Just the essentials for a distraction-free
-                experience.
-              </p>
-              <div class="template-tags">
-                <span class="tag">Simple</span>
-                <span class="tag">Clean</span>
-                <span class="tag">Minimal</span>
-              </div>
-              <a
-                href="builder.html?template=minimalist"
-                class="btn btn-primary btn-full"
-                >Use This Template</a
-              >
-            </div>
+            <ul class="pricing-features">
+              <li>✓ Up to 3 sensors</li>
+              <li>✓ Basic dashboard</li>
+              <li>✓ 7-day data history</li>
+              <li>✓ Email alerts</li>
+            </ul>
+            <a href="signup.html" class="btn btn-secondary btn-full">Get Started</a>
           </div>
-
-          <div class="template-card">
-            <div
-              class="template-preview"
-              style="
-                background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-              "
-            >
-              <div class="template-widgets">
-                <div class="widget-preview"></div>
-                <div class="widget-preview"></div>
-                <div class="widget-preview"></div>
-                <div class="widget-preview"></div>
-                <div class="widget-preview"></div>
-              </div>
-              <span class="template-badge">5 widgets</span>
+          <div class="pricing-card pricing-featured">
+            <span class="pricing-badge">Most Popular</span>
+            <h3 class="pricing-tier">Pro</h3>
+            <div class="pricing-price">
+              <span class="price-amount">$29</span>
+              <span class="price-period">/month</span>
             </div>
-            <div class="template-info">
-              <h3 class="template-title">Content Creator</h3>
-              <p class="template-desc">
-                Perfect for creators tracking progress, managing tasks, and
-                staying inspired.
-              </p>
-              <div class="template-tags">
-                <span class="tag">Creative</span>
-                <span class="tag">Content</span>
-                <span class="tag">Projects</span>
-              </div>
-              <a
-                href="builder.html?template=creator"
-                class="btn btn-primary btn-full"
-                >Use This Template</a
-              >
-            </div>
+            <ul class="pricing-features">
+              <li>✓ Up to 25 sensors</li>
+              <li>✓ All tools included</li>
+              <li>✓ 1-year data history</li>
+              <li>✓ SMS & push alerts</li>
+              <li>✓ Export reports</li>
+            </ul>
+            <a href="signup.html" class="btn btn-primary btn-full">Start Free Trial</a>
           </div>
-
-          <div class="template-card">
-            <div
-              class="template-preview"
-              style="
-                background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
-              "
-            >
-              <div class="template-widgets">
-                <div class="widget-preview"></div>
-                <div class="widget-preview"></div>
-                <div class="widget-preview"></div>
-                <div class="widget-preview"></div>
-              </div>
-              <span class="template-badge">4 widgets</span>
+          <div class="pricing-card">
+            <h3 class="pricing-tier">Enterprise</h3>
+            <div class="pricing-price">
+              <span class="price-amount">$99</span>
+              <span class="price-period">/month</span>
             </div>
-            <div class="template-info">
-              <h3 class="template-title">News & Information</h3>
-              <p class="template-desc">
-                Stay informed with RSS feeds, weather updates, and organized
-                reading lists.
-              </p>
-              <div class="template-tags">
-                <span class="tag">News</span>
-                <span class="tag">Reading</span>
-                <span class="tag">Information</span>
-              </div>
-              <a
-                href="builder.html?template=news"
-                class="btn btn-primary btn-full"
-                >Use This Template</a
-              >
-            </div>
+            <ul class="pricing-features">
+              <li>✓ Unlimited sensors</li>
+              <li>✓ AI predictions</li>
+              <li>✓ Unlimited history</li>
+              <li>✓ API access</li>
+              <li>✓ Priority support</li>
+            </ul>
+            <a href="#" class="btn btn-secondary btn-full">Contact Sales</a>
           </div>
         </div>
       </div>
@@ -358,22 +269,49 @@
     <section class="cta">
       <div class="container">
         <div class="cta-box">
-          <h2 class="cta-title">Ready to Build Your Dashboard?</h2>
+          <h2 class="cta-title">Ready to Transform Your Farm?</h2>
           <p class="cta-subtitle">
-            Join thousands of users creating their perfect workspace
+            Start your free trial today. No credit card required.
           </p>
-          <a href="builder.html" class="btn btn-large btn-white"
-            >Get Started Free</a
-          >
+          <a href="builder.html" class="btn btn-large btn-white">Try Dashboard Free</a>
         </div>
       </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <div class="logo">
+            <div class="logo-icon">🌱</div>
+            <span class="logo-text">AgriSense</span>
+          </div>
+          <p>Smart farming for everyone.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Product</h4>
+          <a href="tools.html">Tools</a>
+          <a href="features.html">Features</a>
+          <a href="sensors.html">Sensors</a>
+          <a href="#pricing">Pricing</a>
+        </div>
+        <div class="footer-links">
+          <h4>Resources</h4>
+          <a href="blog.html">Blog</a>
+          <a href="#">Documentation</a>
+          <a href="#">API</a>
+          <a href="#">Support</a>
+        </div>
+        <div class="footer-links">
+          <h4>Company</h4>
+          <a href="#">About</a>
+          <a href="#">Careers</a>
+          <a href="#">Contact</a>
+          <a href="#">Privacy</a>
+        </div>
+      </div>
       <div class="container">
-        <p class="footer-text">Built with ❤️ using HTML, CSS & JavaScript</p>
-        <p class="footer-copy">© 2025 DashCraft. All rights reserved.</p>
+        <p class="footer-copy">© 2026 AgriSense. All rights reserved.</p>
       </div>
     </footer>
   </body>

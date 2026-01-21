@@ -1,5 +1,322 @@
 // Widget Templates and Functions
 const widgetTemplates = {
+  // AgriSense Widgets
+  soilMoisture: {
+    title: "💧 Soil Moisture",
+    create: (id, data) => `
+            <div class="widget" id="${id}" data-type="soilMoisture">
+                <div class="widget-header">
+                    <div class="widget-title">💧 Soil Moisture</div>
+                    <button class="widget-remove" onclick="removeWidget('${id}')">×</button>
+                </div>
+                <div class="widget-content">
+                    <div style="text-align: center;">
+                        <div style="font-size: 3rem; font-weight: bold; color: #3b82f6;" id="${id}-value">42%</div>
+                        <div style="color: var(--text-light); margin-bottom: 1rem;">Current Level</div>
+                        <div style="background: #e5e7eb; border-radius: 0.5rem; height: 12px; overflow: hidden;">
+                            <div id="${id}-bar" style="background: linear-gradient(90deg, #3b82f6, #60a5fa); height: 100%; width: 42%; transition: width 0.5s;"></div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.75rem; color: var(--text-light);">
+                            <span>Dry</span>
+                            <span>Optimal</span>
+                            <span>Wet</span>
+                        </div>
+                        <div style="margin-top: 1rem; padding: 0.5rem; background: #f0fdf4; border-radius: 0.5rem; color: #16a34a; font-size: 0.875rem;">
+                            ✓ Optimal moisture level
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `,
+    init: (id) => {
+      const updateMoisture = () => {
+        const value = 35 + Math.random() * 20;
+        const valueEl = document.getElementById(`${id}-value`);
+        const barEl = document.getElementById(`${id}-bar`);
+        if (valueEl) valueEl.textContent = Math.round(value) + "%";
+        if (barEl) barEl.style.width = value + "%";
+      };
+      setInterval(updateMoisture, 5000);
+    },
+  },
+
+  temperature: {
+    title: "🌡️ Temperature",
+    create: (id, data) => `
+            <div class="widget" id="${id}" data-type="temperature">
+                <div class="widget-header">
+                    <div class="widget-title">🌡️ Temperature & Humidity</div>
+                    <button class="widget-remove" onclick="removeWidget('${id}')">×</button>
+                </div>
+                <div class="widget-content">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; text-align: center;">
+                        <div>
+                            <div style="font-size: 2.5rem; font-weight: bold; color: #ef4444;" id="${id}-temp">24°C</div>
+                            <div style="color: var(--text-light); font-size: 0.875rem;">Air Temp</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 2.5rem; font-weight: bold; color: #8b5cf6;" id="${id}-humidity">68%</div>
+                            <div style="color: var(--text-light); font-size: 0.875rem;">Humidity</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.875rem;">
+                            <span style="color: var(--text-light);">Soil Temp</span>
+                            <span style="font-weight: 500;" id="${id}-soil">18°C</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.875rem; margin-top: 0.5rem;">
+                            <span style="color: var(--text-light);">Dew Point</span>
+                            <span style="font-weight: 500;" id="${id}-dew">16°C</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `,
+    init: (id) => {
+      const updateTemp = () => {
+        const temp = 20 + Math.random() * 10;
+        const humidity = 55 + Math.random() * 25;
+        document.getElementById(`${id}-temp`).textContent =
+          Math.round(temp) + "°C";
+        document.getElementById(`${id}-humidity`).textContent =
+          Math.round(humidity) + "%";
+        document.getElementById(`${id}-soil`).textContent =
+          Math.round(temp - 6) + "°C";
+        document.getElementById(`${id}-dew`).textContent =
+          Math.round(temp - 8) + "°C";
+      };
+      setInterval(updateTemp, 5000);
+    },
+  },
+
+  cropHealth: {
+    title: "🌱 Crop Health",
+    create: (id, data) => `
+            <div class="widget" id="${id}" data-type="cropHealth">
+                <div class="widget-header">
+                    <div class="widget-title">🌱 Crop Health Index</div>
+                    <button class="widget-remove" onclick="removeWidget('${id}')">×</button>
+                </div>
+                <div class="widget-content">
+                    <div style="text-align: center;">
+                        <div style="position: relative; width: 120px; height: 120px; margin: 0 auto;">
+                            <svg viewBox="0 0 36 36" style="transform: rotate(-90deg);">
+                                <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#e5e7eb" stroke-width="3"/>
+                                <path id="${id}-ring" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#22c55e" stroke-width="3" stroke-dasharray="85, 100"/>
+                            </svg>
+                            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                                <div style="font-size: 1.5rem; font-weight: bold;" id="${id}-score">85</div>
+                                <div style="font-size: 0.625rem; color: var(--text-light);">NDVI</div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 1rem; font-weight: 500; color: #16a34a;">Excellent Health</div>
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-top: 1rem; font-size: 0.75rem;">
+                            <div style="padding: 0.5rem; background: #fef2f2; border-radius: 0.25rem;">
+                                <div style="color: #ef4444;">2%</div>
+                                <div style="color: var(--text-light);">Stress</div>
+                            </div>
+                            <div style="padding: 0.5rem; background: #fefce8; border-radius: 0.25rem;">
+                                <div style="color: #eab308;">8%</div>
+                                <div style="color: var(--text-light);">Warning</div>
+                            </div>
+                            <div style="padding: 0.5rem; background: #f0fdf4; border-radius: 0.25rem;">
+                                <div style="color: #22c55e;">90%</div>
+                                <div style="color: var(--text-light);">Healthy</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `,
+    init: (id) => {},
+  },
+
+  weatherStation: {
+    title: "🌤️ Weather Station",
+    create: (id, data) => `
+            <div class="widget" id="${id}" data-type="weatherStation">
+                <div class="widget-header">
+                    <div class="widget-title">🌤️ Weather Station</div>
+                    <button class="widget-remove" onclick="removeWidget('${id}')">×</button>
+                </div>
+                <div class="widget-content">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div style="text-align: center; padding: 1rem; background: #fef3c7; border-radius: 0.5rem;">
+                            <div style="font-size: 2rem;">☀️</div>
+                            <div style="font-size: 1.5rem; font-weight: bold;">26°C</div>
+                            <div style="font-size: 0.75rem; color: var(--text-light);">Sunny</div>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                            <div style="display: flex; justify-content: space-between; padding: 0.5rem; background: var(--bg-light); border-radius: 0.25rem;">
+                                <span>💨 Wind</span>
+                                <span style="font-weight: 500;" id="${id}-wind">12 km/h</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 0.5rem; background: var(--bg-light); border-radius: 0.25rem;">
+                                <span>☔ Rain</span>
+                                <span style="font-weight: 500;" id="${id}-rain">0 mm</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 0.5rem; background: var(--bg-light); border-radius: 0.25rem;">
+                                <span>☀️ UV</span>
+                                <span style="font-weight: 500;" id="${id}-uv">6 (High)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; padding: 0.75rem; background: #eff6ff; border-radius: 0.5rem; font-size: 0.875rem; color: #3b82f6;">
+                        📊 Next 3 days: Optimal conditions for planting
+                    </div>
+                </div>
+            </div>
+        `,
+    init: (id) => {},
+  },
+
+  sensorStatus: {
+    title: "📡 Sensor Status",
+    create: (id, data) => `
+            <div class="widget" id="${id}" data-type="sensorStatus">
+                <div class="widget-header">
+                    <div class="widget-title">📡 Sensor Status</div>
+                    <button class="widget-remove" onclick="removeWidget('${id}')">×</button>
+                </div>
+                <div class="widget-content">
+                    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem; background: var(--bg-light); border-radius: 0.5rem;">
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <span style="width: 8px; height: 8px; background: #22c55e; border-radius: 50%;"></span>
+                                <span>Field A - Moisture</span>
+                            </div>
+                            <span style="color: var(--text-light); font-size: 0.75rem;">2 min ago</span>
+                        </div>
+                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem; background: var(--bg-light); border-radius: 0.5rem;">
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <span style="width: 8px; height: 8px; background: #22c55e; border-radius: 50%;"></span>
+                                <span>Field A - Temp</span>
+                            </div>
+                            <span style="color: var(--text-light); font-size: 0.75rem;">1 min ago</span>
+                        </div>
+                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem; background: var(--bg-light); border-radius: 0.5rem;">
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <span style="width: 8px; height: 8px; background: #f59e0b; border-radius: 50%;"></span>
+                                <span>Field B - NPK</span>
+                            </div>
+                            <span style="color: #f59e0b; font-size: 0.75rem;">Low battery</span>
+                        </div>
+                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem; background: var(--bg-light); border-radius: 0.5rem;">
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <span style="width: 8px; height: 8px; background: #22c55e; border-radius: 50%;"></span>
+                                <span>Weather Station</span>
+                            </div>
+                            <span style="color: var(--text-light); font-size: 0.75rem;">5 sec ago</span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; text-align: center; font-size: 0.875rem; color: var(--text-light);">
+                        4 sensors online • 1 needs attention
+                    </div>
+                </div>
+            </div>
+        `,
+    init: (id) => {},
+  },
+
+  irrigationControl: {
+    title: "💦 Irrigation",
+    create: (id, data) => `
+            <div class="widget" id="${id}" data-type="irrigationControl">
+                <div class="widget-header">
+                    <div class="widget-title">💦 Irrigation Control</div>
+                    <button class="widget-remove" onclick="removeWidget('${id}')">×</button>
+                </div>
+                <div class="widget-content">
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div style="font-weight: 500;">Zone A - North Field</div>
+                                <div style="font-size: 0.75rem; color: var(--text-light);">Scheduled: 6:00 AM</div>
+                            </div>
+                            <label style="position: relative; display: inline-block; width: 48px; height: 24px;">
+                                <input type="checkbox" checked style="opacity: 0; width: 0; height: 0;">
+                                <span style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #22c55e; border-radius: 24px; transition: 0.3s;"></span>
+                            </label>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div style="font-weight: 500;">Zone B - South Field</div>
+                                <div style="font-size: 0.75rem; color: var(--text-light);">Scheduled: 6:30 AM</div>
+                            </div>
+                            <label style="position: relative; display: inline-block; width: 48px; height: 24px;">
+                                <input type="checkbox" style="opacity: 0; width: 0; height: 0;">
+                                <span style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #e5e7eb; border-radius: 24px; transition: 0.3s;"></span>
+                            </label>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div style="font-weight: 500;">Zone C - Greenhouse</div>
+                                <div style="font-size: 0.75rem; color: #3b82f6;">🔄 Running (15 min left)</div>
+                            </div>
+                            <label style="position: relative; display: inline-block; width: 48px; height: 24px;">
+                                <input type="checkbox" checked style="opacity: 0; width: 0; height: 0;">
+                                <span style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #3b82f6; border-radius: 24px; transition: 0.3s;"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; padding: 0.75rem; background: #f0fdf4; border-radius: 0.5rem; font-size: 0.875rem; color: #16a34a;">
+                        💡 AI Suggestion: Skip Zone B today - rain expected
+                    </div>
+                </div>
+            </div>
+        `,
+    init: (id) => {},
+  },
+
+  yieldForecast: {
+    title: "📊 Yield Forecast",
+    create: (id, data) => `
+            <div class="widget" id="${id}" data-type="yieldForecast">
+                <div class="widget-header">
+                    <div class="widget-title">📊 Yield Forecast</div>
+                    <button class="widget-remove" onclick="removeWidget('${id}')">×</button>
+                </div>
+                <div class="widget-content">
+                    <div style="text-align: center; margin-bottom: 1rem;">
+                        <div style="font-size: 2.5rem; font-weight: bold; color: var(--primary);">12.4t</div>
+                        <div style="color: var(--text-light);">Estimated harvest</div>
+                        <div style="color: #22c55e; font-size: 0.875rem; margin-top: 0.25rem;">↑ 8% vs last year</div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <div>
+                            <div style="display: flex; justify-content: space-between; font-size: 0.875rem; margin-bottom: 0.25rem;">
+                                <span>Corn - Field A</span>
+                                <span style="font-weight: 500;">5.2t</span>
+                            </div>
+                            <div style="background: #e5e7eb; border-radius: 0.25rem; height: 8px; overflow: hidden;">
+                                <div style="background: #22c55e; height: 100%; width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; font-size: 0.875rem; margin-bottom: 0.25rem;">
+                                <span>Wheat - Field B</span>
+                                <span style="font-weight: 500;">4.8t</span>
+                            </div>
+                            <div style="background: #e5e7eb; border-radius: 0.25rem; height: 8px; overflow: hidden;">
+                                <div style="background: #f59e0b; height: 100%; width: 72%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; font-size: 0.875rem; margin-bottom: 0.25rem;">
+                                <span>Soybeans - Field C</span>
+                                <span style="font-weight: 500;">2.4t</span>
+                            </div>
+                            <div style="background: #e5e7eb; border-radius: 0.25rem; height: 8px; overflow: hidden;">
+                                <div style="background: #3b82f6; height: 100%; width: 65%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `,
+    init: (id) => {},
+  },
+
   clock: {
     title: "🕐 Clock",
     create: (id, data) => `
@@ -146,12 +463,12 @@ const widgetTemplates = {
         const firstDay = new Date(
           now.getFullYear(),
           now.getMonth(),
-          1
+          1,
         ).getDay();
         const daysInMonth = new Date(
           now.getFullYear(),
           now.getMonth() + 1,
-          0
+          0,
         ).getDate();
         let html = "";
         for (let i = 0; i < firstDay; i++) html += "<div></div>";
@@ -285,8 +602,8 @@ const widgetTemplates = {
                         .map(
                           (h, i) =>
                             `<th onclick="sortDataTable('${id}', ${i})">${escapeHtmlWidget(
-                              h
-                            )} <span class="sort-icon">↕</span></th>`
+                              h,
+                            )} <span class="sort-icon">↕</span></th>`,
                         )
                         .join("")}
                     </tr>
@@ -299,10 +616,10 @@ const widgetTemplates = {
                             .map(
                               (h) =>
                                 `<td>${escapeHtmlWidget(
-                                  String(row[h] || "")
-                                )}</td>`
+                                  String(row[h] || ""),
+                                )}</td>`,
                             )
-                            .join("")}</tr>`
+                            .join("")}</tr>`,
                       )
                       .join("")}
                   </tbody>
@@ -368,7 +685,7 @@ const widgetTemplates = {
                       (h, i) =>
                         `<option value="${i}" ${
                           i === 1 ? "selected" : ""
-                        }>${h}</option>`
+                        }>${h}</option>`,
                     )
                     .join("")}
                 </select>
@@ -510,7 +827,7 @@ function renderChart(widgetId, data) {
         </div>
         <span class="chart-bar-label">${item.label}</span>
       </div>
-    `
+    `,
       )
       .join("");
   } else if (chartType === "line") {
@@ -530,7 +847,7 @@ function renderChart(widgetId, data) {
         ${points
           .map(
             (p) =>
-              `<circle cx="${p.x}" cy="${p.y}" r="3" fill="var(--primary)"/>`
+              `<circle cx="${p.x}" cy="${p.y}" r="3" fill="var(--primary)"/>`,
           )
           .join("")}
       </svg>
@@ -586,7 +903,7 @@ function renderChart(widgetId, data) {
             }"></span>
             <span>${item.label}: ${item.value}</span>
           </div>
-        `
+        `,
           )
           .join("")}
       </div>
@@ -652,7 +969,7 @@ function updateTimerDisplay(id) {
     const minutes = Math.floor(window[`${id}_time`] / 60);
     const seconds = window[`${id}_time`] % 60;
     display.textContent = `${String(minutes).padStart(2, "0")}:${String(
-      seconds
+      seconds,
     ).padStart(2, "0")}`;
   }
 }
