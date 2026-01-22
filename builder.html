@@ -55,6 +55,13 @@
         </select>
       </div>
       <div class="header-right">
+        <a
+          href="home-builder.html"
+          class="btn btn-small btn-secondary"
+          style="text-decoration: none"
+        >
+          🏠 Switch to Home
+        </a>
         <button
           id="importDataBtn"
           class="btn btn-small btn-secondary"
@@ -139,10 +146,6 @@
             <span class="widget-icon">🌡️</span>
             <span>Temperature</span>
           </button>
-          <button class="widget-btn" data-widget="cropHealth" draggable="true">
-            <span class="widget-icon">🌱</span>
-            <span>Crop Health</span>
-          </button>
           <button
             class="widget-btn"
             data-widget="weatherStation"
@@ -151,21 +154,9 @@
             <span class="widget-icon">🌤️</span>
             <span>Weather</span>
           </button>
-          <button
-            class="widget-btn"
-            data-widget="sensorStatus"
-            draggable="true"
-          >
-            <span class="widget-icon">📡</span>
-            <span>Sensor Status</span>
-          </button>
-          <button
-            class="widget-btn"
-            data-widget="irrigationControl"
-            draggable="true"
-          >
-            <span class="widget-icon">💦</span>
-            <span>Irrigation</span>
+          <button class="widget-btn" data-widget="cropHealth" draggable="true">
+            <span class="widget-icon">🌱</span>
+            <span>Crop Health</span>
           </button>
           <button
             class="widget-btn"
@@ -175,19 +166,13 @@
             <span class="widget-icon">📊</span>
             <span>Yield Forecast</span>
           </button>
-          <button class="widget-btn" data-widget="chart" draggable="true">
-            <span class="widget-icon">📈</span>
-            <span>Chart</span>
-          </button>
-          <button class="widget-btn" data-widget="datatable" draggable="true">
-            <span class="widget-icon">📋</span>
-            <span>Data Table</span>
-          </button>
-          <button class="widget-btn" data-widget="notes" draggable="true">
-            <span class="widget-icon">📝</span>
-            <span>Notes</span>
-          </button>
         </div>
+        <p
+          class="sidebar-hint"
+          style="margin-top: 1rem; font-size: 0.75rem; color: var(--text-light)"
+        >
+          💡 Drag & drop widgets, then click ⚙️ to customize
+        </p>
       </aside>
 
       <!-- Canvas -->

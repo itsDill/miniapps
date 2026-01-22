@@ -1,4 +1,4 @@
-// Dashboard Builder Main Script
+// Home Dashboard Builder Script
 
 // State
 let dashboards = {};
@@ -6,72 +6,57 @@ let currentDashboardId = "default";
 let widgetCounter = 0;
 let draggedWidget = null;
 let draggedWidgetType = null;
-let pendingWidgetDrop = null; // For storing drop position before config
+let pendingWidgetDrop = null;
 let activeResizeWidget = null;
 let resizeStartX, resizeStartY, resizeStartW, resizeStartH;
-let isUserLoggedIn = false;
 
-// Sensor widget types that require login (empty for free trial mode)
-const sensorWidgets = [];
-
-// Check if user is logged in
-function checkLoginStatus() {
-  const userData = localStorage.getItem("agrisense-user");
-  if (userData) {
-    const user = JSON.parse(userData);
-    isUserLoggedIn = user.loggedIn === true;
-  }
-
-  // Hide trial banner for free mode
-  const trialBanner = document.getElementById("trialBanner");
-  if (trialBanner) {
-    trialBanner.style.display = "none";
-  }
-
-  return isUserLoggedIn;
-}
-
-// Show login modal
-function showLoginModal() {
-  const modal = document.getElementById("loginModal");
-  if (modal) {
-    modal.classList.add("active");
-  }
-}
-
-// Close login modal
-function closeLoginModal() {
-  const modal = document.getElementById("loginModal");
-  if (modal) {
-    modal.classList.remove("active");
-  }
-}
-
-// Check if widget requires login
-function requiresLogin(widgetType) {
-  return sensorWidgets.includes(widgetType) && !isUserLoggedIn;
-}
+// Widget presets for home automation - clean and simple
+const widgetPresets = {
+  aircon: {
+    bgColor: "#e0f2fe",
+    size: "medium",
+    position: { width: 320, height: 280 },
+  },
+  lights: {
+    bgColor: "#fef9c3",
+    size: "medium",
+    position: { width: 300, height: 240 },
+  },
+  roomTemp: {
+    bgColor: "#fce7f3",
+    size: "small",
+    position: { width: 260, height: 200 },
+  },
+  energyUsage: {
+    bgColor: "#dcfce7",
+    size: "medium",
+    position: { width: 340, height: 280 },
+  },
+  security: {
+    bgColor: "#f1f5f9",
+    size: "medium",
+    position: { width: 320, height: 260 },
+  },
+};
 
 // Initialize
 document.addEventListener("DOMContentLoaded", () => {
-  checkLoginStatus();
   loadDashboards();
   setupEventListeners();
   setupFreeformDragAndDrop();
   setupWidgetConfigModal();
-  loadTemplateIfNeeded();
   renderCurrentDashboard();
 });
 
 // Load dashboards from localStorage
 function loadDashboards() {
-  const saved = localStorage.getItem("dashcraft-dashboards");
+  const saved = localStorage.getItem("homesense-dashboards");
   if (saved) {
     dashboards = JSON.parse(saved);
   } else {
     dashboards = {
       default: {
-        name: "My Farm",
+        name: "My Home",
         widgets: [],
       },
     };
@@ -80,7 +65,7 @@ function loadDashboards() {
 
 // Save dashboards to localStorage
 function saveDashboard() {
-  localStorage.setItem("dashcraft-dashboards", JSON.stringify(dashboards));
+  localStorage.setItem("homesense-dashboards", JSON.stringify(dashboards));
 }
 
 // Save widget positions for free-form layout
@@ -104,62 +89,8 @@ function saveWidgetPositions() {
     }
   });
 
-  localStorage.setItem("dashcraft-dashboards", JSON.stringify(dashboards));
+  localStorage.setItem("homesense-dashboards", JSON.stringify(dashboards));
 }
-
-// Widget presets - good default configurations for each widget type
-const widgetPresets = {
-  soilMoisture: {
-    bgColor: "#f0f9ff",
-    size: "medium",
-    position: { width: 320, height: 280 },
-  },
-  temperature: {
-    bgColor: "#fef2f2",
-    size: "medium",
-    position: { width: 340, height: 260 },
-  },
-  cropHealth: {
-    bgColor: "#f0fdf4",
-    size: "medium",
-    position: { width: 300, height: 320 },
-  },
-  weatherStation: {
-    bgColor: "#fffbeb",
-    size: "large",
-    position: { width: 380, height: 300 },
-  },
-  yieldForecast: {
-    bgColor: "#f5f3ff",
-    size: "large",
-    position: { width: 360, height: 340 },
-  },
-  sensorStatus: {
-    bgColor: "#f8fafc",
-    size: "medium",
-    position: { width: 320, height: 300 },
-  },
-  irrigationControl: {
-    bgColor: "#ecfeff",
-    size: "medium",
-    position: { width: 340, height: 320 },
-  },
-  notes: {
-    bgColor: "#fffbeb",
-    size: "medium",
-    position: { width: 300, height: 250 },
-  },
-  chart: {
-    bgColor: "#ffffff",
-    size: "large",
-    position: { width: 450, height: 350 },
-  },
-  datatable: {
-    bgColor: "#ffffff",
-    size: "large",
-    position: { width: 500, height: 350 },
-  },
-};
 
 // Setup event listeners
 function setupEventListeners() {
@@ -167,12 +98,6 @@ function setupEventListeners() {
   document.querySelectorAll(".widget-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
       const widgetType = btn.getAttribute("data-widget");
-
-      // Check if sensor widget requires login
-      if (requiresLogin(widgetType)) {
-        showLoginModal();
-        return;
-      }
 
       // Add widget immediately with presets at center
       const canvas = document.getElementById("canvasGrid");
@@ -281,17 +206,10 @@ function setupFreeformDragAndDrop() {
     canvasGrid.classList.remove("drag-over");
 
     const rect = canvasGrid.getBoundingClientRect();
-    const x = e.clientX - rect.left - 150; // Center the widget
+    const x = e.clientX - rect.left - 150;
     const y = e.clientY - rect.top - 20;
 
     if (draggedWidgetType && !draggedWidget) {
-      // Check if sensor widget requires login
-      if (requiresLogin(draggedWidgetType)) {
-        showLoginModal();
-        draggedWidgetType = null;
-        return;
-      }
-
       // Add widget immediately with presets at drop location
       const preset = widgetPresets[draggedWidgetType] || {
         position: { width: 300, height: 200 },
@@ -354,117 +272,6 @@ function setupWidgetConfigModal() {
   });
 }
 
-function openWidgetConfigModal(widgetType) {
-  const modal = document.getElementById("widgetConfigModal");
-  const title = document.getElementById("configWidgetType");
-  const contentSection = document.getElementById("widgetContentConfig");
-
-  if (!modal) return;
-
-  // Set widget type title
-  const widgetNames = {
-    clock: "🕐 Clock",
-    weather: "☁️ Weather",
-    todo: "✅ Todo List",
-    notes: "📝 Notes",
-    calendar: "📅 Calendar",
-    timer: "⏱️ Timer",
-    quote: "💬 Quote",
-    links: "🔗 Quick Links",
-    datatable: "📊 Data Table",
-    chart: "📈 Chart",
-  };
-  title.textContent = widgetNames[widgetType] || widgetType;
-
-  // Show relevant content options based on widget type
-  contentSection.innerHTML = getWidgetContentOptions(widgetType);
-
-  // Reset form
-  document.getElementById("widgetTitle").value = "";
-  document.querySelectorAll(".color-preset").forEach((p, i) => {
-    p.classList.toggle("active", i === 0);
-  });
-  document.querySelectorAll(".size-preset").forEach((p) => {
-    p.classList.toggle("active", p.dataset.size === "medium");
-  });
-
-  modal.classList.add("active");
-}
-
-function getWidgetContentOptions(type) {
-  switch (type) {
-    case "clock":
-      return `
-        <div class="config-group">
-          <label class="config-label">Time Format</label>
-          <select id="clockFormat" class="config-select">
-            <option value="12">12-hour</option>
-            <option value="24">24-hour</option>
-          </select>
-        </div>
-        <div class="config-group">
-          <label class="config-label">Show Date</label>
-          <input type="checkbox" id="clockShowDate" checked>
-        </div>
-      `;
-    case "weather":
-      return `
-        <div class="config-group">
-          <label class="config-label">City</label>
-          <input type="text" id="weatherCity" class="config-input" placeholder="San Francisco">
-        </div>
-        <div class="config-group">
-          <label class="config-label">Temperature Unit</label>
-          <select id="weatherUnit" class="config-select">
-            <option value="F">Fahrenheit (°F)</option>
-            <option value="C">Celsius (°C)</option>
-          </select>
-        </div>
-      `;
-    case "todo":
-      return `
-        <div class="config-group">
-          <label class="config-label">Initial Tasks (one per line)</label>
-          <textarea id="todoInitial" class="config-textarea" rows="3" placeholder="Buy groceries&#10;Finish project&#10;Call mom"></textarea>
-        </div>
-      `;
-    case "notes":
-      return `
-        <div class="config-group">
-          <label class="config-label">Initial Note</label>
-          <textarea id="notesInitial" class="config-textarea" rows="3" placeholder="Write something..."></textarea>
-        </div>
-      `;
-    case "quote":
-      return `
-        <div class="config-group">
-          <label class="config-label">Custom Quote (leave blank for random)</label>
-          <textarea id="quoteText" class="config-textarea" rows="2" placeholder="The only way to do great work..."></textarea>
-        </div>
-        <div class="config-group">
-          <label class="config-label">Author</label>
-          <input type="text" id="quoteAuthor" class="config-input" placeholder="Steve Jobs">
-        </div>
-      `;
-    case "links":
-      return `
-        <div class="config-group">
-          <label class="config-label">Links (name|url, one per line)</label>
-          <textarea id="linksInitial" class="config-textarea" rows="4" placeholder="Google|https://google.com&#10;GitHub|https://github.com"></textarea>
-        </div>
-      `;
-    case "timer":
-      return `
-        <div class="config-group">
-          <label class="config-label">Default Minutes</label>
-          <input type="number" id="timerMinutes" class="config-input" value="5" min="1" max="120">
-        </div>
-      `;
-    default:
-      return `<p class="config-hint">No additional options for this widget.</p>`;
-  }
-}
-
 function closeWidgetConfigModal() {
   const modal = document.getElementById("widgetConfigModal");
   modal?.classList.remove("active");
@@ -495,28 +302,16 @@ function openWidgetSettings(widgetId) {
 
   // Set widget type title
   const widgetNames = {
-    soilMoisture: "💧 Soil Moisture",
-    temperature: "🌡️ Temperature",
-    cropHealth: "🌱 Crop Health",
-    weatherStation: "🌤️ Weather Station",
-    yieldForecast: "📊 Yield Forecast",
-    sensorStatus: "📡 Sensor Status",
-    irrigationControl: "💦 Irrigation",
-    clock: "🕐 Clock",
-    weather: "☁️ Weather",
-    todo: "✅ Todo List",
-    notes: "📝 Notes",
-    calendar: "📅 Calendar",
-    timer: "⏱️ Timer",
-    quote: "💬 Quote",
-    links: "🔗 Quick Links",
-    datatable: "📊 Data Table",
-    chart: "📈 Chart",
+    aircon: "❄️ Air Conditioner",
+    lights: "💡 Lights",
+    roomTemp: "🌡️ Room Temperature",
+    energyUsage: "⚡ Energy Usage",
+    security: "🔒 Security",
   };
   title.textContent = widgetNames[widgetType] || widgetType;
 
-  // Show relevant content options based on widget type
-  contentSection.innerHTML = getWidgetContentOptions(widgetType);
+  // Show relevant content options
+  contentSection.innerHTML = `<p class="config-hint">Adjust appearance settings above.</p>`;
 
   // Pre-fill current values
   const config = widgetData.config || {};
@@ -569,15 +364,11 @@ function createConfiguredWidget() {
   };
   const dimensions = sizes[size];
 
-  // Gather content-specific config
-  const contentConfig = gatherContentConfig(pendingWidgetDrop.type);
-
   // Create widget with config
   const config = {
     title,
     bgColor,
     size,
-    ...contentConfig,
     position: {
       x: pendingWidgetDrop.x,
       y: pendingWidgetDrop.y,
@@ -588,43 +379,6 @@ function createConfiguredWidget() {
 
   addWidget(pendingWidgetDrop.type, config);
   closeWidgetConfigModal();
-}
-
-function gatherContentConfig(type) {
-  const config = {};
-
-  switch (type) {
-    case "clock":
-      config.format = document.getElementById("clockFormat")?.value || "12";
-      config.showDate =
-        document.getElementById("clockShowDate")?.checked ?? true;
-      break;
-    case "weather":
-      config.city =
-        document.getElementById("weatherCity")?.value || "San Francisco";
-      config.unit = document.getElementById("weatherUnit")?.value || "F";
-      break;
-    case "todo":
-      config.initialTasks = document.getElementById("todoInitial")?.value || "";
-      break;
-    case "notes":
-      config.initialNote = document.getElementById("notesInitial")?.value || "";
-      break;
-    case "quote":
-      config.quoteText = document.getElementById("quoteText")?.value || "";
-      config.quoteAuthor = document.getElementById("quoteAuthor")?.value || "";
-      break;
-    case "links":
-      config.initialLinks =
-        document.getElementById("linksInitial")?.value || "";
-      break;
-    case "timer":
-      config.minutes =
-        parseInt(document.getElementById("timerMinutes")?.value) || 5;
-      break;
-  }
-
-  return config;
 }
 
 // Update an existing widget with new configuration
@@ -672,7 +426,6 @@ function updateExistingWidget() {
   if (title) {
     const titleElement = widgetElement.querySelector(".widget-title");
     if (titleElement) {
-      // Preserve emoji if exists
       const originalText = titleElement.textContent;
       const emoji = originalText.match(/^[\u{1F300}-\u{1F9FF}]/u)?.[0] || "";
       titleElement.textContent = emoji ? `${emoji} ${title}` : title;
@@ -685,53 +438,6 @@ function updateExistingWidget() {
   // Reset button text
   document.getElementById("createWidgetBtn").textContent = "Add Widget";
 }
-
-// Load template from URL if specified
-function loadTemplateIfNeeded() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const template = urlParams.get("template");
-
-  if (template && templates[template]) {
-    const templateData = templates[template];
-    currentDashboardId = "default";
-    dashboards[currentDashboardId] = {
-      name: templateData.name,
-      widgets: [],
-    };
-
-    templateData.widgets.forEach((widgetType) => {
-      addWidget(widgetType);
-    });
-  }
-}
-
-// Templates
-const templates = {
-  productivity: {
-    name: "Productivity Pro",
-    widgets: ["todo", "timer", "notes", "clock"],
-  },
-  personal: {
-    name: "Personal Hub",
-    widgets: ["weather", "quote", "clock", "todo", "notes"],
-  },
-  developer: {
-    name: "Developer Workspace",
-    widgets: ["clock", "timer", "todo", "notes", "links"],
-  },
-  minimalist: {
-    name: "Minimalist",
-    widgets: ["clock", "quote", "notes"],
-  },
-  creator: {
-    name: "Content Creator",
-    widgets: ["todo", "quote", "timer", "notes"],
-  },
-  news: {
-    name: "News & Information",
-    widgets: ["clock", "weather", "links"],
-  },
-};
 
 // Add widget to current dashboard with free-form positioning
 function addWidget(type, config = {}) {

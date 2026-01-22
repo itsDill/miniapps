@@ -7,7 +7,10 @@ const widgetTemplates = {
             <div class="widget" id="${id}" data-type="soilMoisture">
                 <div class="widget-header">
                     <div class="widget-title">💧 Soil Moisture</div>
-                    <button class="widget-remove" onclick="removeWidget('${id}')">×</button>
+                    <div class="widget-controls">
+                        <button class="widget-settings" onclick="openWidgetSettings('${id}')" title="Settings">⚙️</button>
+                        <button class="widget-remove" onclick="removeWidget('${id}')">×</button>
+                    </div>
                 </div>
                 <div class="widget-content">
                     <div style="text-align: center;">
@@ -46,7 +49,10 @@ const widgetTemplates = {
             <div class="widget" id="${id}" data-type="temperature">
                 <div class="widget-header">
                     <div class="widget-title">🌡️ Temperature & Humidity</div>
-                    <button class="widget-remove" onclick="removeWidget('${id}')">×</button>
+                    <div class="widget-controls">
+                        <button class="widget-settings" onclick="openWidgetSettings('${id}')" title="Settings">⚙️</button>
+                        <button class="widget-remove" onclick="removeWidget('${id}')">×</button>
+                    </div>
                 </div>
                 <div class="widget-content">
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; text-align: center;">
@@ -95,7 +101,10 @@ const widgetTemplates = {
             <div class="widget" id="${id}" data-type="cropHealth">
                 <div class="widget-header">
                     <div class="widget-title">🌱 Crop Health Index</div>
-                    <button class="widget-remove" onclick="removeWidget('${id}')">×</button>
+                    <div class="widget-controls">
+                        <button class="widget-settings" onclick="openWidgetSettings('${id}')" title="Settings">⚙️</button>
+                        <button class="widget-remove" onclick="removeWidget('${id}')">×</button>
+                    </div>
                 </div>
                 <div class="widget-content">
                     <div style="text-align: center;">
@@ -137,7 +146,10 @@ const widgetTemplates = {
             <div class="widget" id="${id}" data-type="weatherStation">
                 <div class="widget-header">
                     <div class="widget-title">🌤️ Weather Station</div>
-                    <button class="widget-remove" onclick="removeWidget('${id}')">×</button>
+                    <div class="widget-controls">
+                        <button class="widget-settings" onclick="openWidgetSettings('${id}')" title="Settings">⚙️</button>
+                        <button class="widget-remove" onclick="removeWidget('${id}')">×</button>
+                    </div>
                 </div>
                 <div class="widget-content">
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
@@ -176,7 +188,10 @@ const widgetTemplates = {
             <div class="widget" id="${id}" data-type="sensorStatus">
                 <div class="widget-header">
                     <div class="widget-title">📡 Sensor Status</div>
-                    <button class="widget-remove" onclick="removeWidget('${id}')">×</button>
+                    <div class="widget-controls">
+                        <button class="widget-settings" onclick="openWidgetSettings('${id}')" title="Settings">⚙️</button>
+                        <button class="widget-remove" onclick="removeWidget('${id}')">×</button>
+                    </div>
                 </div>
                 <div class="widget-content">
                     <div style="display: flex; flex-direction: column; gap: 0.75rem;">
@@ -224,7 +239,10 @@ const widgetTemplates = {
             <div class="widget" id="${id}" data-type="irrigationControl">
                 <div class="widget-header">
                     <div class="widget-title">💦 Irrigation Control</div>
-                    <button class="widget-remove" onclick="removeWidget('${id}')">×</button>
+                    <div class="widget-controls">
+                        <button class="widget-settings" onclick="openWidgetSettings('${id}')" title="Settings">⚙️</button>
+                        <button class="widget-remove" onclick="removeWidget('${id}')">×</button>
+                    </div>
                 </div>
                 <div class="widget-content">
                     <div style="display: flex; flex-direction: column; gap: 1rem;">
@@ -274,7 +292,10 @@ const widgetTemplates = {
             <div class="widget" id="${id}" data-type="yieldForecast">
                 <div class="widget-header">
                     <div class="widget-title">📊 Yield Forecast</div>
-                    <button class="widget-remove" onclick="removeWidget('${id}')">×</button>
+                    <div class="widget-controls">
+                        <button class="widget-settings" onclick="openWidgetSettings('${id}')" title="Settings">⚙️</button>
+                        <button class="widget-remove" onclick="removeWidget('${id}')">×</button>
+                    </div>
                 </div>
                 <div class="widget-content">
                     <div style="text-align: center; margin-bottom: 1rem;">
@@ -710,6 +731,242 @@ const widgetTemplates = {
       setTimeout(() => renderChart(id, data), 100);
     },
   },
+
+  // ==================== HOME AUTOMATION WIDGETS ====================
+
+  aircon: {
+    title: "❄️ Air Conditioner",
+    create: (id, data) => `
+      <div class="widget" id="${id}" data-type="aircon">
+        <div class="widget-header">
+          <div class="widget-title">❄️ Air Conditioner</div>
+          <div class="widget-controls">
+            <button class="widget-settings" onclick="openWidgetSettings('${id}')" title="Settings">⚙️</button>
+            <button class="widget-remove" onclick="removeWidget('${id}')">×</button>
+          </div>
+        </div>
+        <div class="widget-content">
+          <div style="text-align: center;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 1rem;">
+              <button onclick="adjustTemp('${id}', -1)" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #e5e7eb; background: white; font-size: 1.25rem; cursor: pointer;">−</button>
+              <div>
+                <div style="font-size: 3rem; font-weight: bold; color: #0ea5e9;" id="${id}-temp">24</div>
+                <div style="font-size: 0.875rem; color: var(--text-light);">°C</div>
+              </div>
+              <button onclick="adjustTemp('${id}', 1)" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #e5e7eb; background: white; font-size: 1.25rem; cursor: pointer;">+</button>
+            </div>
+            <div style="display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 1rem;">
+              <button onclick="setACMode('${id}', 'cool')" id="${id}-cool" style="padding: 0.5rem 1rem; border-radius: 0.5rem; border: none; background: #0ea5e9; color: white; cursor: pointer;">❄️ Cool</button>
+              <button onclick="setACMode('${id}', 'heat')" id="${id}-heat" style="padding: 0.5rem 1rem; border-radius: 0.5rem; border: 1px solid #e5e7eb; background: white; cursor: pointer;">🔥 Heat</button>
+              <button onclick="setACMode('${id}', 'fan')" id="${id}-fan" style="padding: 0.5rem 1rem; border-radius: 0.5rem; border: 1px solid #e5e7eb; background: white; cursor: pointer;">🌀 Fan</button>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 1rem;">
+              <span style="color: var(--text-light); font-size: 0.875rem;">Power</span>
+              <label style="position: relative; display: inline-block; width: 48px; height: 24px;">
+                <input type="checkbox" id="${id}-power" checked onchange="toggleAC('${id}')" style="opacity: 0; width: 0; height: 0;">
+                <span id="${id}-toggle" style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #22c55e; border-radius: 24px; transition: 0.3s;"></span>
+              </label>
+              <span id="${id}-status" style="font-size: 0.875rem; color: #22c55e; font-weight: 500;">ON</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    `,
+    init: (id) => {
+      window[`${id}_temp`] = 24;
+      window[`${id}_mode`] = "cool";
+      window[`${id}_power`] = true;
+    },
+  },
+
+  lights: {
+    title: "💡 Lights",
+    create: (id, data) => `
+      <div class="widget" id="${id}" data-type="lights">
+        <div class="widget-header">
+          <div class="widget-title">💡 Lights</div>
+          <div class="widget-controls">
+            <button class="widget-settings" onclick="openWidgetSettings('${id}')" title="Settings">⚙️</button>
+            <button class="widget-remove" onclick="removeWidget('${id}')">×</button>
+          </div>
+        </div>
+        <div class="widget-content">
+          <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem; background: var(--bg-light); border-radius: 0.5rem;">
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <span style="font-size: 1.5rem;">💡</span>
+                <span style="font-weight: 500;">Living Room</span>
+              </div>
+              <label style="position: relative; display: inline-block; width: 48px; height: 24px;">
+                <input type="checkbox" checked style="opacity: 0; width: 0; height: 0;">
+                <span style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #fbbf24; border-radius: 24px; transition: 0.3s;"></span>
+              </label>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem; background: var(--bg-light); border-radius: 0.5rem;">
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <span style="font-size: 1.5rem;">💡</span>
+                <span style="font-weight: 500;">Bedroom</span>
+              </div>
+              <label style="position: relative; display: inline-block; width: 48px; height: 24px;">
+                <input type="checkbox" style="opacity: 0; width: 0; height: 0;">
+                <span style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #e5e7eb; border-radius: 24px; transition: 0.3s;"></span>
+              </label>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem; background: var(--bg-light); border-radius: 0.5rem;">
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <span style="font-size: 1.5rem;">💡</span>
+                <span style="font-weight: 500;">Kitchen</span>
+              </div>
+              <label style="position: relative; display: inline-block; width: 48px; height: 24px;">
+                <input type="checkbox" checked style="opacity: 0; width: 0; height: 0;">
+                <span style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #fbbf24; border-radius: 24px; transition: 0.3s;"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    `,
+    init: (id) => {},
+  },
+
+  roomTemp: {
+    title: "🌡️ Room Temperature",
+    create: (id, data) => `
+      <div class="widget" id="${id}" data-type="roomTemp">
+        <div class="widget-header">
+          <div class="widget-title">🌡️ Room Temp</div>
+          <div class="widget-controls">
+            <button class="widget-settings" onclick="openWidgetSettings('${id}')" title="Settings">⚙️</button>
+            <button class="widget-remove" onclick="removeWidget('${id}')">×</button>
+          </div>
+        </div>
+        <div class="widget-content">
+          <div style="text-align: center;">
+            <div style="font-size: 3.5rem; font-weight: bold; color: #f472b6;" id="${id}-temp">23°</div>
+            <div style="color: var(--text-light); margin-bottom: 1rem;">Current Temperature</div>
+            <div style="display: flex; justify-content: space-around; font-size: 0.875rem;">
+              <div>
+                <div style="color: var(--text-light);">Humidity</div>
+                <div style="font-weight: 600;" id="${id}-humidity">55%</div>
+              </div>
+              <div>
+                <div style="color: var(--text-light);">Feels Like</div>
+                <div style="font-weight: 600;" id="${id}-feels">24°</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `,
+    init: (id) => {
+      const updateTemp = () => {
+        const temp = 21 + Math.random() * 4;
+        const humidity = 45 + Math.random() * 20;
+        const tempEl = document.getElementById(`${id}-temp`);
+        const humEl = document.getElementById(`${id}-humidity`);
+        const feelsEl = document.getElementById(`${id}-feels`);
+        if (tempEl) tempEl.textContent = Math.round(temp) + "°";
+        if (humEl) humEl.textContent = Math.round(humidity) + "%";
+        if (feelsEl) feelsEl.textContent = Math.round(temp + 1) + "°";
+      };
+      setInterval(updateTemp, 5000);
+    },
+  },
+
+  energyUsage: {
+    title: "⚡ Energy Usage",
+    create: (id, data) => `
+      <div class="widget" id="${id}" data-type="energyUsage">
+        <div class="widget-header">
+          <div class="widget-title">⚡ Energy Usage</div>
+          <div class="widget-controls">
+            <button class="widget-settings" onclick="openWidgetSettings('${id}')" title="Settings">⚙️</button>
+            <button class="widget-remove" onclick="removeWidget('${id}')">×</button>
+          </div>
+        </div>
+        <div class="widget-content">
+          <div style="text-align: center; margin-bottom: 1rem;">
+            <div style="font-size: 2.5rem; font-weight: bold; color: #22c55e;" id="${id}-power">1.2 kW</div>
+            <div style="color: var(--text-light);">Current Usage</div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.875rem; margin-bottom: 0.25rem;">
+                <span>Air Conditioner</span>
+                <span style="font-weight: 500;">0.8 kW</span>
+              </div>
+              <div style="background: #e5e7eb; border-radius: 0.25rem; height: 8px; overflow: hidden;">
+                <div style="background: #0ea5e9; height: 100%; width: 65%;"></div>
+              </div>
+            </div>
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.875rem; margin-bottom: 0.25rem;">
+                <span>Lights</span>
+                <span style="font-weight: 500;">0.2 kW</span>
+              </div>
+              <div style="background: #e5e7eb; border-radius: 0.25rem; height: 8px; overflow: hidden;">
+                <div style="background: #fbbf24; height: 100%; width: 20%;"></div>
+              </div>
+            </div>
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.875rem; margin-bottom: 0.25rem;">
+                <span>Other Devices</span>
+                <span style="font-weight: 500;">0.2 kW</span>
+              </div>
+              <div style="background: #e5e7eb; border-radius: 0.25rem; height: 8px; overflow: hidden;">
+                <div style="background: #a855f7; height: 100%; width: 15%;"></div>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: 1rem; padding: 0.5rem; background: #f0fdf4; border-radius: 0.5rem; text-align: center; font-size: 0.875rem; color: #16a34a;">
+            💰 Today: $2.45 • This Month: $58.20
+          </div>
+        </div>
+      </div>
+    `,
+    init: (id) => {},
+  },
+
+  security: {
+    title: "🔒 Security",
+    create: (id, data) => `
+      <div class="widget" id="${id}" data-type="security">
+        <div class="widget-header">
+          <div class="widget-title">🔒 Security</div>
+          <div class="widget-controls">
+            <button class="widget-settings" onclick="openWidgetSettings('${id}')" title="Settings">⚙️</button>
+            <button class="widget-remove" onclick="removeWidget('${id}')">×</button>
+          </div>
+        </div>
+        <div class="widget-content">
+          <div style="text-align: center; margin-bottom: 1rem;">
+            <div style="font-size: 3rem; margin-bottom: 0.5rem;" id="${id}-icon">🔒</div>
+            <div style="font-size: 1.25rem; font-weight: 600; color: #22c55e;" id="${id}-status">System Armed</div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.5rem; background: var(--bg-light); border-radius: 0.375rem;">
+              <span>🚪 Front Door</span>
+              <span style="color: #22c55e; font-size: 0.875rem;">Locked</span>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.5rem; background: var(--bg-light); border-radius: 0.375rem;">
+              <span>🪟 Windows</span>
+              <span style="color: #22c55e; font-size: 0.875rem;">Closed</span>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.5rem; background: var(--bg-light); border-radius: 0.375rem;">
+              <span>📹 Cameras</span>
+              <span style="color: #22c55e; font-size: 0.875rem;">Recording</span>
+            </div>
+          </div>
+          <button onclick="toggleSecurity('${id}')" style="width: 100%; margin-top: 1rem; padding: 0.75rem; border-radius: 0.5rem; border: none; background: #22c55e; color: white; font-weight: 500; cursor: pointer;" id="${id}-btn">
+            Disarm System
+          </button>
+        </div>
+      </div>
+    `,
+    init: (id) => {
+      window[`${id}_armed`] = true;
+    },
+  },
 };
 
 // Helper function for escaping HTML
@@ -971,5 +1228,70 @@ function updateTimerDisplay(id) {
     display.textContent = `${String(minutes).padStart(2, "0")}:${String(
       seconds,
     ).padStart(2, "0")}`;
+  }
+}
+
+// ==================== HOME AUTOMATION HELPER FUNCTIONS ====================
+
+function adjustTemp(id, delta) {
+  if (typeof window[`${id}_temp`] === "undefined") window[`${id}_temp`] = 24;
+  window[`${id}_temp`] = Math.max(
+    16,
+    Math.min(30, window[`${id}_temp`] + delta),
+  );
+  const tempEl = document.getElementById(`${id}-temp`);
+  if (tempEl) tempEl.textContent = window[`${id}_temp`];
+}
+
+function setACMode(id, mode) {
+  window[`${id}_mode`] = mode;
+  const modes = ["cool", "heat", "fan"];
+  modes.forEach((m) => {
+    const btn = document.getElementById(`${id}-${m}`);
+    if (btn) {
+      if (m === mode) {
+        btn.style.background =
+          m === "cool" ? "#0ea5e9" : m === "heat" ? "#ef4444" : "#64748b";
+        btn.style.color = "white";
+        btn.style.border = "none";
+      } else {
+        btn.style.background = "white";
+        btn.style.color = "inherit";
+        btn.style.border = "1px solid #e5e7eb";
+      }
+    }
+  });
+}
+
+function toggleAC(id) {
+  const power = document.getElementById(`${id}-power`);
+  const toggle = document.getElementById(`${id}-toggle`);
+  const status = document.getElementById(`${id}-status`);
+
+  if (power && toggle && status) {
+    const isOn = power.checked;
+    toggle.style.backgroundColor = isOn ? "#22c55e" : "#e5e7eb";
+    status.textContent = isOn ? "ON" : "OFF";
+    status.style.color = isOn ? "#22c55e" : "#94a3b8";
+    window[`${id}_power`] = isOn;
+  }
+}
+
+function toggleSecurity(id) {
+  window[`${id}_armed`] = !window[`${id}_armed`];
+  const isArmed = window[`${id}_armed`];
+
+  const icon = document.getElementById(`${id}-icon`);
+  const statusEl = document.getElementById(`${id}-status`);
+  const btn = document.getElementById(`${id}-btn`);
+
+  if (icon) icon.textContent = isArmed ? "🔒" : "🔓";
+  if (statusEl) {
+    statusEl.textContent = isArmed ? "System Armed" : "System Disarmed";
+    statusEl.style.color = isArmed ? "#22c55e" : "#f59e0b";
+  }
+  if (btn) {
+    btn.textContent = isArmed ? "Disarm System" : "Arm System";
+    btn.style.background = isArmed ? "#22c55e" : "#f59e0b";
   }
 }

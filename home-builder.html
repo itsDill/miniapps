@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Home Dashboard - HomeSense</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+  </head>
+  <body class="builder-page home-theme">
+    <!-- Header -->
+    <header class="builder-header">
+      <div class="header-left">
+        <a href="index.html" class="logo-link">
+          <div class="logo-icon">🏠</div>
+          <span class="logo-text">HomeSense</span>
+        </a>
+        <select id="dashboardSelect" class="dashboard-select">
+          <option value="default">My Home</option>
+        </select>
+      </div>
+      <div class="header-right">
+        <a
+          href="builder.html"
+          class="btn btn-small btn-secondary"
+          style="text-decoration: none"
+        >
+          🌱 Switch to Agri
+        </a>
+        <button id="newDashboardBtn" class="btn btn-small btn-primary">
+          + New Room
+        </button>
+        <button
+          id="darkModeBtn"
+          class="btn btn-small btn-icon"
+          title="Toggle dark mode"
+        >
+          <svg
+            id="moonIcon"
+            width="20"
+            height="20"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+            />
+          </svg>
+          <svg
+            id="sunIcon"
+            width="20"
+            height="20"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            style="display: none"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+            />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="builder-container">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <h3 class="sidebar-title">Home Widgets</h3>
+        <p class="sidebar-hint">Control your smart home</p>
+        <div class="widget-list">
+          <button class="widget-btn" data-widget="aircon" draggable="true">
+            <span class="widget-icon">❄️</span>
+            <span>Air Conditioner</span>
+          </button>
+          <button class="widget-btn" data-widget="lights" draggable="true">
+            <span class="widget-icon">💡</span>
+            <span>Lights</span>
+          </button>
+          <button class="widget-btn" data-widget="roomTemp" draggable="true">
+            <span class="widget-icon">🌡️</span>
+            <span>Room Temp</span>
+          </button>
+          <button class="widget-btn" data-widget="energyUsage" draggable="true">
+            <span class="widget-icon">⚡</span>
+            <span>Energy Usage</span>
+          </button>
+          <button class="widget-btn" data-widget="security" draggable="true">
+            <span class="widget-icon">🔒</span>
+            <span>Security</span>
+          </button>
+        </div>
+        <p
+          class="sidebar-hint"
+          style="margin-top: 1rem; font-size: 0.75rem; color: var(--text-light)"
+        >
+          💡 Drag & drop widgets, then click ⚙️ to customize
+        </p>
+      </aside>
+
+      <!-- Canvas -->
+      <main class="canvas" id="canvas">
+        <div class="canvas-grid" id="canvasGrid">
+          <div class="empty-state" id="emptyState">
+            <div class="empty-icon">🏠</div>
+            <h2 class="empty-title">Build Your Smart Home Dashboard</h2>
+            <p class="empty-desc">
+              Add widgets to control AC, lights, and monitor your home
+            </p>
+            <div class="drop-zone-hint">
+              <svg
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"
+                />
+              </svg>
+              <span>Drop widgets here</span>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- New Dashboard Modal -->
+    <div id="newDashboardModal" class="modal">
+      <div class="modal-content">
+        <h3 class="modal-title">Create New Room</h3>
+        <input
+          type="text"
+          id="dashboardNameInput"
+          class="modal-input"
+          placeholder="Room name (e.g., Living Room)"
+          autofocus
+        />
+        <div class="modal-buttons">
+          <button id="createDashboardBtn" class="btn btn-primary">
+            Create
+          </button>
+          <button id="cancelDashboardBtn" class="btn btn-secondary">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Widget Configuration Modal -->
+    <div id="widgetConfigModal" class="modal">
+      <div class="modal-content modal-medium">
+        <div class="modal-header">
+          <h3 class="modal-title">Configure Widget</h3>
+          <button class="modal-close" id="closeWidgetConfig">&times;</button>
+        </div>
+
+        <div class="config-widget-type" id="configWidgetType">Widget</div>
+
+        <div class="config-section">
+          <h4 class="config-section-title">Appearance</h4>
+
+          <div class="config-group">
+            <label class="config-label">Widget Title (optional)</label>
+            <input
+              type="text"
+              id="widgetTitle"
+              class="config-input"
+              placeholder="Custom title..."
+            />
+          </div>
+
+          <div class="config-group">
+            <label class="config-label">Background Color</label>
+            <div class="color-presets">
+              <button
+                class="color-preset active"
+                data-color="#ffffff"
+                style="background: #ffffff"
+              ></button>
+              <button
+                class="color-preset"
+                data-color="#f0f9ff"
+                style="background: #f0f9ff"
+              ></button>
+              <button
+                class="color-preset"
+                data-color="#f0fdf4"
+                style="background: #f0fdf4"
+              ></button>
+              <button
+                class="color-preset"
+                data-color="#fef3c7"
+                style="background: #fef3c7"
+              ></button>
+              <button
+                class="color-preset"
+                data-color="#fce7f3"
+                style="background: #fce7f3"
+              ></button>
+              <button
+                class="color-preset"
+                data-color="#ede9fe"
+                style="background: #ede9fe"
+              ></button>
+              <button
+                class="color-preset"
+                data-color="#1e293b"
+                style="background: #1e293b"
+              ></button>
+            </div>
+            <input
+              type="color"
+              id="widgetBgColor"
+              class="config-color-picker"
+              value="#ffffff"
+            />
+          </div>
+
+          <div class="config-group">
+            <label class="config-label">Size</label>
+            <div class="size-presets">
+              <button class="size-preset" data-size="small">
+                <span class="size-icon">▫️</span>
+                <span>Small</span>
+              </button>
+              <button class="size-preset active" data-size="medium">
+                <span class="size-icon">◻️</span>
+                <span>Medium</span>
+              </button>
+              <button class="size-preset" data-size="large">
+                <span class="size-icon">⬜</span>
+                <span>Large</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="config-section">
+          <h4 class="config-section-title">Content</h4>
+          <div id="widgetContentConfig">
+            <!-- Dynamic content based on widget type -->
+          </div>
+        </div>
+
+        <div class="modal-buttons">
+          <button id="createWidgetBtn" class="btn btn-primary">
+            Add Widget
+          </button>
+          <button id="cancelWidgetConfig" class="btn btn-secondary">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="home-dashboard.js"></script>
+    <script src="widgets.js"></script>
+  </body>
+</html>
