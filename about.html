@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - HomeSense</title>
+    <meta
+      name="description"
+      content="Learn about HomeSense - Our mission to make smart home monitoring accessible and affordable for everyone."
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .about-hero {
+        background: linear-gradient(
+          135deg,
+          var(--primary),
+          var(--primary-dark)
+        );
+        padding: 6rem 1rem;
+        text-align: center;
+        color: white;
+      }
+      .about-hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+      .about-hero p {
+        font-size: 1.25rem;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .about-section {
+        padding: 4rem 1rem;
+      }
+      .about-content {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .about-content h2 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        color: var(--text-primary);
+      }
+      .about-content p {
+        color: var(--text-secondary);
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+        font-size: 1.1rem;
+      }
+      .mission-section {
+        background: var(--bg-secondary);
+      }
+      .values-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+      .value-card {
+        background: var(--bg-primary);
+        padding: 2rem;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+      }
+      .value-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+      .value-card h3 {
+        font-size: 1.25rem;
+        margin-bottom: 0.75rem;
+        color: var(--text-primary);
+      }
+      .value-card p {
+        color: var(--text-secondary);
+        line-height: 1.6;
+        margin: 0;
+        font-size: 1rem;
+      }
+      .stats-section {
+        text-align: center;
+      }
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+      .stat-card {
+        padding: 2rem;
+      }
+      .stat-number {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 0.5rem;
+      }
+      .stat-label {
+        color: var(--text-secondary);
+        font-size: 1.1rem;
+      }
+      .team-section {
+        background: var(--bg-secondary);
+      }
+      .team-intro {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+      .cta-section {
+        background: linear-gradient(
+          135deg,
+          var(--primary),
+          var(--primary-dark)
+        );
+        padding: 4rem 1rem;
+        text-align: center;
+        color: white;
+      }
+      .cta-section h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+      .cta-section p {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        margin-bottom: 2rem;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .cta-section .btn {
+        background: white;
+        color: var(--primary);
+      }
+      .cta-section .btn:hover {
+        background: #f0f0f0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="nav">
+      <div class="container nav-content">
+        <a href="index.html" class="logo">
+          <div class="logo-icon">🏠</div>
+          <span class="logo-text">HomeSense</span>
+        </a>
+        <div class="nav-links">
+          <a href="tools.html" class="nav-link">Tools</a>
+          <a href="features.html" class="nav-link">Features</a>
+          <a href="sensors.html" class="nav-link">Sensors</a>
+          <a href="blog.html" class="nav-link">Blog</a>
+        </div>
+        <div class="nav-buttons">
+          <a href="login.html" class="btn btn-secondary btn-small">Log In</a>
+          <a href="builder.html" class="btn btn-primary btn-small">Try Free</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+      <div class="container">
+        <h1>About HomeSense</h1>
+        <p>
+          We're on a mission to make smart home monitoring accessible,
+          affordable, and easy for everyone.
+        </p>
+      </div>
+    </section>
+
+    <!-- Our Story -->
+    <section class="about-section">
+      <div class="about-content">
+        <h2>Our Story</h2>
+        <p>
+          HomeSense was born from a simple frustration: existing smart home
+          platforms were either too expensive, too complicated, or locked into
+          proprietary ecosystems. We believed there had to be a better way.
+        </p>
+        <p>
+          Founded in 2024, our team set out to build an open, flexible platform
+          that works with any IoT sensor or smart device. We wanted to empower
+          homeowners to take control of their living spaces—whether that means
+          saving energy, enhancing security, or simply making life more
+          convenient.
+        </p>
+        <p>
+          Today, HomeSense serves thousands of homes worldwide, from small
+          apartments to large estates. We've expanded our vision to include
+          AgriSense, bringing the same powerful monitoring capabilities to
+          farmers and agricultural operations.
+        </p>
+      </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="about-section mission-section">
+      <div class="about-content">
+        <h2>Our Mission</h2>
+        <p>
+          We believe that smart technology should work for everyone—not just
+          tech enthusiasts with unlimited budgets. Our mission is to democratize
+          smart home monitoring by providing powerful, intuitive tools that
+          anyone can use.
+        </p>
+        <p>
+          We're committed to building technology that's open, interoperable, and
+          privacy-respecting. Your data belongs to you, and our platform is
+          designed to give you complete control over how it's collected, stored,
+          and used.
+        </p>
+      </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="about-section">
+      <div class="container">
+        <div class="about-content" style="max-width: none">
+          <h2 style="text-align: center">Our Values</h2>
+          <div class="values-grid">
+            <div class="value-card">
+              <div class="value-icon">🔓</div>
+              <h3>Openness</h3>
+              <p>
+                We embrace open standards and interoperability. Connect any
+                sensor, integrate with any platform, and export your data
+                anytime.
+              </p>
+            </div>
+            <div class="value-card">
+              <div class="value-icon">🛡️</div>
+              <h3>Privacy First</h3>
+              <p>
+                Your data is yours. We implement strong security measures and
+                give you complete control over your information.
+              </p>
+            </div>
+            <div class="value-card">
+              <div class="value-icon">✨</div>
+              <h3>Simplicity</h3>
+              <p>
+                Powerful technology should be easy to use. We design intuitive
+                interfaces that anyone can master in minutes.
+              </p>
+            </div>
+            <div class="value-card">
+              <div class="value-icon">🌍</div>
+              <h3>Sustainability</h3>
+              <p>
+                Smart homes save energy. We're committed to helping users reduce
+                their environmental footprint through intelligent automation.
+              </p>
+            </div>
+            <div class="value-card">
+              <div class="value-icon">🤝</div>
+              <h3>Community</h3>
+              <p>
+                We grow together with our users. Community feedback shapes our
+                roadmap and drives continuous improvement.
+              </p>
+            </div>
+            <div class="value-card">
+              <div class="value-icon">💡</div>
+              <h3>Innovation</h3>
+              <p>
+                We're constantly pushing boundaries, exploring new technologies,
+                and finding better ways to serve our users.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="about-section stats-section">
+      <div class="container">
+        <h2>HomeSense by the Numbers</h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number">25K+</div>
+            <div class="stat-label">Homes Connected</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">120K+</div>
+            <div class="stat-label">Devices Monitored</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">40%</div>
+            <div class="stat-label">Avg. Energy Savings</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Countries Served</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="about-section team-section">
+      <div class="about-content">
+        <div class="team-intro">
+          <h2>Our Team</h2>
+          <p>
+            We're a diverse team of engineers, designers, and smart home
+            enthusiasts united by a shared passion for making technology work
+            better for people. Based in San Francisco with team members around
+            the world, we bring together expertise in IoT, cloud computing, user
+            experience, and home automation.
+          </p>
+          <p>
+            Interested in joining our team? Check out our open positions or
+            reach out to us at
+            <a href="mailto:careers@homesense.io">careers@homesense.io</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <h2>Ready to Get Started?</h2>
+        <p>
+          Join thousands of homeowners who are already living smarter with
+          HomeSense.
+        </p>
+        <a href="builder-home.html" class="btn btn-large">Try Free Today</a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <div class="logo">
+            <div class="logo-icon">🏠</div>
+            <span class="logo-text">HomeSense</span>
+          </div>
+          <p class="footer-tagline">Smart living for everyone.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Product</h4>
+          <a href="tools.html">Tools</a>
+          <a href="features.html">Features</a>
+          <a href="sensors.html">Sensors</a>
+        </div>
+        <div class="footer-links">
+          <h4>Resources</h4>
+          <a href="blog.html">Blog</a>
+          <a href="sensors.html">Documentation</a>
+          <a href="features.html">API</a>
+        </div>
+        <div class="footer-links">
+          <h4>Company</h4>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="privacy-policy.html">Privacy</a>
+          <a href="terms-of-service.html">Terms</a>
+        </div>
+      </div>
+      <div class="container">
+        <p class="footer-copy">© 2026 HomeSense. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>

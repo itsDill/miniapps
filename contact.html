@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us - HomeSense</title>
+    <meta
+      name="description"
+      content="Get in touch with HomeSense - We're here to help with your smart home monitoring needs."
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .contact-hero {
+        background: linear-gradient(
+          135deg,
+          var(--primary),
+          var(--primary-dark)
+        );
+        padding: 6rem 1rem;
+        text-align: center;
+        color: white;
+      }
+      .contact-hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+      .contact-hero p {
+        font-size: 1.25rem;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .contact-section {
+        padding: 4rem 1rem;
+      }
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      @media (max-width: 768px) {
+        .contact-grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+      }
+      .contact-form h2 {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+        color: var(--text-primary);
+      }
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+        font-weight: 500;
+      }
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        width: 100%;
+        padding: 0.875rem 1rem;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        font-size: 1rem;
+        transition: border-color 0.2s;
+      }
+      .form-group input:focus,
+      .form-group textarea:focus,
+      .form-group select:focus {
+        outline: none;
+        border-color: var(--primary);
+      }
+      .form-group textarea {
+        resize: vertical;
+        min-height: 150px;
+      }
+      .submit-btn {
+        width: 100%;
+        padding: 1rem;
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .submit-btn:hover {
+        background: var(--primary-dark);
+      }
+      .contact-info h2 {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+        color: var(--text-primary);
+      }
+      .contact-info p {
+        color: var(--text-secondary);
+        line-height: 1.8;
+        margin-bottom: 2rem;
+      }
+      .contact-methods {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .contact-method {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1.5rem;
+        background: var(--bg-secondary);
+        border-radius: 12px;
+        border: 1px solid var(--border);
+      }
+      .contact-icon {
+        font-size: 1.5rem;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--primary);
+        border-radius: 12px;
+        flex-shrink: 0;
+      }
+      .contact-details h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.25rem;
+        color: var(--text-primary);
+      }
+      .contact-details p {
+        margin: 0;
+        color: var(--text-secondary);
+      }
+      .contact-details a {
+        color: var(--primary);
+        text-decoration: none;
+      }
+      .contact-details a:hover {
+        text-decoration: underline;
+      }
+      .social-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+      .social-link {
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--bg-secondary);
+        border: 1px solid var(--border);
+        border-radius: 50%;
+        font-size: 1.25rem;
+        text-decoration: none;
+        transition: background 0.2s;
+      }
+      .social-link:hover {
+        background: var(--primary);
+      }
+      .faq-section {
+        background: var(--bg-secondary);
+        padding: 4rem 1rem;
+      }
+      .faq-content {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .faq-content h2 {
+        font-size: 2rem;
+        text-align: center;
+        margin-bottom: 2rem;
+        color: var(--text-primary);
+      }
+      .faq-item {
+        background: var(--bg-primary);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        margin-bottom: 1rem;
+        overflow: hidden;
+      }
+      .faq-question {
+        padding: 1.25rem 1.5rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .faq-question:hover {
+        background: var(--bg-secondary);
+      }
+      .faq-answer {
+        padding: 0 1.5rem 1.25rem;
+        color: var(--text-secondary);
+        line-height: 1.7;
+      }
+      .form-success {
+        display: none;
+        text-align: center;
+        padding: 3rem;
+        background: var(--bg-secondary);
+        border-radius: 12px;
+        border: 1px solid var(--border);
+      }
+      .form-success.show {
+        display: block;
+      }
+      .form-success .success-icon {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+      }
+      .form-success h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+      }
+      .form-success p {
+        color: var(--text-secondary);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="nav">
+      <div class="container nav-content">
+        <a href="index.html" class="logo">
+          <div class="logo-icon">🏠</div>
+          <span class="logo-text">HomeSense</span>
+        </a>
+        <div class="nav-links">
+          <a href="tools.html" class="nav-link">Tools</a>
+          <a href="features.html" class="nav-link">Features</a>
+          <a href="sensors.html" class="nav-link">Sensors</a>
+          <a href="blog.html" class="nav-link">Blog</a>
+        </div>
+        <div class="nav-buttons">
+          <a href="login.html" class="btn btn-secondary btn-small">Log In</a>
+          <a href="builder.html" class="btn btn-primary btn-small">Try Free</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="contact-hero">
+      <div class="container">
+        <h1>Contact Us</h1>
+        <p>
+          Have a question or need help? We'd love to hear from you. Our team is
+          here to assist.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+      <div class="contact-grid">
+        <!-- Contact Form -->
+        <div class="contact-form">
+          <h2>Send Us a Message</h2>
+          <form id="contactForm" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+              <label for="name">Full Name *</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                placeholder="John Doe"
+              />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="john@example.com"
+              />
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject *</label>
+              <select id="subject" name="subject" required>
+                <option value="">Select a topic...</option>
+                <option value="general">General Inquiry</option>
+                <option value="support">Technical Support</option>
+                <option value="sales">Sales & Pricing</option>
+                <option value="partnership">Partnership Opportunities</option>
+                <option value="feedback">Feedback & Suggestions</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message *</label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                placeholder="How can we help you?"
+              ></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+          </form>
+          <div class="form-success" id="formSuccess">
+            <div class="success-icon">✅</div>
+            <h3>Message Sent!</h3>
+            <p>
+              Thank you for reaching out. We'll get back to you within 24-48
+              hours.
+            </p>
+          </div>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="contact-info">
+          <h2>Get in Touch</h2>
+          <p>
+            Whether you have a question about features, pricing, need a demo, or
+            anything else, our team is ready to answer all your questions.
+          </p>
+
+          <div class="contact-methods">
+            <div class="contact-method">
+              <div class="contact-icon">📧</div>
+              <div class="contact-details">
+                <h3>Email</h3>
+                <p>
+                  <a href="mailto:hello@homesense.io">hello@homesense.io</a>
+                </p>
+              </div>
+            </div>
+            <div class="contact-method">
+              <div class="contact-icon">💬</div>
+              <div class="contact-details">
+                <h3>Live Chat</h3>
+                <p>Available Mon-Fri, 9am-6pm PST</p>
+              </div>
+            </div>
+            <div class="contact-method">
+              <div class="contact-icon">📍</div>
+              <div class="contact-details">
+                <h3>Office</h3>
+                <p>123 Smart Street<br />San Francisco, CA 94102</p>
+              </div>
+            </div>
+            <div class="contact-method">
+              <div class="contact-icon">🎧</div>
+              <div class="contact-details">
+                <h3>Support</h3>
+                <p>
+                  <a href="mailto:support@homesense.io">support@homesense.io</a>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+            <a href="#" class="social-link" aria-label="LinkedIn">💼</a>
+            <a href="#" class="social-link" aria-label="GitHub">💻</a>
+            <a href="#" class="social-link" aria-label="YouTube">▶️</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="faq-content">
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            How long does it take to get a response?
+            <span>+</span>
+          </div>
+          <div class="faq-answer">
+            We typically respond to all inquiries within 24-48 hours during
+            business days. For urgent technical issues, our premium support
+            subscribers receive priority responses within 4 hours.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            Do you offer phone support?
+            <span>+</span>
+          </div>
+          <div class="faq-answer">
+            Phone support is available for Enterprise plan subscribers. For
+            other plans, we offer email and live chat support during business
+            hours.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            Can I schedule a product demo?
+            <span>+</span>
+          </div>
+          <div class="faq-answer">
+            Absolutely! Select "Sales & Pricing" as the subject in the contact
+            form and mention that you'd like a demo. Our team will reach out to
+            schedule a personalized walkthrough of the platform.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            I'm interested in a partnership. Who should I contact?
+            <span>+</span>
+          </div>
+          <div class="faq-answer">
+            For partnership inquiries, please email us at
+            <a href="mailto:partners@homesense.io">partners@homesense.io</a> or
+            select "Partnership Opportunities" in the contact form.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            How can I report a bug or security issue?
+            <span>+</span>
+          </div>
+          <div class="faq-answer">
+            For bug reports, please use "Technical Support" in the subject line
+            and include as much detail as possible. For security-related issues,
+            please email
+            <a href="mailto:security@homesense.io">security@homesense.io</a>
+            directly.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <div class="logo">
+            <div class="logo-icon">🏠</div>
+            <span class="logo-text">HomeSense</span>
+          </div>
+          <p class="footer-tagline">Smart living for everyone.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Product</h4>
+          <a href="tools.html">Tools</a>
+          <a href="features.html">Features</a>
+          <a href="sensors.html">Sensors</a>
+        </div>
+        <div class="footer-links">
+          <h4>Resources</h4>
+          <a href="blog.html">Blog</a>
+          <a href="sensors.html">Documentation</a>
+          <a href="features.html">API</a>
+        </div>
+        <div class="footer-links">
+          <h4>Company</h4>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="privacy-policy.html">Privacy</a>
+          <a href="terms-of-service.html">Terms</a>
+        </div>
+      </div>
+      <div class="container">
+        <p class="footer-copy">© 2026 HomeSense. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      function handleSubmit(event) {
+        event.preventDefault();
+        // Hide form
+        document.getElementById("contactForm").style.display = "none";
+        // Show success message
+        document.getElementById("formSuccess").classList.add("show");
+      }
+
+      // FAQ Toggle
+      document.querySelectorAll(".faq-question").forEach((question) => {
+        question.addEventListener("click", () => {
+          const item = question.parentElement;
+          const answer = item.querySelector(".faq-answer");
+          const icon = question.querySelector("span");
+
+          if (answer.style.display === "block") {
+            answer.style.display = "none";
+            icon.textContent = "+";
+          } else {
+            answer.style.display = "block";
+            icon.textContent = "−";
+          }
+        });
+      });
+
+      // Initially hide FAQ answers
+      document.querySelectorAll(".faq-answer").forEach((answer) => {
+        answer.style.display = "none";
+      });
+    </script>
+  </body>
+</html>

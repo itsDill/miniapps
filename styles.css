@@ -114,6 +114,45 @@ body.agri-mode .tool-preview-badge {
   background: #eff6ff;
 }
 
+/* Agri Dashboard Specific Styles */
+.builder-header-agri .logo-icon {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+.builder-header-agri .logo-text {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.builder-header-agri .btn-primary {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+.builder-header-agri .btn-primary:hover {
+  background: linear-gradient(135deg, #16a34a, #15803d);
+}
+
+.sidebar-agri .widget-btn:hover {
+  border-color: #22c55e;
+  background: #f0fdf4;
+}
+
+.builder-page-agri .widget.selected {
+  border-color: #22c55e;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+}
+
+.builder-page-agri .resize-handle {
+  background: #22c55e;
+}
+
+.builder-page-agri .widget-btn.active {
+  border-color: #22c55e;
+  background: #f0fdf4;
+}
+
 body {
   font-family:
     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
