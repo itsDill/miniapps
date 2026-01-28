@@ -3,577 +3,1398 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HomeSense - Smart Home Monitoring Dashboard</title>
+    <title>MiniApps - Tools, Games & Learn</title>
     <meta
       name="description"
-      content="Connect your IoT devices and monitor your home in real-time. Smart lighting, climate control, security, and more."
+      content="A collection of useful tools, fun games, and educational content. Simple, fast, and free."
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ========================================
+         CSS VARIABLES - Light & Dark Themes
+         ======================================== */
+      :root {
+        --bg-primary: #fafbff;
+        --bg-secondary: #f0f4ff;
+        --bg-card: #ffffff;
+        --bg-nav: rgba(255, 255, 255, 0.9);
+        --text-primary: #1e293b;
+        --text-secondary: #64748b;
+        --text-muted: #94a3b8;
+        --border-color: rgba(0, 0, 0, 0.08);
+        --border-light: #e2e8f0;
+        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        --card-hover-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
+        --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --gradient-hero: linear-gradient(
+          135deg,
+          #667eea 0%,
+          #764ba2 30%,
+          #f093fb 70%,
+          #f5576c 100%
+        );
+      }
+
+      [data-theme="dark"] {
+        --bg-primary: #0f0f1a;
+        --bg-secondary: #1a1a2e;
+        --bg-card: rgba(255, 255, 255, 0.03);
+        --bg-nav: rgba(15, 15, 26, 0.9);
+        --text-primary: #ffffff;
+        --text-secondary: rgba(255, 255, 255, 0.7);
+        --text-muted: rgba(255, 255, 255, 0.5);
+        --border-color: rgba(255, 255, 255, 0.08);
+        --border-light: rgba(255, 255, 255, 0.1);
+        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        --card-hover-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        min-height: 100vh;
+        transition:
+          background 0.3s ease,
+          color 0.3s ease;
+      }
+
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      /* ========================================
+         NAVIGATION
+         ======================================== */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        padding: 0.875rem 0;
+        background: var(--bg-nav);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-color);
+        transition: background 0.3s ease;
+      }
+
+      .nav-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+        transition: transform 0.3s ease;
+      }
+
+      .logo:hover {
+        transform: scale(1.02);
+      }
+
+      .logo-icon {
+        width: 44px;
+        height: 44px;
+        background: var(--gradient-primary);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        transition: transform 0.3s ease;
+      }
+
+      .logo:hover .logo-icon {
+        transform: rotate(-5deg) scale(1.05);
+      }
+
+      .logo-text {
+        font-size: 1.5rem;
+        font-weight: 800;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .main-nav {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+
+      .main-nav-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.625rem 1.25rem;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: all 0.2s ease;
+      }
+
+      .main-nav-link:hover {
+        color: #6366f1;
+        background: rgba(99, 102, 241, 0.1);
+      }
+
+      .main-nav-link .nav-icon {
+        font-size: 1.1rem;
+      }
+
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .nav-link {
+        text-decoration: none;
+        color: var(--text-secondary);
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+        transition: all 0.2s ease;
+      }
+
+      .nav-link:hover {
+        color: #6366f1;
+        background: rgba(99, 102, 241, 0.1);
+      }
+
+      /* Theme Toggle Button */
+      .theme-toggle {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        border: 2px solid var(--border-light);
+        background: var(--bg-card);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        transition: all 0.3s ease;
+        color: var(--text-primary);
+      }
+
+      .theme-toggle:hover {
+        border-color: #6366f1;
+        transform: rotate(15deg);
+      }
+
+      .theme-toggle .sun-icon {
+        display: block;
+      }
+      .theme-toggle .moon-icon {
+        display: none;
+      }
+
+      [data-theme="dark"] .theme-toggle .sun-icon {
+        display: none;
+      }
+      [data-theme="dark"] .theme-toggle .moon-icon {
+        display: block;
+      }
+
+      .mobile-menu-btn {
+        display: none;
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        border: none;
+        background: var(--bg-card);
+        border: 2px solid var(--border-light);
+        cursor: pointer;
+        font-size: 1.25rem;
+        color: var(--text-primary);
+      }
+
+      /* ========================================
+         HERO SECTION
+         ======================================== */
+      .hero {
+        background: var(--gradient-hero);
+        padding: 5rem 0 6rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            circle at 20% 50%,
+            rgba(255, 255, 255, 0.15) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 20%,
+            rgba(255, 255, 255, 0.1) 0%,
+            transparent 40%
+          );
+        animation: pulse 8s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.5;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.05);
+        }
+      }
+
+      .floating-shapes {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .shape {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        animation: float 20s infinite ease-in-out;
+      }
+
+      .shape-1 {
+        width: 300px;
+        height: 300px;
+        top: -100px;
+        left: -50px;
+      }
+      .shape-2 {
+        width: 200px;
+        height: 200px;
+        top: 50%;
+        right: -50px;
+        animation-delay: -5s;
+      }
+      .shape-3 {
+        width: 150px;
+        height: 150px;
+        bottom: -50px;
+        left: 30%;
+        animation-delay: -10s;
+      }
+      .shape-4 {
+        width: 100px;
+        height: 100px;
+        top: 20%;
+        right: 20%;
+        animation-delay: -15s;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+        25% {
+          transform: translate(30px, -30px) rotate(90deg);
+        }
+        50% {
+          transform: translate(0, -60px) rotate(180deg);
+        }
+        75% {
+          transform: translate(-30px, -30px) rotate(270deg);
+        }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.625rem;
+        padding: 0.625rem 1.25rem;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 100px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: white;
+        margin-bottom: 1.5rem;
+        animation: fadeInUp 0.6s ease-out;
+      }
+
+      .hero-badge-dot {
+        width: 8px;
+        height: 8px;
+        background: #4ade80;
+        border-radius: 50%;
+        animation: blink 2s infinite;
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+
+      .hero h1 {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-weight: 900;
+        margin-bottom: 1.25rem;
+        color: white;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+        text-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+        animation: fadeInUp 0.6s ease-out 0.1s both;
+      }
+
+      .hero p {
+        font-size: 1.25rem;
+        color: rgba(255, 255, 255, 0.9);
+        max-width: 550px;
+        margin: 0 auto 2.5rem;
+        line-height: 1.6;
+        animation: fadeInUp 0.6s ease-out 0.2s both;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero-stats {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        animation: fadeInUp 0.6s ease-out 0.3s both;
+      }
+
+      .hero-stat {
+        text-align: center;
+        padding: 1rem 1.5rem;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: transform 0.3s ease;
+      }
+
+      .hero-stat:hover {
+        transform: translateY(-5px);
+      }
+
+      .hero-stat-number {
+        font-size: 2rem;
+        font-weight: 800;
+        color: white;
+        line-height: 1;
+        margin-bottom: 0.25rem;
+      }
+
+      .hero-stat-label {
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.8);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      /* ========================================
+         TAB NAVIGATION FOR SLIDER
+         ======================================== */
+      .content-section {
+        padding: 3rem 0 4rem;
+      }
+
+      .tab-nav {
+        display: flex;
+        justify-content: center;
+        gap: 0.75rem;
+        margin-bottom: 2.5rem;
+        flex-wrap: wrap;
+      }
+
+      .tab-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+        padding: 1rem 1.75rem;
+        border-radius: 16px;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        background: var(--bg-card);
+        border: 2px solid var(--border-light);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: var(--card-shadow);
+      }
+
+      .tab-btn:hover {
+        border-color: #6366f1;
+        color: #6366f1;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(99, 102, 241, 0.2);
+      }
+
+      .tab-btn.active {
+        background: var(--gradient-primary);
+        border-color: transparent;
+        color: white;
+        box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+        transform: translateY(-3px);
+      }
+
+      .tab-btn .tab-icon {
+        font-size: 1.35rem;
+      }
+
+      .tab-btn .tab-count {
+        background: rgba(255, 255, 255, 0.25);
+        padding: 0.2rem 0.6rem;
+        border-radius: 100px;
+        font-size: 0.75rem;
+        font-weight: 700;
+      }
+
+      .tab-btn:not(.active) .tab-count {
+        background: var(--border-light);
+        color: var(--text-muted);
+      }
+
+      /* ========================================
+         SLIDER
+         ======================================== */
+      .slider-container {
+        overflow: hidden;
+        position: relative;
+      }
+
+      .slider-wrapper {
+        display: flex;
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .slide {
+        min-width: 100%;
+        padding: 0.5rem 0;
+      }
+
+      /* ========================================
+         APPS GRID & CARDS
+         ======================================== */
+      .apps-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .app-card {
+        background: var(--bg-card);
+        border-radius: 20px;
+        padding: 1.75rem;
+        border: 1px solid var(--border-color);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        position: relative;
+        overflow: hidden;
+        box-shadow: var(--card-shadow);
+      }
+
+      .app-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(102, 126, 234, 0.05) 0%,
+          rgba(118, 75, 162, 0.05) 100%
+        );
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .app-card:hover {
+        transform: translateY(-8px) scale(1.01);
+        box-shadow: var(--card-hover-shadow);
+        border-color: rgba(102, 126, 234, 0.3);
+      }
+
+      .app-card:hover::before {
+        opacity: 1;
+      }
+
+      .app-card:hover .app-icon {
+        transform: scale(1.1) rotate(-5deg);
+      }
+
+      .app-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.75rem;
+        transition: transform 0.4s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        position: relative;
+        z-index: 1;
+      }
+
+      .app-card h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        position: relative;
+        z-index: 1;
+      }
+
+      .app-card p {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        line-height: 1.6;
+        position: relative;
+        z-index: 1;
+      }
+
+      .app-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        padding: 0.375rem 0.875rem;
+        border-radius: 100px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        align-self: flex-start;
+        position: relative;
+        z-index: 1;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+      }
+
+      .app-tag.new {
+        background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+        color: #16a34a;
+      }
+
+      .app-tag.popular {
+        background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+        color: #d97706;
+      }
+
+      [data-theme="dark"] .app-tag.new {
+        background: rgba(16, 185, 129, 0.2);
+        color: #10b981;
+      }
+
+      [data-theme="dark"] .app-tag.popular {
+        background: rgba(245, 158, 11, 0.2);
+        color: #f59e0b;
+      }
+
+      .app-card::after {
+        content: "→";
+        position: absolute;
+        bottom: 1.75rem;
+        right: 1.75rem;
+        font-size: 1.25rem;
+        color: var(--text-muted);
+        transition: all 0.3s ease;
+        transform: translateX(-5px);
+        opacity: 0;
+      }
+
+      .app-card:hover::after {
+        transform: translateX(0);
+        opacity: 1;
+        color: #6366f1;
+      }
+
+      .icon-blue {
+        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      }
+      .icon-purple {
+        background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+      }
+      .icon-pink {
+        background: linear-gradient(135deg, #ec4899 0%, #d946ef 100%);
+      }
+      .icon-orange {
+        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      }
+      .icon-red {
+        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      }
+      .icon-green {
+        background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+      }
+      .icon-teal {
+        background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+      }
+      .icon-cyan {
+        background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+      }
+      .icon-indigo {
+        background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+      }
+      .icon-dark {
+        background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+      }
+
+      /* ========================================
+         MOBILE NAVIGATION
+         ======================================== */
+      .mobile-nav {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 2000;
+        background: var(--bg-primary);
+        flex-direction: column;
+        padding: 1.5rem;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .mobile-nav.active {
+        display: flex;
+      }
+
+      .mobile-nav-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+      }
+
+      .mobile-nav-close {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        border: none;
+        background: var(--bg-card);
+        border: 2px solid var(--border-light);
+        cursor: pointer;
+        font-size: 1.25rem;
+        color: var(--text-primary);
+      }
+
+      .mobile-nav-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .mobile-nav-link {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 1.25rem;
+        border-radius: 16px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        text-decoration: none;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        transition: all 0.2s ease;
+      }
+
+      .mobile-nav-link:hover {
+        background: rgba(99, 102, 241, 0.1);
+        color: #6366f1;
+        border-color: #6366f1;
+      }
+
+      .mobile-nav-link .nav-icon {
+        font-size: 1.5rem;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* ========================================
+         FOOTER
+         ======================================== */
+      .footer {
+        background: var(--bg-card);
+        padding: 3rem 0;
+        border-top: 1px solid var(--border-light);
+        margin-top: 4rem;
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .footer-links a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: color 0.2s ease;
+      }
+
+      .footer-links a:hover {
+        color: #6366f1;
+      }
+
+      .footer-copy {
+        color: var(--text-muted);
+        font-size: 0.875rem;
+        margin-top: 2rem;
+        text-align: center;
+      }
+
+      /* ========================================
+         RESPONSIVE
+         ======================================== */
+      @media (max-width: 768px) {
+        .hero {
+          padding: 3rem 0 4rem;
+        }
+
+        .hero h1 {
+          font-size: 2.25rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+
+        .hero-stats {
+          gap: 0.75rem;
+        }
+
+        .hero-stat {
+          padding: 0.75rem 1rem;
+        }
+
+        .hero-stat-number {
+          font-size: 1.5rem;
+        }
+
+        .main-nav,
+        .nav-link {
+          display: none;
+        }
+
+        .mobile-menu-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .tab-nav {
+          gap: 0.5rem;
+        }
+
+        .tab-btn {
+          padding: 0.75rem 1.25rem;
+          font-size: 0.9rem;
+        }
+
+        .tab-btn .tab-count {
+          display: none;
+        }
+
+        .apps-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-content {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .footer-links {
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .tab-btn {
+          padding: 0.625rem 1rem;
+          font-size: 0.85rem;
+        }
+
+        .tab-btn .tab-icon {
+          font-size: 1.1rem;
+        }
+      }
+
+      .tab-btn:focus-visible,
+      .app-card:focus-visible,
+      .nav-link:focus-visible,
+      .theme-toggle:focus-visible {
+        outline: 2px solid #6366f1;
+        outline-offset: 2px;
+      }
+
+      ::selection {
+        background: rgba(102, 126, 234, 0.2);
+        color: var(--text-primary);
+      }
+    </style>
   </head>
   <body>
     <!-- Navigation -->
     <nav class="nav">
-      <div class="container nav-content">
+      <div class="nav-content">
         <a href="index.html" class="logo">
-          <div class="logo-icon">�</div>
-          <span class="logo-text">HomeSense</span>
+          <div class="logo-icon">⚡</div>
+          <span class="logo-text">MiniApps</span>
         </a>
-        <div class="nav-links">
-          <a href="tools.html" class="nav-link">Tools</a>
-          <a href="features.html" class="nav-link">Features</a>
-          <a href="sensors.html" class="nav-link">Sensors</a>
-          <a href="blog.html" class="nav-link">Blog</a>
+
+        <div class="main-nav">
+          <a href="tools.html" class="main-nav-link">
+            <span class="nav-icon">🛠️</span>
+            <span>Tools</span>
+          </a>
+          <a href="games.html" class="main-nav-link">
+            <span class="nav-icon">🎮</span>
+            <span>Games</span>
+          </a>
+          <a href="learn.html" class="main-nav-link">
+            <span class="nav-icon">📚</span>
+            <span>Learn</span>
+          </a>
         </div>
-        <div class="nav-buttons">
-          <div class="mode-toggle">
-            <span class="mode-label home">Home</span>
-            <label class="toggle-switch">
-              <input type="checkbox" id="modeToggle" onchange="toggleMode()" />
-              <span class="toggle-slider"></span>
-              <span class="toggle-icon home-icon">🏠</span>
-              <span class="toggle-icon agri-icon">🌱</span>
-            </label>
-            <span class="mode-label agri">Agri</span>
-          </div>
-          <a href="login.html" class="btn btn-secondary btn-small">Log In</a>
-          <a href="builder.html" class="btn btn-primary btn-small">Try Free</a>
+
+        <div class="nav-right">
+          <a href="about.html" class="nav-link">About</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+
+          <button
+            class="theme-toggle"
+            onclick="toggleTheme()"
+            aria-label="Toggle theme"
+          >
+            <span class="sun-icon">🌙</span>
+            <span class="moon-icon">☀️</span>
+          </button>
+
+          <button class="mobile-menu-btn" onclick="openMobileNav()">☰</button>
         </div>
       </div>
     </nav>
 
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+      <div class="mobile-nav-header">
+        <a href="index.html" class="logo">
+          <div class="logo-icon">⚡</div>
+          <span class="logo-text">MiniApps</span>
+        </a>
+        <button class="mobile-nav-close" onclick="closeMobileNav()">✕</button>
+      </div>
+      <div class="mobile-nav-links">
+        <a href="tools.html" class="mobile-nav-link">
+          <span class="nav-icon">🛠️</span>
+          <span>Tools</span>
+        </a>
+        <a href="games.html" class="mobile-nav-link">
+          <span class="nav-icon">🎮</span>
+          <span>Games</span>
+        </a>
+        <a href="learn.html" class="mobile-nav-link">
+          <span class="nav-icon">📚</span>
+          <span>Learn</span>
+        </a>
+        <a href="about.html" class="mobile-nav-link">
+          <span class="nav-icon">ℹ️</span>
+          <span>About</span>
+        </a>
+        <a href="contact.html" class="mobile-nav-link">
+          <span class="nav-icon">💬</span>
+          <span>Contact</span>
+        </a>
+      </div>
+    </div>
+
     <!-- Hero Section -->
-    <section class="hero hero-agri">
-      <div class="container hero-content">
-        <h1 class="hero-title">Smart Home Living Starts Here</h1>
-        <p class="hero-subtitle">
-          Connect your IoT devices and unlock powerful tools for monitoring
-          energy, security, and climate control throughout your home.
-        </p>
-        <div class="hero-buttons">
-          <a
-            href="builder-home.html"
-            class="btn btn-large btn-primary dashboard-link"
-            >Try Dashboard Free</a
-          >
-          <a href="tools.html" class="btn btn-large btn-secondary"
-            >Explore Tools</a
-          >
+    <section class="hero">
+      <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          100% Free • No Ads • No Tracking
         </div>
+        <h1>Tools, Games & Learning</h1>
+        <p>
+          A beautiful collection of browser tools, fun games, and interactive
+          lessons. Fast, simple, and completely free.
+        </p>
         <div class="hero-stats">
           <div class="hero-stat">
-            <span class="stat-number">25K+</span>
-            <span class="stat-label">Homes</span>
+            <div class="hero-stat-number">8+</div>
+            <div class="hero-stat-label">Tools</div>
           </div>
           <div class="hero-stat">
-            <span class="stat-number">120K+</span>
-            <span class="stat-label">Devices Connected</span>
+            <div class="hero-stat-number">8+</div>
+            <div class="hero-stat-label">Games</div>
           </div>
           <div class="hero-stat">
-            <span class="stat-number">40%</span>
-            <span class="stat-label">Energy Savings</span>
+            <div class="hero-stat-number">8+</div>
+            <div class="hero-stat-label">Lessons</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number">∞</div>
+            <div class="hero-stat-label">Fun</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Tools Preview Section -->
-    <section class="tools-preview">
+    <!-- Content Section with Tabs -->
+    <section class="content-section">
       <div class="container">
-        <div class="section-header">
-          <h2 class="section-title tools-title">
-            Powerful Tools for Every Home
-          </h2>
-          <p class="section-subtitle tools-subtitle">
-            From smart lighting to security, we have got you covered
-          </p>
-        </div>
-
-        <div class="tools-preview-grid">
-          <!-- Smart Lighting -->
-          <a href="tools.html" class="tool-preview-card">
-            <div class="tool-preview-icon tool-icon-1">💡</div>
-            <h3>Smart Lighting</h3>
-            <p>
-              Complete lighting control with scheduling, scenes, and automation.
-              Save energy while living comfortably.
-            </p>
-            <span class="tool-link">Learn more →</span>
-          </a>
-
-          <!-- Climate Control -->
-          <a href="tools.html" class="tool-preview-card featured">
-            <span class="tool-preview-badge">New</span>
-            <div class="tool-preview-icon tool-icon-2">🌡️</div>
-            <h3>Climate Control</h3>
-            <p>
-              Intelligent thermostat management with zone control. Optimize
-              comfort and reduce heating/cooling costs.
-            </p>
-            <span class="tool-link">Learn more →</span>
-          </a>
-
-          <!-- Home Security -->
-          <a href="tools.html" class="tool-preview-card">
-            <div class="tool-preview-icon tool-icon-3">🔒</div>
-            <h3>Home Security</h3>
-            <p>
-              Monitor cameras, locks, and sensors. Get instant alerts for any
-              unusual activity.
-            </p>
-            <span class="tool-link">Learn more →</span>
-          </a>
-        </div>
-
-        <div class="tools-preview-cta">
-          <a href="tools.html" class="btn btn-secondary">View All Tools</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- How It Works -->
-    <section class="how-it-works-home">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Connect Your Sensors in Minutes</h2>
-          <p class="section-subtitle">
-            Bring your own IoT sensors or choose from our compatible devices
-          </p>
-        </div>
-        <div class="steps-grid">
-          <div class="step-card">
-            <div class="step-number">1</div>
-            <h3>Sign Up Free</h3>
-            <p>Create your account and access the dashboard instantly</p>
-          </div>
-          <div class="step-card">
-            <div class="step-number">2</div>
-            <h3>Add Sensors</h3>
-            <p>Connect your IoT sensors via WiFi, LoRaWAN, or API</p>
-          </div>
-          <div class="step-card">
-            <div class="step-number">3</div>
-            <h3>Start Monitoring</h3>
-            <p>See real-time data and get insights immediately</p>
-          </div>
-        </div>
-        <div class="steps-cta">
-          <a href="sensors.html" class="btn btn-primary"
-            >See Compatible Sensors</a
+        <div class="tab-nav">
+          <button
+            class="tab-btn active"
+            onclick="switchSlide(0)"
+            id="tab-tools"
           >
+            <span class="tab-icon">🛠️</span>
+            <span>Tools</span>
+            <span class="tab-count">8</span>
+          </button>
+          <button class="tab-btn" onclick="switchSlide(1)" id="tab-games">
+            <span class="tab-icon">🎮</span>
+            <span>Games</span>
+            <span class="tab-count">8</span>
+          </button>
+          <button class="tab-btn" onclick="switchSlide(2)" id="tab-learn">
+            <span class="tab-icon">📚</span>
+            <span>Learn</span>
+            <span class="tab-count">8</span>
+          </button>
+        </div>
+
+        <div class="slider-container">
+          <div class="slider-wrapper" id="slider">
+            <!-- TOOLS SLIDE -->
+            <div class="slide" id="tools-slide">
+              <div class="apps-grid">
+                <a href="tools/calculator.html" class="app-card">
+                  <div class="app-icon icon-blue">🧮</div>
+                  <span class="app-tag popular">Popular</span>
+                  <h3>Calculator</h3>
+                  <p>
+                    A beautiful scientific calculator with history and unit
+                    conversions.
+                  </p>
+                </a>
+                <a href="tools/notes.html" class="app-card">
+                  <div class="app-icon icon-orange">📝</div>
+                  <span class="app-tag new">New</span>
+                  <h3>Quick Notes</h3>
+                  <p>
+                    Jot down ideas fast. Auto-saves locally so you never lose
+                    anything.
+                  </p>
+                </a>
+                <a href="tools/timer.html" class="app-card">
+                  <div class="app-icon icon-red">⏱️</div>
+                  <h3>Timer & Stopwatch</h3>
+                  <p>Pomodoro timer, countdown, and stopwatch all in one.</p>
+                </a>
+                <a href="tools/colors.html" class="app-card">
+                  <div class="app-icon icon-pink">🎨</div>
+                  <h3>Color Picker</h3>
+                  <p>
+                    Pick colors, generate palettes, and convert between formats.
+                  </p>
+                </a>
+                <a href="tools/converter.html" class="app-card">
+                  <div class="app-icon icon-green">📐</div>
+                  <h3>Unit Converter</h3>
+                  <p>
+                    Convert between units of length, weight, temperature, and
+                    more.
+                  </p>
+                </a>
+                <a href="tools/qr.html" class="app-card">
+                  <div class="app-icon icon-dark">📱</div>
+                  <h3>QR Generator</h3>
+                  <p>
+                    Create QR codes for links, text, WiFi, and contacts
+                    instantly.
+                  </p>
+                </a>
+                <a href="tools/password.html" class="app-card">
+                  <div class="app-icon icon-cyan">🔐</div>
+                  <h3>Password Generator</h3>
+                  <p>Generate strong, secure passwords with custom rules.</p>
+                </a>
+                <a href="tools/json.html" class="app-card">
+                  <div class="app-icon icon-indigo">{ }</div>
+                  <span class="app-tag new">New</span>
+                  <h3>JSON Formatter</h3>
+                  <p>
+                    Format, validate, and minify JSON with syntax highlighting.
+                  </p>
+                </a>
+              </div>
+            </div>
+
+            <!-- GAMES SLIDE -->
+            <div class="slide" id="games-slide">
+              <div class="apps-grid">
+                <a href="games/tictactoe.html" class="app-card">
+                  <div class="app-icon icon-purple">⭕</div>
+                  <span class="app-tag popular">Popular</span>
+                  <h3>Tic Tac Toe</h3>
+                  <p>
+                    Classic game with single player AI and two player modes.
+                  </p>
+                </a>
+                <a href="games/memory.html" class="app-card">
+                  <div class="app-icon icon-pink">🃏</div>
+                  <h3>Memory Match</h3>
+                  <p>
+                    Test your memory by matching pairs of cards. Multiple
+                    difficulty levels.
+                  </p>
+                </a>
+                <a href="games/snake.html" class="app-card">
+                  <div class="app-icon icon-green">🐍</div>
+                  <span class="app-tag new">New</span>
+                  <h3>Snake</h3>
+                  <p>
+                    The classic snake game. Eat, grow, and don't hit the walls!
+                  </p>
+                </a>
+                <a href="games/2048.html" class="app-card">
+                  <div class="app-icon icon-orange">🔢</div>
+                  <h3>2048</h3>
+                  <p>
+                    Slide tiles and combine numbers to reach 2048. Addictive
+                    puzzle fun!
+                  </p>
+                </a>
+                <a href="games/wordle.html" class="app-card">
+                  <div class="app-icon icon-teal">📖</div>
+                  <h3>Word Guess</h3>
+                  <p>
+                    Guess the 5-letter word in 6 tries. A new word every day!
+                  </p>
+                </a>
+                <a href="games/breakout.html" class="app-card">
+                  <div class="app-icon icon-red">🧱</div>
+                  <h3>Breakout</h3>
+                  <p>
+                    Break all the bricks with your paddle and ball. Classic
+                    arcade action!
+                  </p>
+                </a>
+                <a href="games/sudoku.html" class="app-card">
+                  <div class="app-icon icon-blue">9️⃣</div>
+                  <h3>Sudoku</h3>
+                  <p>
+                    Fill the grid with numbers 1-9. Easy, medium, and hard
+                    puzzles.
+                  </p>
+                </a>
+                <a href="games/trivia.html" class="app-card">
+                  <div class="app-icon icon-purple">❓</div>
+                  <h3>Trivia Quiz</h3>
+                  <p>
+                    Test your knowledge with questions from various categories.
+                  </p>
+                </a>
+              </div>
+            </div>
+
+            <!-- LEARN SLIDE -->
+            <div class="slide" id="learn-slide">
+              <div class="apps-grid">
+                <a href="learn/typing.html" class="app-card">
+                  <div class="app-icon icon-blue">⌨️</div>
+                  <span class="app-tag popular">Popular</span>
+                  <h3>Typing Practice</h3>
+                  <p>
+                    Improve your typing speed and accuracy with fun exercises.
+                  </p>
+                </a>
+                <a href="learn/math.html" class="app-card">
+                  <div class="app-icon icon-green">➕</div>
+                  <span class="app-tag new">New</span>
+                  <h3>Math Practice</h3>
+                  <p>
+                    Practice arithmetic, algebra, and more with instant
+                    feedback.
+                  </p>
+                </a>
+                <a href="learn/flashcards.html" class="app-card">
+                  <div class="app-icon icon-orange">🗂️</div>
+                  <h3>Flashcards</h3>
+                  <p>
+                    Create and study flashcards with spaced repetition learning.
+                  </p>
+                </a>
+                <a href="learn/language.html" class="app-card">
+                  <div class="app-icon icon-pink">🌍</div>
+                  <h3>Language Basics</h3>
+                  <p>
+                    Learn common phrases in Spanish, French, Japanese, and more.
+                  </p>
+                </a>
+                <a href="learn/coding.html" class="app-card">
+                  <div class="app-icon icon-indigo">💻</div>
+                  <span class="app-tag popular">Popular</span>
+                  <h3>Coding Basics</h3>
+                  <p>
+                    Interactive lessons on HTML, CSS, JavaScript fundamentals.
+                  </p>
+                </a>
+                <a href="learn/geography.html" class="app-card">
+                  <div class="app-icon icon-teal">🗺️</div>
+                  <h3>Geography Quiz</h3>
+                  <p>
+                    Learn countries, capitals, flags, and landmarks worldwide.
+                  </p>
+                </a>
+                <a href="learn/science.html" class="app-card">
+                  <div class="app-icon icon-purple">🔬</div>
+                  <h3>Science Facts</h3>
+                  <p>
+                    Explore fascinating facts about physics, chemistry, and
+                    biology.
+                  </p>
+                </a>
+                <a href="learn/vocabulary.html" class="app-card">
+                  <div class="app-icon icon-red">📖</div>
+                  <span class="app-tag new">New</span>
+                  <h3>Vocabulary Builder</h3>
+                  <p>Expand your vocabulary with daily words and quizzes.</p>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
-
-    <!-- Features Preview -->
-    <section id="features" class="features">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Why Farmers Choose AgriSense</h2>
-          <p class="section-subtitle">
-            Everything you need to modernize your farm operations
-          </p>
-        </div>
-        <div class="features-grid">
-          <div class="feature-card">
-            <div
-              class="feature-icon"
-              style="
-                background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
-              "
-            >
-              <svg
-                width="32"
-                height="32"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M13 10V3L4 14h7v7l9-11h-7z"
-                />
-              </svg>
-            </div>
-            <h3 class="feature-title">Real-Time Data</h3>
-            <p class="feature-desc">
-              Live updates from all your sensors. Track everything 24/7 from
-              anywhere.
-            </p>
-          </div>
-
-          <div class="feature-card">
-            <div
-              class="feature-icon"
-              style="
-                background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-              "
-            >
-              <svg
-                width="32"
-                height="32"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                />
-              </svg>
-            </div>
-            <h3 class="feature-title">Smart Analytics</h3>
-            <p class="feature-desc">
-              Historical trends, AI predictions, and actionable insights for
-              better decisions.
-            </p>
-          </div>
-
-          <div class="feature-card">
-            <div
-              class="feature-icon"
-              style="
-                background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-              "
-            >
-              <svg
-                width="32"
-                height="32"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                />
-              </svg>
-            </div>
-            <h3 class="feature-title">Instant Alerts</h3>
-            <p class="feature-desc">
-              Get notified immediately when conditions change. Email, SMS, or
-              push.
-            </p>
-          </div>
-        </div>
-        <div class="features-cta">
-          <a href="features.html" class="btn btn-secondary">See All Features</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Testimonial/Social Proof -->
-    <section class="testimonials">
-      <div class="container">
-        <div class="testimonial-card">
-          <blockquote>
-            "AgriSense helped us reduce water usage by 35% while actually
-            increasing our tomato yield. The flood prediction tool saved our
-            crops during the last monsoon season."
-          </blockquote>
-          <div class="testimonial-author">
-            <div class="author-avatar">👨‍🌾</div>
-            <div class="author-info">
-              <strong>Rajesh Patel</strong>
-              <span>Greenhouse Farmer, Gujarat</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Pricing Preview -->
-    <section id="pricing" class="pricing-section">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Simple, Transparent Pricing</h2>
-          <p class="section-subtitle">Start free, upgrade when you need more</p>
-        </div>
-        <div class="pricing-grid">
-          <div class="pricing-card">
-            <h3 class="pricing-tier">Free</h3>
-            <div class="pricing-price">
-              <span class="price-amount">$0</span>
-            </div>
-            <ul class="pricing-features">
-              <li>✓ Up to 3 sensors</li>
-              <li>✓ Basic dashboard</li>
-              <li>✓ 7-day data history</li>
-              <li>✓ Email alerts</li>
-            </ul>
-            <a href="signup.html" class="btn btn-secondary btn-full"
-              >Get Started</a
-            >
-          </div>
-          <div class="pricing-card pricing-featured">
-            <span class="pricing-badge">Most Popular</span>
-            <h3 class="pricing-tier">Pro</h3>
-            <div class="pricing-price">
-              <span class="price-amount">$29</span>
-              <span class="price-period">/month</span>
-            </div>
-            <ul class="pricing-features">
-              <li>✓ Up to 25 sensors</li>
-              <li>✓ All tools included</li>
-              <li>✓ 1-year data history</li>
-              <li>✓ SMS & push alerts</li>
-              <li>✓ Export reports</li>
-            </ul>
-            <a href="signup.html" class="btn btn-primary btn-full"
-              >Start Free Trial</a
-            >
-          </div>
-          <div class="pricing-card">
-            <h3 class="pricing-tier">Enterprise</h3>
-            <div class="pricing-price">
-              <span class="price-amount">$99</span>
-              <span class="price-period">/month</span>
-            </div>
-            <ul class="pricing-features">
-              <li>✓ Unlimited sensors</li>
-              <li>✓ AI predictions</li>
-              <li>✓ Unlimited history</li>
-              <li>✓ API access</li>
-              <li>✓ Priority support</li>
-            </ul>
-            <a href="#" class="btn btn-secondary btn-full">Contact Sales</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta">
-      <div class="container">
-        <div class="cta-box">
-          <h2 class="cta-title">Ready to Transform Your Home?</h2>
-          <p class="cta-subtitle">
-            Start your free trial today. No credit card required.
-          </p>
-          <a
-            href="builder-home.html"
-            class="btn btn-large btn-white dashboard-link"
-            >Try Dashboard Free</a
-          >
-        </div>
-      </div>
-    </section>
-
-    <!-- Mode Toggle Script -->
-    <script>
-      // Content for each mode
-      const modeContent = {
-        agri: {
-          title: "AgriSense",
-          icon: "🌱",
-          heroTitle: "Smart Farming Starts Here",
-          heroSubtitle:
-            "Connect your IoT sensors and unlock powerful tools for monitoring soil, predicting weather, and optimizing your farm operations in real-time.",
-          stats: [
-            { number: "12K+", label: "Farmers" },
-            { number: "50K+", label: "Sensors Connected" },
-            { number: "30%", label: "Avg. Yield Increase" },
-          ],
-          tools: [
-            {
-              icon: "🌿",
-              title: "Grow Anywhere",
-              desc: "Complete environment control for indoor, greenhouse, and vertical farming. Automate lighting, climate, and more.",
-            },
-            {
-              icon: "🌧️",
-              title: "Weather & Floods",
-              desc: "Advanced weather forecasting with flood risk prediction. Get early warnings for extreme weather events.",
-            },
-            {
-              icon: "🌍",
-              title: "Soil Health",
-              desc: "Track nutrients, pH levels, and organic matter. Get fertilizer recommendations based on real data.",
-            },
-          ],
-          ctaTitle: "Ready to Transform Your Farm?",
-        },
-        home: {
-          title: "HomeSense",
-          icon: "🏠",
-          heroTitle: "Smart Home Living Starts Here",
-          heroSubtitle:
-            "Connect your IoT devices and unlock powerful tools for monitoring energy, security, and climate control throughout your home.",
-          stats: [
-            { number: "25K+", label: "Homes" },
-            { number: "120K+", label: "Devices Connected" },
-            { number: "40%", label: "Energy Savings" },
-          ],
-          tools: [
-            {
-              icon: "💡",
-              title: "Smart Lighting",
-              desc: "Complete lighting control with scheduling, scenes, and automation. Save energy while living comfortably.",
-            },
-            {
-              icon: "🌡️",
-              title: "Climate Control",
-              desc: "Intelligent thermostat management with zone control. Optimize comfort and reduce heating/cooling costs.",
-            },
-            {
-              icon: "🔒",
-              title: "Home Security",
-              desc: "Monitor cameras, locks, and sensors. Get instant alerts for any unusual activity.",
-            },
-          ],
-          ctaTitle: "Ready to Transform Your Home?",
-          toolsTitle: "Powerful Tools for Every Home",
-          toolsSubtitle:
-            "From smart lighting to security, we have got you covered",
-          stepsTitle: "Connect Your Devices in Minutes",
-          featuresTitle: "Why Homeowners Choose HomeSense",
-        },
-      };
-
-      // Add missing content to agri mode
-      modeContent.agri.toolsTitle = "Powerful Tools for Every Farm";
-      modeContent.agri.toolsSubtitle =
-        "From indoor growing to flood prediction, we have got you covered";
-      modeContent.agri.stepsTitle = "Connect Your Sensors in Minutes";
-      modeContent.agri.featuresTitle = "Why Farmers Choose AgriSense";
-
-      function toggleMode() {
-        const isAgriMode = document.getElementById("modeToggle").checked;
-        const body = document.body;
-        const content = isAgriMode ? modeContent.agri : modeContent.home;
-
-        // Toggle body class - agri mode uses the alternate styling
-        body.classList.toggle("agri-mode", isAgriMode);
-        body.classList.remove("home-mode"); // Remove old class if present
-
-        // Update logo
-        document
-          .querySelectorAll(".logo-icon")
-          .forEach((el) => (el.textContent = content.icon));
-        document
-          .querySelectorAll(".logo-text")
-          .forEach((el) => (el.textContent = content.title));
-
-        // Update hero
-        const heroTitle = document.querySelector(".hero-title");
-        const heroSubtitle = document.querySelector(".hero-subtitle");
-        if (heroTitle) heroTitle.textContent = content.heroTitle;
-        if (heroSubtitle) heroSubtitle.textContent = content.heroSubtitle;
-
-        // Update stats
-        const statNumbers = document.querySelectorAll(".stat-number");
-        const statLabels = document.querySelectorAll(".stat-label");
-        content.stats.forEach((stat, i) => {
-          if (statNumbers[i]) statNumbers[i].textContent = stat.number;
-          if (statLabels[i]) statLabels[i].textContent = stat.label;
-        });
-
-        // Update tool cards
-        const toolCards = document.querySelectorAll(".tool-preview-card");
-        content.tools.forEach((tool, i) => {
-          if (toolCards[i]) {
-            const iconEl = toolCards[i].querySelector(".tool-preview-icon");
-            const titleEl = toolCards[i].querySelector("h3");
-            const descEl = toolCards[i].querySelector("p");
-            if (iconEl) iconEl.textContent = tool.icon;
-            if (titleEl) titleEl.textContent = tool.title;
-            if (descEl) descEl.textContent = tool.desc;
-          }
-        });
-
-        // Update section titles
-        const toolsTitle = document.querySelector(".tools-title");
-        const toolsSubtitle = document.querySelector(".tools-subtitle");
-        if (toolsTitle) toolsTitle.textContent = content.toolsTitle;
-        if (toolsSubtitle) toolsSubtitle.textContent = content.toolsSubtitle;
-
-        // Update steps section
-        const stepsSection = document.querySelector(
-          ".how-it-works-home .section-title",
-        );
-        if (stepsSection) stepsSection.textContent = content.stepsTitle;
-
-        // Update features section
-        const featuresSection = document.querySelector(
-          ".features .section-title",
-        );
-        if (featuresSection)
-          featuresSection.textContent = content.featuresTitle;
-
-        // Update CTA
-        const ctaTitle = document.querySelector(".cta-title");
-        if (ctaTitle) ctaTitle.textContent = content.ctaTitle;
-
-        // Update dashboard links
-        const dashboardLinks = document.querySelectorAll(".dashboard-link");
-        dashboardLinks.forEach((link) => {
-          link.href = isAgriMode ? "builder.html" : "builder-home.html";
-        });
-
-        // Update footer tagline
-        const footerTagline = document.querySelector(".footer-tagline");
-        if (footerTagline)
-          footerTagline.textContent = isAgriMode
-            ? "Smart farming for everyone."
-            : "Smart living for everyone.";
-
-        // Update page title
-        document.title = `${content.title} - Smart ${isAgriMode ? "Farm" : "Home"} Monitoring Dashboard`;
-
-        // Save preference
-        localStorage.setItem("senseMode", isAgriMode ? "agri" : "home");
-      }
-
-      // Load saved preference on page load
-      document.addEventListener("DOMContentLoaded", () => {
-        const savedMode = localStorage.getItem("senseMode");
-        if (savedMode === "agri") {
-          document.getElementById("modeToggle").checked = true;
-          toggleMode();
-        }
-      });
-    </script>
 
     <!-- Footer -->
     <footer class="footer">
-      <div class="container footer-grid">
-        <div class="footer-brand">
-          <div class="logo">
-            <div class="logo-icon">�</div>
-            <span class="logo-text">HomeSense</span>
-          </div>
-          <p class="footer-tagline">Smart living for everyone.</p>
-        </div>
-        <div class="footer-links">
-          <h4>Product</h4>
-          <a href="tools.html">Tools</a>
-          <a href="features.html">Features</a>
-          <a href="sensors.html">Sensors</a>
-          <a href="#pricing">Pricing</a>
-        </div>
-        <div class="footer-links">
-          <h4>Resources</h4>
-          <a href="blog.html">Blog</a>
-          <a href="sensors.html">Documentation</a>
-          <a href="features.html">API</a>
-          <a href="contact.html">Support</a>
-        </div>
-        <div class="footer-links">
-          <h4>Company</h4>
-          <a href="about.html">About</a>
-          <a href="contact.html">Contact</a>
-          <a href="privacy-policy.html">Privacy</a>
-          <a href="terms-of-service.html">Terms</a>
-        </div>
-      </div>
       <div class="container">
-        <p class="footer-copy">© 2026 AgriSense. All rights reserved.</p>
+        <div class="footer-content">
+          <a href="index.html" class="logo">
+            <div class="logo-icon">⚡</div>
+            <span class="logo-text">MiniApps</span>
+          </a>
+          <div class="footer-links">
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="privacy-policy.html">Privacy</a>
+            <a href="terms-of-service.html">Terms</a>
+          </div>
+        </div>
+        <p class="footer-copy">© 2025 MiniApps. Made with ❤️ for everyone.</p>
       </div>
     </footer>
+
+    <script>
+      // ========================================
+      // THEME MANAGEMENT
+      // ========================================
+      function getPreferredTheme() {
+        const saved = localStorage.getItem("miniapps-theme");
+        if (saved) return saved;
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      }
+
+      function setTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("miniapps-theme", theme);
+      }
+
+      function toggleTheme() {
+        const current =
+          document.documentElement.getAttribute("data-theme") || "light";
+        const next = current === "dark" ? "light" : "dark";
+        setTheme(next);
+      }
+
+      // Initialize theme
+      setTheme(getPreferredTheme());
+
+      // ========================================
+      // SLIDER FUNCTIONALITY
+      // ========================================
+      let currentSlide = 0;
+      const totalSlides = 3;
+      const tabIds = ["tab-tools", "tab-games", "tab-learn"];
+
+      function switchSlide(index) {
+        currentSlide = index;
+        updateSlider();
+      }
+
+      function updateSlider() {
+        const slider = document.getElementById("slider");
+        slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+        tabIds.forEach((id, i) => {
+          const btn = document.getElementById(id);
+          if (btn) {
+            btn.classList.toggle("active", i === currentSlide);
+          }
+        });
+      }
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowLeft") {
+          currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+          updateSlider();
+        }
+        if (e.key === "ArrowRight") {
+          currentSlide = (currentSlide + 1) % totalSlides;
+          updateSlider();
+        }
+      });
+
+      let touchStartX = 0;
+      const sliderContainer = document.querySelector(".slider-container");
+
+      sliderContainer.addEventListener(
+        "touchstart",
+        (e) => {
+          touchStartX = e.changedTouches[0].screenX;
+        },
+        { passive: true },
+      );
+
+      sliderContainer.addEventListener(
+        "touchend",
+        (e) => {
+          const touchEndX = e.changedTouches[0].screenX;
+          const diff = touchStartX - touchEndX;
+          if (Math.abs(diff) > 50) {
+            if (diff > 0) {
+              currentSlide = (currentSlide + 1) % totalSlides;
+            } else {
+              currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            }
+            updateSlider();
+          }
+        },
+        { passive: true },
+      );
+
+      // ========================================
+      // MOBILE NAVIGATION
+      // ========================================
+      function openMobileNav() {
+        document.getElementById("mobileNav").classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeMobileNav() {
+        document.getElementById("mobileNav").classList.remove("active");
+        document.body.style.overflow = "";
+      }
+
+      // ========================================
+      // CARD ANIMATIONS
+      // ========================================
+      document.addEventListener("DOMContentLoaded", () => {
+        const cards = document.querySelectorAll(".app-card");
+        cards.forEach((card, index) => {
+          card.style.opacity = "0";
+          card.style.transform = "translateY(20px)";
+          setTimeout(
+            () => {
+              card.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+              card.style.opacity = "1";
+              card.style.transform = "translateY(0)";
+            },
+            100 + (index % 8) * 50,
+          );
+        });
+      });
+    </script>
   </body>
 </html>

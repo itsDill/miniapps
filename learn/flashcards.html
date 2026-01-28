@@ -1,0 +1,939 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flashcards - MiniApps</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-primary: #fafbff;
+        --bg-secondary: #f0f4ff;
+        --bg-card: #ffffff;
+        --bg-nav: rgba(255, 255, 255, 0.9);
+        --text-primary: #1e293b;
+        --text-secondary: #64748b;
+        --text-muted: #94a3b8;
+        --border-color: rgba(0, 0, 0, 0.08);
+        --border-light: #e2e8f0;
+        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      [data-theme="dark"] {
+        --bg-primary: #0f0f1a;
+        --bg-secondary: #1a1a2e;
+        --bg-card: rgba(255, 255, 255, 0.03);
+        --bg-nav: rgba(15, 15, 26, 0.9);
+        --text-primary: #ffffff;
+        --text-secondary: rgba(255, 255, 255, 0.7);
+        --text-muted: rgba(255, 255, 255, 0.5);
+        --border-color: rgba(255, 255, 255, 0.08);
+        --border-light: rgba(255, 255, 255, 0.1);
+        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+      }
+      body {
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        min-height: 100vh;
+        transition:
+          background 0.3s ease,
+          color 0.3s ease;
+      }
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      /* Navigation */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        padding: 0.875rem 0;
+        background: var(--bg-nav);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-color);
+      }
+      .nav-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+      }
+      .logo-icon {
+        width: 44px;
+        height: 44px;
+        background: var(--gradient-primary);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      }
+      .logo-text {
+        font-size: 1.5rem;
+        font-weight: 800;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .main-nav {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+      .main-nav-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.625rem 1.25rem;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: all 0.2s ease;
+      }
+      .main-nav-link:hover {
+        color: #6366f1;
+        background: rgba(99, 102, 241, 0.1);
+      }
+      .main-nav-link.active {
+        background: var(--gradient-primary);
+        color: white;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      }
+      .main-nav-link .nav-icon {
+        font-size: 1.1rem;
+      }
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .nav-link {
+        text-decoration: none;
+        color: var(--text-secondary);
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+        transition: all 0.2s ease;
+      }
+      .nav-link:hover {
+        color: #6366f1;
+        background: rgba(99, 102, 241, 0.1);
+      }
+      .theme-toggle {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        border: 2px solid var(--border-light);
+        background: var(--bg-card);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        transition: all 0.3s ease;
+        color: var(--text-primary);
+      }
+      .theme-toggle:hover {
+        border-color: #6366f1;
+        transform: rotate(15deg);
+      }
+      .theme-toggle .sun-icon {
+        display: block;
+      }
+      .theme-toggle .moon-icon {
+        display: none;
+      }
+      [data-theme="dark"] .theme-toggle .sun-icon {
+        display: none;
+      }
+      [data-theme="dark"] .theme-toggle .moon-icon {
+        display: block;
+      }
+
+      @media (max-width: 768px) {
+        .main-nav,
+        .nav-right .nav-link {
+          display: none;
+        }
+      }
+
+      .flashcard-container {
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--primary);
+        text-decoration: none;
+        margin-bottom: 2rem;
+        font-weight: 500;
+      }
+
+      .flashcard-header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .flashcard-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .tabs {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .tab-btn {
+        padding: 0.75rem 1.5rem;
+        border: 2px solid var(--border);
+        background: var(--bg);
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .tab-btn:hover {
+        border-color: var(--primary);
+      }
+
+      .tab-btn.active {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: white;
+      }
+
+      .tab-content {
+        display: none;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
+      /* Study Mode */
+      .deck-selector {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 2rem;
+      }
+
+      .deck-btn {
+        padding: 0.5rem 1rem;
+        border: 2px solid var(--border);
+        background: var(--bg);
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+      }
+
+      .deck-btn:hover {
+        border-color: var(--primary);
+      }
+
+      .deck-btn.active {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: white;
+      }
+
+      .card-wrapper {
+        perspective: 1000px;
+        margin-bottom: 2rem;
+      }
+
+      .flashcard {
+        width: 100%;
+        height: 300px;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 0.6s;
+        cursor: pointer;
+      }
+
+      .flashcard.flipped {
+        transform: rotateY(180deg);
+      }
+
+      .card-face {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+
+      .card-front {
+        background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        color: white;
+      }
+
+      .card-back {
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+        color: white;
+        transform: rotateY(180deg);
+      }
+
+      .card-hint {
+        position: absolute;
+        bottom: 1rem;
+        font-size: 0.9rem;
+        opacity: 0.8;
+      }
+
+      .card-controls {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .btn {
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: white;
+      }
+
+      .btn-danger {
+        background: #ef4444;
+        color: white;
+      }
+
+      .btn-success {
+        background: #22c55e;
+        color: white;
+      }
+
+      .btn-secondary {
+        background: var(--bg-light);
+        color: var(--text);
+        border: 1px solid var(--border);
+      }
+
+      .progress-info {
+        text-align: center;
+        color: var(--text-light);
+        margin-bottom: 1rem;
+      }
+
+      .progress-bar {
+        height: 8px;
+        background: var(--bg-light);
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 2rem;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: var(--primary);
+        transition: width 0.3s ease;
+      }
+
+      /* Create Mode */
+      .create-form {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+      }
+
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        width: 100%;
+        padding: 0.75rem;
+        border: 2px solid var(--border);
+        border-radius: 8px;
+        font-size: 1rem;
+      }
+
+      .form-group textarea {
+        min-height: 100px;
+        resize: vertical;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus,
+      .form-group select:focus {
+        outline: none;
+        border-color: var(--primary);
+      }
+
+      .cards-list {
+        max-height: 400px;
+        overflow-y: auto;
+      }
+
+      .card-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        margin-bottom: 0.5rem;
+      }
+
+      .card-item-content {
+        flex: 1;
+      }
+
+      .card-item-front {
+        font-weight: 600;
+      }
+
+      .card-item-back {
+        color: var(--text-light);
+        font-size: 0.9rem;
+      }
+
+      .card-item-actions {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .icon-btn {
+        width: 36px;
+        height: 36px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .icon-btn.delete {
+        background: #fee2e2;
+        color: #ef4444;
+      }
+
+      .icon-btn.delete:hover {
+        background: #ef4444;
+        color: white;
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 3rem;
+        color: var(--text-light);
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-content">
+        <a href="../index.html" class="logo">
+          <div class="logo-icon">⚡</div>
+          <span class="logo-text">MiniApps</span>
+        </a>
+        <div class="main-nav">
+          <a href="../tools.html" class="main-nav-link">
+            <span class="nav-icon">🛠️</span>
+            <span>Tools</span>
+          </a>
+          <a href="../games.html" class="main-nav-link">
+            <span class="nav-icon">🎮</span>
+            <span>Games</span>
+          </a>
+          <a href="../learn.html" class="main-nav-link active">
+            <span class="nav-icon">📚</span>
+            <span>Learn</span>
+          </a>
+        </div>
+        <div class="nav-right">
+          <a href="../about.html" class="nav-link">About</a>
+          <a href="../contact.html" class="nav-link">Contact</a>
+          <button
+            class="theme-toggle"
+            onclick="toggleTheme()"
+            aria-label="Toggle theme"
+          >
+            <span class="sun-icon">🌙</span>
+            <span class="moon-icon">☀️</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="flashcard-container">
+      <div class="flashcard-header">
+        <h1>🗂️ Flashcards</h1>
+        <p style="color: var(--text-light)">
+          Create and study with spaced repetition
+        </p>
+      </div>
+
+      <div class="tabs">
+        <button class="tab-btn active" onclick="showTab('study')">
+          📚 Study
+        </button>
+        <button class="tab-btn" onclick="showTab('create')">➕ Create</button>
+        <button class="tab-btn" onclick="showTab('manage')">⚙️ Manage</button>
+      </div>
+
+      <!-- Study Tab -->
+      <div class="tab-content active" id="study-tab">
+        <div class="deck-selector" id="deckSelector"></div>
+
+        <div class="progress-info" id="progressInfo">Card 1 of 10</div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="studyProgress" style="width: 0%"></div>
+        </div>
+
+        <div class="card-wrapper">
+          <div class="flashcard" id="flashcard" onclick="flipCard()">
+            <div class="card-face card-front">
+              <span id="cardFront">Click to start studying</span>
+              <span class="card-hint">Click to flip</span>
+            </div>
+            <div class="card-face card-back">
+              <span id="cardBack">Select a deck to begin</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-controls">
+          <button class="btn btn-danger" onclick="markCard('hard')">
+            😓 Hard
+          </button>
+          <button class="btn btn-secondary" onclick="markCard('medium')">
+            🤔 Okay
+          </button>
+          <button class="btn btn-success" onclick="markCard('easy')">
+            😊 Easy
+          </button>
+        </div>
+
+        <div class="card-controls">
+          <button class="btn btn-secondary" onclick="prevCard()">
+            ← Previous
+          </button>
+          <button class="btn btn-secondary" onclick="shuffleCards()">
+            🔀 Shuffle
+          </button>
+          <button class="btn btn-secondary" onclick="nextCard()">Next →</button>
+        </div>
+      </div>
+
+      <!-- Create Tab -->
+      <div class="tab-content" id="create-tab">
+        <div class="create-form">
+          <div class="form-group">
+            <label>Deck</label>
+            <select id="deckSelect">
+              <option value="General">General</option>
+              <option value="Languages">Languages</option>
+              <option value="Science">Science</option>
+              <option value="History">History</option>
+              <option value="Custom">+ New Deck...</option>
+            </select>
+          </div>
+          <div class="form-group" id="customDeckGroup" style="display: none">
+            <label>New Deck Name</label>
+            <input
+              type="text"
+              id="customDeckName"
+              placeholder="Enter deck name"
+            />
+          </div>
+          <div class="form-group">
+            <label>Front (Question)</label>
+            <textarea
+              id="cardFrontInput"
+              placeholder="Enter the question or term"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label>Back (Answer)</label>
+            <textarea
+              id="cardBackInput"
+              placeholder="Enter the answer or definition"
+            ></textarea>
+          </div>
+          <button
+            class="btn btn-primary"
+            onclick="addCard()"
+            style="width: 100%"
+          >
+            Add Card
+          </button>
+        </div>
+      </div>
+
+      <!-- Manage Tab -->
+      <div class="tab-content" id="manage-tab">
+        <div class="deck-selector" id="manageDeckSelector"></div>
+        <div class="cards-list" id="cardsList"></div>
+      </div>
+    </div>
+
+    <script>
+      // Default sample decks
+      const defaultDecks = {
+        General: [
+          { front: "What is the capital of France?", back: "Paris" },
+          { front: "What is 2 + 2?", back: "4" },
+          { front: "What color is the sky?", back: "Blue" },
+          { front: "How many days in a week?", back: "7" },
+          { front: "What is H2O?", back: "Water" },
+        ],
+        Languages: [
+          { front: "Hello (Spanish)", back: "Hola" },
+          { front: "Thank you (French)", back: "Merci" },
+          { front: "Goodbye (Italian)", back: "Arrivederci" },
+          { front: "Good morning (German)", back: "Guten Morgen" },
+          { front: "Yes (Japanese)", back: "Hai (はい)" },
+        ],
+        Science: [
+          { front: "What planet is known as the Red Planet?", back: "Mars" },
+          { front: "What is the chemical symbol for Gold?", back: "Au" },
+          { front: "How many bones in the human body?", back: "206" },
+          { front: "What gas do plants absorb?", back: "Carbon Dioxide (CO2)" },
+          { front: "What is the speed of light?", back: "299,792,458 m/s" },
+        ],
+      };
+
+      let decks =
+        JSON.parse(localStorage.getItem("flashcardDecks")) || defaultDecks;
+      let currentDeck = "General";
+      let currentCardIndex = 0;
+      let isFlipped = false;
+
+      function saveDecks() {
+        localStorage.setItem("flashcardDecks", JSON.stringify(decks));
+      }
+
+      function showTab(tab) {
+        document
+          .querySelectorAll(".tab-btn")
+          .forEach((btn) => btn.classList.remove("active"));
+        document
+          .querySelectorAll(".tab-content")
+          .forEach((content) => content.classList.remove("active"));
+
+        event.target.classList.add("active");
+        document.getElementById(tab + "-tab").classList.add("active");
+
+        if (tab === "study") {
+          renderDeckSelector();
+          showCard();
+        } else if (tab === "manage") {
+          renderManageDeckSelector();
+          renderCardsList();
+        }
+      }
+
+      function renderDeckSelector() {
+        const container = document.getElementById("deckSelector");
+        container.innerHTML = Object.keys(decks)
+          .map(
+            (deck) =>
+              `<button class="deck-btn ${deck === currentDeck ? "active" : ""}" onclick="selectDeck('${deck}')">${deck} (${decks[deck].length})</button>`,
+          )
+          .join("");
+      }
+
+      function renderManageDeckSelector() {
+        const container = document.getElementById("manageDeckSelector");
+        container.innerHTML = Object.keys(decks)
+          .map(
+            (deck) =>
+              `<button class="deck-btn ${deck === currentDeck ? "active" : ""}" onclick="selectManageDeck('${deck}')">${deck} (${decks[deck].length})</button>`,
+          )
+          .join("");
+      }
+
+      function selectDeck(deck) {
+        currentDeck = deck;
+        currentCardIndex = 0;
+        isFlipped = false;
+        renderDeckSelector();
+        showCard();
+      }
+
+      function selectManageDeck(deck) {
+        currentDeck = deck;
+        renderManageDeckSelector();
+        renderCardsList();
+      }
+
+      function showCard() {
+        const cards = decks[currentDeck] || [];
+        const card = document.getElementById("flashcard");
+
+        if (cards.length === 0) {
+          document.getElementById("cardFront").textContent =
+            "No cards in this deck";
+          document.getElementById("cardBack").textContent =
+            "Add some cards to get started!";
+          document.getElementById("progressInfo").textContent = "Card 0 of 0";
+          document.getElementById("studyProgress").style.width = "0%";
+          return;
+        }
+
+        card.classList.remove("flipped");
+        isFlipped = false;
+
+        document.getElementById("cardFront").textContent =
+          cards[currentCardIndex].front;
+        document.getElementById("cardBack").textContent =
+          cards[currentCardIndex].back;
+        document.getElementById("progressInfo").textContent =
+          `Card ${currentCardIndex + 1} of ${cards.length}`;
+        document.getElementById("studyProgress").style.width =
+          ((currentCardIndex + 1) / cards.length) * 100 + "%";
+      }
+
+      function flipCard() {
+        const card = document.getElementById("flashcard");
+        card.classList.toggle("flipped");
+        isFlipped = !isFlipped;
+      }
+
+      function nextCard() {
+        const cards = decks[currentDeck] || [];
+        if (cards.length === 0) return;
+        currentCardIndex = (currentCardIndex + 1) % cards.length;
+        showCard();
+      }
+
+      function prevCard() {
+        const cards = decks[currentDeck] || [];
+        if (cards.length === 0) return;
+        currentCardIndex = (currentCardIndex - 1 + cards.length) % cards.length;
+        showCard();
+      }
+
+      function shuffleCards() {
+        const cards = decks[currentDeck];
+        if (!cards || cards.length === 0) return;
+
+        for (let i = cards.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [cards[i], cards[j]] = [cards[j], cards[i]];
+        }
+        currentCardIndex = 0;
+        saveDecks();
+        showCard();
+      }
+
+      function markCard(difficulty) {
+        // Simple spaced repetition - move easy cards to end
+        if (difficulty === "easy") {
+          const card = decks[currentDeck].splice(currentCardIndex, 1)[0];
+          decks[currentDeck].push(card);
+        } else if (difficulty === "hard") {
+          // Keep hard cards near front
+          currentCardIndex++;
+        } else {
+          currentCardIndex++;
+        }
+
+        if (currentCardIndex >= decks[currentDeck].length) {
+          currentCardIndex = 0;
+        }
+
+        saveDecks();
+        showCard();
+      }
+
+      // Create Tab
+      document
+        .getElementById("deckSelect")
+        .addEventListener("change", function () {
+          const customGroup = document.getElementById("customDeckGroup");
+          customGroup.style.display =
+            this.value === "Custom" ? "block" : "none";
+        });
+
+      function addCard() {
+        let deckName = document.getElementById("deckSelect").value;
+        const front = document.getElementById("cardFrontInput").value.trim();
+        const back = document.getElementById("cardBackInput").value.trim();
+
+        if (!front || !back) {
+          alert("Please fill in both front and back of the card");
+          return;
+        }
+
+        if (deckName === "Custom") {
+          deckName = document.getElementById("customDeckName").value.trim();
+          if (!deckName) {
+            alert("Please enter a deck name");
+            return;
+          }
+        }
+
+        if (!decks[deckName]) {
+          decks[deckName] = [];
+        }
+
+        decks[deckName].push({ front, back });
+        saveDecks();
+
+        document.getElementById("cardFrontInput").value = "";
+        document.getElementById("cardBackInput").value = "";
+
+        alert("Card added successfully!");
+        renderDeckSelector();
+      }
+
+      function renderCardsList() {
+        const container = document.getElementById("cardsList");
+        const cards = decks[currentDeck] || [];
+
+        if (cards.length === 0) {
+          container.innerHTML =
+            '<div class="empty-state">No cards in this deck</div>';
+          return;
+        }
+
+        container.innerHTML = cards
+          .map(
+            (card, index) => `
+                <div class="card-item">
+                    <div class="card-item-content">
+                        <div class="card-item-front">${card.front}</div>
+                        <div class="card-item-back">${card.back}</div>
+                    </div>
+                    <div class="card-item-actions">
+                        <button class="icon-btn delete" onclick="deleteCard(${index})">🗑️</button>
+                    </div>
+                </div>
+            `,
+          )
+          .join("");
+      }
+
+      function deleteCard(index) {
+        if (confirm("Delete this card?")) {
+          decks[currentDeck].splice(index, 1);
+          saveDecks();
+          renderCardsList();
+          renderManageDeckSelector();
+        }
+      }
+
+      // Keyboard navigation
+      document.addEventListener("keydown", function (e) {
+        if (document.getElementById("study-tab").classList.contains("active")) {
+          if (e.key === " " || e.key === "Enter") {
+            e.preventDefault();
+            flipCard();
+          } else if (e.key === "ArrowRight") {
+            nextCard();
+          } else if (e.key === "ArrowLeft") {
+            prevCard();
+          }
+        }
+      });
+
+      // Initialize
+      renderDeckSelector();
+      showCard();
+    </script>
+
+    <footer
+      style="
+        padding: 2rem 0;
+        border-top: 1px solid var(--border-color);
+        margin-top: 3rem;
+        text-align: center;
+      "
+    >
+      <p style="color: var(--text-muted)">© 2026 MiniApps. Made with ❤️</p>
+    </footer>
+
+    <script>
+      function getPreferredTheme() {
+        const saved = localStorage.getItem("miniapps-theme");
+        if (saved) return saved;
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      }
+      function setTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("miniapps-theme", theme);
+      }
+      function toggleTheme() {
+        const current =
+          document.documentElement.getAttribute("data-theme") || "light";
+        setTheme(current === "dark" ? "light" : "dark");
+      }
+      setTheme(getPreferredTheme());
+    </script>
+  </body>
+</html>

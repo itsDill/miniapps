@@ -1,0 +1,961 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coding Basics - MiniApps</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-primary: #fafbff;
+        --bg-secondary: #f0f4ff;
+        --bg-card: #ffffff;
+        --bg-nav: rgba(255, 255, 255, 0.9);
+        --text-primary: #1e293b;
+        --text-secondary: #64748b;
+        --text-muted: #94a3b8;
+        --border-color: rgba(0, 0, 0, 0.08);
+        --border-light: #e2e8f0;
+        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      [data-theme="dark"] {
+        --bg-primary: #0f0f1a;
+        --bg-secondary: #1a1a2e;
+        --bg-card: rgba(255, 255, 255, 0.03);
+        --bg-nav: rgba(15, 15, 26, 0.9);
+        --text-primary: #ffffff;
+        --text-secondary: rgba(255, 255, 255, 0.7);
+        --text-muted: rgba(255, 255, 255, 0.5);
+        --border-color: rgba(255, 255, 255, 0.08);
+        --border-light: rgba(255, 255, 255, 0.1);
+        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+      }
+      body {
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        min-height: 100vh;
+        transition:
+          background 0.3s ease,
+          color 0.3s ease;
+      }
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      /* Navigation */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        padding: 0.875rem 0;
+        background: var(--bg-nav);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-color);
+      }
+      .nav-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+      }
+      .logo-icon {
+        width: 44px;
+        height: 44px;
+        background: var(--gradient-primary);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      }
+      .logo-text {
+        font-size: 1.5rem;
+        font-weight: 800;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .main-nav {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+      .main-nav-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.625rem 1.25rem;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: all 0.2s ease;
+      }
+      .main-nav-link:hover {
+        color: #6366f1;
+        background: rgba(99, 102, 241, 0.1);
+      }
+      .main-nav-link.active {
+        background: var(--gradient-primary);
+        color: white;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      }
+      .main-nav-link .nav-icon {
+        font-size: 1.1rem;
+      }
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .nav-link {
+        text-decoration: none;
+        color: var(--text-secondary);
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+        transition: all 0.2s ease;
+      }
+      .nav-link:hover {
+        color: #6366f1;
+        background: rgba(99, 102, 241, 0.1);
+      }
+      .theme-toggle {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        border: 2px solid var(--border-light);
+        background: var(--bg-card);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        transition: all 0.3s ease;
+        color: var(--text-primary);
+      }
+      .theme-toggle:hover {
+        border-color: #6366f1;
+        transform: rotate(15deg);
+      }
+      .theme-toggle .sun-icon {
+        display: block;
+      }
+      .theme-toggle .moon-icon {
+        display: none;
+      }
+      [data-theme="dark"] .theme-toggle .sun-icon {
+        display: none;
+      }
+      [data-theme="dark"] .theme-toggle .moon-icon {
+        display: block;
+      }
+
+      @media (max-width: 768px) {
+        .main-nav,
+        .nav-right .nav-link {
+          display: none;
+        }
+      }
+
+      .coding-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--primary);
+        text-decoration: none;
+        margin-bottom: 2rem;
+        font-weight: 500;
+      }
+
+      .coding-header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .coding-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .language-tabs {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .lang-tab {
+        padding: 0.75rem 1.5rem;
+        border: 2px solid var(--border);
+        background: var(--bg);
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .lang-tab:hover {
+        border-color: var(--primary);
+      }
+
+      .lang-tab.active {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: white;
+      }
+
+      .lesson-grid {
+        display: grid;
+        grid-template-columns: 250px 1fr;
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      @media (max-width: 768px) {
+        .lesson-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .lesson-sidebar {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1rem;
+        height: fit-content;
+      }
+
+      .lesson-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .lesson-item {
+        padding: 0.75rem 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.3s ease;
+        margin-bottom: 0.25rem;
+      }
+
+      .lesson-item:hover {
+        background: var(--bg-light);
+      }
+
+      .lesson-item.active {
+        background: var(--primary);
+        color: white;
+      }
+
+      .lesson-item.completed::before {
+        content: "✓";
+        color: #22c55e;
+      }
+
+      .lesson-item.active.completed::before {
+        color: white;
+      }
+
+      .lesson-content {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 2rem;
+      }
+
+      .lesson-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .lesson-description {
+        color: var(--text-light);
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+      }
+
+      .code-editor {
+        background: #1e1e1e;
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 1.5rem;
+      }
+
+      .code-header {
+        background: #2d2d2d;
+        padding: 0.75rem 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .code-header span {
+        color: #888;
+        font-size: 0.9rem;
+      }
+
+      .code-dots {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .code-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+      }
+
+      .code-dot.red {
+        background: #ff5f56;
+      }
+      .code-dot.yellow {
+        background: #ffbd2e;
+      }
+      .code-dot.green {
+        background: #27ca40;
+      }
+
+      .code-body {
+        padding: 1rem;
+      }
+
+      .code-body textarea {
+        width: 100%;
+        min-height: 150px;
+        background: transparent;
+        border: none;
+        color: #d4d4d4;
+        font-family: "Courier New", monospace;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        resize: vertical;
+      }
+
+      .code-body textarea:focus {
+        outline: none;
+      }
+
+      .output-section {
+        background: var(--bg-light);
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .output-label {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .output-content {
+        background: var(--bg);
+        border-radius: 4px;
+        padding: 1rem;
+        min-height: 60px;
+        font-family: "Courier New", monospace;
+        white-space: pre-wrap;
+      }
+
+      .output-content.error {
+        color: #ef4444;
+      }
+
+      .output-content.success {
+        color: #22c55e;
+      }
+
+      .btn-row {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: #1d4ed8;
+      }
+
+      .btn-success {
+        background: #22c55e;
+        color: white;
+      }
+
+      .btn-secondary {
+        background: var(--bg-light);
+        color: var(--text);
+        border: 1px solid var(--border);
+      }
+
+      .hint-box {
+        background: #fffbeb;
+        border: 1px solid #fbbf24;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .hint-box h4 {
+        color: #d97706;
+        margin-bottom: 0.5rem;
+      }
+
+      .progress-section {
+        text-align: center;
+        padding: 1rem;
+        background: var(--bg-light);
+        border-radius: 8px;
+        margin-top: 1rem;
+      }
+
+      .progress-bar {
+        height: 10px;
+        background: var(--border);
+        border-radius: 5px;
+        overflow: hidden;
+        margin-bottom: 0.5rem;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #22c55e, #16a34a);
+        transition: width 0.3s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-content">
+        <a href="../index.html" class="logo">
+          <div class="logo-icon">⚡</div>
+          <span class="logo-text">MiniApps</span>
+        </a>
+        <div class="main-nav">
+          <a href="../tools.html" class="main-nav-link">
+            <span class="nav-icon">🛠️</span>
+            <span>Tools</span>
+          </a>
+          <a href="../games.html" class="main-nav-link">
+            <span class="nav-icon">🎮</span>
+            <span>Games</span>
+          </a>
+          <a href="../learn.html" class="main-nav-link active">
+            <span class="nav-icon">📚</span>
+            <span>Learn</span>
+          </a>
+        </div>
+        <div class="nav-right">
+          <a href="../about.html" class="nav-link">About</a>
+          <a href="../contact.html" class="nav-link">Contact</a>
+          <button
+            class="theme-toggle"
+            onclick="toggleTheme()"
+            aria-label="Toggle theme"
+          >
+            <span class="sun-icon">🌙</span>
+            <span class="moon-icon">☀️</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="coding-container">
+      <div class="coding-header">
+        <h1>💻 Coding Basics</h1>
+        <p style="color: var(--text-light)">
+          Learn HTML, CSS, and JavaScript fundamentals
+        </p>
+      </div>
+
+      <div class="language-tabs">
+        <button class="lang-tab active" onclick="setLanguage('html')">
+          🌐 HTML
+        </button>
+        <button class="lang-tab" onclick="setLanguage('css')">🎨 CSS</button>
+        <button class="lang-tab" onclick="setLanguage('js')">
+          ⚡ JavaScript
+        </button>
+      </div>
+
+      <div class="lesson-grid">
+        <div class="lesson-sidebar">
+          <h3 style="margin-bottom: 1rem">Lessons</h3>
+          <ul class="lesson-list" id="lessonList"></ul>
+
+          <div class="progress-section">
+            <div class="progress-bar">
+              <div
+                class="progress-fill"
+                id="progressFill"
+                style="width: 0%"
+              ></div>
+            </div>
+            <small id="progressText">0% Complete</small>
+          </div>
+        </div>
+
+        <div class="lesson-content">
+          <h2 class="lesson-title" id="lessonTitle">Welcome!</h2>
+          <p class="lesson-description" id="lessonDescription">
+            Select a lesson to begin learning.
+          </p>
+
+          <div class="hint-box" id="hintBox" style="display: none">
+            <h4>💡 Hint</h4>
+            <p id="hintText"></p>
+          </div>
+
+          <div class="code-editor">
+            <div class="code-header">
+              <div class="code-dots">
+                <div class="code-dot red"></div>
+                <div class="code-dot yellow"></div>
+                <div class="code-dot green"></div>
+              </div>
+              <span id="editorLabel">editor.html</span>
+            </div>
+            <div class="code-body">
+              <textarea
+                id="codeInput"
+                placeholder="Write your code here..."
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="output-section">
+            <div class="output-label">📤 Output</div>
+            <div class="output-content" id="output">
+              Run your code to see the output
+            </div>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="runCode()">
+              ▶️ Run Code
+            </button>
+            <button class="btn btn-success" onclick="checkAnswer()">
+              ✓ Check Answer
+            </button>
+            <button class="btn btn-secondary" onclick="showHint()">
+              💡 Hint
+            </button>
+            <button class="btn btn-secondary" onclick="resetCode()">
+              ↺ Reset
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const lessons = {
+        html: [
+          {
+            title: "Your First HTML",
+            description:
+              "HTML stands for HyperText Markup Language. It's the foundation of every webpage. Let's start with a simple heading!",
+            hint: "Use <h1> tags around your text. Example: <h1>text here</h1>",
+            starter: "",
+            solution: "<h1>Hello World</h1>",
+            check: (code) => code.includes("<h1>") && code.includes("</h1>"),
+          },
+          {
+            title: "Paragraphs",
+            description:
+              "Paragraphs are created using the <p> tag. Write a paragraph about yourself!",
+            hint: "Wrap your text in <p> and </p> tags.",
+            starter: "",
+            solution: "<p>This is a paragraph about me.</p>",
+            check: (code) => code.includes("<p>") && code.includes("</p>"),
+          },
+          {
+            title: "Links",
+            description:
+              "Links let users navigate to other pages. Use the <a> tag with an href attribute.",
+            hint: 'Format: <a href="url">Link text</a>',
+            starter: "",
+            solution: '<a href="https://example.com">Click me</a>',
+            check: (code) =>
+              code.includes("<a") &&
+              code.includes("href=") &&
+              code.includes("</a>"),
+          },
+          {
+            title: "Images",
+            description:
+              "Display images using the <img> tag with src and alt attributes.",
+            hint: 'Format: <img src="url" alt="description">',
+            starter: "",
+            solution: '<img src="photo.jpg" alt="My photo">',
+            check: (code) =>
+              code.includes("<img") &&
+              code.includes("src=") &&
+              code.includes("alt="),
+          },
+          {
+            title: "Lists",
+            description: "Create an unordered list using <ul> and <li> tags.",
+            hint: "Wrap <li> items inside <ul> tags.",
+            starter: "",
+            solution: "<ul>\n  <li>Item 1</li>\n  <li>Item 2</li>\n</ul>",
+            check: (code) =>
+              code.includes("<ul>") &&
+              code.includes("<li>") &&
+              code.includes("</li>") &&
+              code.includes("</ul>"),
+          },
+        ],
+        css: [
+          {
+            title: "Changing Colors",
+            description:
+              "CSS lets you style HTML elements. Set the text color using the color property.",
+            hint: "Format: color: red; or color: #ff0000;",
+            starter: "h1 {\n  \n}",
+            solution: "h1 {\n  color: blue;\n}",
+            check: (code) =>
+              code.includes("color:") || code.includes("color :"),
+          },
+          {
+            title: "Background Colors",
+            description:
+              "Set the background color of an element using background-color.",
+            hint: "Format: background-color: yellow;",
+            starter: "div {\n  \n}",
+            solution: "div {\n  background-color: lightblue;\n}",
+            check: (code) =>
+              code.includes("background-color") || code.includes("background:"),
+          },
+          {
+            title: "Font Sizes",
+            description:
+              "Control text size with the font-size property. You can use px, em, or rem units.",
+            hint: "Format: font-size: 20px;",
+            starter: "p {\n  \n}",
+            solution: "p {\n  font-size: 18px;\n}",
+            check: (code) => code.includes("font-size"),
+          },
+          {
+            title: "Padding & Margin",
+            description:
+              "Padding adds space inside an element, margin adds space outside.",
+            hint: "Format: padding: 10px; margin: 20px;",
+            starter: ".box {\n  \n}",
+            solution: ".box {\n  padding: 20px;\n  margin: 10px;\n}",
+            check: (code) =>
+              code.includes("padding") || code.includes("margin"),
+          },
+          {
+            title: "Borders",
+            description:
+              "Add borders around elements using the border property.",
+            hint: "Format: border: 2px solid black;",
+            starter: ".card {\n  \n}",
+            solution:
+              ".card {\n  border: 1px solid gray;\n  border-radius: 8px;\n}",
+            check: (code) => code.includes("border"),
+          },
+        ],
+        js: [
+          {
+            title: "Variables",
+            description:
+              "Variables store data. Use let or const to declare them.",
+            hint: 'Format: let name = "value"; or const PI = 3.14;',
+            starter: "",
+            solution: 'let message = "Hello World";\nconsole.log(message);',
+            check: (code) =>
+              code.includes("let ") ||
+              code.includes("const ") ||
+              code.includes("var "),
+          },
+          {
+            title: "Console Output",
+            description:
+              "Use console.log() to print messages to the console for debugging.",
+            hint: 'Format: console.log("message");',
+            starter: "",
+            solution: 'console.log("Hello from JavaScript!");',
+            check: (code) => code.includes("console.log"),
+          },
+          {
+            title: "Functions",
+            description:
+              "Functions are reusable blocks of code. Define them with the function keyword.",
+            hint: "Format: function name() { code }",
+            starter: "",
+            solution:
+              'function greet() {\n  console.log("Hello!");\n}\ngreet();',
+            check: (code) =>
+              code.includes("function") &&
+              code.includes("{") &&
+              code.includes("}"),
+          },
+          {
+            title: "If Statements",
+            description: "If statements let you run code based on conditions.",
+            hint: "Format: if (condition) { code }",
+            starter: "let age = 18;",
+            solution:
+              'let age = 18;\nif (age >= 18) {\n  console.log("Adult");\n}',
+            check: (code) =>
+              code.includes("if") && code.includes("(") && code.includes(")"),
+          },
+          {
+            title: "Loops",
+            description: "Loops repeat code multiple times. Try a for loop!",
+            hint: "Format: for (let i = 0; i < 5; i++) { code }",
+            starter: "",
+            solution: "for (let i = 0; i < 5; i++) {\n  console.log(i);\n}",
+            check: (code) => code.includes("for") || code.includes("while"),
+          },
+        ],
+      };
+
+      let currentLanguage = "html";
+      let currentLessonIndex = 0;
+      let completedLessons = JSON.parse(
+        localStorage.getItem("codingProgress"),
+      ) || { html: [], css: [], js: [] };
+
+      function setLanguage(lang) {
+        currentLanguage = lang;
+        currentLessonIndex = 0;
+        document
+          .querySelectorAll(".lang-tab")
+          .forEach((tab) => tab.classList.remove("active"));
+        event.target.classList.add("active");
+        renderLessonList();
+        loadLesson(0);
+      }
+
+      function renderLessonList() {
+        const list = document.getElementById("lessonList");
+        const langLessons = lessons[currentLanguage];
+
+        list.innerHTML = langLessons
+          .map((lesson, index) => {
+            const isCompleted =
+              completedLessons[currentLanguage].includes(index);
+            return `
+                    <li class="lesson-item ${index === currentLessonIndex ? "active" : ""} ${isCompleted ? "completed" : ""}" 
+                        onclick="loadLesson(${index})">
+                        ${lesson.title}
+                    </li>
+                `;
+          })
+          .join("");
+
+        updateProgress();
+      }
+
+      function loadLesson(index) {
+        currentLessonIndex = index;
+        const lesson = lessons[currentLanguage][index];
+
+        document.getElementById("lessonTitle").textContent = lesson.title;
+        document.getElementById("lessonDescription").textContent =
+          lesson.description;
+        document.getElementById("codeInput").value = lesson.starter;
+        document.getElementById("hintText").textContent = lesson.hint;
+        document.getElementById("hintBox").style.display = "none";
+        document.getElementById("output").textContent =
+          "Run your code to see the output";
+        document.getElementById("output").className = "output-content";
+
+        const extensions = { html: "html", css: "css", js: "js" };
+        document.getElementById("editorLabel").textContent =
+          `lesson.${extensions[currentLanguage]}`;
+
+        renderLessonList();
+      }
+
+      function runCode() {
+        const code = document.getElementById("codeInput").value;
+        const output = document.getElementById("output");
+
+        try {
+          if (currentLanguage === "html") {
+            output.innerHTML = code;
+          } else if (currentLanguage === "css") {
+            output.innerHTML = `<style>${code}</style><div class="box card"><h1>Styled Element</h1><p>This is a paragraph.</p></div>`;
+          } else if (currentLanguage === "js") {
+            let logs = [];
+            const originalLog = console.log;
+            console.log = (...args) => logs.push(args.join(" "));
+
+            try {
+              eval(code);
+            } catch (e) {
+              throw e;
+            } finally {
+              console.log = originalLog;
+            }
+
+            output.textContent = logs.join("\n") || "(No output)";
+          }
+          output.className = "output-content";
+        } catch (error) {
+          output.textContent = `Error: ${error.message}`;
+          output.className = "output-content error";
+        }
+      }
+
+      function checkAnswer() {
+        const code = document.getElementById("codeInput").value;
+        const lesson = lessons[currentLanguage][currentLessonIndex];
+        const output = document.getElementById("output");
+
+        if (lesson.check(code)) {
+          output.textContent = "✅ Correct! Great job!";
+          output.className = "output-content success";
+
+          if (!completedLessons[currentLanguage].includes(currentLessonIndex)) {
+            completedLessons[currentLanguage].push(currentLessonIndex);
+            localStorage.setItem(
+              "codingProgress",
+              JSON.stringify(completedLessons),
+            );
+            renderLessonList();
+          }
+
+          // Auto advance after delay
+          if (currentLessonIndex < lessons[currentLanguage].length - 1) {
+            setTimeout(() => {
+              loadLesson(currentLessonIndex + 1);
+            }, 1500);
+          }
+        } else {
+          output.textContent =
+            "❌ Not quite right. Try again or check the hint!";
+          output.className = "output-content error";
+        }
+      }
+
+      function showHint() {
+        const hintBox = document.getElementById("hintBox");
+        hintBox.style.display =
+          hintBox.style.display === "none" ? "block" : "none";
+      }
+
+      function resetCode() {
+        const lesson = lessons[currentLanguage][currentLessonIndex];
+        document.getElementById("codeInput").value = lesson.starter;
+        document.getElementById("output").textContent =
+          "Run your code to see the output";
+        document.getElementById("output").className = "output-content";
+      }
+
+      function updateProgress() {
+        const total = lessons[currentLanguage].length;
+        const completed = completedLessons[currentLanguage].length;
+        const percent = Math.round((completed / total) * 100);
+
+        document.getElementById("progressFill").style.width = percent + "%";
+        document.getElementById("progressText").textContent =
+          `${percent}% Complete`;
+      }
+
+      // Initialize
+      renderLessonList();
+      loadLesson(0);
+    </script>
+
+    <footer
+      style="
+        padding: 2rem 0;
+        border-top: 1px solid var(--border-color);
+        margin-top: 3rem;
+        text-align: center;
+      "
+    >
+      <p style="color: var(--text-muted)">© 2026 MiniApps. Made with ❤️</p>
+    </footer>
+
+    <script>
+      function getPreferredTheme() {
+        const saved = localStorage.getItem("miniapps-theme");
+        if (saved) return saved;
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      }
+      function setTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("miniapps-theme", theme);
+      }
+      function toggleTheme() {
+        const current =
+          document.documentElement.getAttribute("data-theme") || "light";
+        setTheme(current === "dark" ? "light" : "dark");
+      }
+      setTheme(getPreferredTheme());
+    </script>
+  </body>
+</html>

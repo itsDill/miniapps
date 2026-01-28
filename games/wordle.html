@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Word Guess - MiniApps</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-primary: #fafbff;
+        --bg-secondary: #f0f4ff;
+        --bg-card: #ffffff;
+        --bg-nav: rgba(255, 255, 255, 0.9);
+        --text-primary: #1e293b;
+        --text-secondary: #64748b;
+        --text-muted: #94a3b8;
+        --border-color: rgba(0, 0, 0, 0.08);
+        --border-light: #e2e8f0;
+        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      [data-theme="dark"] {
+        --bg-primary: #0f0f1a;
+        --bg-secondary: #1a1a2e;
+        --bg-card: rgba(255, 255, 255, 0.03);
+        --bg-nav: rgba(15, 15, 26, 0.9);
+        --text-primary: #ffffff;
+        --text-secondary: rgba(255, 255, 255, 0.7);
+        --text-muted: rgba(255, 255, 255, 0.5);
+        --border-color: rgba(255, 255, 255, 0.08);
+        --border-light: rgba(255, 255, 255, 0.1);
+        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+      }
+      body {
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        min-height: 100vh;
+        transition:
+          background 0.3s ease,
+          color 0.3s ease;
+      }
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      /* Navigation */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        padding: 0.875rem 0;
+        background: var(--bg-nav);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-color);
+      }
+      .nav-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+      }
+      .logo-icon {
+        width: 44px;
+        height: 44px;
+        background: var(--gradient-primary);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      }
+      .logo-text {
+        font-size: 1.5rem;
+        font-weight: 800;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .main-nav {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+      .main-nav-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.625rem 1.25rem;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: all 0.2s ease;
+      }
+      .main-nav-link:hover {
+        color: #6366f1;
+        background: rgba(99, 102, 241, 0.1);
+      }
+      .main-nav-link.active {
+        background: var(--gradient-primary);
+        color: white;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      }
+      .main-nav-link .nav-icon {
+        font-size: 1.1rem;
+      }
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .nav-link {
+        text-decoration: none;
+        color: var(--text-secondary);
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+        transition: all 0.2s ease;
+      }
+      .nav-link:hover {
+        color: #6366f1;
+        background: rgba(99, 102, 241, 0.1);
+      }
+      .theme-toggle {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        border: 2px solid var(--border-light);
+        background: var(--bg-card);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        transition: all 0.3s ease;
+        color: var(--text-primary);
+      }
+      .theme-toggle:hover {
+        border-color: #6366f1;
+        transform: rotate(15deg);
+      }
+      .theme-toggle .sun-icon {
+        display: block;
+      }
+      .theme-toggle .moon-icon {
+        display: none;
+      }
+      [data-theme="dark"] .theme-toggle .sun-icon {
+        display: none;
+      }
+      [data-theme="dark"] .theme-toggle .moon-icon {
+        display: block;
+      }
+
+      @media (max-width: 768px) {
+        .main-nav,
+        .nav-right .nav-link {
+          display: none;
+        }
+      }
+
+      .game-container {
+        max-width: 400px;
+        margin: 2rem auto;
+        padding: 2rem;
+      }
+
+      .game-header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .game-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        margin: 0 auto 1rem;
+        background: linear-gradient(135deg, #10b981, #059669);
+      }
+
+      .game-header h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .game-header p {
+        color: var(--text-light);
+      }
+
+      .game-area {
+        background: var(--bg);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        border: 1px solid var(--border);
+      }
+
+      .board {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .row {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: center;
+      }
+
+      .tile {
+        width: 52px;
+        height: 52px;
+        border: 2px solid #d1d5db;
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        transition: all 0.2s;
+      }
+
+      .tile.filled {
+        border-color: #9ca3af;
+      }
+
+      .tile.correct {
+        background: #22c55e;
+        border-color: #22c55e;
+        color: white;
+        animation: flip 0.5s;
+      }
+
+      .tile.present {
+        background: #eab308;
+        border-color: #eab308;
+        color: white;
+        animation: flip 0.5s;
+      }
+
+      .tile.absent {
+        background: #6b7280;
+        border-color: #6b7280;
+        color: white;
+        animation: flip 0.5s;
+      }
+
+      @keyframes flip {
+        0% {
+          transform: rotateX(0);
+        }
+        50% {
+          transform: rotateX(90deg);
+        }
+        100% {
+          transform: rotateX(0);
+        }
+      }
+
+      @keyframes shake {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(-5px);
+        }
+        75% {
+          transform: translateX(5px);
+        }
+      }
+
+      .shake {
+        animation: shake 0.3s;
+      }
+
+      .keyboard {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .keyboard-row {
+        display: flex;
+        justify-content: center;
+        gap: 0.35rem;
+      }
+
+      .key {
+        min-width: 28px;
+        height: 50px;
+        border: none;
+        border-radius: 0.35rem;
+        background: #d1d5db;
+        font-weight: 600;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: all 0.1s;
+        text-transform: uppercase;
+      }
+
+      .key:hover {
+        background: #9ca3af;
+      }
+
+      .key.wide {
+        min-width: 55px;
+        font-size: 0.75rem;
+      }
+
+      .key.correct {
+        background: #22c55e;
+        color: white;
+      }
+
+      .key.present {
+        background: #eab308;
+        color: white;
+      }
+
+      .key.absent {
+        background: #6b7280;
+        color: white;
+      }
+
+      .message {
+        text-align: center;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        min-height: 1.5rem;
+        color: var(--text);
+      }
+
+      .message.error {
+        color: #ef4444;
+      }
+      .message.success {
+        color: #22c55e;
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 500;
+        margin-bottom: 1rem;
+      }
+
+      .back-link:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-content">
+        <a href="../index.html" class="logo">
+          <div class="logo-icon">⚡</div>
+          <span class="logo-text">MiniApps</span>
+        </a>
+        <div class="main-nav">
+          <a href="../tools.html" class="main-nav-link">
+            <span class="nav-icon">🛠️</span>
+            <span>Tools</span>
+          </a>
+          <a href="../games.html" class="main-nav-link active">
+            <span class="nav-icon">🎮</span>
+            <span>Games</span>
+          </a>
+          <a href="../learn.html" class="main-nav-link">
+            <span class="nav-icon">📚</span>
+            <span>Learn</span>
+          </a>
+        </div>
+        <div class="nav-right">
+          <a href="../about.html" class="nav-link">About</a>
+          <a href="../contact.html" class="nav-link">Contact</a>
+          <button
+            class="theme-toggle"
+            onclick="toggleTheme()"
+            aria-label="Toggle theme"
+          >
+            <span class="sun-icon">🌙</span>
+            <span class="moon-icon">☀️</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container">
+      <a href="../games.html" class="back-link">← Back to Games</a>
+
+      <div class="game-container">
+        <div class="game-header">
+          <div class="game-icon">📖</div>
+          <h1>Word Guess</h1>
+          <p>Guess the 5-letter word in 6 tries!</p>
+        </div>
+
+        <div class="game-area">
+          <div class="message" id="message"></div>
+
+          <div class="board" id="board"></div>
+
+          <div class="keyboard">
+            <div class="keyboard-row">
+              <button class="key" data-key="q">q</button>
+              <button class="key" data-key="w">w</button>
+              <button class="key" data-key="e">e</button>
+              <button class="key" data-key="r">r</button>
+              <button class="key" data-key="t">t</button>
+              <button class="key" data-key="y">y</button>
+              <button class="key" data-key="u">u</button>
+              <button class="key" data-key="i">i</button>
+              <button class="key" data-key="o">o</button>
+              <button class="key" data-key="p">p</button>
+            </div>
+            <div class="keyboard-row">
+              <button class="key" data-key="a">a</button>
+              <button class="key" data-key="s">s</button>
+              <button class="key" data-key="d">d</button>
+              <button class="key" data-key="f">f</button>
+              <button class="key" data-key="g">g</button>
+              <button class="key" data-key="h">h</button>
+              <button class="key" data-key="j">j</button>
+              <button class="key" data-key="k">k</button>
+              <button class="key" data-key="l">l</button>
+            </div>
+            <div class="keyboard-row">
+              <button class="key wide" data-key="Enter">Enter</button>
+              <button class="key" data-key="z">z</button>
+              <button class="key" data-key="x">x</button>
+              <button class="key" data-key="c">c</button>
+              <button class="key" data-key="v">v</button>
+              <button class="key" data-key="b">b</button>
+              <button class="key" data-key="n">n</button>
+              <button class="key" data-key="m">m</button>
+              <button class="key wide" data-key="Backspace">⌫</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer
+      style="
+        padding: 2rem 0;
+        border-top: 1px solid var(--border-color);
+        margin-top: 3rem;
+        text-align: center;
+      "
+    >
+      <p style="color: var(--text-muted)">© 2026 MiniApps. Made with ❤️</p>
+    </footer>
+
+    <script>
+      function getPreferredTheme() {
+        const saved = localStorage.getItem("miniapps-theme");
+        if (saved) return saved;
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      }
+      function setTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("miniapps-theme", theme);
+      }
+      function toggleTheme() {
+        const current =
+          document.documentElement.getAttribute("data-theme") || "light";
+        setTheme(current === "dark" ? "light" : "dark");
+      }
+      setTheme(getPreferredTheme());
+    </script>
+
+    <script>
+      const words = [
+        "apple",
+        "beach",
+        "crane",
+        "dance",
+        "eagle",
+        "flame",
+        "grape",
+        "heart",
+        "ivory",
+        "joker",
+        "knife",
+        "lemon",
+        "magic",
+        "noble",
+        "ocean",
+        "piano",
+        "queen",
+        "river",
+        "storm",
+        "tiger",
+        "unity",
+        "video",
+        "water",
+        "youth",
+        "zebra",
+        "brain",
+        "chair",
+        "dream",
+        "earth",
+        "fresh",
+        "green",
+        "happy",
+        "image",
+        "judge",
+        "known",
+        "light",
+        "money",
+        "night",
+        "olive",
+        "peace",
+        "quick",
+        "robot",
+        "smile",
+        "train",
+        "urban",
+        "voice",
+        "world",
+        "young",
+        "blend",
+        "cloud",
+      ];
+
+      let targetWord = words[Math.floor(Math.random() * words.length)];
+      let currentRow = 0;
+      let currentTile = 0;
+      let guesses = [];
+      let gameOver = false;
+
+      function createBoard() {
+        const board = document.getElementById("board");
+        board.innerHTML = "";
+        for (let r = 0; r < 6; r++) {
+          const row = document.createElement("div");
+          row.className = "row";
+          for (let c = 0; c < 5; c++) {
+            const tile = document.createElement("div");
+            tile.className = "tile";
+            tile.id = `tile-${r}-${c}`;
+            row.appendChild(tile);
+          }
+          board.appendChild(row);
+        }
+      }
+
+      function addLetter(letter) {
+        if (currentTile < 5 && currentRow < 6 && !gameOver) {
+          const tile = document.getElementById(
+            `tile-${currentRow}-${currentTile}`,
+          );
+          tile.textContent = letter;
+          tile.classList.add("filled");
+          guesses[currentRow] = (guesses[currentRow] || "") + letter;
+          currentTile++;
+        }
+      }
+
+      function removeLetter() {
+        if (currentTile > 0 && !gameOver) {
+          currentTile--;
+          const tile = document.getElementById(
+            `tile-${currentRow}-${currentTile}`,
+          );
+          tile.textContent = "";
+          tile.classList.remove("filled");
+          guesses[currentRow] = guesses[currentRow].slice(0, -1);
+        }
+      }
+
+      function submitGuess() {
+        if (gameOver) return;
+
+        const guess = guesses[currentRow];
+
+        if (!guess || guess.length < 5) {
+          showMessage("Not enough letters", "error");
+          shakeRow();
+          return;
+        }
+
+        // Reveal tiles
+        const targetArr = targetWord.split("");
+        const guessArr = guess.split("");
+        const result = Array(5).fill("absent");
+
+        // First pass: correct letters
+        for (let i = 0; i < 5; i++) {
+          if (guessArr[i] === targetArr[i]) {
+            result[i] = "correct";
+            targetArr[i] = null;
+          }
+        }
+
+        // Second pass: present letters
+        for (let i = 0; i < 5; i++) {
+          if (result[i] !== "correct" && targetArr.includes(guessArr[i])) {
+            result[i] = "present";
+            targetArr[targetArr.indexOf(guessArr[i])] = null;
+          }
+        }
+
+        // Apply results with animation
+        for (let i = 0; i < 5; i++) {
+          setTimeout(() => {
+            const tile = document.getElementById(`tile-${currentRow}-${i}`);
+            tile.classList.add(result[i]);
+
+            // Update keyboard
+            const key = document.querySelector(`[data-key="${guessArr[i]}"]`);
+            if (result[i] === "correct") {
+              key.className = "key correct";
+            } else if (
+              result[i] === "present" &&
+              !key.classList.contains("correct")
+            ) {
+              key.className = "key present";
+            } else if (
+              !key.classList.contains("correct") &&
+              !key.classList.contains("present")
+            ) {
+              key.className = "key absent";
+            }
+          }, i * 100);
+        }
+
+        setTimeout(() => {
+          if (guess === targetWord) {
+            showMessage("🎉 Excellent!", "success");
+            gameOver = true;
+          } else if (currentRow === 5) {
+            showMessage(`The word was: ${targetWord.toUpperCase()}`, "error");
+            gameOver = true;
+          } else {
+            currentRow++;
+            currentTile = 0;
+          }
+        }, 500);
+      }
+
+      function showMessage(text, type) {
+        const msg = document.getElementById("message");
+        msg.textContent = text;
+        msg.className = `message ${type}`;
+      }
+
+      function shakeRow() {
+        const row = document.querySelectorAll(".row")[currentRow];
+        row.classList.add("shake");
+        setTimeout(() => row.classList.remove("shake"), 300);
+      }
+
+      // Keyboard input
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          submitGuess();
+        } else if (e.key === "Backspace") {
+          removeLetter();
+        } else if (/^[a-zA-Z]$/.test(e.key)) {
+          addLetter(e.key.toLowerCase());
+        }
+      });
+
+      // On-screen keyboard
+      document.querySelectorAll(".key").forEach((key) => {
+        key.addEventListener("click", () => {
+          const k = key.dataset.key;
+          if (k === "Enter") submitGuess();
+          else if (k === "Backspace") removeLetter();
+          else addLetter(k);
+        });
+      });
+
+      // Initialize
+      createBoard();
+    </script>
+  </body>
+</html>

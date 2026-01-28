@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sudoku - MiniApps</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-primary: #fafbff;
+        --bg-secondary: #f0f4ff;
+        --bg-card: #ffffff;
+        --bg-nav: rgba(255, 255, 255, 0.9);
+        --text-primary: #1e293b;
+        --text-secondary: #64748b;
+        --text-muted: #94a3b8;
+        --border-color: rgba(0, 0, 0, 0.08);
+        --border-light: #e2e8f0;
+        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      [data-theme="dark"] {
+        --bg-primary: #0f0f1a;
+        --bg-secondary: #1a1a2e;
+        --bg-card: rgba(255, 255, 255, 0.03);
+        --bg-nav: rgba(15, 15, 26, 0.9);
+        --text-primary: #ffffff;
+        --text-secondary: rgba(255, 255, 255, 0.7);
+        --text-muted: rgba(255, 255, 255, 0.5);
+        --border-color: rgba(255, 255, 255, 0.08);
+        --border-light: rgba(255, 255, 255, 0.1);
+        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+      }
+      body {
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        min-height: 100vh;
+        transition:
+          background 0.3s ease,
+          color 0.3s ease;
+      }
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      /* Navigation */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        padding: 0.875rem 0;
+        background: var(--bg-nav);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-color);
+      }
+      .nav-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+      }
+      .logo-icon {
+        width: 44px;
+        height: 44px;
+        background: var(--gradient-primary);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      }
+      .logo-text {
+        font-size: 1.5rem;
+        font-weight: 800;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .main-nav {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+      .main-nav-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.625rem 1.25rem;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: all 0.2s ease;
+      }
+      .main-nav-link:hover {
+        color: #6366f1;
+        background: rgba(99, 102, 241, 0.1);
+      }
+      .main-nav-link.active {
+        background: var(--gradient-primary);
+        color: white;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      }
+      .main-nav-link .nav-icon {
+        font-size: 1.1rem;
+      }
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .nav-link {
+        text-decoration: none;
+        color: var(--text-secondary);
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+        transition: all 0.2s ease;
+      }
+      .nav-link:hover {
+        color: #6366f1;
+        background: rgba(99, 102, 241, 0.1);
+      }
+      .theme-toggle {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        border: 2px solid var(--border-light);
+        background: var(--bg-card);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        transition: all 0.3s ease;
+        color: var(--text-primary);
+      }
+      .theme-toggle:hover {
+        border-color: #6366f1;
+        transform: rotate(15deg);
+      }
+      .theme-toggle .sun-icon {
+        display: block;
+      }
+      .theme-toggle .moon-icon {
+        display: none;
+      }
+      [data-theme="dark"] .theme-toggle .sun-icon {
+        display: none;
+      }
+      [data-theme="dark"] .theme-toggle .moon-icon {
+        display: block;
+      }
+
+      @media (max-width: 768px) {
+        .main-nav,
+        .nav-right .nav-link {
+          display: none;
+        }
+      }
+
+      .game-container {
+        max-width: 450px;
+        margin: 2rem auto;
+        padding: 2rem;
+      }
+
+      .game-header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .game-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        margin: 0 auto 1rem;
+        background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      }
+
+      .game-header h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .game-header p {
+        color: var(--text-light);
+      }
+
+      .game-area {
+        background: var(--bg);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        border: 1px solid var(--border);
+      }
+
+      .difficulty-selector {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .diff-btn {
+        flex: 1;
+        padding: 0.5rem;
+        border: 1px solid var(--border);
+        background: transparent;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        font-size: 0.875rem;
+        font-weight: 600;
+        transition: all 0.2s;
+      }
+
+      .diff-btn.active {
+        background: var(--primary);
+        color: white;
+        border-color: var(--primary);
+      }
+
+      .board {
+        display: grid;
+        grid-template-columns: repeat(9, 1fr);
+        gap: 1px;
+        background: #374151;
+        border: 2px solid #374151;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        margin-bottom: 1rem;
+      }
+
+      .cell {
+        aspect-ratio: 1;
+        background: white;
+        border: none;
+        font-size: 1.25rem;
+        font-weight: 600;
+        text-align: center;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      .cell:focus {
+        outline: none;
+        background: #dbeafe;
+      }
+
+      .cell.given {
+        background: #f3f4f6;
+        color: #1f2937;
+        cursor: default;
+      }
+
+      .cell.selected {
+        background: #bfdbfe;
+      }
+
+      .cell.error {
+        background: #fee2e2;
+        color: #dc2626;
+      }
+
+      .cell.correct {
+        color: #3b82f6;
+      }
+
+      /* 3x3 box borders */
+      .cell:nth-child(3n) {
+        border-right: 2px solid #374151;
+      }
+      .cell:nth-child(n + 19):nth-child(-n + 27),
+      .cell:nth-child(n + 46):nth-child(-n + 54) {
+        border-bottom: 2px solid #374151;
+      }
+
+      .number-pad {
+        display: grid;
+        grid-template-columns: repeat(9, 1fr);
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .num-btn {
+        padding: 0.75rem;
+        border: 1px solid var(--border);
+        background: var(--bg);
+        border-radius: 0.5rem;
+        font-size: 1.25rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .num-btn:hover {
+        background: var(--primary);
+        color: white;
+        border-color: var(--primary);
+      }
+
+      .controls {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .control-btn {
+        flex: 1;
+        padding: 0.75rem;
+        border: none;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .control-btn.primary {
+        background: var(--primary);
+        color: white;
+      }
+
+      .control-btn.secondary {
+        background: var(--bg-light);
+      }
+
+      .message {
+        text-align: center;
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        min-height: 2rem;
+        color: #22c55e;
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 500;
+        margin-bottom: 1rem;
+      }
+
+      .back-link:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-content">
+        <a href="../index.html" class="logo">
+          <div class="logo-icon">⚡</div>
+          <span class="logo-text">MiniApps</span>
+        </a>
+        <div class="main-nav">
+          <a href="../tools.html" class="main-nav-link">
+            <span class="nav-icon">🛠️</span>
+            <span>Tools</span>
+          </a>
+          <a href="../games.html" class="main-nav-link active">
+            <span class="nav-icon">🎮</span>
+            <span>Games</span>
+          </a>
+          <a href="../learn.html" class="main-nav-link">
+            <span class="nav-icon">📚</span>
+            <span>Learn</span>
+          </a>
+        </div>
+        <div class="nav-right">
+          <a href="../about.html" class="nav-link">About</a>
+          <a href="../contact.html" class="nav-link">Contact</a>
+          <button
+            class="theme-toggle"
+            onclick="toggleTheme()"
+            aria-label="Toggle theme"
+          >
+            <span class="sun-icon">🌙</span>
+            <span class="moon-icon">☀️</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container">
+      <a href="../games.html" class="back-link">← Back to Games</a>
+
+      <div class="game-container">
+        <div class="game-header">
+          <div class="game-icon">9️⃣</div>
+          <h1>Sudoku</h1>
+          <p>Fill the grid with numbers 1-9</p>
+        </div>
+
+        <div class="game-area">
+          <div class="difficulty-selector">
+            <button class="diff-btn active" onclick="newGame('easy')">
+              Easy
+            </button>
+            <button class="diff-btn" onclick="newGame('medium')">Medium</button>
+            <button class="diff-btn" onclick="newGame('hard')">Hard</button>
+          </div>
+
+          <div class="message" id="message"></div>
+
+          <div class="board" id="board"></div>
+
+          <div class="number-pad">
+            <button class="num-btn" onclick="setNumber(1)">1</button>
+            <button class="num-btn" onclick="setNumber(2)">2</button>
+            <button class="num-btn" onclick="setNumber(3)">3</button>
+            <button class="num-btn" onclick="setNumber(4)">4</button>
+            <button class="num-btn" onclick="setNumber(5)">5</button>
+            <button class="num-btn" onclick="setNumber(6)">6</button>
+            <button class="num-btn" onclick="setNumber(7)">7</button>
+            <button class="num-btn" onclick="setNumber(8)">8</button>
+            <button class="num-btn" onclick="setNumber(9)">9</button>
+          </div>
+
+          <div class="controls">
+            <button class="control-btn secondary" onclick="clearCell()">
+              Clear
+            </button>
+            <button class="control-btn primary" onclick="checkSolution()">
+              Check
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer
+      style="
+        padding: 2rem 0;
+        border-top: 1px solid var(--border-color);
+        margin-top: 3rem;
+        text-align: center;
+      "
+    >
+      <p style="color: var(--text-muted)">© 2026 MiniApps. Made with ❤️</p>
+    </footer>
+
+    <script>
+      function getPreferredTheme() {
+        const saved = localStorage.getItem("miniapps-theme");
+        if (saved) return saved;
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      }
+      function setTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("miniapps-theme", theme);
+      }
+      function toggleTheme() {
+        const current =
+          document.documentElement.getAttribute("data-theme") || "light";
+        setTheme(current === "dark" ? "light" : "dark");
+      }
+      setTheme(getPreferredTheme());
+    </script>
+
+    <script>
+      let puzzle = [];
+      let solution = [];
+      let selectedCell = null;
+      let difficulty = "easy";
+
+      // Simple puzzle generator
+      function generatePuzzle(diff) {
+        // Start with a valid solved grid
+        const base = [
+          [5, 3, 4, 6, 7, 8, 9, 1, 2],
+          [6, 7, 2, 1, 9, 5, 3, 4, 8],
+          [1, 9, 8, 3, 4, 2, 5, 6, 7],
+          [8, 5, 9, 7, 6, 1, 4, 2, 3],
+          [4, 2, 6, 8, 5, 3, 7, 9, 1],
+          [7, 1, 3, 9, 2, 4, 8, 5, 6],
+          [9, 6, 1, 5, 3, 7, 2, 8, 4],
+          [2, 8, 7, 4, 1, 9, 6, 3, 5],
+          [3, 4, 5, 2, 8, 6, 1, 7, 9],
+        ];
+
+        // Shuffle rows within bands and columns within stacks
+        solution = JSON.parse(JSON.stringify(base));
+
+        // Remove cells based on difficulty
+        const removes = { easy: 35, medium: 45, hard: 55 };
+        puzzle = solution.map((row) => [...row]);
+
+        let toRemove = removes[diff];
+        while (toRemove > 0) {
+          const r = Math.floor(Math.random() * 9);
+          const c = Math.floor(Math.random() * 9);
+          if (puzzle[r][c] !== 0) {
+            puzzle[r][c] = 0;
+            toRemove--;
+          }
+        }
+      }
+
+      function renderBoard() {
+        const board = document.getElementById("board");
+        board.innerHTML = "";
+
+        for (let r = 0; r < 9; r++) {
+          for (let c = 0; c < 9; c++) {
+            const cell = document.createElement("button");
+            cell.className = "cell";
+            cell.dataset.row = r;
+            cell.dataset.col = c;
+
+            const original = puzzle[r][c];
+            const current = getCurrentValue(r, c);
+
+            if (original !== 0) {
+              cell.textContent = original;
+              cell.classList.add("given");
+            } else if (current !== 0) {
+              cell.textContent = current;
+              cell.classList.add("correct");
+            }
+
+            cell.onclick = () => selectCell(r, c);
+            board.appendChild(cell);
+          }
+        }
+      }
+
+      let userInputs = {};
+
+      function getCurrentValue(r, c) {
+        const key = `${r}-${c}`;
+        return userInputs[key] || puzzle[r][c];
+      }
+
+      function selectCell(r, c) {
+        if (puzzle[r][c] !== 0) return; // Can't select given cells
+
+        document
+          .querySelectorAll(".cell")
+          .forEach((cell) => cell.classList.remove("selected"));
+        const cell = document.querySelector(
+          `[data-row="${r}"][data-col="${c}"]`,
+        );
+        cell.classList.add("selected");
+        selectedCell = { r, c };
+      }
+
+      function setNumber(num) {
+        if (!selectedCell) return;
+        const { r, c } = selectedCell;
+
+        userInputs[`${r}-${c}`] = num;
+
+        const cell = document.querySelector(
+          `[data-row="${r}"][data-col="${c}"]`,
+        );
+        cell.textContent = num;
+        cell.classList.remove("error");
+        cell.classList.add("correct");
+
+        // Check if valid
+        if (!isValidMove(r, c, num)) {
+          cell.classList.add("error");
+        }
+
+        // Check if complete
+        if (isBoardComplete()) {
+          document.getElementById("message").textContent =
+            "🎉 Congratulations! You solved it!";
+        }
+      }
+
+      function clearCell() {
+        if (!selectedCell) return;
+        const { r, c } = selectedCell;
+
+        delete userInputs[`${r}-${c}`];
+
+        const cell = document.querySelector(
+          `[data-row="${r}"][data-col="${c}"]`,
+        );
+        cell.textContent = "";
+        cell.classList.remove("error", "correct");
+      }
+
+      function isValidMove(row, col, num) {
+        // Check row
+        for (let c = 0; c < 9; c++) {
+          if (c !== col && getCurrentValue(row, c) === num) return false;
+        }
+
+        // Check column
+        for (let r = 0; r < 9; r++) {
+          if (r !== row && getCurrentValue(r, col) === num) return false;
+        }
+
+        // Check 3x3 box
+        const boxRow = Math.floor(row / 3) * 3;
+        const boxCol = Math.floor(col / 3) * 3;
+        for (let r = boxRow; r < boxRow + 3; r++) {
+          for (let c = boxCol; c < boxCol + 3; c++) {
+            if ((r !== row || c !== col) && getCurrentValue(r, c) === num)
+              return false;
+          }
+        }
+
+        return true;
+      }
+
+      function isBoardComplete() {
+        for (let r = 0; r < 9; r++) {
+          for (let c = 0; c < 9; c++) {
+            const val = getCurrentValue(r, c);
+            if (val === 0 || val !== solution[r][c]) return false;
+          }
+        }
+        return true;
+      }
+
+      function checkSolution() {
+        let hasErrors = false;
+
+        document.querySelectorAll(".cell").forEach((cell) => {
+          const r = parseInt(cell.dataset.row);
+          const c = parseInt(cell.dataset.col);
+          const val = getCurrentValue(r, c);
+
+          if (puzzle[r][c] === 0) {
+            // Only check user inputs
+            if (val !== 0 && val !== solution[r][c]) {
+              cell.classList.add("error");
+              hasErrors = true;
+            } else {
+              cell.classList.remove("error");
+            }
+          }
+        });
+
+        if (!hasErrors && isBoardComplete()) {
+          document.getElementById("message").textContent =
+            "🎉 Perfect! All correct!";
+        } else if (hasErrors) {
+          document.getElementById("message").textContent =
+            "Some numbers are incorrect";
+        }
+      }
+
+      function newGame(diff) {
+        difficulty = diff;
+        document
+          .querySelectorAll(".diff-btn")
+          .forEach((btn) => btn.classList.remove("active"));
+        document
+          .querySelector(`[onclick="newGame('${diff}')"]`)
+          .classList.add("active");
+
+        userInputs = {};
+        selectedCell = null;
+        document.getElementById("message").textContent = "";
+
+        generatePuzzle(diff);
+        renderBoard();
+      }
+
+      // Keyboard support
+      document.addEventListener("keydown", (e) => {
+        if (e.key >= "1" && e.key <= "9") {
+          setNumber(parseInt(e.key));
+        } else if (e.key === "Backspace" || e.key === "Delete") {
+          clearCell();
+        }
+      });
+
+      // Initialize
+      newGame("easy");
+    </script>
+  </body>
+</html>

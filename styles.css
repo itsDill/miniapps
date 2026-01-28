@@ -6,18 +6,39 @@
 }
 
 :root {
-  --primary: #2563eb;
-  --primary-dark: #1d4ed8;
-  --secondary: #3b82f6;
-  --text: #1f2937;
-  --text-light: #6b7280;
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --primary-light: #818cf8;
+  --secondary: #ec4899;
+  --accent: #06b6d4;
+  --text: #0f172a;
+  --text-light: #64748b;
+  --text-muted: #94a3b8;
   --bg: #ffffff;
-  --bg-light: #eff6ff;
-  --border: #e5e7eb;
-  --shadow: rgba(0, 0, 0, 0.1);
+  --bg-light: #f8fafc;
+  --bg-card: #ffffff;
+  --border: #e2e8f0;
+  --shadow: rgba(0, 0, 0, 0.08);
+  --shadow-lg: rgba(0, 0, 0, 0.12);
   --success: #10b981;
   --error: #ef4444;
   --warning: #f59e0b;
+  --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --gradient-hero: linear-gradient(
+    135deg,
+    #667eea 0%,
+    #764ba2 50%,
+    #f093fb 100%
+  );
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Agri Mode - Green Theme */
@@ -155,12 +176,21 @@ body.agri-mode .tool-preview-badge {
 
 body {
   font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
-    Arial, sans-serif;
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
   color: var(--text);
   background: var(--bg-light);
   line-height: 1.6;
   transition: background-color 0.4s ease;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Smooth transitions for mode switch */
@@ -180,8 +210,8 @@ body {
 
 /* Dark mode */
 body.dark-mode {
-  --text: #f9fafb;
-  --text-light: #9ca3af;
+  --text: #f1f5f9;
+  --text-light: #94a3b8;
   --bg: #111827;
   --bg-light: #1f2937;
   --border: #374151;

@@ -3,514 +3,701 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact Us - HomeSense</title>
+    <title>Contact - MiniApps</title>
     <meta
       name="description"
-      content="Get in touch with HomeSense - We're here to help with your smart home monitoring needs."
+      content="Get in touch with MiniApps. We'd love to hear your feedback and suggestions."
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
     <style>
-      .contact-hero {
-        background: linear-gradient(
-          135deg,
-          var(--primary),
-          var(--primary-dark)
-        );
-        padding: 6rem 1rem;
-        text-align: center;
+      :root {
+        --bg-primary: #fafbff;
+        --bg-secondary: #f0f4ff;
+        --bg-card: #ffffff;
+        --bg-nav: rgba(255, 255, 255, 0.9);
+        --text-primary: #1e293b;
+        --text-secondary: #64748b;
+        --text-muted: #94a3b8;
+        --border-color: rgba(0, 0, 0, 0.08);
+        --border-light: #e2e8f0;
+        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        --card-hover-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
+        --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      [data-theme="dark"] {
+        --bg-primary: #0f0f1a;
+        --bg-secondary: #1a1a2e;
+        --bg-card: rgba(255, 255, 255, 0.03);
+        --bg-nav: rgba(15, 15, 26, 0.9);
+        --text-primary: #ffffff;
+        --text-secondary: rgba(255, 255, 255, 0.7);
+        --text-muted: rgba(255, 255, 255, 0.5);
+        --border-color: rgba(255, 255, 255, 0.08);
+        --border-light: rgba(255, 255, 255, 0.1);
+        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        --card-hover-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+      }
+
+      body {
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        min-height: 100vh;
+        transition:
+          background 0.3s ease,
+          color 0.3s ease;
+      }
+
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        padding: 0.875rem 0;
+        background: var(--bg-nav);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-color);
+        transition: background 0.3s ease;
+      }
+
+      .nav-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+        transition: transform 0.3s ease;
+      }
+
+      .logo:hover {
+        transform: scale(1.02);
+      }
+
+      .logo-icon {
+        width: 44px;
+        height: 44px;
+        background: var(--gradient-primary);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      }
+
+      .logo-text {
+        font-size: 1.5rem;
+        font-weight: 800;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .main-nav {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+
+      .main-nav-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.625rem 1.25rem;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: all 0.2s ease;
+      }
+
+      .main-nav-link:hover {
+        color: #6366f1;
+        background: rgba(99, 102, 241, 0.1);
+      }
+
+      .main-nav-link.active {
+        background: var(--gradient-primary);
         color: white;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
       }
-      .contact-hero h1 {
-        font-size: 3rem;
-        margin-bottom: 1rem;
+
+      .main-nav-link .nav-icon {
+        font-size: 1.1rem;
       }
-      .contact-hero p {
+
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .nav-link {
+        text-decoration: none;
+        color: var(--text-secondary);
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+        transition: all 0.2s ease;
+      }
+
+      .nav-link:hover {
+        color: #6366f1;
+        background: rgba(99, 102, 241, 0.1);
+      }
+      .nav-link.active {
+        color: #6366f1;
+      }
+
+      .theme-toggle {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        border: 2px solid var(--border-light);
+        background: var(--bg-card);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         font-size: 1.25rem;
-        opacity: 0.9;
+        transition: all 0.3s ease;
+        color: var(--text-primary);
+      }
+
+      .theme-toggle:hover {
+        border-color: #6366f1;
+        transform: rotate(15deg);
+      }
+      .theme-toggle .sun-icon {
+        display: block;
+      }
+      .theme-toggle .moon-icon {
+        display: none;
+      }
+      [data-theme="dark"] .theme-toggle .sun-icon {
+        display: none;
+      }
+      [data-theme="dark"] .theme-toggle .moon-icon {
+        display: block;
+      }
+
+      .mobile-menu-btn {
+        display: none;
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        border: 2px solid var(--border-light);
+        background: var(--bg-card);
+        cursor: pointer;
+        font-size: 1.25rem;
+        color: var(--text-primary);
+      }
+
+      .page-hero {
+        padding: 4rem 0 3rem;
+        text-align: center;
+        background: linear-gradient(
+          180deg,
+          rgba(102, 126, 234, 0.08) 0%,
+          transparent 100%
+        );
+      }
+
+      .page-hero h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .page-hero p {
+        font-size: 1.25rem;
+        color: var(--text-secondary);
         max-width: 600px;
         margin: 0 auto;
       }
+
       .contact-section {
-        padding: 4rem 1rem;
+        padding: 3rem 0 5rem;
       }
-      .contact-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 4rem;
-        max-width: 1100px;
+
+      .contact-content {
+        max-width: 700px;
         margin: 0 auto;
       }
-      @media (max-width: 768px) {
-        .contact-grid {
-          grid-template-columns: 1fr;
-          gap: 2rem;
-        }
+
+      .contact-card {
+        background: var(--bg-card);
+        border-radius: 20px;
+        padding: 2.5rem;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--card-shadow);
+        margin-bottom: 2rem;
       }
-      .contact-form h2 {
-        font-size: 1.75rem;
+
+      .contact-card h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
         margin-bottom: 1.5rem;
         color: var(--text-primary);
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
       }
+
       .form-group {
         margin-bottom: 1.5rem;
       }
+
       .form-group label {
         display: block;
         margin-bottom: 0.5rem;
+        font-weight: 600;
         color: var(--text-primary);
-        font-weight: 500;
       }
+
       .form-group input,
       .form-group textarea,
       .form-group select {
         width: 100%;
-        padding: 0.875rem 1rem;
-        border: 1px solid var(--border);
-        border-radius: 8px;
+        padding: 1rem;
+        border: 2px solid var(--border-light);
+        border-radius: 12px;
+        font-size: 1rem;
         background: var(--bg-primary);
         color: var(--text-primary);
-        font-size: 1rem;
-        transition: border-color 0.2s;
+        transition: all 0.2s ease;
       }
+
       .form-group input:focus,
       .form-group textarea:focus,
       .form-group select:focus {
         outline: none;
-        border-color: var(--primary);
+        border-color: #6366f1;
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
       }
+
       .form-group textarea {
-        resize: vertical;
         min-height: 150px;
+        resize: vertical;
       }
-      .submit-btn {
-        width: 100%;
-        padding: 1rem;
-        background: var(--primary);
+
+      .btn-submit {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1rem 2rem;
+        background: var(--gradient-primary);
         color: white;
         border: none;
-        border-radius: 8px;
+        border-radius: 12px;
         font-size: 1rem;
         font-weight: 600;
         cursor: pointer;
-        transition: background 0.2s;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
       }
-      .submit-btn:hover {
-        background: var(--primary-dark);
+
+      .btn-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
       }
-      .contact-info h2 {
-        font-size: 1.75rem;
-        margin-bottom: 1.5rem;
-        color: var(--text-primary);
-      }
-      .contact-info p {
-        color: var(--text-secondary);
-        line-height: 1.8;
-        margin-bottom: 2rem;
-      }
+
       .contact-methods {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-      }
-      .contact-method {
-        display: flex;
-        align-items: flex-start;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         gap: 1rem;
+      }
+
+      .contact-method {
         padding: 1.5rem;
         background: var(--bg-secondary);
-        border-radius: 12px;
-        border: 1px solid var(--border);
-      }
-      .contact-icon {
-        font-size: 1.5rem;
-        width: 48px;
-        height: 48px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: var(--primary);
-        border-radius: 12px;
-        flex-shrink: 0;
-      }
-      .contact-details h3 {
-        font-size: 1.1rem;
-        margin-bottom: 0.25rem;
-        color: var(--text-primary);
-      }
-      .contact-details p {
-        margin: 0;
-        color: var(--text-secondary);
-      }
-      .contact-details a {
-        color: var(--primary);
-        text-decoration: none;
-      }
-      .contact-details a:hover {
-        text-decoration: underline;
-      }
-      .social-links {
-        display: flex;
-        gap: 1rem;
-        margin-top: 2rem;
-      }
-      .social-link {
-        width: 44px;
-        height: 44px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: var(--bg-secondary);
-        border: 1px solid var(--border);
-        border-radius: 50%;
-        font-size: 1.25rem;
-        text-decoration: none;
-        transition: background 0.2s;
-      }
-      .social-link:hover {
-        background: var(--primary);
-      }
-      .faq-section {
-        background: var(--bg-secondary);
-        padding: 4rem 1rem;
-      }
-      .faq-content {
-        max-width: 800px;
-        margin: 0 auto;
-      }
-      .faq-content h2 {
-        font-size: 2rem;
+        border-radius: 16px;
+        border: 1px solid var(--border-color);
         text-align: center;
-        margin-bottom: 2rem;
-        color: var(--text-primary);
       }
-      .faq-item {
-        background: var(--bg-primary);
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        margin-bottom: 1rem;
-        overflow: hidden;
+
+      [data-theme="dark"] .contact-method {
+        background: rgba(255, 255, 255, 0.02);
       }
-      .faq-question {
-        padding: 1.25rem 1.5rem;
+
+      .contact-method-icon {
+        font-size: 2rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .contact-method h3 {
+        font-size: 1rem;
         font-weight: 600;
         color: var(--text-primary);
-        cursor: pointer;
+        margin-bottom: 0.25rem;
+      }
+
+      .contact-method p {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+      }
+
+      .contact-method a {
+        color: #6366f1;
+        text-decoration: none;
+      }
+
+      .contact-method a:hover {
+        text-decoration: underline;
+      }
+
+      .mobile-nav {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 2000;
+        background: var(--bg-primary);
+        flex-direction: column;
+        padding: 1.5rem;
+      }
+
+      .mobile-nav.active {
+        display: flex;
+      }
+
+      .mobile-nav-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin-bottom: 2rem;
       }
-      .faq-question:hover {
-        background: var(--bg-secondary);
-      }
-      .faq-answer {
-        padding: 0 1.5rem 1.25rem;
-        color: var(--text-secondary);
-        line-height: 1.7;
-      }
-      .form-success {
-        display: none;
-        text-align: center;
-        padding: 3rem;
-        background: var(--bg-secondary);
+
+      .mobile-nav-close {
+        width: 44px;
+        height: 44px;
         border-radius: 12px;
-        border: 1px solid var(--border);
-      }
-      .form-success.show {
-        display: block;
-      }
-      .form-success .success-icon {
-        font-size: 4rem;
-        margin-bottom: 1rem;
-      }
-      .form-success h3 {
-        font-size: 1.5rem;
-        margin-bottom: 0.5rem;
+        border: 2px solid var(--border-light);
+        background: var(--bg-card);
+        cursor: pointer;
+        font-size: 1.25rem;
         color: var(--text-primary);
       }
-      .form-success p {
+
+      .mobile-nav-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .mobile-nav-link {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 1.25rem;
+        border-radius: 16px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        text-decoration: none;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        transition: all 0.2s ease;
+      }
+
+      .mobile-nav-link:hover,
+      .mobile-nav-link.active {
+        background: rgba(99, 102, 241, 0.1);
+        color: #6366f1;
+        border-color: #6366f1;
+      }
+
+      .footer {
+        background: var(--bg-card);
+        padding: 3rem 0;
+        border-top: 1px solid var(--border-light);
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+      .footer-links {
+        display: flex;
+        gap: 2rem;
+      }
+      .footer-links a {
         color: var(--text-secondary);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      .footer-links a:hover {
+        color: #6366f1;
+      }
+      .footer-copy {
+        text-align: center;
+        color: var(--text-muted);
+        margin-top: 2rem;
+        font-size: 0.875rem;
+      }
+
+      @media (max-width: 768px) {
+        .main-nav,
+        .nav-link {
+          display: none;
+        }
+        .mobile-menu-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .page-hero {
+          padding: 3rem 0 2rem;
+        }
+        .page-hero h1 {
+          font-size: 2rem;
+        }
+        .contact-card {
+          padding: 1.5rem;
+        }
+        .contact-methods {
+          grid-template-columns: 1fr;
+        }
+        .footer-content {
+          flex-direction: column;
+          text-align: center;
+        }
+        .footer-links {
+          justify-content: center;
+        }
       }
     </style>
   </head>
   <body>
-    <!-- Navigation -->
     <nav class="nav">
-      <div class="container nav-content">
+      <div class="nav-content">
         <a href="index.html" class="logo">
-          <div class="logo-icon">🏠</div>
-          <span class="logo-text">HomeSense</span>
+          <div class="logo-icon">⚡</div>
+          <span class="logo-text">MiniApps</span>
         </a>
-        <div class="nav-links">
-          <a href="tools.html" class="nav-link">Tools</a>
-          <a href="features.html" class="nav-link">Features</a>
-          <a href="sensors.html" class="nav-link">Sensors</a>
-          <a href="blog.html" class="nav-link">Blog</a>
+        <div class="main-nav">
+          <a href="tools.html" class="main-nav-link"
+            ><span class="nav-icon">🛠️</span><span>Tools</span></a
+          >
+          <a href="games.html" class="main-nav-link"
+            ><span class="nav-icon">🎮</span><span>Games</span></a
+          >
+          <a href="learn.html" class="main-nav-link"
+            ><span class="nav-icon">📚</span><span>Learn</span></a
+          >
         </div>
-        <div class="nav-buttons">
-          <a href="login.html" class="btn btn-secondary btn-small">Log In</a>
-          <a href="builder.html" class="btn btn-primary btn-small">Try Free</a>
+        <div class="nav-right">
+          <a href="about.html" class="nav-link">About</a>
+          <a href="contact.html" class="nav-link active">Contact</a>
+          <button
+            class="theme-toggle"
+            onclick="toggleTheme()"
+            aria-label="Toggle theme"
+          >
+            <span class="sun-icon">🌙</span>
+            <span class="moon-icon">☀️</span>
+          </button>
+          <button class="mobile-menu-btn" onclick="openMobileNav()">☰</button>
         </div>
       </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="contact-hero">
+    <div class="mobile-nav" id="mobileNav">
+      <div class="mobile-nav-header">
+        <a href="index.html" class="logo"
+          ><div class="logo-icon">⚡</div>
+          <span class="logo-text">MiniApps</span></a
+        >
+        <button class="mobile-nav-close" onclick="closeMobileNav()">✕</button>
+      </div>
+      <div class="mobile-nav-links">
+        <a href="tools.html" class="mobile-nav-link"
+          ><span>🛠️</span><span>Tools</span></a
+        >
+        <a href="games.html" class="mobile-nav-link"
+          ><span>🎮</span><span>Games</span></a
+        >
+        <a href="learn.html" class="mobile-nav-link"
+          ><span>📚</span><span>Learn</span></a
+        >
+        <a href="about.html" class="mobile-nav-link"
+          ><span>ℹ️</span><span>About</span></a
+        >
+        <a href="contact.html" class="mobile-nav-link active"
+          ><span>💬</span><span>Contact</span></a
+        >
+      </div>
+    </div>
+
+    <section class="page-hero">
       <div class="container">
-        <h1>Contact Us</h1>
-        <p>
-          Have a question or need help? We'd love to hear from you. Our team is
-          here to assist.
-        </p>
+        <h1>💬 Contact Us</h1>
+        <p>Have feedback or suggestions? We'd love to hear from you!</p>
       </div>
     </section>
 
-    <!-- Contact Section -->
     <section class="contact-section">
-      <div class="contact-grid">
-        <!-- Contact Form -->
-        <div class="contact-form">
-          <h2>Send Us a Message</h2>
-          <form id="contactForm" onsubmit="handleSubmit(event)">
-            <div class="form-group">
-              <label for="name">Full Name *</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                required
-                placeholder="John Doe"
-              />
-            </div>
-            <div class="form-group">
-              <label for="email">Email Address *</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                placeholder="john@example.com"
-              />
-            </div>
-            <div class="form-group">
-              <label for="subject">Subject *</label>
-              <select id="subject" name="subject" required>
-                <option value="">Select a topic...</option>
-                <option value="general">General Inquiry</option>
-                <option value="support">Technical Support</option>
-                <option value="sales">Sales & Pricing</option>
-                <option value="partnership">Partnership Opportunities</option>
-                <option value="feedback">Feedback & Suggestions</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="message">Message *</label>
-              <textarea
-                id="message"
-                name="message"
-                required
-                placeholder="How can we help you?"
-              ></textarea>
-            </div>
-            <button type="submit" class="submit-btn">Send Message</button>
-          </form>
-          <div class="form-success" id="formSuccess">
-            <div class="success-icon">✅</div>
-            <h3>Message Sent!</h3>
-            <p>
-              Thank you for reaching out. We'll get back to you within 24-48
-              hours.
-            </p>
+      <div class="container">
+        <div class="contact-content">
+          <div class="contact-card">
+            <h2>📧 Send us a message</h2>
+            <form onsubmit="handleSubmit(event)">
+              <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" placeholder="John Doe" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="john@example.com"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <select id="subject" required>
+                  <option value="">Select a topic...</option>
+                  <option value="feedback">General Feedback</option>
+                  <option value="suggestion">Feature Suggestion</option>
+                  <option value="bug">Bug Report</option>
+                  <option value="question">Question</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea
+                  id="message"
+                  placeholder="Tell us what's on your mind..."
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" class="btn-submit">✉️ Send Message</button>
+            </form>
           </div>
-        </div>
 
-        <!-- Contact Info -->
-        <div class="contact-info">
-          <h2>Get in Touch</h2>
-          <p>
-            Whether you have a question about features, pricing, need a demo, or
-            anything else, our team is ready to answer all your questions.
-          </p>
-
-          <div class="contact-methods">
-            <div class="contact-method">
-              <div class="contact-icon">📧</div>
-              <div class="contact-details">
+          <div class="contact-card">
+            <h2>🤝 Other ways to reach us</h2>
+            <div class="contact-methods">
+              <div class="contact-method">
+                <div class="contact-method-icon">📧</div>
                 <h3>Email</h3>
                 <p>
-                  <a href="mailto:hello@homesense.io">hello@homesense.io</a>
+                  <a href="mailto:hello@miniapps.com">hello@miniapps.com</a>
                 </p>
               </div>
-            </div>
-            <div class="contact-method">
-              <div class="contact-icon">💬</div>
-              <div class="contact-details">
-                <h3>Live Chat</h3>
-                <p>Available Mon-Fri, 9am-6pm PST</p>
+              <div class="contact-method">
+                <div class="contact-method-icon">🐦</div>
+                <h3>Twitter</h3>
+                <p><a href="#">@miniapps</a></p>
+              </div>
+              <div class="contact-method">
+                <div class="contact-method-icon">💻</div>
+                <h3>GitHub</h3>
+                <p><a href="#">View our code</a></p>
               </div>
             </div>
-            <div class="contact-method">
-              <div class="contact-icon">📍</div>
-              <div class="contact-details">
-                <h3>Office</h3>
-                <p>123 Smart Street<br />San Francisco, CA 94102</p>
-              </div>
-            </div>
-            <div class="contact-method">
-              <div class="contact-icon">🎧</div>
-              <div class="contact-details">
-                <h3>Support</h3>
-                <p>
-                  <a href="mailto:support@homesense.io">support@homesense.io</a>
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="social-links">
-            <a href="#" class="social-link" aria-label="Twitter">🐦</a>
-            <a href="#" class="social-link" aria-label="LinkedIn">💼</a>
-            <a href="#" class="social-link" aria-label="GitHub">💻</a>
-            <a href="#" class="social-link" aria-label="YouTube">▶️</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section class="faq-section">
-      <div class="faq-content">
-        <h2>Frequently Asked Questions</h2>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            How long does it take to get a response?
-            <span>+</span>
-          </div>
-          <div class="faq-answer">
-            We typically respond to all inquiries within 24-48 hours during
-            business days. For urgent technical issues, our premium support
-            subscribers receive priority responses within 4 hours.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            Do you offer phone support?
-            <span>+</span>
-          </div>
-          <div class="faq-answer">
-            Phone support is available for Enterprise plan subscribers. For
-            other plans, we offer email and live chat support during business
-            hours.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            Can I schedule a product demo?
-            <span>+</span>
-          </div>
-          <div class="faq-answer">
-            Absolutely! Select "Sales & Pricing" as the subject in the contact
-            form and mention that you'd like a demo. Our team will reach out to
-            schedule a personalized walkthrough of the platform.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            I'm interested in a partnership. Who should I contact?
-            <span>+</span>
-          </div>
-          <div class="faq-answer">
-            For partnership inquiries, please email us at
-            <a href="mailto:partners@homesense.io">partners@homesense.io</a> or
-            select "Partnership Opportunities" in the contact form.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            How can I report a bug or security issue?
-            <span>+</span>
-          </div>
-          <div class="faq-answer">
-            For bug reports, please use "Technical Support" in the subject line
-            and include as much detail as possible. For security-related issues,
-            please email
-            <a href="mailto:security@homesense.io">security@homesense.io</a>
-            directly.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
     <footer class="footer">
-      <div class="container footer-grid">
-        <div class="footer-brand">
-          <div class="logo">
-            <div class="logo-icon">🏠</div>
-            <span class="logo-text">HomeSense</span>
-          </div>
-          <p class="footer-tagline">Smart living for everyone.</p>
-        </div>
-        <div class="footer-links">
-          <h4>Product</h4>
-          <a href="tools.html">Tools</a>
-          <a href="features.html">Features</a>
-          <a href="sensors.html">Sensors</a>
-        </div>
-        <div class="footer-links">
-          <h4>Resources</h4>
-          <a href="blog.html">Blog</a>
-          <a href="sensors.html">Documentation</a>
-          <a href="features.html">API</a>
-        </div>
-        <div class="footer-links">
-          <h4>Company</h4>
-          <a href="about.html">About</a>
-          <a href="contact.html">Contact</a>
-          <a href="privacy-policy.html">Privacy</a>
-          <a href="terms-of-service.html">Terms</a>
-        </div>
-      </div>
       <div class="container">
-        <p class="footer-copy">© 2026 HomeSense. All rights reserved.</p>
+        <div class="footer-content">
+          <a href="index.html" class="logo"
+            ><div class="logo-icon">⚡</div>
+            <span class="logo-text">MiniApps</span></a
+          >
+          <div class="footer-links">
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="privacy-policy.html">Privacy</a>
+            <a href="terms-of-service.html">Terms</a>
+          </div>
+        </div>
+        <p class="footer-copy">© 2025 MiniApps. Made with ❤️ for everyone.</p>
       </div>
     </footer>
 
     <script>
-      function handleSubmit(event) {
-        event.preventDefault();
-        // Hide form
-        document.getElementById("contactForm").style.display = "none";
-        // Show success message
-        document.getElementById("formSuccess").classList.add("show");
+      function getPreferredTheme() {
+        const saved = localStorage.getItem("miniapps-theme");
+        if (saved) return saved;
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
       }
 
-      // FAQ Toggle
-      document.querySelectorAll(".faq-question").forEach((question) => {
-        question.addEventListener("click", () => {
-          const item = question.parentElement;
-          const answer = item.querySelector(".faq-answer");
-          const icon = question.querySelector("span");
+      function setTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("miniapps-theme", theme);
+      }
 
-          if (answer.style.display === "block") {
-            answer.style.display = "none";
-            icon.textContent = "+";
-          } else {
-            answer.style.display = "block";
-            icon.textContent = "−";
-          }
-        });
-      });
+      function toggleTheme() {
+        const current =
+          document.documentElement.getAttribute("data-theme") || "light";
+        setTheme(current === "dark" ? "light" : "dark");
+      }
 
-      // Initially hide FAQ answers
-      document.querySelectorAll(".faq-answer").forEach((answer) => {
-        answer.style.display = "none";
-      });
+      setTheme(getPreferredTheme());
+
+      function openMobileNav() {
+        document.getElementById("mobileNav").classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeMobileNav() {
+        document.getElementById("mobileNav").classList.remove("active");
+        document.body.style.overflow = "";
+      }
+
+      function handleSubmit(e) {
+        e.preventDefault();
+        alert("Thank you for your message! We'll get back to you soon.");
+        e.target.reset();
+      }
     </script>
   </body>
 </html>

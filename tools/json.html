@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JSON Formatter - MiniApps</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-primary: #fafbff;
+        --bg-secondary: #f0f4ff;
+        --bg-card: #ffffff;
+        --bg-nav: rgba(255, 255, 255, 0.9);
+        --text-primary: #1e293b;
+        --text-secondary: #64748b;
+        --text-muted: #94a3b8;
+        --border-color: rgba(0, 0, 0, 0.08);
+        --border-light: #e2e8f0;
+        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      [data-theme="dark"] {
+        --bg-primary: #0f0f1a;
+        --bg-secondary: #1a1a2e;
+        --bg-card: rgba(255, 255, 255, 0.03);
+        --bg-nav: rgba(15, 15, 26, 0.9);
+        --text-primary: #ffffff;
+        --text-secondary: rgba(255, 255, 255, 0.7);
+        --text-muted: rgba(255, 255, 255, 0.5);
+        --border-color: rgba(255, 255, 255, 0.08);
+        --border-light: rgba(255, 255, 255, 0.1);
+        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+      }
+      body {
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        min-height: 100vh;
+        transition:
+          background 0.3s ease,
+          color 0.3s ease;
+      }
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      /* Navigation */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        padding: 0.875rem 0;
+        background: var(--bg-nav);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-color);
+      }
+      .nav-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+      }
+      .logo-icon {
+        width: 44px;
+        height: 44px;
+        background: var(--gradient-primary);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      }
+      .logo-text {
+        font-size: 1.5rem;
+        font-weight: 800;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .main-nav {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+      .main-nav-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.625rem 1.25rem;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: all 0.2s ease;
+      }
+      .main-nav-link:hover {
+        color: #6366f1;
+        background: rgba(99, 102, 241, 0.1);
+      }
+      .main-nav-link.active {
+        background: var(--gradient-primary);
+        color: white;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      }
+      .main-nav-link .nav-icon {
+        font-size: 1.1rem;
+      }
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .nav-link {
+        text-decoration: none;
+        color: var(--text-secondary);
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+        transition: all 0.2s ease;
+      }
+      .nav-link:hover {
+        color: #6366f1;
+        background: rgba(99, 102, 241, 0.1);
+      }
+      .theme-toggle {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        border: 2px solid var(--border-light);
+        background: var(--bg-card);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        transition: all 0.3s ease;
+        color: var(--text-primary);
+      }
+      .theme-toggle:hover {
+        border-color: #6366f1;
+        transform: rotate(15deg);
+      }
+      .theme-toggle .sun-icon {
+        display: block;
+      }
+      .theme-toggle .moon-icon {
+        display: none;
+      }
+      [data-theme="dark"] .theme-toggle .sun-icon {
+        display: none;
+      }
+      [data-theme="dark"] .theme-toggle .moon-icon {
+        display: block;
+      }
+
+      @media (max-width: 768px) {
+        .main-nav,
+        .nav-right .nav-link {
+          display: none;
+        }
+      }
+
+      .tool-container {
+        max-width: 900px;
+        margin: 2rem auto;
+        padding: 2rem;
+      }
+
+      .tool-header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .tool-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        margin: 0 auto 1rem;
+        background: linear-gradient(135deg, #6366f1, #4f46e5);
+      }
+
+      .tool-header h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .tool-header p {
+        color: var(--text-light);
+      }
+
+      .json-formatter {
+        background: var(--bg);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        border: 1px solid var(--border);
+      }
+
+      .toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .toolbar-btn {
+        padding: 0.5rem 1rem;
+        border: 1px solid var(--border);
+        background: var(--bg);
+        border-radius: 0.5rem;
+        cursor: pointer;
+        font-size: 0.875rem;
+        font-weight: 500;
+        transition: all 0.2s;
+      }
+
+      .toolbar-btn:hover {
+        border-color: var(--primary);
+        color: var(--primary);
+      }
+
+      .toolbar-btn.primary {
+        background: var(--primary);
+        color: white;
+        border-color: var(--primary);
+      }
+
+      .toolbar-btn.primary:hover {
+        background: #2563eb;
+      }
+
+      .editors {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .editor-panel {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .editor-label {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .status {
+        font-size: 0.875rem;
+        font-weight: 500;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+      }
+
+      .status.valid {
+        background: #dcfce7;
+        color: #16a34a;
+      }
+
+      .status.invalid {
+        background: #fee2e2;
+        color: #dc2626;
+      }
+
+      .editor {
+        flex: 1;
+        min-height: 400px;
+        padding: 1rem;
+        font-family: "SF Mono", "Consolas", monospace;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        resize: vertical;
+      }
+
+      .editor:focus {
+        outline: none;
+        border-color: var(--primary);
+      }
+
+      .output-editor {
+        background: #1f2937;
+        color: #e5e7eb;
+      }
+
+      .error-message {
+        margin-top: 1rem;
+        padding: 1rem;
+        background: #fee2e2;
+        border: 1px solid #fecaca;
+        border-radius: 0.5rem;
+        color: #dc2626;
+        font-family: "SF Mono", monospace;
+        font-size: 0.875rem;
+        display: none;
+      }
+
+      .stats {
+        display: flex;
+        gap: 2rem;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border);
+        color: var(--text-light);
+        font-size: 0.875rem;
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 500;
+        margin-bottom: 1rem;
+      }
+
+      .back-link:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 768px) {
+        .editors {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-content">
+        <a href="../index.html" class="logo">
+          <div class="logo-icon">⚡</div>
+          <span class="logo-text">MiniApps</span>
+        </a>
+        <div class="main-nav">
+          <a href="../tools.html" class="main-nav-link active">
+            <span class="nav-icon">🛠️</span>
+            <span>Tools</span>
+          </a>
+          <a href="../games.html" class="main-nav-link">
+            <span class="nav-icon">🎮</span>
+            <span>Games</span>
+          </a>
+          <a href="../learn.html" class="main-nav-link">
+            <span class="nav-icon">📚</span>
+            <span>Learn</span>
+          </a>
+        </div>
+        <div class="nav-right">
+          <a href="../about.html" class="nav-link">About</a>
+          <a href="../contact.html" class="nav-link">Contact</a>
+          <button
+            class="theme-toggle"
+            onclick="toggleTheme()"
+            aria-label="Toggle theme"
+          >
+            <span class="sun-icon">🌙</span>
+            <span class="moon-icon">☀️</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container">
+      <a href="../tools.html" class="back-link">← Back to Tools</a>
+
+      <div class="tool-container">
+        <div class="tool-header">
+          <div class="tool-icon">{ }</div>
+          <h1>JSON Formatter</h1>
+          <p>Format, validate, and minify JSON with syntax highlighting</p>
+        </div>
+
+        <div class="json-formatter">
+          <div class="toolbar">
+            <button class="toolbar-btn primary" onclick="formatJSON()">
+              ✨ Format
+            </button>
+            <button class="toolbar-btn" onclick="minifyJSON()">
+              📦 Minify
+            </button>
+            <button class="toolbar-btn" onclick="validateJSON()">
+              ✓ Validate
+            </button>
+            <button class="toolbar-btn" onclick="copyOutput()">📋 Copy</button>
+            <button class="toolbar-btn" onclick="clearAll()">🗑️ Clear</button>
+            <button class="toolbar-btn" onclick="loadSample()">
+              📄 Sample
+            </button>
+          </div>
+
+          <div class="editors">
+            <div class="editor-panel">
+              <div class="editor-label">
+                <span>Input JSON</span>
+                <span class="status" id="inputStatus"></span>
+              </div>
+              <textarea
+                class="editor"
+                id="input"
+                placeholder="Paste your JSON here..."
+                oninput="validateInput()"
+              ></textarea>
+            </div>
+            <div class="editor-panel">
+              <div class="editor-label">
+                <span>Output</span>
+              </div>
+              <textarea
+                class="editor output-editor"
+                id="output"
+                readonly
+                placeholder="Formatted JSON will appear here..."
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="error-message" id="error"></div>
+
+          <div class="stats">
+            <span>Characters: <strong id="charCount">0</strong></span>
+            <span>Lines: <strong id="lineCount">0</strong></span>
+            <span>Size: <strong id="sizeCount">0 B</strong></span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer
+      style="
+        padding: 2rem 0;
+        border-top: 1px solid var(--border-color);
+        margin-top: 3rem;
+        text-align: center;
+      "
+    >
+      <p style="color: var(--text-muted)">© 2026 MiniApps. Made with ❤️</p>
+    </footer>
+
+    <script>
+      function getPreferredTheme() {
+        const saved = localStorage.getItem("miniapps-theme");
+        if (saved) return saved;
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      }
+      function setTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("miniapps-theme", theme);
+      }
+      function toggleTheme() {
+        const current =
+          document.documentElement.getAttribute("data-theme") || "light";
+        setTheme(current === "dark" ? "light" : "dark");
+      }
+      setTheme(getPreferredTheme());
+    </script>
+
+    <script>
+      const input = document.getElementById("input");
+      const output = document.getElementById("output");
+      const error = document.getElementById("error");
+      const status = document.getElementById("inputStatus");
+
+      function validateInput() {
+        const value = input.value.trim();
+        if (!value) {
+          status.textContent = "";
+          status.className = "status";
+          error.style.display = "none";
+          updateStats("");
+          return false;
+        }
+
+        try {
+          JSON.parse(value);
+          status.textContent = "✓ Valid";
+          status.className = "status valid";
+          error.style.display = "none";
+          updateStats(value);
+          return true;
+        } catch (e) {
+          status.textContent = "✗ Invalid";
+          status.className = "status invalid";
+          error.textContent = e.message;
+          error.style.display = "block";
+          updateStats(value);
+          return false;
+        }
+      }
+
+      function formatJSON() {
+        const value = input.value.trim();
+        if (!value) return;
+
+        try {
+          const parsed = JSON.parse(value);
+          const formatted = JSON.stringify(parsed, null, 2);
+          output.value = formatted;
+          error.style.display = "none";
+        } catch (e) {
+          error.textContent = e.message;
+          error.style.display = "block";
+        }
+      }
+
+      function minifyJSON() {
+        const value = input.value.trim();
+        if (!value) return;
+
+        try {
+          const parsed = JSON.parse(value);
+          const minified = JSON.stringify(parsed);
+          output.value = minified;
+          error.style.display = "none";
+        } catch (e) {
+          error.textContent = e.message;
+          error.style.display = "block";
+        }
+      }
+
+      function validateJSON() {
+        if (validateInput()) {
+          alert("✓ Valid JSON!");
+        }
+      }
+
+      function copyOutput() {
+        if (output.value) {
+          navigator.clipboard.writeText(output.value);
+          const btn = document.querySelector('[onclick="copyOutput()"]');
+          btn.textContent = "✓ Copied!";
+          setTimeout(() => (btn.textContent = "📋 Copy"), 1500);
+        }
+      }
+
+      function clearAll() {
+        input.value = "";
+        output.value = "";
+        status.textContent = "";
+        status.className = "status";
+        error.style.display = "none";
+        updateStats("");
+      }
+
+      function loadSample() {
+        const sample = {
+          name: "MiniApps",
+          version: "1.0.0",
+          description: "A collection of useful tools and fun games",
+          features: ["Tools", "Games", "No Ads"],
+          tools: [
+            { name: "Calculator", icon: "🧮" },
+            { name: "Notes", icon: "📝" },
+            { name: "Timer", icon: "⏱️" },
+          ],
+          isAwesome: true,
+          rating: 5,
+        };
+        input.value = JSON.stringify(sample);
+        validateInput();
+        formatJSON();
+      }
+
+      function updateStats(text) {
+        document.getElementById("charCount").textContent =
+          text.length.toLocaleString();
+        document.getElementById("lineCount").textContent = text
+          ? text.split("\n").length
+          : 0;
+
+        const bytes = new TextEncoder().encode(text).length;
+        let size;
+        if (bytes < 1024) size = bytes + " B";
+        else if (bytes < 1048576) size = (bytes / 1024).toFixed(2) + " KB";
+        else size = (bytes / 1048576).toFixed(2) + " MB";
+        document.getElementById("sizeCount").textContent = size;
+      }
+
+      // Load sample on init
+      loadSample();
+    </script>
+  </body>
+</html>

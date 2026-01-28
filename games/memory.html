@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memory Match - MiniApps</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-primary: #fafbff;
+        --bg-secondary: #f0f4ff;
+        --bg-card: #ffffff;
+        --bg-nav: rgba(255, 255, 255, 0.9);
+        --text-primary: #1e293b;
+        --text-secondary: #64748b;
+        --text-muted: #94a3b8;
+        --border-color: rgba(0, 0, 0, 0.08);
+        --border-light: #e2e8f0;
+        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      [data-theme="dark"] {
+        --bg-primary: #0f0f1a;
+        --bg-secondary: #1a1a2e;
+        --bg-card: rgba(255, 255, 255, 0.03);
+        --bg-nav: rgba(15, 15, 26, 0.9);
+        --text-primary: #ffffff;
+        --text-secondary: rgba(255, 255, 255, 0.7);
+        --text-muted: rgba(255, 255, 255, 0.5);
+        --border-color: rgba(255, 255, 255, 0.08);
+        --border-light: rgba(255, 255, 255, 0.1);
+        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+      }
+      body {
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        min-height: 100vh;
+        transition:
+          background 0.3s ease,
+          color 0.3s ease;
+      }
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      /* Navigation */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        padding: 0.875rem 0;
+        background: var(--bg-nav);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-color);
+      }
+      .nav-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+      }
+      .logo-icon {
+        width: 44px;
+        height: 44px;
+        background: var(--gradient-primary);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      }
+      .logo-text {
+        font-size: 1.5rem;
+        font-weight: 800;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .main-nav {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+      .main-nav-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.625rem 1.25rem;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: all 0.2s ease;
+      }
+      .main-nav-link:hover {
+        color: #6366f1;
+        background: rgba(99, 102, 241, 0.1);
+      }
+      .main-nav-link.active {
+        background: var(--gradient-primary);
+        color: white;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      }
+      .main-nav-link .nav-icon {
+        font-size: 1.1rem;
+      }
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .nav-link {
+        text-decoration: none;
+        color: var(--text-secondary);
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+        transition: all 0.2s ease;
+      }
+      .nav-link:hover {
+        color: #6366f1;
+        background: rgba(99, 102, 241, 0.1);
+      }
+      .theme-toggle {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        border: 2px solid var(--border-light);
+        background: var(--bg-card);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        transition: all 0.3s ease;
+        color: var(--text-primary);
+      }
+      .theme-toggle:hover {
+        border-color: #6366f1;
+        transform: rotate(15deg);
+      }
+      .theme-toggle .sun-icon {
+        display: block;
+      }
+      .theme-toggle .moon-icon {
+        display: none;
+      }
+      [data-theme="dark"] .theme-toggle .sun-icon {
+        display: none;
+      }
+      [data-theme="dark"] .theme-toggle .moon-icon {
+        display: block;
+      }
+
+      @media (max-width: 768px) {
+        .main-nav,
+        .nav-right .nav-link {
+          display: none;
+        }
+      }
+
+      .game-container {
+        max-width: 500px;
+        margin: 2rem auto;
+        padding: 2rem;
+      }
+
+      .game-header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .game-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        margin: 0 auto 1rem;
+        background: linear-gradient(135deg, #f472b6, #ec4899);
+      }
+
+      .game-header h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .game-header p {
+        color: var(--text-light);
+      }
+
+      .game-area {
+        background: var(--bg);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        border: 1px solid var(--border);
+      }
+
+      .difficulty-selector {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .diff-btn {
+        flex: 1;
+        padding: 0.5rem;
+        border: 1px solid var(--border);
+        background: transparent;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        font-size: 0.875rem;
+        font-weight: 600;
+        transition: all 0.2s;
+      }
+
+      .diff-btn.active {
+        background: var(--primary);
+        color: white;
+        border-color: var(--primary);
+      }
+
+      .stats {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 1rem;
+        padding: 0.75rem;
+        background: var(--bg-light);
+        border-radius: 0.75rem;
+      }
+
+      .stat {
+        text-align: center;
+      }
+
+      .stat-label {
+        font-size: 0.75rem;
+        color: var(--text-light);
+      }
+
+      .stat-value {
+        font-size: 1.25rem;
+        font-weight: 700;
+      }
+
+      .board {
+        display: grid;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .board.easy {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .board.medium {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .board.hard {
+        grid-template-columns: repeat(6, 1fr);
+      }
+
+      .card {
+        aspect-ratio: 1;
+        background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        border: none;
+        border-radius: 0.5rem;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: all 0.3s;
+        transform-style: preserve-3d;
+        position: relative;
+      }
+
+      .card:hover:not(.flipped):not(.matched) {
+        transform: scale(1.05);
+      }
+
+      .card.flipped,
+      .card.matched {
+        background: white;
+        border: 2px solid var(--border);
+      }
+
+      .card.matched {
+        background: #dcfce7;
+        border-color: #22c55e;
+      }
+
+      .card-content {
+        opacity: 0;
+        transition: opacity 0.15s;
+      }
+
+      .card.flipped .card-content,
+      .card.matched .card-content {
+        opacity: 1;
+      }
+
+      .message {
+        text-align: center;
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #22c55e;
+        min-height: 2rem;
+      }
+
+      .control-btn {
+        width: 100%;
+        padding: 0.75rem;
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      .control-btn:hover {
+        background: #2563eb;
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 500;
+        margin-bottom: 1rem;
+      }
+
+      .back-link:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-content">
+        <a href="../index.html" class="logo">
+          <div class="logo-icon">⚡</div>
+          <span class="logo-text">MiniApps</span>
+        </a>
+        <div class="main-nav">
+          <a href="../tools.html" class="main-nav-link">
+            <span class="nav-icon">🛠️</span>
+            <span>Tools</span>
+          </a>
+          <a href="../games.html" class="main-nav-link active">
+            <span class="nav-icon">🎮</span>
+            <span>Games</span>
+          </a>
+          <a href="../learn.html" class="main-nav-link">
+            <span class="nav-icon">📚</span>
+            <span>Learn</span>
+          </a>
+        </div>
+        <div class="nav-right">
+          <a href="../about.html" class="nav-link">About</a>
+          <a href="../contact.html" class="nav-link">Contact</a>
+          <button
+            class="theme-toggle"
+            onclick="toggleTheme()"
+            aria-label="Toggle theme"
+          >
+            <span class="sun-icon">🌙</span>
+            <span class="moon-icon">☀️</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container">
+      <a href="../games.html" class="back-link">← Back to Games</a>
+
+      <div class="game-container">
+        <div class="game-header">
+          <div class="game-icon">🃏</div>
+          <h1>Memory Match</h1>
+          <p>Test your memory by matching pairs of cards</p>
+        </div>
+
+        <div class="game-area">
+          <div class="difficulty-selector">
+            <button class="diff-btn active" onclick="setDifficulty('easy')">
+              Easy (8)
+            </button>
+            <button class="diff-btn" onclick="setDifficulty('medium')">
+              Medium (12)
+            </button>
+            <button class="diff-btn" onclick="setDifficulty('hard')">
+              Hard (18)
+            </button>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <div class="stat-label">Moves</div>
+              <div class="stat-value" id="moves">0</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Pairs</div>
+              <div class="stat-value" id="pairs">0/4</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Time</div>
+              <div class="stat-value" id="time">0:00</div>
+            </div>
+          </div>
+
+          <div class="board easy" id="board"></div>
+
+          <div class="message" id="message"></div>
+
+          <button class="control-btn" onclick="startGame()">🔄 New Game</button>
+        </div>
+      </div>
+    </main>
+
+    <footer
+      style="
+        padding: 2rem 0;
+        border-top: 1px solid var(--border-color);
+        margin-top: 3rem;
+        text-align: center;
+      "
+    >
+      <p style="color: var(--text-muted)">© 2026 MiniApps. Made with ❤️</p>
+    </footer>
+
+    <script>
+      function getPreferredTheme() {
+        const saved = localStorage.getItem("miniapps-theme");
+        if (saved) return saved;
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      }
+      function setTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("miniapps-theme", theme);
+      }
+      function toggleTheme() {
+        const current =
+          document.documentElement.getAttribute("data-theme") || "light";
+        setTheme(current === "dark" ? "light" : "dark");
+      }
+      setTheme(getPreferredTheme());
+    </script>
+
+    <script>
+      const emojis = [
+        "🐶",
+        "🐱",
+        "🐭",
+        "🐹",
+        "🐰",
+        "🦊",
+        "🐻",
+        "🐼",
+        "🐨",
+        "🐯",
+        "🦁",
+        "🐮",
+        "🐷",
+        "🐸",
+        "🐵",
+        "🐔",
+        "🐧",
+        "🐦",
+      ];
+      let cards = [];
+      let flipped = [];
+      let matched = 0;
+      let moves = 0;
+      let totalPairs = 4;
+      let gameStarted = false;
+      let timer = null;
+      let seconds = 0;
+      let difficulty = "easy";
+
+      function setDifficulty(diff) {
+        difficulty = diff;
+        document
+          .querySelectorAll(".diff-btn")
+          .forEach((btn) => btn.classList.remove("active"));
+        document
+          .querySelector(`[onclick="setDifficulty('${diff}')"]`)
+          .classList.add("active");
+        startGame();
+      }
+
+      function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+      }
+
+      function startGame() {
+        stopTimer();
+
+        const pairCounts = { easy: 4, medium: 6, hard: 9 };
+        totalPairs = pairCounts[difficulty];
+
+        const selectedEmojis = shuffle([...emojis]).slice(0, totalPairs);
+        cards = shuffle([...selectedEmojis, ...selectedEmojis]);
+
+        flipped = [];
+        matched = 0;
+        moves = 0;
+        seconds = 0;
+        gameStarted = false;
+
+        const board = document.getElementById("board");
+        board.className = `board ${difficulty}`;
+        board.innerHTML = cards
+          .map(
+            (emoji, i) => `
+                <button class="card" onclick="flipCard(${i})">
+                    <span class="card-content">${emoji}</span>
+                </button>
+            `,
+          )
+          .join("");
+
+        updateStats();
+        document.getElementById("message").textContent = "";
+      }
+
+      function flipCard(index) {
+        if (!gameStarted) {
+          gameStarted = true;
+          startTimer();
+        }
+
+        const cardElements = document.querySelectorAll(".card");
+        const card = cardElements[index];
+
+        if (
+          card.classList.contains("flipped") ||
+          card.classList.contains("matched") ||
+          flipped.length >= 2
+        )
+          return;
+
+        card.classList.add("flipped");
+        flipped.push(index);
+
+        if (flipped.length === 2) {
+          moves++;
+          updateStats();
+
+          const [first, second] = flipped;
+          if (cards[first] === cards[second]) {
+            cardElements[first].classList.add("matched");
+            cardElements[second].classList.add("matched");
+            matched++;
+            flipped = [];
+
+            if (matched === totalPairs) {
+              stopTimer();
+              document.getElementById("message").textContent =
+                `🎉 You won in ${moves} moves!`;
+            }
+          } else {
+            setTimeout(() => {
+              cardElements[first].classList.remove("flipped");
+              cardElements[second].classList.remove("flipped");
+              flipped = [];
+            }, 1000);
+          }
+
+          updateStats();
+        }
+      }
+
+      function updateStats() {
+        document.getElementById("moves").textContent = moves;
+        document.getElementById("pairs").textContent =
+          `${matched}/${totalPairs}`;
+      }
+
+      function startTimer() {
+        timer = setInterval(() => {
+          seconds++;
+          const mins = Math.floor(seconds / 60);
+          const secs = seconds % 60;
+          document.getElementById("time").textContent =
+            `${mins}:${String(secs).padStart(2, "0")}`;
+        }, 1000);
+      }
+
+      function stopTimer() {
+        if (timer) {
+          clearInterval(timer);
+          timer = null;
+        }
+      }
+
+      // Initialize
+      startGame();
+    </script>
+  </body>
+</html>

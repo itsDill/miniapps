@@ -3,288 +3,785 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tools - AgriSense</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>Tools - MiniApps</title>
+    <meta
+      name="description"
+      content="Useful tools for everyday tasks. Calculator, notes, timer, and more."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-primary: #fafbff;
+        --bg-secondary: #f0f4ff;
+        --bg-card: #ffffff;
+        --bg-nav: rgba(255, 255, 255, 0.9);
+        --text-primary: #1e293b;
+        --text-secondary: #64748b;
+        --text-muted: #94a3b8;
+        --border-color: rgba(0, 0, 0, 0.08);
+        --border-light: #e2e8f0;
+        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        --card-hover-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
+        --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      [data-theme="dark"] {
+        --bg-primary: #0f0f1a;
+        --bg-secondary: #1a1a2e;
+        --bg-card: rgba(255, 255, 255, 0.03);
+        --bg-nav: rgba(15, 15, 26, 0.9);
+        --text-primary: #ffffff;
+        --text-secondary: rgba(255, 255, 255, 0.7);
+        --text-muted: rgba(255, 255, 255, 0.5);
+        --border-color: rgba(255, 255, 255, 0.08);
+        --border-light: rgba(255, 255, 255, 0.1);
+        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        --card-hover-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+      }
+
+      body {
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        min-height: 100vh;
+        transition:
+          background 0.3s ease,
+          color 0.3s ease;
+      }
+
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      /* Navigation */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        padding: 0.875rem 0;
+        background: var(--bg-nav);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-color);
+        transition: background 0.3s ease;
+      }
+
+      .nav-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+        transition: transform 0.3s ease;
+      }
+
+      .logo:hover {
+        transform: scale(1.02);
+      }
+
+      .logo-icon {
+        width: 44px;
+        height: 44px;
+        background: var(--gradient-primary);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      }
+
+      .logo-text {
+        font-size: 1.5rem;
+        font-weight: 800;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .main-nav {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+
+      .main-nav-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.625rem 1.25rem;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: all 0.2s ease;
+      }
+
+      .main-nav-link:hover {
+        color: #6366f1;
+        background: rgba(99, 102, 241, 0.1);
+      }
+
+      .main-nav-link.active {
+        background: var(--gradient-primary);
+        color: white;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      }
+
+      .main-nav-link .nav-icon {
+        font-size: 1.1rem;
+      }
+
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .nav-link {
+        text-decoration: none;
+        color: var(--text-secondary);
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+        transition: all 0.2s ease;
+      }
+
+      .nav-link:hover {
+        color: #6366f1;
+        background: rgba(99, 102, 241, 0.1);
+      }
+
+      .theme-toggle {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        border: 2px solid var(--border-light);
+        background: var(--bg-card);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        transition: all 0.3s ease;
+        color: var(--text-primary);
+      }
+
+      .theme-toggle:hover {
+        border-color: #6366f1;
+        transform: rotate(15deg);
+      }
+
+      .theme-toggle .sun-icon {
+        display: block;
+      }
+      .theme-toggle .moon-icon {
+        display: none;
+      }
+      [data-theme="dark"] .theme-toggle .sun-icon {
+        display: none;
+      }
+      [data-theme="dark"] .theme-toggle .moon-icon {
+        display: block;
+      }
+
+      .mobile-menu-btn {
+        display: none;
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        border: 2px solid var(--border-light);
+        background: var(--bg-card);
+        cursor: pointer;
+        font-size: 1.25rem;
+        color: var(--text-primary);
+      }
+
+      /* Page Hero */
+      .page-hero {
+        padding: 4rem 0 3rem;
+        text-align: center;
+        background: linear-gradient(
+          180deg,
+          rgba(102, 126, 234, 0.08) 0%,
+          transparent 100%
+        );
+      }
+
+      .page-hero h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .page-hero p {
+        font-size: 1.25rem;
+        color: var(--text-secondary);
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      /* Tools Grid */
+      .tools-section {
+        padding: 3rem 0 5rem;
+      }
+
+      .tools-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .tool-card {
+        background: var(--bg-card);
+        border-radius: 20px;
+        padding: 1.75rem;
+        border: 1px solid var(--border-color);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: var(--card-shadow);
+      }
+
+      .tool-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--card-hover-shadow);
+        border-color: rgba(102, 126, 234, 0.3);
+      }
+
+      .tool-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .tool-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.75rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      }
+
+      .tool-card h2 {
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      .tool-card p {
+        color: var(--text-secondary);
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+      }
+
+      .tool-tag {
+        display: inline-block;
+        padding: 0.35rem 0.85rem;
+        border-radius: 100px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .tool-tag.new {
+        background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+        color: #16a34a;
+      }
+
+      .tool-tag.popular {
+        background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+        color: #d97706;
+      }
+
+      [data-theme="dark"] .tool-tag.new {
+        background: rgba(16, 185, 129, 0.2);
+        color: #10b981;
+      }
+
+      [data-theme="dark"] .tool-tag.popular {
+        background: rgba(245, 158, 11, 0.2);
+        color: #f59e0b;
+      }
+
+      .btn-use {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.85rem 1.75rem;
+        background: var(--gradient-primary);
+        color: white;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+      }
+
+      .btn-use:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+      }
+
+      .coming-soon-section {
+        text-align: center;
+        padding: 3rem;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        margin-top: 3rem;
+      }
+
+      .coming-soon-section h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+      }
+
+      .coming-soon-section p {
+        color: var(--text-secondary);
+      }
+
+      /* Mobile Navigation */
+      .mobile-nav {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 2000;
+        background: var(--bg-primary);
+        flex-direction: column;
+        padding: 1.5rem;
+      }
+
+      .mobile-nav.active {
+        display: flex;
+      }
+
+      .mobile-nav-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+      }
+
+      .mobile-nav-close {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        border: 2px solid var(--border-light);
+        background: var(--bg-card);
+        cursor: pointer;
+        font-size: 1.25rem;
+        color: var(--text-primary);
+      }
+
+      .mobile-nav-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .mobile-nav-link {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 1.25rem;
+        border-radius: 16px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        text-decoration: none;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        transition: all 0.2s ease;
+      }
+
+      .mobile-nav-link:hover,
+      .mobile-nav-link.active {
+        background: rgba(99, 102, 241, 0.1);
+        color: #6366f1;
+        border-color: #6366f1;
+      }
+
+      /* Footer */
+      .footer {
+        background: var(--bg-card);
+        padding: 3rem 0;
+        border-top: 1px solid var(--border-light);
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .footer-links a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s ease;
+      }
+
+      .footer-links a:hover {
+        color: #6366f1;
+      }
+
+      .footer-copy {
+        text-align: center;
+        color: var(--text-muted);
+        margin-top: 2rem;
+        font-size: 0.875rem;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .main-nav,
+        .nav-link {
+          display: none;
+        }
+        .mobile-menu-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .page-hero {
+          padding: 3rem 0 2rem;
+        }
+        .page-hero h1 {
+          font-size: 2rem;
+        }
+        .tools-grid {
+          grid-template-columns: 1fr;
+        }
+        .footer-content {
+          flex-direction: column;
+          text-align: center;
+        }
+        .footer-links {
+          justify-content: center;
+        }
+      }
+    </style>
   </head>
   <body>
-    <!-- Navigation -->
     <nav class="nav">
-      <div class="container nav-content">
+      <div class="nav-content">
         <a href="index.html" class="logo">
-          <div class="logo-icon">🌱</div>
-          <span class="logo-text">AgriSense</span>
+          <div class="logo-icon">⚡</div>
+          <span class="logo-text">MiniApps</span>
         </a>
-        <div class="nav-links">
-          <a href="tools.html" class="nav-link active">Tools</a>
-          <a href="features.html" class="nav-link">Features</a>
-          <a href="sensors.html" class="nav-link">Sensors</a>
-          <a href="blog.html" class="nav-link">Blog</a>
+        <div class="main-nav">
+          <a href="tools.html" class="main-nav-link active">
+            <span class="nav-icon">🛠️</span>
+            <span>Tools</span>
+          </a>
+          <a href="games.html" class="main-nav-link">
+            <span class="nav-icon">🎮</span>
+            <span>Games</span>
+          </a>
+          <a href="learn.html" class="main-nav-link">
+            <span class="nav-icon">📚</span>
+            <span>Learn</span>
+          </a>
         </div>
-        <div class="nav-buttons">
-          <a href="login.html" class="btn btn-secondary btn-small">Log In</a>
-          <a href="builder.html" class="btn btn-primary btn-small">Try Free</a>
+        <div class="nav-right">
+          <a href="about.html" class="nav-link">About</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+          <button
+            class="theme-toggle"
+            onclick="toggleTheme()"
+            aria-label="Toggle theme"
+          >
+            <span class="sun-icon">🌙</span>
+            <span class="moon-icon">☀️</span>
+          </button>
+          <button class="mobile-menu-btn" onclick="openMobileNav()">☰</button>
         </div>
       </div>
     </nav>
 
-    <!-- Hero Section -->
+    <div class="mobile-nav" id="mobileNav">
+      <div class="mobile-nav-header">
+        <a href="index.html" class="logo">
+          <div class="logo-icon">⚡</div>
+          <span class="logo-text">MiniApps</span>
+        </a>
+        <button class="mobile-nav-close" onclick="closeMobileNav()">✕</button>
+      </div>
+      <div class="mobile-nav-links">
+        <a href="tools.html" class="mobile-nav-link active">
+          <span>🛠️</span><span>Tools</span>
+        </a>
+        <a href="games.html" class="mobile-nav-link">
+          <span>🎮</span><span>Games</span>
+        </a>
+        <a href="learn.html" class="mobile-nav-link">
+          <span>📚</span><span>Learn</span>
+        </a>
+        <a href="about.html" class="mobile-nav-link">
+          <span>ℹ️</span><span>About</span>
+        </a>
+        <a href="contact.html" class="mobile-nav-link">
+          <span>💬</span><span>Contact</span>
+        </a>
+      </div>
+    </div>
+
     <section class="page-hero">
       <div class="container">
-        <h1 class="page-title">Powerful Tools for Smart Farming</h1>
-        <p class="page-subtitle">
-          From indoor growing to flood prediction, our suite of tools helps you
-          farm smarter
+        <h1>🛠️ Tools</h1>
+        <p>
+          Useful browser tools for everyday tasks. Fast, free, and works
+          offline!
         </p>
       </div>
     </section>
 
-    <!-- Tools Grid -->
     <section class="tools-section">
       <div class="container">
         <div class="tools-grid">
-          <!-- Grow Anywhere -->
-          <div class="tool-card tool-featured">
-            <div
-              class="tool-icon"
-              style="background: linear-gradient(135deg, #22c55e, #16a34a)"
-            >
-              🌿
-            </div>
-            <div class="tool-content">
-              <span class="tool-badge">Popular</span>
-              <h2 class="tool-title">Grow Anywhere</h2>
-              <p class="tool-desc">
-                Complete environment control for indoor, greenhouse, and
-                vertical farming. Monitor and automate lighting, temperature,
-                humidity, and CO2 levels for optimal plant growth anywhere in
-                the world.
-              </p>
-              <ul class="tool-features">
-                <li>🌡️ Climate zone optimization</li>
-                <li>💡 Smart lighting schedules</li>
-                <li>🌬️ Ventilation automation</li>
-                <li>📊 Growth stage tracking</li>
-              </ul>
-              <a href="builder.html?tool=grow-anywhere" class="btn btn-primary"
-                >Try Grow Anywhere</a
+          <div class="tool-card">
+            <div class="tool-header">
+              <div
+                class="tool-icon"
+                style="background: linear-gradient(135deg, #3b82f6, #1d4ed8)"
               >
-            </div>
-            <div class="tool-preview">
-              <div class="tool-preview-card">
-                <div class="preview-header">🌿 Greenhouse A</div>
-                <div class="preview-stats">
-                  <div class="preview-stat">
-                    <span class="stat-value">24°C</span>
-                    <span class="stat-label">Temp</span>
-                  </div>
-                  <div class="preview-stat">
-                    <span class="stat-value">68%</span>
-                    <span class="stat-label">Humidity</span>
-                  </div>
-                  <div class="preview-stat">
-                    <span class="stat-value">800ppm</span>
-                    <span class="stat-label">CO2</span>
-                  </div>
-                </div>
+                🧮
               </div>
+              <h2>Calculator</h2>
             </div>
+            <span class="tool-tag popular">Popular</span>
+            <p>
+              A beautiful scientific calculator with history, memory functions,
+              and unit conversions.
+            </p>
+            <a href="tools/calculator.html" class="btn-use">🚀 Open Tool</a>
           </div>
 
-          <!-- Weather & Floods -->
-          <div class="tool-card tool-featured">
-            <div
-              class="tool-icon"
-              style="background: linear-gradient(135deg, #3b82f6, #1d4ed8)"
-            >
-              🌧️
-            </div>
-            <div class="tool-content">
-              <span class="tool-badge new">New</span>
-              <h2 class="tool-title">Weather & Floods</h2>
-              <p class="tool-desc">
-                Advanced weather forecasting with flood risk prediction. Get
-                early warnings for extreme weather events, frost alerts, and
-                irrigation recommendations based on upcoming conditions.
-              </p>
-              <ul class="tool-features">
-                <li>🌊 Flood risk mapping</li>
-                <li>❄️ Frost alerts</li>
-                <li>🌪️ Severe weather warnings</li>
-                <li>💧 Smart irrigation timing</li>
-              </ul>
-              <a href="builder.html?tool=weather-floods" class="btn btn-primary"
-                >Try Weather & Floods</a
+          <div class="tool-card">
+            <div class="tool-header">
+              <div
+                class="tool-icon"
+                style="background: linear-gradient(135deg, #f59e0b, #d97706)"
               >
-            </div>
-            <div class="tool-preview">
-              <div class="tool-preview-card weather-preview">
-                <div class="preview-header">⛈️ Weather Alert</div>
-                <div class="weather-alert">
-                  <div class="alert-icon">🌧️</div>
-                  <div class="alert-content">
-                    <strong>Heavy Rain Expected</strong>
-                    <p>50mm in next 24hrs</p>
-                    <span class="flood-risk high">High Flood Risk</span>
-                  </div>
-                </div>
+                📝
               </div>
+              <h2>Quick Notes</h2>
             </div>
+            <span class="tool-tag new">New</span>
+            <p>
+              Jot down ideas instantly. Auto-saves to your browser so you never
+              lose anything.
+            </p>
+            <a href="tools/notes.html" class="btn-use">🚀 Open Tool</a>
           </div>
 
-          <!-- Soil Health -->
           <div class="tool-card">
-            <div
-              class="tool-icon"
-              style="background: linear-gradient(135deg, #a16207, #854d0e)"
-            >
-              🌍
-            </div>
-            <div class="tool-content">
-              <h2 class="tool-title">Soil Health</h2>
-              <p class="tool-desc">
-                Track soil nutrients, pH levels, and organic matter over time.
-                Get fertilizer recommendations and monitor soil health trends.
-              </p>
-              <ul class="tool-features">
-                <li>🧪 NPK tracking</li>
-                <li>📈 Historical trends</li>
-                <li>💊 Fertilizer recommendations</li>
-              </ul>
-              <a href="builder.html?tool=soil-health" class="btn btn-secondary"
-                >Learn More</a
+            <div class="tool-header">
+              <div
+                class="tool-icon"
+                style="background: linear-gradient(135deg, #ef4444, #dc2626)"
               >
+                ⏱️
+              </div>
+              <h2>Timer & Stopwatch</h2>
             </div>
+            <p>
+              Pomodoro timer for productivity, countdown timer, and stopwatch
+              with audio alerts.
+            </p>
+            <a href="tools/timer.html" class="btn-use">🚀 Open Tool</a>
           </div>
 
-          <!-- Crop Planning -->
           <div class="tool-card">
-            <div
-              class="tool-icon"
-              style="background: linear-gradient(135deg, #eab308, #ca8a04)"
-            >
-              📅
-            </div>
-            <div class="tool-content">
-              <h2 class="tool-title">Crop Planning</h2>
-              <p class="tool-desc">
-                Plan your growing seasons, track planting dates, and optimize
-                crop rotation for maximum yield and soil health.
-              </p>
-              <ul class="tool-features">
-                <li>🗓️ Season planning</li>
-                <li>🔄 Rotation optimizer</li>
-                <li>📊 Yield predictions</li>
-              </ul>
-              <a
-                href="builder.html?tool=crop-planning"
-                class="btn btn-secondary"
-                >Learn More</a
+            <div class="tool-header">
+              <div
+                class="tool-icon"
+                style="background: linear-gradient(135deg, #ec4899, #d946ef)"
               >
+                🎨
+              </div>
+              <h2>Color Picker</h2>
             </div>
+            <p>
+              Pick colors, generate beautiful palettes, and convert between HEX,
+              RGB, HSL formats.
+            </p>
+            <a href="tools/colors.html" class="btn-use">🚀 Open Tool</a>
           </div>
 
-          <!-- Livestock Monitor -->
           <div class="tool-card">
-            <div
-              class="tool-icon"
-              style="background: linear-gradient(135deg, #f97316, #ea580c)"
-            >
-              🐄
-            </div>
-            <div class="tool-content">
-              <span class="tool-badge">Coming Soon</span>
-              <h2 class="tool-title">Livestock Monitor</h2>
-              <p class="tool-desc">
-                Track animal health, location, and behavior patterns. Early
-                detection of illness and automated feeding schedules.
-              </p>
-              <ul class="tool-features">
-                <li>📍 GPS tracking</li>
-                <li>❤️ Health monitoring</li>
-                <li>🍽️ Feed automation</li>
-              </ul>
-              <a href="#" class="btn btn-secondary" disabled>Coming Soon</a>
-            </div>
-          </div>
-
-          <!-- Water Management -->
-          <div class="tool-card">
-            <div
-              class="tool-icon"
-              style="background: linear-gradient(135deg, #06b6d4, #0891b2)"
-            >
-              💧
-            </div>
-            <div class="tool-content">
-              <h2 class="tool-title">Water Management</h2>
-              <p class="tool-desc">
-                Optimize irrigation with smart scheduling based on soil
-                moisture, weather forecasts, and crop water requirements.
-              </p>
-              <ul class="tool-features">
-                <li>🚿 Smart irrigation</li>
-                <li>📉 Water usage analytics</li>
-                <li>💰 Cost optimization</li>
-              </ul>
-              <a href="builder.html?tool=water" class="btn btn-secondary"
-                >Learn More</a
+            <div class="tool-header">
+              <div
+                class="tool-icon"
+                style="background: linear-gradient(135deg, #22c55e, #16a34a)"
               >
+                📐
+              </div>
+              <h2>Unit Converter</h2>
             </div>
+            <p>
+              Convert between units of length, weight, temperature, volume, and
+              more.
+            </p>
+            <a href="tools/converter.html" class="btn-use">🚀 Open Tool</a>
+          </div>
+
+          <div class="tool-card">
+            <div class="tool-header">
+              <div
+                class="tool-icon"
+                style="background: linear-gradient(135deg, #374151, #1f2937)"
+              >
+                📱
+              </div>
+              <h2>QR Generator</h2>
+            </div>
+            <p>
+              Create QR codes for URLs, text, WiFi credentials, and contacts.
+              Download as PNG or SVG.
+            </p>
+            <a href="tools/qr.html" class="btn-use">🚀 Open Tool</a>
+          </div>
+
+          <div class="tool-card">
+            <div class="tool-header">
+              <div
+                class="tool-icon"
+                style="background: linear-gradient(135deg, #06b6d4, #0891b2)"
+              >
+                🔐
+              </div>
+              <h2>Password Generator</h2>
+            </div>
+            <p>
+              Generate strong, secure passwords with custom length and character
+              rules.
+            </p>
+            <a href="tools/password.html" class="btn-use">🚀 Open Tool</a>
+          </div>
+
+          <div class="tool-card">
+            <div class="tool-header">
+              <div
+                class="tool-icon"
+                style="background: linear-gradient(135deg, #6366f1, #4f46e5)"
+              >
+                { }
+              </div>
+              <h2>JSON Formatter</h2>
+            </div>
+            <span class="tool-tag new">New</span>
+            <p>
+              Format, validate, and minify JSON with syntax highlighting and
+              error detection.
+            </p>
+            <a href="tools/json.html" class="btn-use">🚀 Open Tool</a>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- CTA Section -->
-    <section class="cta">
-      <div class="container">
-        <div class="cta-box">
-          <h2 class="cta-title">Start Your Free Trial</h2>
-          <p class="cta-subtitle">
-            Connect your sensors and try all tools free for 14 days
+        <div class="coming-soon-section">
+          <h3>🚀 More tools coming soon!</h3>
+          <p>
+            We're working on adding more useful tools. Check back regularly for
+            updates.
           </p>
-          <a href="signup.html" class="btn btn-large btn-white"
-            >Get Started Free</a
-          >
         </div>
       </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
-      <div class="container footer-grid">
-        <div class="footer-brand">
-          <div class="logo">
-            <div class="logo-icon">🌱</div>
-            <span class="logo-text">AgriSense</span>
-          </div>
-          <p>Smart farming for everyone.</p>
-        </div>
-        <div class="footer-links">
-          <h4>Product</h4>
-          <a href="tools.html">Tools</a>
-          <a href="features.html">Features</a>
-          <a href="sensors.html">Sensors</a>
-          <a href="#pricing">Pricing</a>
-        </div>
-        <div class="footer-links">
-          <h4>Resources</h4>
-          <a href="blog.html">Blog</a>
-          <a href="sensors.html">Documentation</a>
-          <a href="features.html">API</a>
-          <a href="contact.html">Support</a>
-        </div>
-        <div class="footer-links">
-          <h4>Company</h4>
-          <a href="about.html">About</a>
-          <a href="contact.html">Contact</a>
-          <a href="privacy-policy.html">Privacy</a>
-          <a href="terms-of-service.html">Terms</a>
-        </div>
-      </div>
       <div class="container">
-        <p class="footer-copy">© 2026 AgriSense. All rights reserved.</p>
+        <div class="footer-content">
+          <a href="index.html" class="logo">
+            <div class="logo-icon">⚡</div>
+            <span class="logo-text">MiniApps</span>
+          </a>
+          <div class="footer-links">
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="privacy-policy.html">Privacy</a>
+            <a href="terms-of-service.html">Terms</a>
+          </div>
+        </div>
+        <p class="footer-copy">© 2025 MiniApps. Made with ❤️ for everyone.</p>
       </div>
     </footer>
+
+    <script>
+      function getPreferredTheme() {
+        const saved = localStorage.getItem("miniapps-theme");
+        if (saved) return saved;
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      }
+
+      function setTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("miniapps-theme", theme);
+      }
+
+      function toggleTheme() {
+        const current =
+          document.documentElement.getAttribute("data-theme") || "light";
+        setTheme(current === "dark" ? "light" : "dark");
+      }
+
+      setTheme(getPreferredTheme());
+
+      function openMobileNav() {
+        document.getElementById("mobileNav").classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeMobileNav() {
+        document.getElementById("mobileNav").classList.remove("active");
+        document.body.style.overflow = "";
+      }
+    </script>
   </body>
 </html>

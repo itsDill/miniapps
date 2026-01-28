@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About - MiniApps</title>
+    <title>Learn - MiniApps</title>
     <meta
       name="description"
-      content="Learn about MiniApps - our mission to provide free, fast, and fun tools for everyone."
+      content="Interactive learning tools. Practice typing, math, coding, and more."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -177,9 +177,6 @@
         color: #6366f1;
         background: rgba(99, 102, 241, 0.1);
       }
-      .nav-link.active {
-        color: #6366f1;
-      }
 
       .theme-toggle {
         width: 44px;
@@ -230,7 +227,7 @@
         text-align: center;
         background: linear-gradient(
           180deg,
-          rgba(102, 126, 234, 0.08) 0%,
+          rgba(34, 197, 94, 0.08) 0%,
           transparent 100%
         );
       }
@@ -239,7 +236,7 @@
         font-size: 3rem;
         font-weight: 800;
         margin-bottom: 1rem;
-        background: var(--gradient-primary);
+        background: linear-gradient(135deg, #22c55e 0%, #06b6d4 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -252,79 +249,122 @@
         margin: 0 auto;
       }
 
-      .about-section {
+      .learn-section {
         padding: 3rem 0 5rem;
       }
 
-      .about-content {
-        max-width: 800px;
-        margin: 0 auto;
+      .learn-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 1.5rem;
       }
 
-      .about-card {
+      .learn-card {
         background: var(--bg-card);
         border-radius: 20px;
-        padding: 2.5rem;
+        padding: 1.75rem;
         border: 1px solid var(--border-color);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         box-shadow: var(--card-shadow);
-        margin-bottom: 2rem;
       }
 
-      .about-card h2 {
-        font-size: 1.5rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-        color: var(--text-primary);
+      .learn-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--card-hover-shadow);
+        border-color: rgba(34, 197, 94, 0.3);
+      }
+
+      .learn-header {
         display: flex;
         align-items: center;
-        gap: 0.75rem;
-      }
-
-      .about-card p {
-        color: var(--text-secondary);
-        line-height: 1.8;
+        gap: 1rem;
         margin-bottom: 1rem;
       }
 
-      .about-card p:last-child {
-        margin-bottom: 0;
-      }
-
-      .features-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 1.5rem;
-        margin-top: 2rem;
-      }
-
-      .feature-item {
-        text-align: center;
-        padding: 1.5rem;
-        background: var(--bg-secondary);
+      .learn-icon {
+        width: 60px;
+        height: 60px;
         border-radius: 16px;
-        border: 1px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.75rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
       }
 
-      [data-theme="dark"] .feature-item {
-        background: rgba(255, 255, 255, 0.02);
-      }
-
-      .feature-icon {
-        font-size: 2.5rem;
-        margin-bottom: 0.75rem;
-      }
-
-      .feature-item h3 {
-        font-size: 1rem;
-        font-weight: 600;
+      .learn-card h2 {
+        font-size: 1.35rem;
+        font-weight: 700;
         color: var(--text-primary);
-        margin-bottom: 0.25rem;
+      }
+      .learn-card p {
+        color: var(--text-secondary);
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
       }
 
-      .feature-item p {
-        font-size: 0.875rem;
-        color: var(--text-muted);
-        margin: 0;
+      .learn-tag {
+        display: inline-block;
+        padding: 0.35rem 0.85rem;
+        border-radius: 100px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+      }
+
+      .learn-tag.new {
+        background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+        color: #16a34a;
+      }
+      .learn-tag.popular {
+        background: linear-gradient(135deg, #fef3c7, #fde68a);
+        color: #d97706;
+      }
+      [data-theme="dark"] .learn-tag.new {
+        background: rgba(16, 185, 129, 0.2);
+        color: #10b981;
+      }
+      [data-theme="dark"] .learn-tag.popular {
+        background: rgba(245, 158, 11, 0.2);
+        color: #f59e0b;
+      }
+
+      .btn-start {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.85rem 1.75rem;
+        background: linear-gradient(135deg, #22c55e, #06b6d4);
+        color: white;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+      }
+
+      .btn-start:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(34, 197, 94, 0.4);
+      }
+
+      .coming-soon-section {
+        text-align: center;
+        padding: 3rem;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        margin-top: 3rem;
+      }
+
+      .coming-soon-section h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+      }
+      .coming-soon-section p {
+        color: var(--text-secondary);
       }
 
       .mobile-nav {
@@ -436,11 +476,8 @@
         .page-hero h1 {
           font-size: 2rem;
         }
-        .about-card {
-          padding: 1.5rem;
-        }
-        .features-grid {
-          grid-template-columns: repeat(2, 1fr);
+        .learn-grid {
+          grid-template-columns: 1fr;
         }
         .footer-content {
           flex-direction: column;
@@ -466,12 +503,12 @@
           <a href="games.html" class="main-nav-link"
             ><span class="nav-icon">🎮</span><span>Games</span></a
           >
-          <a href="learn.html" class="main-nav-link"
+          <a href="learn.html" class="main-nav-link active"
             ><span class="nav-icon">📚</span><span>Learn</span></a
           >
         </div>
         <div class="nav-right">
-          <a href="about.html" class="nav-link active">About</a>
+          <a href="about.html" class="nav-link">About</a>
           <a href="contact.html" class="nav-link">Contact</a>
           <button
             class="theme-toggle"
@@ -501,10 +538,10 @@
         <a href="games.html" class="mobile-nav-link"
           ><span>🎮</span><span>Games</span></a
         >
-        <a href="learn.html" class="mobile-nav-link"
+        <a href="learn.html" class="mobile-nav-link active"
           ><span>📚</span><span>Learn</span></a
         >
-        <a href="about.html" class="mobile-nav-link active"
+        <a href="about.html" class="mobile-nav-link"
           ><span>ℹ️</span><span>About</span></a
         >
         <a href="contact.html" class="mobile-nav-link"
@@ -515,77 +552,170 @@
 
     <section class="page-hero">
       <div class="container">
-        <h1>ℹ️ About MiniApps</h1>
-        <p>Simple, fast, and free tools for everyone</p>
+        <h1>📚 Learn</h1>
+        <p>
+          Interactive learning tools to boost your skills. Practice makes
+          perfect!
+        </p>
       </div>
     </section>
 
-    <section class="about-section">
+    <section class="learn-section">
       <div class="container">
-        <div class="about-content">
-          <div class="about-card">
-            <h2>🎯 Our Mission</h2>
-            <p>
-              MiniApps was created with a simple goal: to provide useful tools,
-              fun games, and educational content that anyone can access for
-              free, without ads, tracking, or account requirements.
-            </p>
-            <p>
-              We believe that great tools should be accessible to everyone,
-              regardless of their technical background or budget. That's why
-              everything on MiniApps runs directly in your browser—no downloads,
-              no installations, no hassle.
-            </p>
-          </div>
-
-          <div class="about-card">
-            <h2>✨ What Makes Us Different</h2>
-            <div class="features-grid">
-              <div class="feature-item">
-                <div class="feature-icon">🚫</div>
-                <h3>No Ads</h3>
-                <p>Clean, distraction-free experience</p>
+        <div class="learn-grid">
+          <div class="learn-card">
+            <div class="learn-header">
+              <div
+                class="learn-icon"
+                style="background: linear-gradient(135deg, #3b82f6, #1d4ed8)"
+              >
+                ⌨️
               </div>
-              <div class="feature-item">
-                <div class="feature-icon">🔒</div>
-                <h3>Privacy First</h3>
-                <p>No tracking or data collection</p>
-              </div>
-              <div class="feature-item">
-                <div class="feature-icon">⚡</div>
-                <h3>Lightning Fast</h3>
-                <p>Optimized for speed</p>
-              </div>
-              <div class="feature-item">
-                <div class="feature-icon">📱</div>
-                <h3>Works Everywhere</h3>
-                <p>Desktop, tablet, and mobile</p>
-              </div>
-              <div class="feature-item">
-                <div class="feature-icon">🌐</div>
-                <h3>Works Offline</h3>
-                <p>Use without internet</p>
-              </div>
-              <div class="feature-item">
-                <div class="feature-icon">💯</div>
-                <h3>100% Free</h3>
-                <p>No hidden costs ever</p>
-              </div>
+              <h2>Typing Practice</h2>
             </div>
+            <span class="learn-tag popular">Popular</span>
+            <p>
+              Improve your typing speed and accuracy with fun exercises and
+              real-time feedback.
+            </p>
+            <a href="learn/typing.html" class="btn-start">📖 Start Learning</a>
           </div>
 
-          <div class="about-card">
-            <h2>🛠️ Built With Love</h2>
+          <div class="learn-card">
+            <div class="learn-header">
+              <div
+                class="learn-icon"
+                style="background: linear-gradient(135deg, #22c55e, #16a34a)"
+              >
+                ➕
+              </div>
+              <h2>Math Practice</h2>
+            </div>
+            <span class="learn-tag new">New</span>
             <p>
-              Every tool on MiniApps is crafted with attention to detail and a
-              focus on user experience. We use modern web technologies to ensure
-              everything works smoothly and looks beautiful.
+              Practice arithmetic, algebra, and more with instant feedback and
+              progress tracking.
             </p>
-            <p>
-              Have a suggestion for a new tool or feature? We'd love to hear
-              from you! Check out our contact page to get in touch.
-            </p>
+            <a href="learn/math.html" class="btn-start">📖 Start Learning</a>
           </div>
+
+          <div class="learn-card">
+            <div class="learn-header">
+              <div
+                class="learn-icon"
+                style="background: linear-gradient(135deg, #f59e0b, #d97706)"
+              >
+                🗂️
+              </div>
+              <h2>Flashcards</h2>
+            </div>
+            <p>
+              Create and study flashcards with spaced repetition for effective
+              learning.
+            </p>
+            <a href="learn/flashcards.html" class="btn-start"
+              >📖 Start Learning</a
+            >
+          </div>
+
+          <div class="learn-card">
+            <div class="learn-header">
+              <div
+                class="learn-icon"
+                style="background: linear-gradient(135deg, #ec4899, #d946ef)"
+              >
+                🌍
+              </div>
+              <h2>Language Basics</h2>
+            </div>
+            <p>
+              Learn common phrases in Spanish, French, Japanese, and more
+              languages.
+            </p>
+            <a href="learn/language.html" class="btn-start"
+              >📖 Start Learning</a
+            >
+          </div>
+
+          <div class="learn-card">
+            <div class="learn-header">
+              <div
+                class="learn-icon"
+                style="background: linear-gradient(135deg, #6366f1, #4f46e5)"
+              >
+                💻
+              </div>
+              <h2>Coding Basics</h2>
+            </div>
+            <span class="learn-tag popular">Popular</span>
+            <p>
+              Interactive lessons on HTML, CSS, JavaScript fundamentals for
+              beginners.
+            </p>
+            <a href="learn/coding.html" class="btn-start">📖 Start Learning</a>
+          </div>
+
+          <div class="learn-card">
+            <div class="learn-header">
+              <div
+                class="learn-icon"
+                style="background: linear-gradient(135deg, #14b8a6, #0d9488)"
+              >
+                🗺️
+              </div>
+              <h2>Geography Quiz</h2>
+            </div>
+            <p>
+              Learn countries, capitals, flags, and landmarks from around the
+              world.
+            </p>
+            <a href="learn/geography.html" class="btn-start"
+              >📖 Start Learning</a
+            >
+          </div>
+
+          <div class="learn-card">
+            <div class="learn-header">
+              <div
+                class="learn-icon"
+                style="background: linear-gradient(135deg, #8b5cf6, #7c3aed)"
+              >
+                🔬
+              </div>
+              <h2>Science Facts</h2>
+            </div>
+            <p>
+              Explore fascinating facts about physics, chemistry, and biology.
+            </p>
+            <a href="learn/science.html" class="btn-start">📖 Start Learning</a>
+          </div>
+
+          <div class="learn-card">
+            <div class="learn-header">
+              <div
+                class="learn-icon"
+                style="background: linear-gradient(135deg, #ef4444, #dc2626)"
+              >
+                📖
+              </div>
+              <h2>Vocabulary Builder</h2>
+            </div>
+            <span class="learn-tag new">New</span>
+            <p>
+              Expand your vocabulary with daily words, definitions, and quizzes.
+            </p>
+            <a href="learn/vocabulary.html" class="btn-start"
+              >📖 Start Learning</a
+            >
+          </div>
+        </div>
+
+        <div class="coming-soon-section">
+          <h3>📚 More lessons coming soon!</h3>
+          <p>
+            We're working on adding more educational content. Check back
+            regularly!
+          </p>
         </div>
       </div>
     </section>

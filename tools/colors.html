@@ -1,0 +1,683 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Picker - MiniApps</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-primary: #fafbff;
+        --bg-secondary: #f0f4ff;
+        --bg-card: #ffffff;
+        --bg-nav: rgba(255, 255, 255, 0.9);
+        --text-primary: #1e293b;
+        --text-secondary: #64748b;
+        --text-muted: #94a3b8;
+        --border-color: rgba(0, 0, 0, 0.08);
+        --border-light: #e2e8f0;
+        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      [data-theme="dark"] {
+        --bg-primary: #0f0f1a;
+        --bg-secondary: #1a1a2e;
+        --bg-card: rgba(255, 255, 255, 0.03);
+        --bg-nav: rgba(15, 15, 26, 0.9);
+        --text-primary: #ffffff;
+        --text-secondary: rgba(255, 255, 255, 0.7);
+        --text-muted: rgba(255, 255, 255, 0.5);
+        --border-color: rgba(255, 255, 255, 0.08);
+        --border-light: rgba(255, 255, 255, 0.1);
+        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+      }
+      body {
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        min-height: 100vh;
+        transition:
+          background 0.3s ease,
+          color 0.3s ease;
+      }
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      /* Navigation */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        padding: 0.875rem 0;
+        background: var(--bg-nav);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-color);
+      }
+      .nav-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+      }
+      .logo-icon {
+        width: 44px;
+        height: 44px;
+        background: var(--gradient-primary);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      }
+      .logo-text {
+        font-size: 1.5rem;
+        font-weight: 800;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .main-nav {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+      .main-nav-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.625rem 1.25rem;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: all 0.2s ease;
+      }
+      .main-nav-link:hover {
+        color: #6366f1;
+        background: rgba(99, 102, 241, 0.1);
+      }
+      .main-nav-link.active {
+        background: var(--gradient-primary);
+        color: white;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      }
+      .main-nav-link .nav-icon {
+        font-size: 1.1rem;
+      }
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .nav-link {
+        text-decoration: none;
+        color: var(--text-secondary);
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+        transition: all 0.2s ease;
+      }
+      .nav-link:hover {
+        color: #6366f1;
+        background: rgba(99, 102, 241, 0.1);
+      }
+      .theme-toggle {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        border: 2px solid var(--border-light);
+        background: var(--bg-card);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        transition: all 0.3s ease;
+        color: var(--text-primary);
+      }
+      .theme-toggle:hover {
+        border-color: #6366f1;
+        transform: rotate(15deg);
+      }
+      .theme-toggle .sun-icon {
+        display: block;
+      }
+      .theme-toggle .moon-icon {
+        display: none;
+      }
+      [data-theme="dark"] .theme-toggle .sun-icon {
+        display: none;
+      }
+      [data-theme="dark"] .theme-toggle .moon-icon {
+        display: block;
+      }
+
+      @media (max-width: 768px) {
+        .main-nav,
+        .nav-right .nav-link {
+          display: none;
+        }
+      }
+
+      .tool-container {
+        max-width: 600px;
+        margin: 2rem auto;
+        padding: 2rem;
+      }
+
+      .tool-header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .tool-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        margin: 0 auto 1rem;
+        background: linear-gradient(135deg, #ec4899, #d946ef);
+      }
+
+      .tool-header h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .tool-header p {
+        color: var(--text-light);
+      }
+
+      .color-picker-area {
+        background: var(--bg);
+        border-radius: 1rem;
+        padding: 2rem;
+        border: 1px solid var(--border);
+      }
+
+      .color-preview {
+        width: 100%;
+        height: 150px;
+        border-radius: 1rem;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+        font-weight: 600;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        transition: background 0.3s;
+      }
+
+      .color-input-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .color-input {
+        width: 60px;
+        height: 60px;
+        border: none;
+        border-radius: 0.75rem;
+        cursor: pointer;
+        padding: 0;
+      }
+
+      .color-input::-webkit-color-swatch-wrapper {
+        padding: 0;
+      }
+
+      .color-input::-webkit-color-swatch {
+        border: none;
+        border-radius: 0.75rem;
+      }
+
+      .color-values {
+        flex: 1;
+      }
+
+      .color-format {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .color-format label {
+        font-weight: 600;
+        min-width: 50px;
+      }
+
+      .color-format input {
+        flex: 1;
+        padding: 0.5rem;
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        font-family: "SF Mono", monospace;
+      }
+
+      .copy-btn {
+        padding: 0.5rem 0.75rem;
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        font-size: 0.875rem;
+      }
+
+      .copy-btn:hover {
+        background: #2563eb;
+      }
+
+      .palette-section {
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border);
+      }
+
+      .palette-section h3 {
+        margin-bottom: 1rem;
+      }
+
+      .palette {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .palette-color {
+        flex: 1;
+        height: 60px;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
+
+      .palette-color:hover {
+        transform: scale(1.1);
+      }
+
+      .palette-color:first-child {
+        border-radius: 0.5rem 0 0 0.5rem;
+      }
+
+      .palette-color:last-child {
+        border-radius: 0 0.5rem 0.5rem 0;
+      }
+
+      .saved-colors {
+        margin-top: 1.5rem;
+      }
+
+      .saved-colors h4 {
+        margin-bottom: 0.5rem;
+        color: var(--text-light);
+      }
+
+      .saved-palette {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .saved-color {
+        width: 40px;
+        height: 40px;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        border: 2px solid var(--border);
+        transition: all 0.2s;
+      }
+
+      .saved-color:hover {
+        transform: scale(1.1);
+        border-color: var(--primary);
+      }
+
+      .save-color-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 0.5rem;
+        border: 2px dashed var(--border);
+        background: transparent;
+        cursor: pointer;
+        font-size: 1.25rem;
+        color: var(--text-light);
+      }
+
+      .save-color-btn:hover {
+        border-color: var(--primary);
+        color: var(--primary);
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 500;
+        margin-bottom: 1rem;
+      }
+
+      .back-link:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-content">
+        <a href="../index.html" class="logo">
+          <div class="logo-icon">⚡</div>
+          <span class="logo-text">MiniApps</span>
+        </a>
+        <div class="main-nav">
+          <a href="../tools.html" class="main-nav-link active">
+            <span class="nav-icon">🛠️</span>
+            <span>Tools</span>
+          </a>
+          <a href="../games.html" class="main-nav-link">
+            <span class="nav-icon">🎮</span>
+            <span>Games</span>
+          </a>
+          <a href="../learn.html" class="main-nav-link">
+            <span class="nav-icon">📚</span>
+            <span>Learn</span>
+          </a>
+        </div>
+        <div class="nav-right">
+          <a href="../about.html" class="nav-link">About</a>
+          <a href="../contact.html" class="nav-link">Contact</a>
+          <button
+            class="theme-toggle"
+            onclick="toggleTheme()"
+            aria-label="Toggle theme"
+          >
+            <span class="sun-icon">🌙</span>
+            <span class="moon-icon">☀️</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container">
+      <a href="../tools.html" class="back-link">← Back to Tools</a>
+
+      <div class="tool-container">
+        <div class="tool-header">
+          <div class="tool-icon">🎨</div>
+          <h1>Color Picker</h1>
+          <p>Pick colors, generate palettes, and convert between formats</p>
+        </div>
+
+        <div class="color-picker-area">
+          <div class="color-preview" id="preview" style="background: #3b82f6">
+            #3B82F6
+          </div>
+
+          <div class="color-input-wrapper">
+            <input
+              type="color"
+              class="color-input"
+              id="colorPicker"
+              value="#3b82f6"
+              onchange="updateColor(this.value)"
+            />
+            <div class="color-values">
+              <div class="color-format">
+                <label>HEX</label>
+                <input
+                  type="text"
+                  id="hexValue"
+                  value="#3B82F6"
+                  onchange="updateFromHex(this.value)"
+                />
+                <button class="copy-btn" onclick="copy('hexValue')">
+                  Copy
+                </button>
+              </div>
+              <div class="color-format">
+                <label>RGB</label>
+                <input
+                  type="text"
+                  id="rgbValue"
+                  value="rgb(59, 130, 246)"
+                  readonly
+                />
+                <button class="copy-btn" onclick="copy('rgbValue')">
+                  Copy
+                </button>
+              </div>
+              <div class="color-format">
+                <label>HSL</label>
+                <input
+                  type="text"
+                  id="hslValue"
+                  value="hsl(217, 91%, 60%)"
+                  readonly
+                />
+                <button class="copy-btn" onclick="copy('hslValue')">
+                  Copy
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="palette-section">
+            <h3>Color Palette</h3>
+            <div class="palette" id="palette"></div>
+          </div>
+
+          <div class="saved-colors">
+            <h4>Saved Colors</h4>
+            <div class="saved-palette" id="savedPalette">
+              <button class="save-color-btn" onclick="saveColor()">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer
+      style="
+        padding: 2rem 0;
+        border-top: 1px solid var(--border-color);
+        margin-top: 3rem;
+        text-align: center;
+      "
+    >
+      <p style="color: var(--text-muted)">© 2026 MiniApps. Made with ❤️</p>
+    </footer>
+
+    <script>
+      function getPreferredTheme() {
+        const saved = localStorage.getItem("miniapps-theme");
+        if (saved) return saved;
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      }
+      function setTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("miniapps-theme", theme);
+      }
+      function toggleTheme() {
+        const current =
+          document.documentElement.getAttribute("data-theme") || "light";
+        setTheme(current === "dark" ? "light" : "dark");
+      }
+      setTheme(getPreferredTheme());
+    </script>
+
+    <script>
+      let savedColors =
+        JSON.parse(localStorage.getItem("miniapps-colors")) || [];
+
+      function hexToRgb(hex) {
+        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        return result
+          ? {
+              r: parseInt(result[1], 16),
+              g: parseInt(result[2], 16),
+              b: parseInt(result[3], 16),
+            }
+          : null;
+      }
+
+      function rgbToHsl(r, g, b) {
+        r /= 255;
+        g /= 255;
+        b /= 255;
+        const max = Math.max(r, g, b),
+          min = Math.min(r, g, b);
+        let h,
+          s,
+          l = (max + min) / 2;
+
+        if (max === min) {
+          h = s = 0;
+        } else {
+          const d = max - min;
+          s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+          switch (max) {
+            case r:
+              h = ((g - b) / d + (g < b ? 6 : 0)) / 6;
+              break;
+            case g:
+              h = ((b - r) / d + 2) / 6;
+              break;
+            case b:
+              h = ((r - g) / d + 4) / 6;
+              break;
+          }
+        }
+        return {
+          h: Math.round(h * 360),
+          s: Math.round(s * 100),
+          l: Math.round(l * 100),
+        };
+      }
+
+      function updateColor(hex) {
+        const rgb = hexToRgb(hex);
+        const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+
+        document.getElementById("colorPicker").value = hex;
+        document.getElementById("hexValue").value = hex.toUpperCase();
+        document.getElementById("rgbValue").value =
+          `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+        document.getElementById("hslValue").value =
+          `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
+
+        const preview = document.getElementById("preview");
+        preview.style.background = hex;
+        preview.textContent = hex.toUpperCase();
+        preview.style.color = hsl.l > 50 ? "#000" : "#fff";
+
+        generatePalette(hsl.h, hsl.s);
+      }
+
+      function updateFromHex(value) {
+        if (/^#[0-9A-Fa-f]{6}$/.test(value)) {
+          updateColor(value);
+        }
+      }
+
+      function generatePalette(h, s) {
+        const palette = document.getElementById("palette");
+        const shades = [10, 25, 40, 50, 60, 75, 90];
+        palette.innerHTML = shades
+          .map((l) => {
+            const hex = hslToHex(h, s, l);
+            return `<div class="palette-color" style="background: ${hex}" onclick="updateColor('${hex}')" title="${hex}"></div>`;
+          })
+          .join("");
+      }
+
+      function hslToHex(h, s, l) {
+        s /= 100;
+        l /= 100;
+        const a = s * Math.min(l, 1 - l);
+        const f = (n) => {
+          const k = (n + h / 30) % 12;
+          const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+          return Math.round(255 * color)
+            .toString(16)
+            .padStart(2, "0");
+        };
+        return `#${f(0)}${f(8)}${f(4)}`;
+      }
+
+      function copy(id) {
+        const input = document.getElementById(id);
+        navigator.clipboard.writeText(input.value);
+        const btn = input.nextElementSibling;
+        btn.textContent = "✓";
+        setTimeout(() => (btn.textContent = "Copy"), 1000);
+      }
+
+      function saveColor() {
+        const hex = document.getElementById("hexValue").value;
+        if (!savedColors.includes(hex)) {
+          savedColors.push(hex);
+          localStorage.setItem("miniapps-colors", JSON.stringify(savedColors));
+          renderSavedColors();
+        }
+      }
+
+      function renderSavedColors() {
+        const container = document.getElementById("savedPalette");
+        container.innerHTML =
+          savedColors
+            .map(
+              (color) =>
+                `<div class="saved-color" style="background: ${color}" onclick="updateColor('${color}')" title="${color}"></div>`,
+            )
+            .join("") +
+          '<button class="save-color-btn" onclick="saveColor()">+</button>';
+      }
+
+      // Initialize
+      updateColor("#3b82f6");
+      renderSavedColors();
+    </script>
+  </body>
+</html>
