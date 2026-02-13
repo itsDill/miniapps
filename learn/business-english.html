@@ -1,0 +1,2485 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-S15806B1HW"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-S15806B1HW");
+    </script>
+    <title>Business English Pro - Master Professional Communication</title>
+    <meta
+      name="description"
+      content="Master Business English with our comprehensive learning platform. Professional emails, meetings, presentations, negotiations, and more."
+    />
+    <meta name="theme-color" content="#1e3a5f" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-primary: #f8fafc;
+        --bg-secondary: #f1f5f9;
+        --bg-card: #ffffff;
+        --bg-nav: rgba(255, 255, 255, 0.95);
+        --text-primary: #0f172a;
+        --text-secondary: #475569;
+        --text-muted: #94a3b8;
+        --border-color: rgba(0, 0, 0, 0.06);
+        --border-light: #e2e8f0;
+        --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+        --card-hover-shadow: 0 20px 40px rgba(30, 58, 95, 0.15);
+        --accent-primary: #1e3a5f;
+        --accent-secondary: #c9a227;
+        --accent-gradient: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+        --gold-gradient: linear-gradient(135deg, #c9a227 0%, #deb94a 100%);
+      }
+
+      [data-theme="dark"] {
+        --bg-primary: #0a0f1a;
+        --bg-secondary: #111827;
+        --bg-card: rgba(255, 255, 255, 0.03);
+        --bg-nav: rgba(10, 15, 26, 0.95);
+        --text-primary: #f1f5f9;
+        --text-secondary: rgba(255, 255, 255, 0.7);
+        --text-muted: rgba(255, 255, 255, 0.4);
+        --border-color: rgba(255, 255, 255, 0.06);
+        --border-light: rgba(255, 255, 255, 0.1);
+        --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+        --card-hover-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        min-height: 100vh;
+        transition:
+          background 0.3s ease,
+          color 0.3s ease;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      /* Navigation */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        padding: 1rem 0;
+        background: var(--bg-nav);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .nav-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+      }
+
+      .brand-icon {
+        width: 48px;
+        height: 48px;
+        background: var(--accent-gradient);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        box-shadow: 0 4px 12px rgba(30, 58, 95, 0.3);
+      }
+
+      .brand-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .brand-name {
+        font-family: "Playfair Display", serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--accent-primary);
+      }
+
+      [data-theme="dark"] .brand-name {
+        color: var(--accent-secondary);
+      }
+
+      .brand-tagline {
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        font-weight: 600;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .nav-link {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.9rem;
+        transition: color 0.2s;
+      }
+
+      .nav-link:hover {
+        color: var(--accent-primary);
+      }
+
+      [data-theme="dark"] .nav-link:hover {
+        color: var(--accent-secondary);
+      }
+
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .back-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        border: 1px solid var(--border-light);
+        transition: all 0.2s;
+      }
+
+      .back-link:hover {
+        border-color: var(--accent-primary);
+        color: var(--accent-primary);
+      }
+
+      .theme-toggle {
+        width: 42px;
+        height: 42px;
+        border-radius: 10px;
+        border: 1px solid var(--border-light);
+        background: var(--bg-card);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        transition: all 0.2s;
+        color: var(--text-primary);
+      }
+
+      .theme-toggle:hover {
+        border-color: var(--accent-primary);
+      }
+
+      .theme-toggle .sun-icon {
+        display: block;
+      }
+      .theme-toggle .moon-icon {
+        display: none;
+      }
+      [data-theme="dark"] .theme-toggle .sun-icon {
+        display: none;
+      }
+      [data-theme="dark"] .theme-toggle .moon-icon {
+        display: block;
+      }
+
+      /* Hero Section */
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        overflow: hidden;
+        background: linear-gradient(
+          135deg,
+          #0f172a 0%,
+          #1e293b 50%,
+          #0f172a 100%
+        );
+      }
+
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse 80% 50% at 50% -20%,
+            rgba(30, 58, 95, 0.5) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            ellipse 60% 40% at 80% 80%,
+            rgba(201, 162, 39, 0.15) 0%,
+            transparent 40%
+          ),
+          radial-gradient(
+            ellipse 50% 30% at 20% 90%,
+            rgba(59, 130, 246, 0.1) 0%,
+            transparent 40%
+          );
+        animation: heroGlow 8s ease-in-out infinite alternate;
+      }
+
+      @keyframes heroGlow {
+        0% {
+          opacity: 0.7;
+          transform: scale(1);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1.05);
+        }
+      }
+
+      .hero-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        background-size: 60px 60px;
+        mask-image: radial-gradient(
+          ellipse 80% 60% at 50% 50%,
+          black 20%,
+          transparent 70%
+        );
+      }
+
+      .hero-shapes {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .hero-shape {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(60px);
+        opacity: 0.4;
+        animation: float 20s ease-in-out infinite;
+      }
+
+      .hero-shape-1 {
+        width: 400px;
+        height: 400px;
+        background: linear-gradient(135deg, #1e3a5f, #3b82f6);
+        top: -100px;
+        right: -100px;
+        animation-delay: 0s;
+      }
+
+      .hero-shape-2 {
+        width: 300px;
+        height: 300px;
+        background: linear-gradient(135deg, #c9a227, #fbbf24);
+        bottom: -50px;
+        left: -50px;
+        animation-delay: -5s;
+      }
+
+      .hero-shape-3 {
+        width: 200px;
+        height: 200px;
+        background: linear-gradient(135deg, #8b5cf6, #a855f7);
+        top: 40%;
+        left: 10%;
+        animation-delay: -10s;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+        25% {
+          transform: translate(30px, -30px) rotate(5deg);
+        }
+        50% {
+          transform: translate(-20px, 20px) rotate(-5deg);
+        }
+        75% {
+          transform: translate(20px, 30px) rotate(3deg);
+        }
+      }
+
+      .hero-particles {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+
+      .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(201, 162, 39, 0.6);
+        border-radius: 50%;
+        animation: rise 15s linear infinite;
+      }
+
+      .particle:nth-child(1) {
+        left: 10%;
+        animation-delay: 0s;
+      }
+      .particle:nth-child(2) {
+        left: 20%;
+        animation-delay: 2s;
+      }
+      .particle:nth-child(3) {
+        left: 30%;
+        animation-delay: 4s;
+      }
+      .particle:nth-child(4) {
+        left: 40%;
+        animation-delay: 1s;
+      }
+      .particle:nth-child(5) {
+        left: 50%;
+        animation-delay: 3s;
+      }
+      .particle:nth-child(6) {
+        left: 60%;
+        animation-delay: 5s;
+      }
+      .particle:nth-child(7) {
+        left: 70%;
+        animation-delay: 2.5s;
+      }
+      .particle:nth-child(8) {
+        left: 80%;
+        animation-delay: 4.5s;
+      }
+      .particle:nth-child(9) {
+        left: 90%;
+        animation-delay: 1.5s;
+      }
+
+      @keyframes rise {
+        0% {
+          transform: translateY(100vh) scale(0);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100vh) scale(1);
+          opacity: 0;
+        }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 10;
+        padding: 3rem 1.5rem;
+        max-width: 900px;
+      }
+
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.6rem 1.25rem;
+        background: rgba(201, 162, 39, 0.15);
+        border: 1px solid rgba(201, 162, 39, 0.3);
+        color: #fbbf24;
+        border-radius: 100px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 2rem;
+        backdrop-filter: blur(10px);
+        animation: badgePulse 3s ease-in-out infinite;
+      }
+
+      .hero-badge::before {
+        content: "✦";
+        font-size: 0.6rem;
+        animation: spin 4s linear infinite;
+      }
+
+      @keyframes badgePulse {
+        0%,
+        100% {
+          box-shadow: 0 0 20px rgba(201, 162, 39, 0.2);
+        }
+        50% {
+          box-shadow: 0 0 40px rgba(201, 162, 39, 0.4);
+        }
+      }
+
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .hero h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 4rem;
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+        color: #ffffff;
+        letter-spacing: -0.02em;
+      }
+
+      .hero h1 .line {
+        display: block;
+        overflow: hidden;
+      }
+
+      .hero h1 .highlight {
+        background: linear-gradient(
+          135deg,
+          #c9a227 0%,
+          #fbbf24 50%,
+          #c9a227 100%
+        );
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: shimmer 3s linear infinite;
+      }
+
+      @keyframes shimmer {
+        0% {
+          background-position: 0% center;
+        }
+        100% {
+          background-position: 200% center;
+        }
+      }
+
+      .hero-subtitle {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.7);
+        max-width: 550px;
+        margin: 0 auto 3rem;
+        line-height: 1.8;
+        font-weight: 400;
+      }
+
+      .hero-cta-group {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 4rem;
+      }
+
+      .hero-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 1rem 2rem;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 1rem;
+        text-decoration: none;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-btn.primary {
+        background: linear-gradient(135deg, #c9a227 0%, #deb94a 100%);
+        color: #0f172a;
+        box-shadow: 0 4px 20px rgba(201, 162, 39, 0.4);
+      }
+
+      .hero-btn.primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 30px rgba(201, 162, 39, 0.5);
+      }
+
+      .hero-btn.primary .btn-arrow {
+        transition: transform 0.3s;
+      }
+
+      .hero-btn.primary:hover .btn-arrow {
+        transform: translateX(4px);
+      }
+
+      .hero-btn.secondary {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+        backdrop-filter: blur(10px);
+      }
+
+      .hero-btn.secondary:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-3px);
+      }
+
+      .hero-stats {
+        display: flex;
+        justify-content: center;
+        gap: 4rem;
+        padding: 2.5rem 0;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(10px);
+      }
+
+      .hero .stat {
+        text-align: center;
+      }
+
+      .hero .stat-number {
+        font-size: 2.5rem;
+        font-weight: 800;
+        font-family: "Playfair Display", serif;
+        background: linear-gradient(135deg, #c9a227, #fbbf24);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1;
+        margin-bottom: 0.5rem;
+      }
+
+      .hero .stat-label {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.5);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 500;
+      }
+
+      .scroll-indicator {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+        opacity: 0.6;
+        animation: bounce 2s ease-in-out infinite;
+      }
+
+      .scroll-indicator-mouse {
+        width: 24px;
+        height: 40px;
+        border: 2px solid rgba(255, 255, 255, 0.4);
+        border-radius: 12px;
+        position: relative;
+      }
+
+      .scroll-indicator-wheel {
+        width: 4px;
+        height: 8px;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 2px;
+        position: absolute;
+        top: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: scroll 2s ease-in-out infinite;
+      }
+
+      @keyframes scroll {
+        0%,
+        100% {
+          opacity: 1;
+          transform: translateX(-50%) translateY(0);
+        }
+        50% {
+          opacity: 0.3;
+          transform: translateX(-50%) translateY(10px);
+        }
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        50% {
+          transform: translateX(-50%) translateY(-10px);
+        }
+      }
+
+      .scroll-indicator-text {
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.5);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      @media (max-width: 768px) {
+        .hero {
+          min-height: 100vh;
+          padding-top: 4rem;
+        }
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+        .hero-subtitle {
+          font-size: 1rem;
+        }
+        .hero-stats {
+          gap: 1.5rem;
+          padding: 1.5rem;
+        }
+        .hero .stat-number {
+          font-size: 1.75rem;
+        }
+        .hero-cta-group {
+          flex-direction: column;
+          gap: 0.75rem;
+        }
+        .hero-btn {
+          width: 100%;
+        }
+        .hero-shape {
+          opacity: 0.2;
+        }
+        .scroll-indicator {
+          display: none;
+        }
+      }
+
+      .stat {
+        text-align: center;
+      }
+
+      .stat-number {
+        font-family: "Playfair Display", serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--accent-primary);
+      }
+
+      [data-theme="dark"] .stat-number {
+        color: var(--accent-secondary);
+      }
+
+      .stat-label {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-top: 0.25rem;
+      }
+
+      /* Courses Section */
+      .section {
+        padding: 4rem 0;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .section-title {
+        font-family: "Playfair Display", serif;
+        font-size: 2.25rem;
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+        color: var(--text-primary);
+      }
+
+      .section-subtitle {
+        color: var(--text-secondary);
+        font-size: 1.1rem;
+      }
+
+      .courses-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .course-card {
+        background: var(--bg-card);
+        border-radius: 16px;
+        padding: 1.75rem;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--card-shadow);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+
+      a.course-card {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+      }
+
+      .course-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--card-accent, var(--accent-gradient));
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .course-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--card-hover-shadow);
+        border-color: transparent;
+      }
+
+      .course-card:hover::before {
+        opacity: 1;
+      }
+
+      .course-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.75rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .course-card h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+      }
+
+      .course-card p {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 1.25rem;
+      }
+
+      .course-meta {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+
+      .course-meta span {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+      }
+
+      .course-tag {
+        position: absolute;
+        top: 1.25rem;
+        right: 1.25rem;
+        padding: 0.35rem 0.75rem;
+        border-radius: 100px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .course-tag.popular {
+        background: rgba(201, 162, 39, 0.15);
+        color: #b8941f;
+      }
+
+      .course-tag.new {
+        background: rgba(16, 185, 129, 0.15);
+        color: #059669;
+      }
+
+      /* Skills Section */
+      .skills-section {
+        background: var(--bg-secondary);
+        padding: 4rem 0;
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+      }
+
+      .skill-card {
+        background: var(--bg-card);
+        border-radius: 12px;
+        padding: 1.5rem;
+        text-align: center;
+        border: 1px solid var(--border-color);
+        transition: all 0.3s;
+      }
+
+      .skill-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--card-shadow);
+      }
+
+      .skill-icon {
+        font-size: 2rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .skill-card h4 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.35rem;
+      }
+
+      .skill-card p {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+
+      /* Topics Section */
+      .topics-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
+
+      .topic-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 1rem 1.25rem;
+        background: var(--bg-card);
+        border-radius: 10px;
+        border: 1px solid var(--border-color);
+        font-weight: 500;
+        color: var(--text-primary);
+        transition: all 0.2s;
+        cursor: pointer;
+      }
+
+      .topic-item:hover {
+        border-color: var(--accent-primary);
+        background: rgba(30, 58, 95, 0.05);
+      }
+
+      [data-theme="dark"] .topic-item:hover {
+        border-color: var(--accent-secondary);
+        background: rgba(201, 162, 39, 0.1);
+      }
+
+      .topic-icon {
+        font-size: 1.25rem;
+      }
+
+      /* Phrase Practice Section */
+      .practice-section {
+        background: var(--bg-secondary);
+        padding: 4rem 0;
+      }
+
+      .practice-card {
+        background: var(--bg-card);
+        border-radius: 20px;
+        padding: 2.5rem;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--card-shadow);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .practice-header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .practice-header h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+      }
+
+      .practice-header p {
+        color: var(--text-secondary);
+      }
+
+      .phrase-display {
+        background: var(--bg-secondary);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+
+      .phrase-category {
+        font-size: 0.75rem;
+        color: var(--accent-secondary);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      .phrase-text {
+        font-size: 1.35rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.75rem;
+        line-height: 1.5;
+      }
+
+      .phrase-meaning {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        font-style: italic;
+      }
+
+      .phrase-example {
+        background: rgba(30, 58, 95, 0.05);
+        border-left: 3px solid var(--accent-primary);
+        padding: 1rem 1.25rem;
+        margin: 1rem 0;
+        border-radius: 0 8px 8px 0;
+      }
+
+      [data-theme="dark"] .phrase-example {
+        background: rgba(201, 162, 39, 0.1);
+        border-left-color: var(--accent-secondary);
+      }
+
+      .phrase-example-label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--text-muted);
+        margin-bottom: 0.35rem;
+      }
+
+      .phrase-example-text {
+        color: var(--text-primary);
+        font-size: 0.95rem;
+      }
+
+      .practice-controls {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .practice-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        border: none;
+      }
+
+      .practice-btn.primary {
+        background: var(--accent-gradient);
+        color: white;
+      }
+
+      .practice-btn.primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(30, 58, 95, 0.3);
+      }
+
+      .practice-btn.secondary {
+        background: var(--bg-secondary);
+        color: var(--text-primary);
+        border: 1px solid var(--border-light);
+      }
+
+      .practice-btn.secondary:hover {
+        border-color: var(--accent-primary);
+      }
+
+      .phrase-counter {
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        margin-top: 1rem;
+      }
+
+      /* Mistakes Section */
+      .mistakes-section {
+        padding: 4rem 0;
+      }
+
+      .mistakes-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .mistake-card {
+        background: var(--bg-card);
+        border-radius: 16px;
+        padding: 1.5rem;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--card-shadow);
+      }
+
+      .mistake-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+      }
+
+      .mistake-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        flex-shrink: 0;
+      }
+
+      .mistake-icon.wrong {
+        background: rgba(239, 68, 68, 0.1);
+      }
+
+      .mistake-icon.correct {
+        background: rgba(16, 185, 129, 0.1);
+      }
+
+      .mistake-label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+      }
+
+      .mistake-label.wrong {
+        color: #ef4444;
+      }
+
+      .mistake-label.correct {
+        color: #10b981;
+      }
+
+      .mistake-text {
+        font-size: 0.95rem;
+        color: var(--text-primary);
+        line-height: 1.5;
+      }
+
+      .mistake-text.wrong {
+        text-decoration: line-through;
+        opacity: 0.7;
+      }
+
+      .mistake-explanation {
+        background: var(--bg-secondary);
+        border-radius: 8px;
+        padding: 1rem;
+        margin-top: 1rem;
+      }
+
+      .mistake-explanation-label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--text-muted);
+        margin-bottom: 0.35rem;
+      }
+
+      .mistake-explanation p {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        line-height: 1.6;
+      }
+
+      @media (max-width: 768px) {
+        .mistakes-grid {
+          grid-template-columns: 1fr;
+        }
+        .practice-controls {
+          flex-direction: column;
+        }
+      }
+
+      /* CTA Section */
+      .cta-section {
+        padding: 5rem 0;
+        text-align: center;
+        background: var(--accent-gradient);
+        color: white;
+        margin-top: 4rem;
+      }
+
+      .cta-section h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .cta-section p {
+        font-size: 1.15rem;
+        opacity: 0.9;
+        margin-bottom: 2rem;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .cta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1rem 2.5rem;
+        background: var(--gold-gradient);
+        color: #1a1a1a;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1rem;
+        transition: all 0.3s;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .cta-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Footer */
+      .footer {
+        background: var(--bg-card);
+        padding: 3rem 0 2rem;
+        border-top: 1px solid var(--border-light);
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+
+      .footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .footer-brand-icon {
+        width: 40px;
+        height: 40px;
+        background: var(--accent-gradient);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+      }
+
+      .footer-brand-name {
+        font-family: "Playfair Display", serif;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--accent-primary);
+      }
+
+      [data-theme="dark"] .footer-brand-name {
+        color: var(--accent-secondary);
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .footer-links a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+
+      .footer-links a:hover {
+        color: var(--accent-primary);
+      }
+
+      .footer-copy {
+        text-align: center;
+        color: var(--text-muted);
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border-light);
+        font-size: 0.85rem;
+      }
+
+      /* Responsive */
+      @media (max-width: 1024px) {
+        .skills-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .topics-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+        .hero h1 {
+          font-size: 2.25rem;
+        }
+        .hero-stats {
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+        .courses-grid {
+          grid-template-columns: 1fr;
+        }
+        .skills-grid {
+          grid-template-columns: 1fr;
+        }
+        .topics-grid {
+          grid-template-columns: 1fr;
+        }
+        .footer-content {
+          flex-direction: column;
+          text-align: center;
+        }
+        .footer-links {
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+      }
+
+      /* Smooth Scroll */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Scroll Reveal Animations */
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+      .reveal-delay-4 {
+        transition-delay: 0.4s;
+      }
+
+      /* Hero CTA Buttons */
+      .hero-cta-group {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+      }
+
+      .hero-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1rem 2rem;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 1rem;
+        text-decoration: none;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+        border: none;
+        font-family: inherit;
+      }
+
+      .hero-btn.primary {
+        background: var(--gold-gradient);
+        color: #1a1a1a;
+        box-shadow: 0 4px 20px rgba(201, 162, 39, 0.4);
+      }
+
+      .hero-btn.primary:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 8px 30px rgba(201, 162, 39, 0.5);
+      }
+
+      .hero-btn .btn-arrow {
+        display: inline-block;
+        transition: transform 0.3s ease;
+      }
+
+      .hero-btn:hover .btn-arrow {
+        transform: translateX(4px);
+      }
+
+      .hero-btn.secondary {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(10px);
+      }
+
+      .hero-btn.secondary:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.4);
+        transform: translateY(-2px);
+      }
+
+      /* Back to Top Button */
+      .back-to-top {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        width: 50px;
+        height: 50px;
+        border-radius: 14px;
+        background: var(--accent-gradient);
+        color: white;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        box-shadow: 0 4px 20px rgba(30, 58, 95, 0.3);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+        transition: all 0.3s ease;
+        z-index: 999;
+      }
+
+      .back-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .back-to-top:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 30px rgba(30, 58, 95, 0.4);
+      }
+
+      /* Enhanced Card Hover Effects */
+      .course-card {
+        transform-style: preserve-3d;
+        perspective: 1000px;
+      }
+
+      .course-card:hover {
+        transform: translateY(-8px) rotateX(2deg);
+      }
+
+      .course-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 16px;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.1) 0%,
+          transparent 50%
+        );
+        opacity: 0;
+        transition: opacity 0.3s;
+        pointer-events: none;
+      }
+
+      .course-card:hover::after {
+        opacity: 1;
+      }
+
+      /* Skill Card Enhancements */
+      .skill-card {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .skill-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(201, 162, 39, 0.1),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
+
+      .skill-card:hover::before {
+        left: 100%;
+      }
+
+      /* Section Divider */
+      .section-divider {
+        width: 60px;
+        height: 4px;
+        background: var(--gold-gradient);
+        border-radius: 2px;
+        margin: 0 auto 1.5rem;
+      }
+
+      /* Progress Pills */
+      .progress-pills {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .progress-pill {
+        width: 40px;
+        height: 4px;
+        background: var(--border-light);
+        border-radius: 2px;
+        transition: all 0.3s;
+      }
+
+      .progress-pill.active {
+        width: 60px;
+        background: var(--accent-primary);
+      }
+
+      [data-theme="dark"] .progress-pill.active {
+        background: var(--accent-secondary);
+      }
+
+      /* Animated Stats Counter */
+      .stat-number {
+        display: inline-block;
+      }
+
+      .hero .stat {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.6s forwards;
+      }
+
+      .hero .stat:nth-child(1) {
+        animation-delay: 0.3s;
+      }
+      .hero .stat:nth-child(2) {
+        animation-delay: 0.5s;
+      }
+      .hero .stat:nth-child(3) {
+        animation-delay: 0.7s;
+      }
+
+      @keyframes fadeInUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Topic Item Enhancement */
+      .topic-item {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .topic-item::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 3px;
+        height: 100%;
+        background: var(--accent-primary);
+        transform: scaleY(0);
+        transition: transform 0.3s;
+      }
+
+      [data-theme="dark"] .topic-item::before {
+        background: var(--accent-secondary);
+      }
+
+      .topic-item:hover::before {
+        transform: scaleY(1);
+      }
+
+      /* Glassmorphism Practice Card */
+      .practice-card {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .practice-card::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          circle,
+          rgba(201, 162, 39, 0.05) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="container nav-content">
+        <a href="#" class="brand">
+          <div class="brand-icon">💼</div>
+          <div class="brand-text">
+            <span class="brand-name">Business English Pro</span>
+            <span class="brand-tagline">Professional Communication</span>
+          </div>
+        </a>
+        <div class="nav-links">
+          <a href="#courses" class="nav-link">Courses</a>
+          <a href="#practice" class="nav-link">Practice</a>
+          <a href="#mistakes" class="nav-link">Mistakes</a>
+          <a href="#topics" class="nav-link">Topics</a>
+        </div>
+        <div class="nav-right">
+          <a href="../learn.html" class="back-link">← MiniApps</a>
+          <button
+            class="theme-toggle"
+            onclick="toggleTheme()"
+            aria-label="Toggle theme"
+          >
+            <span class="sun-icon">🌙</span>
+            <span class="moon-icon">☀️</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <section class="hero" id="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-grid"></div>
+      <div class="hero-shapes">
+        <div class="hero-shape hero-shape-1"></div>
+        <div class="hero-shape hero-shape-2"></div>
+        <div class="hero-shape hero-shape-3"></div>
+      </div>
+      <div class="hero-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+      </div>
+
+      <div class="hero-content">
+        <span class="hero-badge">Premium Learning Platform</span>
+        <h1>
+          <span class="line">Master the Art of</span>
+          <span class="line"
+            ><span class="highlight">Business Communication</span></span
+          >
+        </h1>
+        <p class="hero-subtitle">
+          Elevate your professional English with comprehensive courses. From
+          boardroom presentations to executive emails, communicate with
+          confidence and clarity.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#courses" class="hero-btn primary"
+            >Start Learning <span class="btn-arrow">→</span></a
+          >
+          <a href="#practice" class="hero-btn secondary">Try Practice Mode</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-number">8</div>
+            <div class="stat-label">Core Courses</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Lessons</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">200+</div>
+            <div class="stat-label">Exercises</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scroll-indicator">
+        <div class="scroll-indicator-mouse">
+          <div class="scroll-indicator-wheel"></div>
+        </div>
+        <span class="scroll-indicator-text">Scroll</span>
+      </div>
+    </section>
+
+    <section class="section" id="courses">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-divider"></div>
+          <h2 class="section-title">Core Courses</h2>
+          <p class="section-subtitle">
+            Comprehensive modules for every business scenario
+          </p>
+        </div>
+        <div class="courses-grid">
+          <a
+            href="business/email.html"
+            class="course-card"
+            style="--card-accent: linear-gradient(135deg, #3b82f6, #1d4ed8)"
+          >
+            <span class="course-tag popular">Popular</span>
+            <div
+              class="course-icon"
+              style="background: linear-gradient(135deg, #dbeafe, #bfdbfe)"
+            >
+              📧
+            </div>
+            <h3>Professional Email Writing</h3>
+            <p>
+              Master the art of clear, concise, and professional email
+              communication for any business situation.
+            </p>
+            <div class="course-meta">
+              <span>📚 12 Lessons</span>
+              <span>⏱️ 3 Hours</span>
+              <span>📝 25 Exercises</span>
+            </div>
+          </a>
+
+          <a
+            href="business/presentation.html"
+            class="course-card"
+            style="--card-accent: linear-gradient(135deg, #8b5cf6, #7c3aed)"
+          >
+            <span class="course-tag new">New</span>
+            <div
+              class="course-icon"
+              style="background: linear-gradient(135deg, #ede9fe, #ddd6fe)"
+            >
+              🎤
+            </div>
+            <h3>Presentation Skills</h3>
+            <p>
+              Deliver compelling presentations that captivate your audience and
+              drive your message home.
+            </p>
+            <div class="course-meta">
+              <span>📚 10 Lessons</span>
+              <span>⏱️ 4 Hours</span>
+              <span>📝 20 Exercises</span>
+            </div>
+          </a>
+
+          <a
+            href="business/meetings.html"
+            class="course-card"
+            style="--card-accent: linear-gradient(135deg, #10b981, #059669)"
+          >
+            <div
+              class="course-icon"
+              style="background: linear-gradient(135deg, #d1fae5, #a7f3d0)"
+            >
+              🤝
+            </div>
+            <h3>Meeting Mastery</h3>
+            <p>
+              Lead and participate in meetings effectively with phrases,
+              etiquette, and strategies.
+            </p>
+            <div class="course-meta">
+              <span>📚 8 Lessons</span>
+              <span>⏱️ 2.5 Hours</span>
+              <span>📝 18 Exercises</span>
+            </div>
+          </a>
+
+          <a
+            href="business/negotiation.html"
+            class="course-card"
+            style="--card-accent: linear-gradient(135deg, #f59e0b, #d97706)"
+          >
+            <span class="course-tag popular">Popular</span>
+            <div
+              class="course-icon"
+              style="background: linear-gradient(135deg, #fef3c7, #fde68a)"
+            >
+              🤔
+            </div>
+            <h3>Negotiation English</h3>
+            <p>
+              Learn persuasive language and tactics for successful business
+              negotiations.
+            </p>
+            <div class="course-meta">
+              <span>📚 10 Lessons</span>
+              <span>⏱️ 3.5 Hours</span>
+              <span>📝 22 Exercises</span>
+            </div>
+          </a>
+
+          <a
+            href="business/calls.html"
+            class="course-card"
+            style="--card-accent: linear-gradient(135deg, #ec4899, #db2777)"
+          >
+            <div
+              class="course-icon"
+              style="background: linear-gradient(135deg, #fce7f3, #fbcfe8)"
+            >
+              📞
+            </div>
+            <h3>Phone & Video Calls</h3>
+            <p>
+              Handle professional calls with confidence, from cold calls to
+              virtual meetings.
+            </p>
+            <div class="course-meta">
+              <span>📚 6 Lessons</span>
+              <span>⏱️ 2 Hours</span>
+              <span>📝 15 Exercises</span>
+            </div>
+          </a>
+
+          <a
+            href="business/reports.html"
+            class="course-card"
+            style="--card-accent: linear-gradient(135deg, #06b6d4, #0891b2)"
+          >
+            <div
+              class="course-icon"
+              style="background: linear-gradient(135deg, #cffafe, #a5f3fc)"
+            >
+              📊
+            </div>
+            <h3>Reports & Documentation</h3>
+            <p>
+              Write clear, structured business reports, proposals, and
+              professional documents.
+            </p>
+            <div class="course-meta">
+              <span>📚 8 Lessons</span>
+              <span>⏱️ 3 Hours</span>
+              <span>📝 20 Exercises</span>
+            </div>
+          </a>
+
+          <a
+            href="business/networking.html"
+            class="course-card"
+            style="--card-accent: linear-gradient(135deg, #ef4444, #dc2626)"
+          >
+            <span class="course-tag new">New</span>
+            <div
+              class="course-icon"
+              style="background: linear-gradient(135deg, #fee2e2, #fecaca)"
+            >
+              💬
+            </div>
+            <h3>Networking & Small Talk</h3>
+            <p>
+              Build professional relationships with effective networking
+              language and conversation skills.
+            </p>
+            <div class="course-meta">
+              <span>📚 6 Lessons</span>
+              <span>⏱️ 2 Hours</span>
+              <span>📝 12 Exercises</span>
+            </div>
+          </a>
+
+          <a
+            href="business/interview.html"
+            class="course-card"
+            style="--card-accent: linear-gradient(135deg, #6366f1, #4f46e5)"
+          >
+            <div
+              class="course-icon"
+              style="background: linear-gradient(135deg, #e0e7ff, #c7d2fe)"
+            >
+              👔
+            </div>
+            <h3>Interview Excellence</h3>
+            <p>
+              Ace your job interviews with powerful responses and professional
+              self-presentation.
+            </p>
+            <div class="course-meta">
+              <span>📚 8 Lessons</span>
+              <span>⏱️ 2.5 Hours</span>
+              <span>📝 18 Exercises</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="skills-section" id="skills">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-divider"></div>
+          <h2 class="section-title">Skills You'll Develop</h2>
+          <p class="section-subtitle">
+            Essential competencies for the modern professional
+          </p>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <div class="skill-icon">✍️</div>
+            <h4>Written Communication</h4>
+            <p>Clear, professional writing</p>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon">🗣️</div>
+            <h4>Verbal Fluency</h4>
+            <p>Confident speaking skills</p>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon">👂</div>
+            <h4>Active Listening</h4>
+            <p>Understanding & responding</p>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon">🎯</div>
+            <h4>Persuasion</h4>
+            <p>Influence & convince</p>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon">🌐</div>
+            <h4>Cross-Cultural</h4>
+            <p>Global communication</p>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon">⚡</div>
+            <h4>Quick Thinking</h4>
+            <p>Respond on the spot</p>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon">📈</div>
+            <h4>Data Presentation</h4>
+            <p>Explain complex info</p>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon">🤝</div>
+            <h4>Relationship Building</h4>
+            <p>Professional rapport</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="topics">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-divider"></div>
+          <h2 class="section-title">Key Topics Covered</h2>
+          <p class="section-subtitle">
+            Real-world business scenarios and vocabulary
+          </p>
+        </div>
+        <div class="topics-grid">
+          <div class="topic-item">
+            <span class="topic-icon">📋</span>
+            <span>Project Updates</span>
+          </div>
+          <div class="topic-item">
+            <span class="topic-icon">💰</span>
+            <span>Budget Discussions</span>
+          </div>
+          <div class="topic-item">
+            <span class="topic-icon">📅</span>
+            <span>Scheduling & Deadlines</span>
+          </div>
+          <div class="topic-item">
+            <span class="topic-icon">🔄</span>
+            <span>Change Management</span>
+          </div>
+          <div class="topic-item">
+            <span class="topic-icon">👥</span>
+            <span>Team Collaboration</span>
+          </div>
+          <div class="topic-item">
+            <span class="topic-icon">📣</span>
+            <span>Marketing Language</span>
+          </div>
+          <div class="topic-item">
+            <span class="topic-icon">⚖️</span>
+            <span>Legal Terminology</span>
+          </div>
+          <div class="topic-item">
+            <span class="topic-icon">🏦</span>
+            <span>Finance & Banking</span>
+          </div>
+          <div class="topic-item">
+            <span class="topic-icon">🛒</span>
+            <span>Sales Conversations</span>
+          </div>
+          <div class="topic-item">
+            <span class="topic-icon">🎧</span>
+            <span>Customer Service</span>
+          </div>
+          <div class="topic-item">
+            <span class="topic-icon">🏭</span>
+            <span>Manufacturing & Ops</span>
+          </div>
+          <div class="topic-item">
+            <span class="topic-icon">💻</span>
+            <span>Tech & IT</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Phrase Practice -->
+    <section class="practice-section" id="practice">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-divider"></div>
+          <h2 class="section-title">Try It Now</h2>
+          <p class="section-subtitle">Practice essential business phrases</p>
+        </div>
+        <div class="practice-card reveal">
+          <div class="practice-header">
+            <h3>📝 Phrase of the Day</h3>
+            <p>Learn professional expressions used in real business settings</p>
+          </div>
+          <div class="phrase-display">
+            <div class="phrase-category" id="phraseCategory">Email Opening</div>
+            <div class="phrase-text" id="phraseText">
+              "I hope this email finds you well."
+            </div>
+            <div class="phrase-meaning" id="phraseMeaning">
+              A polite, professional way to begin an email
+            </div>
+          </div>
+          <div class="phrase-example">
+            <div class="phrase-example-label">Example in context</div>
+            <div class="phrase-example-text" id="phraseExample">
+              "Dear Mr. Johnson, I hope this email finds you well. I'm writing
+              to follow up on our discussion from last week's meeting."
+            </div>
+          </div>
+          <div class="practice-controls">
+            <button class="practice-btn secondary" onclick="previousPhrase()">
+              ← Previous
+            </button>
+            <button class="practice-btn primary" onclick="nextPhrase()">
+              Next Phrase →
+            </button>
+          </div>
+          <div class="phrase-counter">
+            <span id="currentPhrase">1</span> of
+            <span id="totalPhrases">10</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Common Mistakes Section -->
+    <section class="mistakes-section" id="mistakes">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-divider"></div>
+          <h2 class="section-title">Common Mistakes to Avoid</h2>
+          <p class="section-subtitle">
+            Learn from these frequently made errors in business communication
+          </p>
+        </div>
+        <div class="mistakes-grid">
+          <div class="mistake-card">
+            <div class="mistake-header">
+              <div class="mistake-icon wrong">❌</div>
+              <div>
+                <div class="mistake-label wrong">Avoid</div>
+                <div class="mistake-text wrong">
+                  "Please revert back to me."
+                </div>
+              </div>
+            </div>
+            <div class="mistake-header">
+              <div class="mistake-icon correct">✓</div>
+              <div>
+                <div class="mistake-label correct">Use instead</div>
+                <div class="mistake-text">
+                  "Please get back to me." or "Please reply."
+                </div>
+              </div>
+            </div>
+            <div class="mistake-explanation">
+              <div class="mistake-explanation-label">Why?</div>
+              <p>
+                "Revert" means to return to a previous state. "Revert back" is
+                redundant. Use "reply," "respond," or "get back to me."
+              </p>
+            </div>
+          </div>
+
+          <div class="mistake-card">
+            <div class="mistake-header">
+              <div class="mistake-icon wrong">❌</div>
+              <div>
+                <div class="mistake-label wrong">Avoid</div>
+                <div class="mistake-text wrong">"I am doing the needful."</div>
+              </div>
+            </div>
+            <div class="mistake-header">
+              <div class="mistake-icon correct">✓</div>
+              <div>
+                <div class="mistake-label correct">Use instead</div>
+                <div class="mistake-text">
+                  "I am taking care of it." or "I will handle this."
+                </div>
+              </div>
+            </div>
+            <div class="mistake-explanation">
+              <div class="mistake-explanation-label">Why?</div>
+              <p>
+                "Do the needful" is outdated British English rarely used in
+                modern business. More direct phrasing sounds professional.
+              </p>
+            </div>
+          </div>
+
+          <div class="mistake-card">
+            <div class="mistake-header">
+              <div class="mistake-icon wrong">❌</div>
+              <div>
+                <div class="mistake-label wrong">Avoid</div>
+                <div class="mistake-text wrong">
+                  "Please find attached herewith."
+                </div>
+              </div>
+            </div>
+            <div class="mistake-header">
+              <div class="mistake-icon correct">✓</div>
+              <div>
+                <div class="mistake-label correct">Use instead</div>
+                <div class="mistake-text">
+                  "I have attached..." or "Please see the attached..."
+                </div>
+              </div>
+            </div>
+            <div class="mistake-explanation">
+              <div class="mistake-explanation-label">Why?</div>
+              <p>
+                "Herewith" is archaic legal language. Modern business writing
+                favors clear, simple language.
+              </p>
+            </div>
+          </div>
+
+          <div class="mistake-card">
+            <div class="mistake-header">
+              <div class="mistake-icon wrong">❌</div>
+              <div>
+                <div class="mistake-label wrong">Avoid</div>
+                <div class="mistake-text wrong">
+                  "I wanted to reach out to you..."
+                </div>
+              </div>
+            </div>
+            <div class="mistake-header">
+              <div class="mistake-icon correct">✓</div>
+              <div>
+                <div class="mistake-label correct">Use instead</div>
+                <div class="mistake-text">
+                  "I'm writing to..." or "I'm contacting you about..."
+                </div>
+              </div>
+            </div>
+            <div class="mistake-explanation">
+              <div class="mistake-explanation-label">Why?</div>
+              <p>
+                "Reach out" has become overused corporate jargon. Direct
+                language like "I'm writing" or "I'm contacting" is clearer.
+              </p>
+            </div>
+          </div>
+
+          <div class="mistake-card">
+            <div class="mistake-header">
+              <div class="mistake-icon wrong">❌</div>
+              <div>
+                <div class="mistake-label wrong">Avoid</div>
+                <div class="mistake-text wrong">"Let's discuss offline."</div>
+              </div>
+            </div>
+            <div class="mistake-header">
+              <div class="mistake-icon correct">✓</div>
+              <div>
+                <div class="mistake-label correct">Use instead</div>
+                <div class="mistake-text">
+                  "Let's discuss this in person." or "Can we schedule a call?"
+                </div>
+              </div>
+            </div>
+            <div class="mistake-explanation">
+              <div class="mistake-explanation-label">Why?</div>
+              <p>
+                "Offline" is tech jargon that doesn't always translate well. Be
+                specific about how you want to communicate.
+              </p>
+            </div>
+          </div>
+
+          <div class="mistake-card">
+            <div class="mistake-header">
+              <div class="mistake-icon wrong">❌</div>
+              <div>
+                <div class="mistake-label wrong">Avoid</div>
+                <div class="mistake-text wrong">"Kindly do the same."</div>
+              </div>
+            </div>
+            <div class="mistake-header">
+              <div class="mistake-icon correct">✓</div>
+              <div>
+                <div class="mistake-label correct">Use instead</div>
+                <div class="mistake-text">
+                  "Please [specific action]." or "I would appreciate if you
+                  could..."
+                </div>
+              </div>
+            </div>
+            <div class="mistake-explanation">
+              <div class="mistake-explanation-label">Why?</div>
+              <p>
+                Vague requests lead to confusion. Always specify exactly what
+                action you're requesting from the recipient.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <h2>Ready to Elevate Your Business English?</h2>
+        <p>
+          Start your journey to professional communication excellence today.
+        </p>
+        <a href="#courses" class="cta-btn">Explore Courses →</a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <div class="footer-brand-icon">💼</div>
+            <span class="footer-brand-name">Business English Pro</span>
+          </div>
+          <div class="footer-links">
+            <a href="../about.html">About</a>
+            <a href="../contact.html">Contact</a>
+            <a href="../privacy-policy.html">Privacy</a>
+            <a href="../terms-of-service.html">Terms</a>
+          </div>
+        </div>
+        <p class="footer-copy">
+          © 2026 Business English Pro. A MiniApps Learning Platform.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      function getPreferredTheme() {
+        const saved = localStorage.getItem("miniapps-theme");
+        if (saved) return saved;
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      }
+
+      function setTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("miniapps-theme", theme);
+      }
+
+      function toggleTheme() {
+        const current =
+          document.documentElement.getAttribute("data-theme") || "light";
+        setTheme(current === "dark" ? "light" : "dark");
+      }
+
+      setTheme(getPreferredTheme());
+
+      // Smooth scroll for nav links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      });
+
+      // Phrase Practice Data
+      const phrases = [
+        {
+          category: "Email Opening",
+          text: '"I hope this email finds you well."',
+          meaning: "A polite, professional way to begin an email",
+          example:
+            "\"Dear Mr. Johnson, I hope this email finds you well. I'm writing to follow up on our discussion from last week's meeting.\"",
+        },
+        {
+          category: "Meeting Request",
+          text: '"Would you be available for a brief call?"',
+          meaning: "A polite way to request someone's time for a discussion",
+          example:
+            '"I\'d like to discuss the Q3 budget. Would you be available for a brief call this Thursday afternoon?"',
+        },
+        {
+          category: "Offering Help",
+          text: '"Please don\'t hesitate to reach out if you need any clarification."',
+          meaning: "Inviting questions while showing willingness to assist",
+          example:
+            "\"I've attached the project proposal. Please don't hesitate to reach out if you need any clarification on the timeline.\"",
+        },
+        {
+          category: "Expressing Disagreement",
+          text: '"I see your point, however, I\'d like to offer an alternative perspective."',
+          meaning:
+            "Professionally disagreeing while acknowledging the other viewpoint",
+          example:
+            "\"I see your point about the marketing budget, however, I'd like to offer an alternative perspective based on last year's ROI data.\"",
+        },
+        {
+          category: "Following Up",
+          text: '"I wanted to circle back on our previous conversation."',
+          meaning: "Returning to discuss something previously mentioned",
+          example:
+            '"Hi Sarah, I wanted to circle back on our previous conversation about the vendor contract renewal."',
+        },
+        {
+          category: "Deadline Communication",
+          text: '"I\'ll need this by end of business on Friday."',
+          meaning: "Setting a clear deadline using common business terminology",
+          example:
+            '"Could you please send me the revised figures? I\'ll need this by end of business on Friday to include in the report."',
+        },
+        {
+          category: "Apologizing",
+          text: '"I apologize for any inconvenience this may have caused."',
+          meaning: "A formal apology acknowledging impact on others",
+          example:
+            '"Due to a scheduling conflict, we need to postpone the meeting. I apologize for any inconvenience this may have caused."',
+        },
+        {
+          category: "Closing Email",
+          text: '"I look forward to hearing from you."',
+          meaning: "A professional way to end an email expecting a response",
+          example:
+            '"Please review the attached proposal at your earliest convenience. I look forward to hearing from you."',
+        },
+        {
+          category: "Presenting Data",
+          text: '"As you can see from the figures..."',
+          meaning: "Directing attention to data in a presentation or report",
+          example:
+            '"As you can see from the figures on slide 4, our customer retention has increased by 15% this quarter."',
+        },
+        {
+          category: "Making Suggestions",
+          text: '"Have we considered...?" or "What if we were to...?"',
+          meaning: "Proposing ideas in a collaborative, non-imposing way",
+          example:
+            '"Have we considered outsourcing this portion of the project? It might help us meet the deadline more efficiently."',
+        },
+      ];
+
+      let currentPhraseIndex = 0;
+
+      function updatePhraseDisplay() {
+        const phrase = phrases[currentPhraseIndex];
+        document.getElementById("phraseCategory").textContent = phrase.category;
+        document.getElementById("phraseText").textContent = phrase.text;
+        document.getElementById("phraseMeaning").textContent = phrase.meaning;
+        document.getElementById("phraseExample").textContent = phrase.example;
+        document.getElementById("currentPhrase").textContent =
+          currentPhraseIndex + 1;
+        document.getElementById("totalPhrases").textContent = phrases.length;
+      }
+
+      function nextPhrase() {
+        currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+        updatePhraseDisplay();
+      }
+
+      function previousPhrase() {
+        currentPhraseIndex =
+          (currentPhraseIndex - 1 + phrases.length) % phrases.length;
+        updatePhraseDisplay();
+      }
+
+      // Initialize
+      updatePhraseDisplay();
+
+      // Scroll Reveal Animation
+      const revealElements = document.querySelectorAll(".reveal");
+      const courseCards = document.querySelectorAll(".course-card");
+      const skillCards = document.querySelectorAll(".skill-card");
+      const topicItems = document.querySelectorAll(".topic-item");
+      const mistakeCards = document.querySelectorAll(".mistake-card");
+
+      // Add reveal classes to elements
+      courseCards.forEach((card, i) => {
+        card.classList.add("reveal", "reveal-delay-" + ((i % 4) + 1));
+      });
+      skillCards.forEach((card, i) => {
+        card.classList.add("reveal", "reveal-delay-" + ((i % 4) + 1));
+      });
+      topicItems.forEach((item, i) => {
+        item.classList.add("reveal", "reveal-delay-" + ((i % 4) + 1));
+      });
+      mistakeCards.forEach((card, i) => {
+        card.classList.add("reveal", "reveal-delay-" + ((i % 2) + 1));
+      });
+
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".reveal").forEach((el) => {
+        revealObserver.observe(el);
+      });
+
+      // Back to Top Button
+      const backToTop = document.getElementById("backToTop");
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 500) {
+          backToTop.classList.add("visible");
+        } else {
+          backToTop.classList.remove("visible");
+        }
+      });
+
+      backToTop.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      // Hide scroll indicator on scroll
+      const scrollIndicator = document.querySelector(".scroll-indicator");
+      window.addEventListener(
+        "scroll",
+        () => {
+          if (window.scrollY > 100) {
+            scrollIndicator.style.opacity = "0";
+            scrollIndicator.style.pointerEvents = "none";
+          } else {
+            scrollIndicator.style.opacity = "1";
+            scrollIndicator.style.pointerEvents = "auto";
+          }
+        },
+        { passive: true },
+      );
+    </script>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+      ↑
+    </button>
+  </body>
+</html>

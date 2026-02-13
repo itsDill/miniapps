@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-S15806B1HW"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-S15806B1HW");
+    </script>
+    <title>Business English Pro - Course Library</title>
+    <meta
+      name="description"
+      content="Browse all Business English Pro courses. Master professional communication with our comprehensive course library."
+    />
+    <meta name="theme-color" content="#1e3a5f" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-primary: #f8fafc;
+        --bg-secondary: #f1f5f9;
+        --bg-card: #ffffff;
+        --bg-nav: rgba(255, 255, 255, 0.95);
+        --text-primary: #0f172a;
+        --text-secondary: #475569;
+        --text-muted: #94a3b8;
+        --border-color: rgba(0, 0, 0, 0.06);
+        --border-light: #e2e8f0;
+        --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+        --card-hover-shadow: 0 20px 40px rgba(30, 58, 95, 0.15);
+        --accent-primary: #1e3a5f;
+        --accent-secondary: #c9a227;
+        --accent-gradient: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+        --gold-gradient: linear-gradient(135deg, #c9a227 0%, #deb94a 100%);
+      }
+
+      [data-theme="dark"] {
+        --bg-primary: #0a0f1a;
+        --bg-secondary: #111827;
+        --bg-card: rgba(255, 255, 255, 0.03);
+        --bg-nav: rgba(10, 15, 26, 0.95);
+        --text-primary: #f1f5f9;
+        --text-secondary: rgba(255, 255, 255, 0.7);
+        --text-muted: rgba(255, 255, 255, 0.4);
+        --border-color: rgba(255, 255, 255, 0.06);
+        --border-light: rgba(255, 255, 255, 0.1);
+        --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+        --card-hover-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        min-height: 100vh;
+        transition:
+          background 0.3s ease,
+          color 0.3s ease;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        padding: 1rem 0;
+        background: var(--bg-nav);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .nav-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+      }
+
+      .brand-icon {
+        width: 48px;
+        height: 48px;
+        background: var(--accent-gradient);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        box-shadow: 0 4px 12px rgba(30, 58, 95, 0.3);
+      }
+
+      .brand-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .brand-name {
+        font-family: "Playfair Display", serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--accent-primary);
+      }
+
+      [data-theme="dark"] .brand-name {
+        color: var(--accent-secondary);
+      }
+
+      .brand-tagline {
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        font-weight: 600;
+      }
+
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .back-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        border: 1px solid var(--border-light);
+        transition: all 0.2s;
+      }
+
+      .back-link:hover {
+        border-color: var(--accent-primary);
+        color: var(--accent-primary);
+      }
+
+      .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 500;
+        padding: 0.5rem 0.75rem;
+        border-radius: 8px;
+        transition: all 0.2s;
+      }
+
+      .nav-link:hover {
+        color: var(--accent-primary);
+        background: var(--bg-secondary);
+      }
+
+      .theme-toggle {
+        width: 42px;
+        height: 42px;
+        border-radius: 10px;
+        border: 1px solid var(--border-light);
+        background: var(--bg-card);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        transition: all 0.2s;
+        color: var(--text-primary);
+      }
+
+      .theme-toggle:hover {
+        border-color: var(--accent-primary);
+      }
+      .theme-toggle .sun-icon {
+        display: block;
+      }
+      .theme-toggle .moon-icon {
+        display: none;
+      }
+      [data-theme="dark"] .theme-toggle .sun-icon {
+        display: none;
+      }
+      [data-theme="dark"] .theme-toggle .moon-icon {
+        display: block;
+      }
+
+      .page-header {
+        padding: 4rem 0 3rem;
+        text-align: center;
+        background: linear-gradient(
+          180deg,
+          rgba(30, 58, 95, 0.03) 0%,
+          transparent 100%
+        );
+      }
+
+      [data-theme="dark"] .page-header {
+        background: linear-gradient(
+          180deg,
+          rgba(201, 162, 39, 0.05) 0%,
+          transparent 100%
+        );
+      }
+
+      .page-header h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.75rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+      }
+
+      .page-header p {
+        font-size: 1.15rem;
+        color: var(--text-secondary);
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .courses-section {
+        padding: 3rem 0 5rem;
+      }
+
+      .courses-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .course-card {
+        background: var(--bg-card);
+        border-radius: 16px;
+        padding: 1.75rem;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--card-shadow);
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: inherit;
+        position: relative;
+        overflow: hidden;
+        display: block;
+      }
+
+      .course-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--card-accent, var(--accent-gradient));
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .course-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--card-hover-shadow);
+        border-color: transparent;
+      }
+
+      .course-card:hover::before {
+        opacity: 1;
+      }
+
+      .course-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.75rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .course-card h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+      }
+
+      .course-card p {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 1.25rem;
+      }
+
+      .course-meta {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+
+      .course-meta span {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+      }
+
+      .course-tag {
+        position: absolute;
+        top: 1.25rem;
+        right: 1.25rem;
+        padding: 0.35rem 0.75rem;
+        border-radius: 100px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .course-tag.popular {
+        background: rgba(201, 162, 39, 0.15);
+        color: #b8941f;
+      }
+      .course-tag.new {
+        background: rgba(16, 185, 129, 0.15);
+        color: #059669;
+      }
+
+      .footer {
+        background: var(--bg-card);
+        padding: 2rem 0;
+        border-top: 1px solid var(--border-light);
+        text-align: center;
+      }
+
+      .footer p {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 0 1rem;
+        }
+        .nav-content {
+          gap: 0.5rem;
+        }
+        .brand-text {
+          display: none;
+        }
+        .brand-icon {
+          width: 40px;
+          height: 40px;
+          font-size: 1.25rem;
+        }
+        .nav-right {
+          gap: 0.5rem;
+        }
+        .back-link {
+          padding: 0.4rem 0.6rem;
+          font-size: 0.75rem;
+        }
+        .nav-link {
+          padding: 0.4rem 0.5rem;
+          font-size: 0.75rem;
+        }
+        .nav-link span {
+          display: none;
+        }
+        .theme-toggle {
+          width: 36px;
+          height: 36px;
+          font-size: 1rem;
+        }
+        .page-header {
+          padding: 2rem 0;
+        }
+        .page-header h1 {
+          font-size: 1.75rem;
+        }
+        .courses-grid {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+        .course-card {
+          padding: 1.25rem;
+        }
+        .course-icon {
+          width: 48px;
+          height: 48px;
+          font-size: 1.5rem;
+          margin-bottom: 1rem;
+        }
+        .course-card h3 {
+          font-size: 1.1rem;
+        }
+        .course-card p {
+          font-size: 0.85rem;
+        }
+        .course-meta {
+          gap: 0.75rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .back-link span {
+          display: none;
+        }
+        .back-link::before {
+          content: "←";
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="container nav-content">
+        <a href="../business-english.html" class="brand">
+          <div class="brand-icon">💼</div>
+          <div class="brand-text">
+            <span class="brand-name">Business English Pro</span>
+            <span class="brand-tagline">Course Library</span>
+          </div>
+        </a>
+        <div class="nav-right">
+          <a href="../business-english.html" class="nav-link"
+            >🏠 <span>Home</span></a
+          >
+          <button
+            class="theme-toggle"
+            onclick="toggleTheme()"
+            aria-label="Toggle theme"
+          >
+            <span class="sun-icon">🌙</span>
+            <span class="moon-icon">☀️</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <header class="page-header">
+      <div class="container">
+        <h1>📚 Course Library</h1>
+        <p>
+          Choose a course to start mastering professional business communication
+        </p>
+      </div>
+    </header>
+
+    <section class="courses-section">
+      <div class="container">
+        <div class="courses-grid">
+          <a
+            href="email.html"
+            class="course-card"
+            style="--card-accent: linear-gradient(135deg, #3b82f6, #1d4ed8)"
+          >
+            <span class="course-tag popular">Popular</span>
+            <div
+              class="course-icon"
+              style="background: linear-gradient(135deg, #dbeafe, #bfdbfe)"
+            >
+              📧
+            </div>
+            <h3>Professional Email Writing</h3>
+            <p>
+              Master the art of clear, concise, and professional email
+              communication for any business situation.
+            </p>
+            <div class="course-meta">
+              <span>📚 12 Lessons</span>
+              <span>⏱️ 3 Hours</span>
+              <span>📝 25 Exercises</span>
+            </div>
+          </a>
+
+          <a
+            href="presentation.html"
+            class="course-card"
+            style="--card-accent: linear-gradient(135deg, #8b5cf6, #7c3aed)"
+          >
+            <span class="course-tag new">New</span>
+            <div
+              class="course-icon"
+              style="background: linear-gradient(135deg, #ede9fe, #ddd6fe)"
+            >
+              🎤
+            </div>
+            <h3>Presentation Skills</h3>
+            <p>
+              Deliver compelling presentations that captivate your audience and
+              drive your message home.
+            </p>
+            <div class="course-meta">
+              <span>📚 10 Lessons</span>
+              <span>⏱️ 4 Hours</span>
+              <span>📝 20 Exercises</span>
+            </div>
+          </a>
+
+          <a
+            href="meetings.html"
+            class="course-card"
+            style="--card-accent: linear-gradient(135deg, #10b981, #059669)"
+          >
+            <div
+              class="course-icon"
+              style="background: linear-gradient(135deg, #d1fae5, #a7f3d0)"
+            >
+              🤝
+            </div>
+            <h3>Meeting Mastery</h3>
+            <p>
+              Lead and participate in meetings effectively with phrases,
+              etiquette, and strategies.
+            </p>
+            <div class="course-meta">
+              <span>📚 8 Lessons</span>
+              <span>⏱️ 2.5 Hours</span>
+              <span>📝 18 Exercises</span>
+            </div>
+          </a>
+
+          <a
+            href="negotiation.html"
+            class="course-card"
+            style="--card-accent: linear-gradient(135deg, #f59e0b, #d97706)"
+          >
+            <span class="course-tag popular">Popular</span>
+            <div
+              class="course-icon"
+              style="background: linear-gradient(135deg, #fef3c7, #fde68a)"
+            >
+              🤔
+            </div>
+            <h3>Negotiation English</h3>
+            <p>
+              Learn persuasive language and tactics for successful business
+              negotiations.
+            </p>
+            <div class="course-meta">
+              <span>📚 10 Lessons</span>
+              <span>⏱️ 3.5 Hours</span>
+              <span>📝 22 Exercises</span>
+            </div>
+          </a>
+
+          <a
+            href="calls.html"
+            class="course-card"
+            style="--card-accent: linear-gradient(135deg, #ec4899, #db2777)"
+          >
+            <div
+              class="course-icon"
+              style="background: linear-gradient(135deg, #fce7f3, #fbcfe8)"
+            >
+              📞
+            </div>
+            <h3>Phone & Video Calls</h3>
+            <p>
+              Handle professional calls with confidence, from cold calls to
+              virtual meetings.
+            </p>
+            <div class="course-meta">
+              <span>📚 6 Lessons</span>
+              <span>⏱️ 2 Hours</span>
+              <span>📝 15 Exercises</span>
+            </div>
+          </a>
+
+          <a
+            href="reports.html"
+            class="course-card"
+            style="--card-accent: linear-gradient(135deg, #06b6d4, #0891b2)"
+          >
+            <div
+              class="course-icon"
+              style="background: linear-gradient(135deg, #cffafe, #a5f3fc)"
+            >
+              📊
+            </div>
+            <h3>Reports & Documentation</h3>
+            <p>
+              Write clear, structured business reports, proposals, and
+              professional documents.
+            </p>
+            <div class="course-meta">
+              <span>📚 8 Lessons</span>
+              <span>⏱️ 3 Hours</span>
+              <span>📝 20 Exercises</span>
+            </div>
+          </a>
+
+          <a
+            href="networking.html"
+            class="course-card"
+            style="--card-accent: linear-gradient(135deg, #ef4444, #dc2626)"
+          >
+            <span class="course-tag new">New</span>
+            <div
+              class="course-icon"
+              style="background: linear-gradient(135deg, #fee2e2, #fecaca)"
+            >
+              💬
+            </div>
+            <h3>Networking & Small Talk</h3>
+            <p>
+              Build professional relationships with effective networking
+              language and conversation skills.
+            </p>
+            <div class="course-meta">
+              <span>📚 6 Lessons</span>
+              <span>⏱️ 2 Hours</span>
+              <span>📝 12 Exercises</span>
+            </div>
+          </a>
+
+          <a
+            href="interview.html"
+            class="course-card"
+            style="--card-accent: linear-gradient(135deg, #6366f1, #4f46e5)"
+          >
+            <div
+              class="course-icon"
+              style="background: linear-gradient(135deg, #e0e7ff, #c7d2fe)"
+            >
+              👔
+            </div>
+            <h3>Interview Excellence</h3>
+            <p>
+              Ace your job interviews with powerful responses and professional
+              self-presentation.
+            </p>
+            <div class="course-meta">
+              <span>📚 8 Lessons</span>
+              <span>⏱️ 2.5 Hours</span>
+              <span>📝 18 Exercises</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <p>© 2026 Business English Pro. A MiniApps Learning Platform.</p>
+      </div>
+    </footer>
+
+    <script>
+      function getPreferredTheme() {
+        const saved = localStorage.getItem("miniapps-theme");
+        if (saved) return saved;
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      }
+
+      function setTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("miniapps-theme", theme);
+      }
+
+      function toggleTheme() {
+        const current =
+          document.documentElement.getAttribute("data-theme") || "light";
+        setTheme(current === "dark" ? "light" : "dark");
+      }
+
+      setTheme(getPreferredTheme());
+    </script>
+  </body>
+</html>

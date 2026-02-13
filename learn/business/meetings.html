@@ -1,0 +1,755 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-S15806B1HW"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-S15806B1HW");
+    </script>
+    <title>Meeting Mastery - Business English Pro</title>
+    <meta
+      name="description"
+      content="Master meeting skills. Lead and participate in meetings effectively with professional phrases and strategies."
+    />
+    <meta name="theme-color" content="#1e3a5f" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-primary: #f8fafc;
+        --bg-secondary: #f1f5f9;
+        --bg-card: #ffffff;
+        --bg-nav: rgba(255, 255, 255, 0.95);
+        --text-primary: #0f172a;
+        --text-secondary: #475569;
+        --text-muted: #94a3b8;
+        --border-color: rgba(0, 0, 0, 0.06);
+        --border-light: #e2e8f0;
+        --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+        --card-hover-shadow: 0 20px 40px rgba(30, 58, 95, 0.15);
+        --accent-primary: #1e3a5f;
+        --accent-secondary: #c9a227;
+        --course-color: #10b981;
+        --course-gradient: linear-gradient(135deg, #10b981, #059669);
+        --course-bg: linear-gradient(135deg, #d1fae5, #a7f3d0);
+      }
+
+      [data-theme="dark"] {
+        --bg-primary: #0a0f1a;
+        --bg-secondary: #111827;
+        --bg-card: rgba(255, 255, 255, 0.03);
+        --bg-nav: rgba(10, 15, 26, 0.95);
+        --text-primary: #f1f5f9;
+        --text-secondary: rgba(255, 255, 255, 0.7);
+        --text-muted: rgba(255, 255, 255, 0.4);
+        --border-color: rgba(255, 255, 255, 0.06);
+        --border-light: rgba(255, 255, 255, 0.1);
+        --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+        --card-hover-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        min-height: 100vh;
+        transition:
+          background 0.3s ease,
+          color 0.3s ease;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        padding: 1rem 0;
+        background: var(--bg-nav);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .nav-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+      }
+
+      .brand-icon {
+        width: 48px;
+        height: 48px;
+        background: var(--course-gradient);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+      }
+
+      .brand-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .brand-name {
+        font-family: "Playfair Display", serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--course-color);
+      }
+
+      .brand-tagline {
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        font-weight: 600;
+      }
+
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .back-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        border: 1px solid var(--border-light);
+        transition: all 0.2s;
+      }
+
+      .back-link:hover {
+        border-color: var(--course-color);
+        color: var(--course-color);
+      }
+
+      .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 500;
+        padding: 0.5rem 0.75rem;
+        border-radius: 8px;
+        transition: all 0.2s;
+      }
+
+      .nav-link:hover {
+        color: var(--course-color);
+        background: var(--bg-secondary);
+      }
+
+      .theme-toggle {
+        width: 42px;
+        height: 42px;
+        border-radius: 10px;
+        border: 1px solid var(--border-light);
+        background: var(--bg-card);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        transition: all 0.2s;
+        color: var(--text-primary);
+      }
+
+      .theme-toggle:hover {
+        border-color: var(--course-color);
+      }
+      .theme-toggle .sun-icon {
+        display: block;
+      }
+      .theme-toggle .moon-icon {
+        display: none;
+      }
+      [data-theme="dark"] .theme-toggle .sun-icon {
+        display: none;
+      }
+      [data-theme="dark"] .theme-toggle .moon-icon {
+        display: block;
+      }
+
+      .course-header {
+        padding: 4rem 0 3rem;
+        text-align: center;
+        background: linear-gradient(
+          180deg,
+          rgba(16, 185, 129, 0.05) 0%,
+          transparent 100%
+        );
+      }
+
+      .course-icon {
+        width: 80px;
+        height: 80px;
+        background: var(--course-bg);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        margin: 0 auto 1.5rem;
+        box-shadow: 0 8px 24px rgba(16, 185, 129, 0.2);
+      }
+
+      .course-header h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.75rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        color: var(--text-primary);
+      }
+
+      .course-header p {
+        font-size: 1.15rem;
+        color: var(--text-secondary);
+        max-width: 600px;
+        margin: 0 auto 1.5rem;
+        line-height: 1.7;
+      }
+
+      .course-meta {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+      }
+
+      .lessons-section {
+        padding: 3rem 0 5rem;
+      }
+
+      .section-title {
+        font-family: "Playfair Display", serif;
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        text-align: center;
+      }
+
+      .lesson-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .lesson-card {
+        background: var(--bg-card);
+        border-radius: 12px;
+        padding: 1.5rem;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--card-shadow);
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        transition: all 0.3s;
+        cursor: pointer;
+      }
+
+      .lesson-card:hover {
+        transform: translateX(8px);
+        box-shadow: var(--card-hover-shadow);
+        border-color: var(--course-color);
+      }
+
+      .lesson-number {
+        width: 48px;
+        height: 48px;
+        background: var(--course-bg);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: var(--course-color);
+        flex-shrink: 0;
+      }
+
+      .lesson-content {
+        flex: 1;
+      }
+
+      .lesson-content h3 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 0.35rem;
+        color: var(--text-primary);
+      }
+
+      .lesson-content p {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+      }
+
+      .lesson-duration {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+      }
+
+      .practice-section {
+        padding: 3rem 0;
+        background: var(--bg-secondary);
+        margin-top: 2rem;
+      }
+
+      .phrase-card {
+        background: var(--bg-card);
+        border-radius: 16px;
+        padding: 2rem;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--card-shadow);
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .phrase-label {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 1rem;
+      }
+
+      .phrase-text {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+        line-height: 1.5;
+      }
+
+      .phrase-context {
+        font-size: 0.95rem;
+        color: var(--text-secondary);
+        margin-bottom: 1.5rem;
+      }
+
+      .phrase-nav {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .phrase-btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        border: 1px solid var(--border-light);
+        background: var(--bg-card);
+        color: var(--text-primary);
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .phrase-btn:hover {
+        border-color: var(--course-color);
+        color: var(--course-color);
+      }
+
+      .phrase-btn.primary {
+        background: var(--course-gradient);
+        color: white;
+        border: none;
+      }
+
+      .phrase-counter {
+        margin-top: 1.5rem;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+      }
+
+      .footer {
+        background: var(--bg-card);
+        padding: 2rem 0;
+        border-top: 1px solid var(--border-light);
+        text-align: center;
+      }
+
+      .footer p {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 0 1rem;
+        }
+        .nav-content {
+          gap: 0.5rem;
+        }
+        .brand-text {
+          display: none;
+        }
+        .brand-icon {
+          width: 40px;
+          height: 40px;
+          font-size: 1.25rem;
+        }
+        .nav-right {
+          gap: 0.5rem;
+        }
+        .back-link {
+          padding: 0.4rem 0.6rem;
+          font-size: 0.75rem;
+        }
+        .nav-link {
+          padding: 0.4rem 0.5rem;
+          font-size: 0.75rem;
+        }
+        .nav-link span {
+          display: none;
+        }
+        .theme-toggle {
+          width: 36px;
+          height: 36px;
+          font-size: 1rem;
+        }
+        .course-header {
+          padding: 2rem 0;
+        }
+        .course-header h1 {
+          font-size: 1.75rem;
+        }
+        .course-header .course-icon {
+          width: 60px;
+          height: 60px;
+          font-size: 2rem;
+        }
+        .course-meta {
+          gap: 0.75rem;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+        .lesson-card {
+          padding: 1rem;
+        }
+        .lesson-number {
+          width: 32px;
+          height: 32px;
+          font-size: 0.8rem;
+        }
+        .lesson-content h3 {
+          font-size: 1rem;
+        }
+        .phrase-card {
+          padding: 1.5rem;
+        }
+        .phrase-text {
+          font-size: 1.25rem;
+        }
+        .section-header h2 {
+          font-size: 1.5rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .back-link span {
+          display: none;
+        }
+        .back-link::before {
+          content: "←";
+        }
+        .course-meta span {
+          font-size: 0.75rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="container nav-content">
+        <a href="index.html" class="brand">
+          <div class="brand-icon">🤝</div>
+          <div class="brand-text">
+            <span class="brand-name">Meeting Mastery</span>
+            <span class="brand-tagline">Business English Pro</span>
+          </div>
+        </a>
+        <div class="nav-right">
+          <a href="../business-english.html" class="nav-link"
+            >🏠 <span>Home</span></a
+          >
+          <a href="index.html" class="back-link"><span>← All Courses</span></a>
+          <button
+            class="theme-toggle"
+            onclick="toggleTheme()"
+            aria-label="Toggle theme"
+          >
+            <span class="sun-icon">🌙</span>
+            <span class="moon-icon">☀️</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <header class="course-header">
+      <div class="container">
+        <div class="course-icon">🤝</div>
+        <h1>Meeting Mastery</h1>
+        <p>
+          Lead and participate in meetings effectively with professional
+          phrases, etiquette, and strategies for productive discussions.
+        </p>
+        <div class="course-meta">
+          <div class="meta-item">📚 8 Lessons</div>
+          <div class="meta-item">⏱️ 2.5 Hours</div>
+          <div class="meta-item">📝 18 Exercises</div>
+        </div>
+      </div>
+    </header>
+
+    <section class="lessons-section">
+      <div class="container">
+        <h2 class="section-title">Course Lessons</h2>
+        <div class="lesson-list">
+          <div class="lesson-card">
+            <div class="lesson-number">1</div>
+            <div class="lesson-content">
+              <h3>Opening & Setting the Agenda</h3>
+              <p>
+                Start meetings professionally and establish clear objectives
+              </p>
+            </div>
+            <div class="lesson-duration">⏱️ 20 min</div>
+          </div>
+          <div class="lesson-card">
+            <div class="lesson-number">2</div>
+            <div class="lesson-content">
+              <h3>Giving Your Opinion</h3>
+              <p>Express your views confidently and diplomatically</p>
+            </div>
+            <div class="lesson-duration">⏱️ 18 min</div>
+          </div>
+          <div class="lesson-card">
+            <div class="lesson-number">3</div>
+            <div class="lesson-content">
+              <h3>Agreeing & Disagreeing</h3>
+              <p>Navigate different viewpoints professionally</p>
+            </div>
+            <div class="lesson-duration">⏱️ 20 min</div>
+          </div>
+          <div class="lesson-card">
+            <div class="lesson-number">4</div>
+            <div class="lesson-content">
+              <h3>Interrupting Politely</h3>
+              <p>Interject appropriately without being rude</p>
+            </div>
+            <div class="lesson-duration">⏱️ 15 min</div>
+          </div>
+          <div class="lesson-card">
+            <div class="lesson-number">5</div>
+            <div class="lesson-content">
+              <h3>Asking for Clarification</h3>
+              <p>Request more information without seeming uninformed</p>
+            </div>
+            <div class="lesson-duration">⏱️ 18 min</div>
+          </div>
+          <div class="lesson-card">
+            <div class="lesson-number">6</div>
+            <div class="lesson-content">
+              <h3>Making Suggestions & Proposals</h3>
+              <p>Present ideas persuasively in group settings</p>
+            </div>
+            <div class="lesson-duration">⏱️ 20 min</div>
+          </div>
+          <div class="lesson-card">
+            <div class="lesson-number">7</div>
+            <div class="lesson-content">
+              <h3>Managing Discussion Flow</h3>
+              <p>Keep meetings on track and manage time effectively</p>
+            </div>
+            <div class="lesson-duration">⏱️ 20 min</div>
+          </div>
+          <div class="lesson-card">
+            <div class="lesson-number">8</div>
+            <div class="lesson-content">
+              <h3>Closing & Action Items</h3>
+              <p>End meetings with clear outcomes and next steps</p>
+            </div>
+            <div class="lesson-duration">⏱️ 18 min</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="practice-section">
+      <div class="container">
+        <h2 class="section-title">Key Phrases to Master</h2>
+        <div class="phrase-card">
+          <div class="phrase-label">Professional Phrase</div>
+          <div class="phrase-text" id="phraseText">
+            "Let's get started. The purpose of today's meeting is to..."
+          </div>
+          <div class="phrase-context" id="phraseContext">
+            Opening a meeting with a clear purpose statement
+          </div>
+          <div class="phrase-nav">
+            <button class="phrase-btn" onclick="prevPhrase()">
+              ← Previous
+            </button>
+            <button class="phrase-btn primary" onclick="nextPhrase()">
+              Next →
+            </button>
+          </div>
+          <div class="phrase-counter">
+            <span id="currentPhrase">1</span> of
+            <span id="totalPhrases">10</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <p>© 2026 Business English Pro. A MiniApps Learning Platform.</p>
+      </div>
+    </footer>
+
+    <script>
+      const phrases = [
+        {
+          text: "\"Let's get started. The purpose of today's meeting is to...\"",
+          context: "Opening a meeting with a clear purpose statement",
+        },
+        {
+          text: "\"I'd like to hear everyone's thoughts on this.\"",
+          context: "Inviting participation from all attendees",
+        },
+        {
+          text: '"If I may add something here..."',
+          context: "Politely interrupting to contribute",
+        },
+        {
+          text: '"I see your point, however..."',
+          context: "Respectfully disagreeing while acknowledging others",
+        },
+        {
+          text: '"Could you elaborate on that point?"',
+          context: "Asking for more detail without seeming confused",
+        },
+        {
+          text: '"What I suggest is that we..."',
+          context: "Making a proposal or recommendation",
+        },
+        {
+          text: '"Let\'s stay focused on the agenda."',
+          context: "Redirecting a wandering discussion",
+        },
+        {
+          text: '"To summarize what we\'ve agreed so far..."',
+          context: "Consolidating progress during the meeting",
+        },
+        {
+          text: '"Who will be responsible for this action item?"',
+          context: "Assigning tasks clearly",
+        },
+        {
+          text: '"Let\'s schedule a follow-up to review progress."',
+          context: "Closing with next steps",
+        },
+      ];
+
+      let currentIndex = 0;
+
+      function updatePhrase() {
+        document.getElementById("phraseText").textContent =
+          phrases[currentIndex].text;
+        document.getElementById("phraseContext").textContent =
+          phrases[currentIndex].context;
+        document.getElementById("currentPhrase").textContent = currentIndex + 1;
+        document.getElementById("totalPhrases").textContent = phrases.length;
+      }
+
+      function nextPhrase() {
+        currentIndex = (currentIndex + 1) % phrases.length;
+        updatePhrase();
+      }
+
+      function prevPhrase() {
+        currentIndex = (currentIndex - 1 + phrases.length) % phrases.length;
+        updatePhrase();
+      }
+
+      function getPreferredTheme() {
+        const saved = localStorage.getItem("miniapps-theme");
+        if (saved) return saved;
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      }
+
+      function setTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("miniapps-theme", theme);
+      }
+
+      function toggleTheme() {
+        const current =
+          document.documentElement.getAttribute("data-theme") || "light";
+        setTheme(current === "dark" ? "light" : "dark");
+      }
+
+      setTheme(getPreferredTheme());
+    </script>
+  </body>
+</html>

@@ -539,6 +539,192 @@
           justify-content: center;
         }
       }
+
+      /* Password Modal Styles */
+      .password-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(8px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .password-modal-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .password-modal {
+        background: var(--bg-card);
+        border-radius: 24px;
+        padding: 2.5rem;
+        max-width: 400px;
+        width: 90%;
+        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+        border: 1px solid var(--border-color);
+        transform: scale(0.9) translateY(20px);
+        transition: all 0.3s ease;
+        text-align: center;
+      }
+
+      .password-modal-overlay.active .password-modal {
+        transform: scale(1) translateY(0);
+      }
+
+      .password-modal-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 1.5rem;
+        background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        box-shadow: 0 10px 30px rgba(30, 58, 95, 0.3);
+      }
+
+      .password-modal h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+      }
+
+      .password-modal p {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .password-input-wrapper {
+        position: relative;
+        margin-bottom: 1rem;
+      }
+
+      .password-input {
+        width: 100%;
+        padding: 1rem 3rem 1rem 1rem;
+        font-size: 1rem;
+        border: 2px solid var(--border-light);
+        border-radius: 12px;
+        background: var(--bg-secondary);
+        color: var(--text-primary);
+        transition: all 0.2s;
+        font-family: inherit;
+      }
+
+      .password-input:focus {
+        outline: none;
+        border-color: #1e3a5f;
+        box-shadow: 0 0 0 4px rgba(30, 58, 95, 0.1);
+      }
+
+      .password-toggle {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1.2rem;
+        opacity: 0.6;
+        transition: opacity 0.2s;
+      }
+
+      .password-toggle:hover {
+        opacity: 1;
+      }
+
+      .password-error {
+        color: #ef4444;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+        display: none;
+        animation: shake 0.5s ease;
+      }
+
+      .password-error.show {
+        display: block;
+      }
+
+      @keyframes shake {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(-8px);
+        }
+        50% {
+          transform: translateX(8px);
+        }
+        75% {
+          transform: translateX(-8px);
+        }
+      }
+
+      .password-modal-buttons {
+        display: flex;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+      }
+
+      .password-btn {
+        flex: 1;
+        padding: 0.875rem 1.5rem;
+        border-radius: 12px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: inherit;
+      }
+
+      .password-btn-cancel {
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-light);
+        color: var(--text-secondary);
+      }
+
+      .password-btn-cancel:hover {
+        background: var(--border-light);
+      }
+
+      .password-btn-submit {
+        background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+        border: none;
+        color: white;
+        box-shadow: 0 4px 15px rgba(30, 58, 95, 0.3);
+      }
+
+      .password-btn-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(30, 58, 95, 0.4);
+      }
+
+      .password-hint {
+        margin-top: 1.25rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid var(--border-light);
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+
+      .password-hint span {
+        color: #c9a227;
+        font-weight: 600;
+      }
     </style>
   </head>
   <body>
@@ -760,6 +946,26 @@
               >📖 Start Learning</a
             >
           </div>
+
+          <div class="learn-card">
+            <div class="learn-header">
+              <div
+                class="learn-icon"
+                style="background: linear-gradient(135deg, #0ea5e9, #0284c7)"
+              >
+                💼
+              </div>
+              <h2>Business English</h2>
+            </div>
+            <span class="learn-tag new">New</span>
+            <p>
+              Master professional English for meetings, emails, presentations,
+              and workplace communication.
+            </p>
+            <a href="#" class="btn-start" onclick="checkBusinessPassword(event)"
+              >🔒 Start Learning</a
+            >
+          </div>
         </div>
 
         <div class="coming-soon-section">
@@ -789,6 +995,49 @@
         <p class="footer-copy">© 2025 MiniApps. Made with ❤️ for everyone.</p>
       </div>
     </footer>
+
+    <!-- Password Modal -->
+    <div class="password-modal-overlay" id="passwordModal">
+      <div class="password-modal">
+        <div class="password-modal-icon">🔐</div>
+        <h3>Access Required</h3>
+        <p>Enter the password to access Business English Pro</p>
+        <div class="password-input-wrapper">
+          <input
+            type="password"
+            class="password-input"
+            id="passwordInput"
+            placeholder="Enter password..."
+            autocomplete="off"
+          />
+          <button
+            class="password-toggle"
+            onclick="togglePasswordVisibility()"
+            type="button"
+          >
+            👁️
+          </button>
+        </div>
+        <div class="password-error" id="passwordError">
+          Incorrect password. Please try again.
+        </div>
+        <div class="password-modal-buttons">
+          <button
+            class="password-btn password-btn-cancel"
+            onclick="closePasswordModal()"
+          >
+            Cancel
+          </button>
+          <button
+            class="password-btn password-btn-submit"
+            onclick="submitPassword()"
+          >
+            Unlock
+          </button>
+        </div>
+        <div class="password-hint">Hint: A type of <span>fruit</span> 🍇</div>
+      </div>
+    </div>
 
     <script>
       function getPreferredTheme() {
@@ -821,6 +1070,59 @@
         document.getElementById("mobileNav").classList.remove("active");
         document.body.style.overflow = "";
       }
+
+      function checkBusinessPassword(event) {
+        event.preventDefault();
+        const modal = document.getElementById("passwordModal");
+        const input = document.getElementById("passwordInput");
+        const error = document.getElementById("passwordError");
+
+        modal.classList.add("active");
+        error.classList.remove("show");
+        input.value = "";
+        input.type = "password";
+        setTimeout(() => input.focus(), 100);
+      }
+
+      function closePasswordModal() {
+        const modal = document.getElementById("passwordModal");
+        modal.classList.remove("active");
+      }
+
+      function submitPassword() {
+        const input = document.getElementById("passwordInput");
+        const error = document.getElementById("passwordError");
+
+        if (input.value === "grape") {
+          window.location.href = "learn/business-english.html";
+        } else {
+          error.classList.add("show");
+          input.value = "";
+          input.focus();
+        }
+      }
+
+      function togglePasswordVisibility() {
+        const input = document.getElementById("passwordInput");
+        input.type = input.type === "password" ? "text" : "password";
+      }
+
+      // Close modal on Escape key or click outside
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closePasswordModal();
+        if (
+          e.key === "Enter" &&
+          document.getElementById("passwordModal").classList.contains("active")
+        ) {
+          submitPassword();
+        }
+      });
+
+      document
+        .getElementById("passwordModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) closePasswordModal();
+        });
     </script>
   </body>
 </html>
