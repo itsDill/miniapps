@@ -17,10 +17,14 @@
 
       gtag("config", "G-S15806B1HW");
     </script>
-    <title>MiniApps - Tools, Games & Learn</title>
+    <title>LearnAnything - Free Flashcard Games to Learn Any Subject</title>
     <meta
       name="description"
-      content="A collection of useful tools, fun games, and educational content. Simple, fast, and free."
+      content="Learn anything with free interactive flashcard games. Master languages, business, technology, history, science, and more with fun bite-sized lessons."
+    />
+    <meta
+      name="keywords"
+      content="learn online, free flashcards, language learning, business skills, technology basics, history facts, science learning, educational games"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -713,6 +717,24 @@
       .icon-dark {
         background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
       }
+      .icon-yellow {
+        background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);
+      }
+      .icon-rose {
+        background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+      }
+      .icon-emerald {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      }
+      .icon-sky {
+        background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+      }
+      .icon-violet {
+        background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%);
+      }
+      .icon-amber {
+        background: linear-gradient(135deg, #f59e0b 0%, #b45309 100%);
+      }
 
       /* ========================================
          MOBILE NAVIGATION
@@ -929,22 +951,26 @@
     <nav class="nav">
       <div class="nav-content">
         <a href="index.html" class="logo">
-          <div class="logo-icon">⚡</div>
-          <span class="logo-text">MiniApps</span>
+          <div class="logo-icon">🧠</div>
+          <span class="logo-text">LearnAnything</span>
         </a>
 
         <div class="main-nav">
-          <a href="tools.html" class="main-nav-link">
-            <span class="nav-icon">🛠️</span>
-            <span>Tools</span>
+          <a href="#languages" class="main-nav-link" onclick="switchSlide(0)">
+            <span class="nav-icon">🌍</span>
+            <span>Languages</span>
           </a>
-          <a href="games.html" class="main-nav-link">
-            <span class="nav-icon">🎮</span>
-            <span>Games</span>
+          <a href="#business" class="main-nav-link" onclick="switchSlide(1)">
+            <span class="nav-icon">💼</span>
+            <span>Business</span>
           </a>
-          <a href="learn.html" class="main-nav-link">
+          <a href="#technology" class="main-nav-link" onclick="switchSlide(2)">
+            <span class="nav-icon">💻</span>
+            <span>Technology</span>
+          </a>
+          <a href="#general" class="main-nav-link" onclick="switchSlide(3)">
             <span class="nav-icon">📚</span>
-            <span>Learn</span>
+            <span>General</span>
           </a>
         </div>
 
@@ -970,23 +996,27 @@
     <div class="mobile-nav" id="mobileNav">
       <div class="mobile-nav-header">
         <a href="index.html" class="logo">
-          <div class="logo-icon">⚡</div>
-          <span class="logo-text">MiniApps</span>
+          <div class="logo-icon">🧠</div>
+          <span class="logo-text">LearnAnything</span>
         </a>
         <button class="mobile-nav-close" onclick="closeMobileNav()">✕</button>
       </div>
       <div class="mobile-nav-links">
-        <a href="tools.html" class="mobile-nav-link">
-          <span class="nav-icon">🛠️</span>
-          <span>Tools</span>
+        <a href="#languages" class="mobile-nav-link" onclick="switchSlide(0); closeMobileNav();">
+          <span class="nav-icon">🌍</span>
+          <span>Languages</span>
         </a>
-        <a href="games.html" class="mobile-nav-link">
-          <span class="nav-icon">🎮</span>
-          <span>Games</span>
+        <a href="#business" class="mobile-nav-link" onclick="switchSlide(1); closeMobileNav();">
+          <span class="nav-icon">💼</span>
+          <span>Business</span>
         </a>
-        <a href="learn.html" class="mobile-nav-link">
+        <a href="#technology" class="mobile-nav-link" onclick="switchSlide(2); closeMobileNav();">
+          <span class="nav-icon">💻</span>
+          <span>Technology</span>
+        </a>
+        <a href="#general" class="mobile-nav-link" onclick="switchSlide(3); closeMobileNav();">
           <span class="nav-icon">📚</span>
-          <span>Learn</span>
+          <span>General</span>
         </a>
         <a href="about.html" class="mobile-nav-link">
           <span class="nav-icon">ℹ️</span>
@@ -1011,29 +1041,28 @@
       <div class="hero-content">
         <div class="hero-badge">
           <span class="hero-badge-dot"></span>
-          100% Free • No Ads • No Tracking
+          100% Free • Interactive Flashcards
         </div>
-        <h1>Tools, Games & Learning</h1>
+        <h1>Learn Anything, Anytime</h1>
         <p>
-          A beautiful collection of browser tools, fun games, and interactive
-          lessons. Fast, simple, and completely free.
+          Master new skills with interactive flashcard games. Languages, business, technology, and more — all free, all fun.
         </p>
         <div class="hero-stats">
           <div class="hero-stat">
-            <div class="hero-stat-number">8+</div>
-            <div class="hero-stat-label">Tools</div>
+            <div class="hero-stat-number">50+</div>
+            <div class="hero-stat-label">Topics</div>
           </div>
           <div class="hero-stat">
-            <div class="hero-stat-number">8+</div>
-            <div class="hero-stat-label">Games</div>
+            <div class="hero-stat-number">4</div>
+            <div class="hero-stat-label">Categories</div>
           </div>
           <div class="hero-stat">
-            <div class="hero-stat-number">8+</div>
-            <div class="hero-stat-label">Lessons</div>
+            <div class="hero-stat-number">1000+</div>
+            <div class="hero-stat-label">Flashcards</div>
           </div>
           <div class="hero-stat">
             <div class="hero-stat-number">∞</div>
-            <div class="hero-stat-label">Fun</div>
+            <div class="hero-stat-label">Learning</div>
           </div>
         </div>
       </div>
@@ -1046,221 +1075,289 @@
           <button
             class="tab-btn active"
             onclick="switchSlide(0)"
-            id="tab-tools"
+            id="tab-languages"
           >
-            <span class="tab-icon">🛠️</span>
-            <span>Tools</span>
+            <span class="tab-icon">🌍</span>
+            <span>Languages</span>
             <span class="tab-count">8</span>
           </button>
-          <button class="tab-btn" onclick="switchSlide(1)" id="tab-games">
-            <span class="tab-icon">🎮</span>
-            <span>Games</span>
+          <button class="tab-btn" onclick="switchSlide(1)" id="tab-business">
+            <span class="tab-icon">💼</span>
+            <span>Business</span>
             <span class="tab-count">8</span>
           </button>
-          <button class="tab-btn" onclick="switchSlide(2)" id="tab-learn">
+          <button class="tab-btn" onclick="switchSlide(2)" id="tab-technology">
+            <span class="tab-icon">💻</span>
+            <span>Technology</span>
+            <span class="tab-count">8</span>
+          </button>
+          <button class="tab-btn" onclick="switchSlide(3)" id="tab-general">
             <span class="tab-icon">📚</span>
-            <span>Learn</span>
+            <span>General Knowledge</span>
             <span class="tab-count">8</span>
           </button>
         </div>
 
         <div class="slider-container">
           <div class="slider-wrapper" id="slider">
-            <!-- TOOLS SLIDE -->
-            <div class="slide" id="tools-slide">
+            <!-- LANGUAGES SLIDE -->
+            <div class="slide" id="languages-slide">
               <div class="apps-grid">
-                <a href="tools/calculator.html" class="app-card">
-                  <div class="app-icon icon-blue">🧮</div>
+                <a href="learn/spanish.html" class="app-card">
+                  <div class="app-icon icon-orange">🇪🇸</div>
                   <span class="app-tag popular">Popular</span>
-                  <h3>Calculator</h3>
+                  <h3>Spanish Basics</h3>
                   <p>
-                    A beautiful scientific calculator with history and unit
-                    conversions.
+                    Learn essential Spanish words and phrases with interactive flashcards.
                   </p>
                 </a>
-                <a href="tools/notes.html" class="app-card">
-                  <div class="app-icon icon-orange">📝</div>
+                <a href="learn/french.html" class="app-card">
+                  <div class="app-icon icon-blue">🇫🇷</div>
+                  <span class="app-tag popular">Popular</span>
+                  <h3>French Basics</h3>
+                  <p>
+                    Master common French vocabulary and everyday expressions.
+                  </p>
+                </a>
+                <a href="learn/german.html" class="app-card">
+                  <div class="app-icon icon-dark">🇩🇪</div>
+                  <h3>German Basics</h3>
+                  <p>
+                    Start your German journey with essential words and grammar.
+                  </p>
+                </a>
+                <a href="learn/japanese.html" class="app-card">
+                  <div class="app-icon icon-red">🇯🇵</div>
                   <span class="app-tag new">New</span>
-                  <h3>Quick Notes</h3>
+                  <h3>Japanese Basics</h3>
                   <p>
-                    Jot down ideas fast. Auto-saves locally so you never lose
-                    anything.
+                    Learn hiragana, katakana, and basic Japanese vocabulary.
                   </p>
                 </a>
-                <a href="tools/timer.html" class="app-card">
-                  <div class="app-icon icon-red">⏱️</div>
-                  <h3>Timer & Stopwatch</h3>
-                  <p>Pomodoro timer, countdown, and stopwatch all in one.</p>
-                </a>
-                <a href="tools/colors.html" class="app-card">
-                  <div class="app-icon icon-pink">🎨</div>
-                  <h3>Color Picker</h3>
+                <a href="learn/mandarin.html" class="app-card">
+                  <div class="app-icon icon-rose">🇨🇳</div>
+                  <h3>Mandarin Chinese</h3>
                   <p>
-                    Pick colors, generate palettes, and convert between formats.
+                    Essential Mandarin phrases, tones, and character basics.
                   </p>
                 </a>
-                <a href="tools/converter.html" class="app-card">
-                  <div class="app-icon icon-green">📐</div>
-                  <h3>Unit Converter</h3>
+                <a href="learn/italian.html" class="app-card">
+                  <div class="app-icon icon-green">🇮🇹</div>
+                  <h3>Italian Basics</h3>
                   <p>
-                    Convert between units of length, weight, temperature, and
-                    more.
+                    Beautiful Italian phrases for travel and conversation.
                   </p>
                 </a>
-                <a href="tools/qr.html" class="app-card">
-                  <div class="app-icon icon-dark">📱</div>
-                  <h3>QR Generator</h3>
+                <a href="learn/portuguese.html" class="app-card">
+                  <div class="app-icon icon-emerald">🇵🇹</div>
+                  <h3>Portuguese Basics</h3>
                   <p>
-                    Create QR codes for links, text, WiFi, and contacts
-                    instantly.
+                    Learn Brazilian and European Portuguese essentials.
                   </p>
                 </a>
-                <a href="tools/password.html" class="app-card">
-                  <div class="app-icon icon-cyan">🔐</div>
-                  <h3>Password Generator</h3>
-                  <p>Generate strong, secure passwords with custom rules.</p>
-                </a>
-                <a href="tools/json.html" class="app-card">
-                  <div class="app-icon icon-indigo">{ }</div>
+                <a href="learn/korean.html" class="app-card">
+                  <div class="app-icon icon-sky">🇰🇷</div>
                   <span class="app-tag new">New</span>
-                  <h3>JSON Formatter</h3>
+                  <h3>Korean Basics</h3>
                   <p>
-                    Format, validate, and minify JSON with syntax highlighting.
+                    Hangul alphabet and essential Korean vocabulary.
                   </p>
                 </a>
               </div>
             </div>
 
-            <!-- GAMES SLIDE -->
-            <div class="slide" id="games-slide">
+            <!-- BUSINESS SLIDE -->
+            <div class="slide" id="business-slide">
               <div class="apps-grid">
-                <a href="games/tictactoe.html" class="app-card">
-                  <div class="app-icon icon-purple">⭕</div>
+                <a href="learn/business/email.html" class="app-card">
+                  <div class="app-icon icon-blue">📧</div>
                   <span class="app-tag popular">Popular</span>
-                  <h3>Tic Tac Toe</h3>
+                  <h3>Business Email</h3>
                   <p>
-                    Classic game with single player AI and two player modes.
+                    Professional email phrases, templates, and etiquette.
                   </p>
                 </a>
-                <a href="games/memory.html" class="app-card">
-                  <div class="app-icon icon-pink">🃏</div>
-                  <h3>Memory Match</h3>
+                <a href="learn/business/interview.html" class="app-card">
+                  <div class="app-icon icon-purple">🎯</div>
+                  <span class="app-tag popular">Popular</span>
+                  <h3>Interview Skills</h3>
                   <p>
-                    Test your memory by matching pairs of cards. Multiple
-                    difficulty levels.
+                    Common interview questions and winning responses.
                   </p>
                 </a>
-                <a href="games/snake.html" class="app-card">
-                  <div class="app-icon icon-green">🐍</div>
+                <a href="learn/business/negotiation.html" class="app-card">
+                  <div class="app-icon icon-orange">🤝</div>
+                  <h3>Negotiation</h3>
+                  <p>
+                    Key negotiation tactics and persuasion techniques.
+                  </p>
+                </a>
+                <a href="learn/business/presentation.html" class="app-card">
+                  <div class="app-icon icon-pink">📊</div>
+                  <h3>Presentations</h3>
+                  <p>
+                    Delivery tips, structure, and engaging your audience.
+                  </p>
+                </a>
+                <a href="learn/business/networking.html" class="app-card">
+                  <div class="app-icon icon-teal">🌐</div>
                   <span class="app-tag new">New</span>
-                  <h3>Snake</h3>
+                  <h3>Networking</h3>
                   <p>
-                    The classic snake game. Eat, grow, and don't hit the walls!
+                    Build connections with effective networking strategies.
                   </p>
                 </a>
-                <a href="games/2048.html" class="app-card">
-                  <div class="app-icon icon-orange">🔢</div>
-                  <h3>2048</h3>
+                <a href="learn/business/meetings.html" class="app-card">
+                  <div class="app-icon icon-indigo">📅</div>
+                  <h3>Meeting Skills</h3>
                   <p>
-                    Slide tiles and combine numbers to reach 2048. Addictive
-                    puzzle fun!
+                    Run effective meetings and communicate clearly.
                   </p>
                 </a>
-                <a href="games/wordle.html" class="app-card">
-                  <div class="app-icon icon-teal">📖</div>
-                  <h3>Word Guess</h3>
+                <a href="learn/business/reports.html" class="app-card">
+                  <div class="app-icon icon-cyan">📄</div>
+                  <h3>Business Writing</h3>
                   <p>
-                    Guess the 5-letter word in 6 tries. A new word every day!
+                    Reports, memos, and professional documentation.
                   </p>
                 </a>
-                <a href="games/breakout.html" class="app-card">
-                  <div class="app-icon icon-red">🧱</div>
-                  <h3>Breakout</h3>
+                <a href="learn/business/calls.html" class="app-card">
+                  <div class="app-icon icon-green">📞</div>
+                  <h3>Phone & Video Calls</h3>
                   <p>
-                    Break all the bricks with your paddle and ball. Classic
-                    arcade action!
-                  </p>
-                </a>
-                <a href="games/sudoku.html" class="app-card">
-                  <div class="app-icon icon-blue">9️⃣</div>
-                  <h3>Sudoku</h3>
-                  <p>
-                    Fill the grid with numbers 1-9. Easy, medium, and hard
-                    puzzles.
-                  </p>
-                </a>
-                <a href="games/trivia.html" class="app-card">
-                  <div class="app-icon icon-purple">❓</div>
-                  <h3>Trivia Quiz</h3>
-                  <p>
-                    Test your knowledge with questions from various categories.
+                    Professional communication on calls and video meetings.
                   </p>
                 </a>
               </div>
             </div>
 
-            <!-- LEARN SLIDE -->
-            <div class="slide" id="learn-slide">
+            <!-- TECHNOLOGY SLIDE -->
+            <div class="slide" id="technology-slide">
               <div class="apps-grid">
-                <a href="learn/typing.html" class="app-card">
-                  <div class="app-icon icon-blue">⌨️</div>
-                  <span class="app-tag popular">Popular</span>
-                  <h3>Typing Practice</h3>
-                  <p>
-                    Improve your typing speed and accuracy with fun exercises.
-                  </p>
-                </a>
-                <a href="learn/math.html" class="app-card">
-                  <div class="app-icon icon-green">➕</div>
-                  <span class="app-tag new">New</span>
-                  <h3>Math Practice</h3>
-                  <p>
-                    Practice arithmetic, algebra, and more with instant
-                    feedback.
-                  </p>
-                </a>
-                <a href="learn/flashcards.html" class="app-card">
-                  <div class="app-icon icon-orange">🗂️</div>
-                  <h3>Flashcards</h3>
-                  <p>
-                    Create and study flashcards with spaced repetition learning.
-                  </p>
-                </a>
-                <a href="learn/language.html" class="app-card">
-                  <div class="app-icon icon-pink">🌍</div>
-                  <h3>Language Basics</h3>
-                  <p>
-                    Learn common phrases in Spanish, French, Japanese, and more.
-                  </p>
-                </a>
                 <a href="learn/coding.html" class="app-card">
                   <div class="app-icon icon-indigo">💻</div>
                   <span class="app-tag popular">Popular</span>
                   <h3>Coding Basics</h3>
                   <p>
-                    Interactive lessons on HTML, CSS, JavaScript fundamentals.
+                    HTML, CSS, JavaScript fundamentals for beginners.
                   </p>
                 </a>
+                <a href="learn/python.html" class="app-card">
+                  <div class="app-icon icon-yellow">🐍</div>
+                  <span class="app-tag popular">Popular</span>
+                  <h3>Python Basics</h3>
+                  <p>
+                    Learn Python programming from scratch with examples.
+                  </p>
+                </a>
+                <a href="learn/git.html" class="app-card">
+                  <div class="app-icon icon-orange">🔀</div>
+                  <h3>Git & GitHub</h3>
+                  <p>
+                    Version control basics and collaboration workflows.
+                  </p>
+                </a>
+                <a href="learn/ai-basics.html" class="app-card">
+                  <div class="app-icon icon-purple">🤖</div>
+                  <span class="app-tag new">New</span>
+                  <h3>AI Fundamentals</h3>
+                  <p>
+                    Understand AI, machine learning, and ChatGPT basics.
+                  </p>
+                </a>
+                <a href="learn/cybersecurity.html" class="app-card">
+                  <div class="app-icon icon-red">🔒</div>
+                  <h3>Cybersecurity</h3>
+                  <p>
+                    Security concepts, threats, and how to stay safe online.
+                  </p>
+                </a>
+                <a href="learn/cloud.html" class="app-card">
+                  <div class="app-icon icon-sky">☁️</div>
+                  <h3>Cloud Computing</h3>
+                  <p>
+                    AWS, Azure, Google Cloud basics and key concepts.
+                  </p>
+                </a>
+                <a href="learn/databases.html" class="app-card">
+                  <div class="app-icon icon-emerald">🗃️</div>
+                  <h3>Database Basics</h3>
+                  <p>
+                    SQL, NoSQL, and how data storage works.
+                  </p>
+                </a>
+                <a href="learn/typing.html" class="app-card">
+                  <div class="app-icon icon-dark">⌨️</div>
+                  <h3>Typing Speed</h3>
+                  <p>
+                    Improve your typing speed and accuracy with practice.
+                  </p>
+                </a>
+              </div>
+            </div>
+
+            <!-- GENERAL KNOWLEDGE SLIDE -->
+            <div class="slide" id="general-slide">
+              <div class="apps-grid">
                 <a href="learn/geography.html" class="app-card">
                   <div class="app-icon icon-teal">🗺️</div>
-                  <h3>Geography Quiz</h3>
+                  <span class="app-tag popular">Popular</span>
+                  <h3>World Geography</h3>
                   <p>
-                    Learn countries, capitals, flags, and landmarks worldwide.
+                    Countries, capitals, flags, and landmarks worldwide.
+                  </p>
+                </a>
+                <a href="learn/history.html" class="app-card">
+                  <div class="app-icon icon-amber">📜</div>
+                  <h3>World History</h3>
+                  <p>
+                    Major events, eras, and historical figures.
                   </p>
                 </a>
                 <a href="learn/science.html" class="app-card">
                   <div class="app-icon icon-purple">🔬</div>
+                  <span class="app-tag popular">Popular</span>
                   <h3>Science Facts</h3>
                   <p>
-                    Explore fascinating facts about physics, chemistry, and
-                    biology.
+                    Physics, chemistry, biology basics and discoveries.
+                  </p>
+                </a>
+                <a href="learn/math.html" class="app-card">
+                  <div class="app-icon icon-green">➕</div>
+                  <h3>Math Practice</h3>
+                  <p>
+                    Arithmetic, algebra, and math concepts made easy.
                   </p>
                 </a>
                 <a href="learn/vocabulary.html" class="app-card">
-                  <div class="app-icon icon-red">📖</div>
-                  <span class="app-tag new">New</span>
+                  <div class="app-icon icon-rose">📖</div>
                   <h3>Vocabulary Builder</h3>
-                  <p>Expand your vocabulary with daily words and quizzes.</p>
+                  <p>
+                    Expand your English vocabulary with daily words.
+                  </p>
+                </a>
+                <a href="learn/politics.html" class="app-card">
+                  <div class="app-icon icon-blue">🏛️</div>
+                  <span class="app-tag new">New</span>
+                  <h3>Political Systems</h3>
+                  <p>
+                    Governments, politics, and how democracies work.
+                  </p>
+                </a>
+                <a href="learn/economics.html" class="app-card">
+                  <div class="app-icon icon-orange">📈</div>
+                  <h3>Economics Basics</h3>
+                  <p>
+                    Supply, demand, markets, and economic concepts.
+                  </p>
+                </a>
+                <a href="learn/philosophy.html" class="app-card">
+                  <div class="app-icon icon-violet">🤔</div>
+                  <span class="app-tag new">New</span>
+                  <h3>Philosophy 101</h3>
+                  <p>
+                    Key thinkers, ideas, and philosophical concepts.
+                  </p>
                 </a>
               </div>
             </div>
@@ -1274,8 +1371,8 @@
       <div class="container">
         <div class="footer-content">
           <a href="index.html" class="logo">
-            <div class="logo-icon">⚡</div>
-            <span class="logo-text">MiniApps</span>
+            <div class="logo-icon">🧠</div>
+            <span class="logo-text">LearnAnything</span>
           </a>
           <div class="footer-links">
             <a href="about.html">About</a>
@@ -1284,7 +1381,7 @@
             <a href="terms-of-service.html">Terms</a>
           </div>
         </div>
-        <p class="footer-copy">© 2025 MiniApps. Made with ❤️ for everyone.</p>
+        <p class="footer-copy">© 2026 LearnAnything. Made with ❤️ for lifelong learners.</p>
       </div>
     </footer>
 
@@ -1293,7 +1390,7 @@
       // THEME MANAGEMENT
       // ========================================
       function getPreferredTheme() {
-        const saved = localStorage.getItem("miniapps-theme");
+        const saved = localStorage.getItem("learnanything-theme");
         if (saved) return saved;
         return window.matchMedia("(prefers-color-scheme: dark)").matches
           ? "dark"
@@ -1302,7 +1399,7 @@
 
       function setTheme(theme) {
         document.documentElement.setAttribute("data-theme", theme);
-        localStorage.setItem("miniapps-theme", theme);
+        localStorage.setItem("learnanything-theme", theme);
       }
 
       function toggleTheme() {
@@ -1319,8 +1416,8 @@
       // SLIDER FUNCTIONALITY
       // ========================================
       let currentSlide = 0;
-      const totalSlides = 3;
-      const tabIds = ["tab-tools", "tab-games", "tab-learn"];
+      const totalSlides = 4;
+      const tabIds = ["tab-languages", "tab-business", "tab-technology", "tab-general"];
 
       function switchSlide(index) {
         currentSlide = index;

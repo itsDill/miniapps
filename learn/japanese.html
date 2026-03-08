@@ -1,0 +1,953 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-S15806B1HW"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-S15806B1HW");
+    </script>
+    <title>Learn Japanese - Free Flashcard Game | LearnAnything</title>
+    <meta
+      name="description"
+      content="Learn Japanese with free interactive flashcards. Master Japanese vocabulary, hiragana, katakana, and basic phrases with our fun educational game."
+    />
+    <meta
+      name="keywords"
+      content="learn Japanese, Japanese flashcards, Japanese vocabulary, hiragana, katakana, free Japanese lessons"
+    />
+    <link rel="canonical" href="https://learnanything.ai/learn/japanese.html" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-primary: #fafbff;
+        --bg-card: #ffffff;
+        --bg-nav: rgba(255, 255, 255, 0.9);
+        --text-primary: #1e293b;
+        --text-secondary: #64748b;
+        --text-muted: #94a3b8;
+        --border-color: rgba(0, 0, 0, 0.08);
+        --border-light: #e2e8f0;
+        --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --accent: #dc2626;
+      }
+      [data-theme="dark"] {
+        --bg-primary: #0f0f1a;
+        --bg-card: rgba(255, 255, 255, 0.03);
+        --bg-nav: rgba(15, 15, 26, 0.9);
+        --text-primary: #ffffff;
+        --text-secondary: rgba(255, 255, 255, 0.7);
+        --text-muted: rgba(255, 255, 255, 0.5);
+        --border-color: rgba(255, 255, 255, 0.08);
+        --border-light: rgba(255, 255, 255, 0.1);
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family:
+          "Inter",
+          -apple-system,
+          sans-serif;
+      }
+      body {
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        min-height: 100vh;
+      }
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        padding: 0.875rem 0;
+        background: var(--bg-nav);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-color);
+      }
+      .nav-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+      }
+      .logo-icon {
+        width: 44px;
+        height: 44px;
+        background: var(--gradient-primary);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+      }
+      .logo-text {
+        font-size: 1.5rem;
+        font-weight: 800;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .back-btn {
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-decoration: none;
+      }
+      .back-btn:hover {
+        color: #6366f1;
+        background: rgba(99, 102, 241, 0.1);
+      }
+      .theme-toggle {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        border: 2px solid var(--border-light);
+        background: var(--bg-card);
+        cursor: pointer;
+        font-size: 1.25rem;
+        color: var(--text-primary);
+      }
+      .theme-toggle .sun-icon {
+        display: block;
+      }
+      .theme-toggle .moon-icon {
+        display: none;
+      }
+      [data-theme="dark"] .theme-toggle .sun-icon {
+        display: none;
+      }
+      [data-theme="dark"] .theme-toggle .moon-icon {
+        display: block;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem;
+      }
+      .header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      .header-icon {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+      }
+      .header h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+      }
+      .header p {
+        color: var(--text-secondary);
+        font-size: 1.1rem;
+      }
+      .categories {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+      }
+      .cat-btn {
+        padding: 0.6rem 1.2rem;
+        border: 2px solid var(--border-light);
+        background: var(--bg-card);
+        border-radius: 100px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+      }
+      .cat-btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .cat-btn.active {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: white;
+      }
+      .progress-section {
+        margin-bottom: 2rem;
+      }
+      .progress-stats {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+      .stat-value {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--accent);
+      }
+      .stat-label {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+      }
+      .progress-bar {
+        height: 8px;
+        background: var(--border-light);
+        border-radius: 100px;
+        overflow: hidden;
+      }
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--accent), #b91c1c);
+        border-radius: 100px;
+        transition: width 0.5s;
+      }
+      .card-wrapper {
+        perspective: 1000px;
+        margin-bottom: 2rem;
+      }
+      .flashcard {
+        width: 100%;
+        height: 320px;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 0.6s;
+        cursor: pointer;
+      }
+      .flashcard.flipped {
+        transform: rotateY(180deg);
+      }
+      .card-face {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        border-radius: 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      }
+      .card-front {
+        background: linear-gradient(135deg, #dc2626, #b91c1c);
+        color: white;
+      }
+      .card-back {
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+        color: white;
+        transform: rotateY(180deg);
+      }
+      .card-category {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        opacity: 0.9;
+        margin-bottom: 1rem;
+      }
+      .card-word {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+      }
+      .card-pronunciation {
+        font-size: 1.2rem;
+        opacity: 0.9;
+        font-style: italic;
+        margin-bottom: 0.5rem;
+      }
+      .card-example {
+        font-size: 0.9rem;
+        opacity: 0.8;
+        max-width: 90%;
+      }
+      .card-hint {
+        position: absolute;
+        bottom: 1.5rem;
+        font-size: 0.85rem;
+        opacity: 0.7;
+      }
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+      .btn {
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+      .btn-wrong {
+        background: #fee2e2;
+        color: #dc2626;
+      }
+      .btn-correct {
+        background: #dcfce7;
+        color: #16a34a;
+      }
+      .btn-skip {
+        background: var(--bg-card);
+        color: var(--text-secondary);
+        border: 2px solid var(--border-light);
+      }
+      [data-theme="dark"] .btn-wrong {
+        background: rgba(239, 68, 68, 0.2);
+      }
+      [data-theme="dark"] .btn-correct {
+        background: rgba(34, 197, 94, 0.2);
+      }
+      .shortcuts {
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        margin-bottom: 2rem;
+      }
+      .shortcuts kbd {
+        padding: 0.2rem 0.5rem;
+        background: var(--bg-card);
+        border: 1px solid var(--border-light);
+        border-radius: 4px;
+        font-family: monospace;
+      }
+      .results {
+        text-align: center;
+        padding: 3rem 2rem;
+        background: var(--bg-card);
+        border-radius: 24px;
+        border: 1px solid var(--border-color);
+      }
+      .results-icon {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+      }
+      .results h2 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+      }
+      .results p {
+        color: var(--text-secondary);
+        margin-bottom: 2rem;
+      }
+      .results-stats {
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
+        margin-bottom: 2rem;
+      }
+      .result-stat .value {
+        font-size: 2.5rem;
+        font-weight: 800;
+      }
+      .result-stat .label {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+      }
+      .result-stat.correct .value {
+        color: #22c55e;
+      }
+      .result-stat.wrong .value {
+        color: #ef4444;
+      }
+      .btn-restart {
+        background: var(--gradient-primary);
+        color: white;
+        padding: 1rem 2.5rem;
+      }
+      .hidden {
+        display: none !important;
+      }
+      @media (max-width: 640px) {
+        .header h1 {
+          font-size: 2rem;
+        }
+        .flashcard {
+          height: 300px;
+        }
+        .card-word {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-content">
+        <a href="../index.html" class="logo"
+          ><div class="logo-icon">🧠</div>
+          <span class="logo-text">LearnAnything</span></a
+        >
+        <div class="nav-right">
+          <a href="../index.html" class="back-btn">← Back to Home</a
+          ><button class="theme-toggle" onclick="toggleTheme()">
+            <span class="sun-icon">🌙</span><span class="moon-icon">☀️</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="header">
+        <div class="header-icon">🇯🇵</div>
+        <h1>Learn Japanese</h1>
+        <p>Master Japanese vocabulary with interactive flashcards</p>
+      </div>
+      <div class="categories">
+        <button class="cat-btn active" onclick="setCategory('greetings')">
+          Greetings
+        </button>
+        <button class="cat-btn" onclick="setCategory('basics')">Basics</button>
+        <button class="cat-btn" onclick="setCategory('numbers')">
+          Numbers
+        </button>
+        <button class="cat-btn" onclick="setCategory('food')">Food</button>
+        <button class="cat-btn" onclick="setCategory('travel')">Travel</button>
+        <button class="cat-btn" onclick="setCategory('all')">All Cards</button>
+      </div>
+      <div id="gameArea">
+        <div class="progress-section">
+          <div class="progress-stats">
+            <div>
+              <div class="stat-value" id="currentCard">1</div>
+              <div class="stat-label">Current</div>
+            </div>
+            <div>
+              <div class="stat-value" id="totalCards">10</div>
+              <div class="stat-label">Total</div>
+            </div>
+            <div>
+              <div class="stat-value" id="correctCount">0</div>
+              <div class="stat-label">Correct</div>
+            </div>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+        </div>
+        <div class="card-wrapper">
+          <div class="flashcard" id="flashcard" onclick="flipCard()">
+            <div class="card-face card-front">
+              <div class="card-category" id="cardCategory">Category</div>
+              <div class="card-word" id="cardFront">単語</div>
+              <div class="card-pronunciation" id="cardPronun">romaji</div>
+              <div class="card-hint">Click to flip</div>
+            </div>
+            <div class="card-face card-back">
+              <div class="card-category">English</div>
+              <div class="card-word" id="cardBack">Translation</div>
+              <div class="card-example" id="cardExample">Example sentence</div>
+              <div class="card-hint">Did you know this one?</div>
+            </div>
+          </div>
+        </div>
+        <div class="controls">
+          <button class="btn btn-wrong" onclick="markWrong()">✗ Wrong</button
+          ><button class="btn btn-skip" onclick="skipCard()">Skip →</button
+          ><button class="btn btn-correct" onclick="markCorrect()">
+            ✓ Correct
+          </button>
+        </div>
+        <div class="shortcuts">
+          <kbd>Space</kbd> Flip &nbsp; <kbd>←</kbd> Wrong &nbsp;
+          <kbd>→</kbd> Correct
+        </div>
+      </div>
+      <div id="resultsArea" class="results hidden">
+        <div class="results-icon">🎉</div>
+        <h2>すごい! (Sugoi!)</h2>
+        <p>You've completed this round of Japanese flashcards!</p>
+        <div class="results-stats">
+          <div class="result-stat correct">
+            <div class="value" id="finalCorrect">0</div>
+            <div class="label">Correct</div>
+          </div>
+          <div class="result-stat wrong">
+            <div class="value" id="finalWrong">0</div>
+            <div class="label">Wrong</div>
+          </div>
+        </div>
+        <button class="btn btn-restart" onclick="restartGame()">
+          🔄 Practice Again
+        </button>
+      </div>
+    </div>
+    <script>
+      const flashcardData = {
+        greetings: [
+          {
+            front: "こんにちは",
+            back: "Hello",
+            pronun: "Konnichiwa",
+            example: "Used from late morning to evening",
+          },
+          {
+            front: "おはようございます",
+            back: "Good morning",
+            pronun: "Ohayou gozaimasu",
+            example: "Formal morning greeting",
+          },
+          {
+            front: "こんばんは",
+            back: "Good evening",
+            pronun: "Konbanwa",
+            example: "Used after sunset",
+          },
+          {
+            front: "おやすみなさい",
+            back: "Good night",
+            pronun: "Oyasuminasai",
+            example: "Said before going to sleep",
+          },
+          {
+            front: "さようなら",
+            back: "Goodbye",
+            pronun: "Sayounara",
+            example: "Formal farewell",
+          },
+          {
+            front: "じゃあね",
+            back: "See you!",
+            pronun: "Jaa ne",
+            example: "Casual goodbye among friends",
+          },
+          {
+            front: "お元気ですか",
+            back: "How are you?",
+            pronun: "O-genki desu ka",
+            example: "Polite way to ask someone's wellbeing",
+          },
+          {
+            front: "元気です",
+            back: "I'm fine",
+            pronun: "Genki desu",
+            example: "Standard response to 'How are you?'",
+          },
+          {
+            front: "はじめまして",
+            back: "Nice to meet you",
+            pronun: "Hajimemashite",
+            example: "Used when meeting someone for the first time",
+          },
+          {
+            front: "よろしくお願いします",
+            back: "Please treat me well",
+            pronun: "Yoroshiku onegaishimasu",
+            example: "Polite phrase after introduction",
+          },
+        ],
+        basics: [
+          {
+            front: "はい",
+            back: "Yes",
+            pronun: "Hai",
+            example: "Affirmative response",
+          },
+          {
+            front: "いいえ",
+            back: "No",
+            pronun: "Iie",
+            example: "Negative response",
+          },
+          {
+            front: "ありがとうございます",
+            back: "Thank you (formal)",
+            pronun: "Arigatou gozaimasu",
+            example: "Polite thank you",
+          },
+          {
+            front: "すみません",
+            back: "Excuse me / Sorry",
+            pronun: "Sumimasen",
+            example: "To get attention or apologize",
+          },
+          {
+            front: "ごめんなさい",
+            back: "I'm sorry",
+            pronun: "Gomen nasai",
+            example: "Apology for a mistake",
+          },
+          {
+            front: "わかりません",
+            back: "I don't understand",
+            pronun: "Wakarimasen",
+            example: "Useful for learning situations",
+          },
+          {
+            front: "わかりました",
+            back: "I understand",
+            pronun: "Wakarimashita",
+            example: "Confirming comprehension",
+          },
+          {
+            front: "お願いします",
+            back: "Please",
+            pronun: "Onegaishimasu",
+            example: "When making a request",
+          },
+          {
+            front: "私は...です",
+            back: "I am...",
+            pronun: "Watashi wa... desu",
+            example: "Watashi wa gakusei desu = I am a student",
+          },
+          {
+            front: "日本語",
+            back: "Japanese language",
+            pronun: "Nihongo",
+            example: "Nihongo o benkyou shimasu = I study Japanese",
+          },
+        ],
+        numbers: [
+          {
+            front: "一 / いち",
+            back: "One (1)",
+            pronun: "Ichi",
+            example: "First number in counting",
+          },
+          {
+            front: "二 / に",
+            back: "Two (2)",
+            pronun: "Ni",
+            example: "Ni-ji = 2 o'clock",
+          },
+          {
+            front: "三 / さん",
+            back: "Three (3)",
+            pronun: "San",
+            example: "San-nin = 3 people",
+          },
+          {
+            front: "四 / よん/し",
+            back: "Four (4)",
+            pronun: "Yon / Shi",
+            example: "Two readings - yon is more common",
+          },
+          {
+            front: "五 / ご",
+            back: "Five (5)",
+            pronun: "Go",
+            example: "Go-fun = 5 minutes",
+          },
+          {
+            front: "六 / ろく",
+            back: "Six (6)",
+            pronun: "Roku",
+            example: "Roku-gatsu = June (6th month)",
+          },
+          {
+            front: "七 / なな/しち",
+            back: "Seven (7)",
+            pronun: "Nana / Shichi",
+            example: "Nana is more common",
+          },
+          {
+            front: "八 / はち",
+            back: "Eight (8)",
+            pronun: "Hachi",
+            example: "Hachi-ji = 8 o'clock",
+          },
+          {
+            front: "九 / きゅう/く",
+            back: "Nine (9)",
+            pronun: "Kyuu / Ku",
+            example: "Kyuu is more common",
+          },
+          {
+            front: "十 / じゅう",
+            back: "Ten (10)",
+            pronun: "Juu",
+            example: "Juu-en = 10 yen",
+          },
+        ],
+        food: [
+          {
+            front: "ご飯",
+            back: "Rice / Meal",
+            pronun: "Gohan",
+            example: "Basic staple food in Japan",
+          },
+          {
+            front: "水",
+            back: "Water",
+            pronun: "Mizu",
+            example: "Omizu kudasai = Water please",
+          },
+          {
+            front: "お茶",
+            back: "Tea",
+            pronun: "Ocha",
+            example: "Green tea is most common",
+          },
+          {
+            front: "寿司",
+            back: "Sushi",
+            pronun: "Sushi",
+            example: "Famous Japanese cuisine",
+          },
+          {
+            front: "ラーメン",
+            back: "Ramen",
+            pronun: "Raamen",
+            example: "Popular noodle dish",
+          },
+          {
+            front: "魚",
+            back: "Fish",
+            pronun: "Sakana",
+            example: "Sakana ga suki desu = I like fish",
+          },
+          {
+            front: "肉",
+            back: "Meat",
+            pronun: "Niku",
+            example: "Niku o tabemasu = I eat meat",
+          },
+          {
+            front: "野菜",
+            back: "Vegetables",
+            pronun: "Yasai",
+            example: "Yasai wa oishii = Vegetables are delicious",
+          },
+          {
+            front: "おいしい",
+            back: "Delicious",
+            pronun: "Oishii",
+            example: "Expression when food tastes good",
+          },
+          {
+            front: "いただきます",
+            back: "Let's eat (before meal)",
+            pronun: "Itadakimasu",
+            example: "Said before starting a meal",
+          },
+        ],
+        travel: [
+          {
+            front: "駅",
+            back: "Station",
+            pronun: "Eki",
+            example: "Tokyo-eki = Tokyo Station",
+          },
+          {
+            front: "電車",
+            back: "Train",
+            pronun: "Densha",
+            example: "Densha de ikimasu = Go by train",
+          },
+          {
+            front: "空港",
+            back: "Airport",
+            pronun: "Kuukou",
+            example: "Narita Kuukou = Narita Airport",
+          },
+          {
+            front: "ホテル",
+            back: "Hotel",
+            pronun: "Hoteru",
+            example: "Hoteru wa doko desu ka = Where is the hotel?",
+          },
+          {
+            front: "どこ",
+            back: "Where",
+            pronun: "Doko",
+            example: "Eki wa doko desu ka = Where is the station?",
+          },
+          {
+            front: "右",
+            back: "Right",
+            pronun: "Migi",
+            example: "Migi ni magatte kudasai = Please turn right",
+          },
+          {
+            front: "左",
+            back: "Left",
+            pronun: "Hidari",
+            example: "Hidari ni arimasu = It's on the left",
+          },
+          {
+            front: "まっすぐ",
+            back: "Straight",
+            pronun: "Massugu",
+            example: "Massugu itte kudasai = Please go straight",
+          },
+          {
+            front: "切符",
+            back: "Ticket",
+            pronun: "Kippu",
+            example: "Kippu o kudasai = Ticket please",
+          },
+          {
+            front: "トイレ",
+            back: "Toilet / Bathroom",
+            pronun: "Toire",
+            example: "Toire wa doko desu ka = Where is the bathroom?",
+          },
+        ],
+      };
+      let currentCategory = "greetings",
+        cards = [],
+        currentIndex = 0,
+        correctCount = 0,
+        wrongCount = 0,
+        isFlipped = false;
+      function shuffleArray(arr) {
+        const s = [...arr];
+        for (let i = s.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [s[i], s[j]] = [s[j], s[i]];
+        }
+        return s;
+      }
+      function setCategory(cat) {
+        currentCategory = cat;
+        document
+          .querySelectorAll(".cat-btn")
+          .forEach((btn) =>
+            btn.classList.toggle(
+              "active",
+              btn.textContent.toLowerCase() === cat ||
+                (cat === "all" && btn.textContent === "All Cards"),
+            ),
+          );
+        startGame();
+      }
+      function startGame() {
+        cards =
+          currentCategory === "all"
+            ? shuffleArray(Object.values(flashcardData).flat())
+            : shuffleArray(flashcardData[currentCategory] || []);
+        currentIndex = 0;
+        correctCount = 0;
+        wrongCount = 0;
+        isFlipped = false;
+        document.getElementById("gameArea").classList.remove("hidden");
+        document.getElementById("resultsArea").classList.add("hidden");
+        updateCard();
+        updateProgress();
+      }
+      function updateCard() {
+        if (currentIndex >= cards.length) {
+          showResults();
+          return;
+        }
+        const c = cards[currentIndex];
+        document.getElementById("cardCategory").textContent =
+          currentCategory === "all"
+            ? "Japanese"
+            : currentCategory.charAt(0).toUpperCase() +
+              currentCategory.slice(1);
+        document.getElementById("cardFront").textContent = c.front;
+        document.getElementById("cardPronun").textContent = c.pronun;
+        document.getElementById("cardBack").textContent = c.back;
+        document.getElementById("cardExample").textContent = c.example;
+        isFlipped = false;
+        document.getElementById("flashcard").classList.remove("flipped");
+      }
+      function updateProgress() {
+        document.getElementById("currentCard").textContent = Math.min(
+          currentIndex + 1,
+          cards.length,
+        );
+        document.getElementById("totalCards").textContent = cards.length;
+        document.getElementById("correctCount").textContent = correctCount;
+        document.getElementById("progressFill").style.width =
+          `${(currentIndex / cards.length) * 100}%`;
+      }
+      function flipCard() {
+        isFlipped = !isFlipped;
+        document
+          .getElementById("flashcard")
+          .classList.toggle("flipped", isFlipped);
+      }
+      function markCorrect() {
+        correctCount++;
+        nextCard();
+      }
+      function markWrong() {
+        wrongCount++;
+        nextCard();
+      }
+      function skipCard() {
+        nextCard();
+      }
+      function nextCard() {
+        currentIndex++;
+        updateCard();
+        updateProgress();
+      }
+      function showResults() {
+        document.getElementById("gameArea").classList.add("hidden");
+        document.getElementById("resultsArea").classList.remove("hidden");
+        document.getElementById("finalCorrect").textContent = correctCount;
+        document.getElementById("finalWrong").textContent = wrongCount;
+      }
+      function restartGame() {
+        startGame();
+      }
+      document.addEventListener("keydown", (e) => {
+        if (
+          document.getElementById("resultsArea").classList.contains("hidden")
+        ) {
+          if (e.key === " ") {
+            e.preventDefault();
+            flipCard();
+          } else if (e.key === "ArrowLeft") markWrong();
+          else if (e.key === "ArrowRight") markCorrect();
+          else if (e.key === "ArrowDown") skipCard();
+        } else if (e.key === "Enter") restartGame();
+      });
+      function getPreferredTheme() {
+        return (
+          localStorage.getItem("learnanything-theme") ||
+          (window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light")
+        );
+      }
+      function setTheme(t) {
+        document.documentElement.setAttribute("data-theme", t);
+        localStorage.setItem("learnanything-theme", t);
+      }
+      function toggleTheme() {
+        setTheme(
+          document.documentElement.getAttribute("data-theme") === "dark"
+            ? "light"
+            : "dark",
+        );
+      }
+      setTheme(getPreferredTheme());
+      startGame();
+    </script>
+  </body>
+</html>
