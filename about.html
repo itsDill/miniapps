@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Google tag (gtag.js) -->
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-S15806B1HW"
@@ -14,645 +13,260 @@
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
-
       gtag("config", "G-S15806B1HW");
     </script>
-    <title>About - MiniApps</title>
+    <title>About IoWidgets - Smart Home IoT Reviews You Can Trust</title>
     <meta
       name="description"
-      content="Learn about MiniApps - our mission to provide free, fast, and fun tools for everyone."
+      content="Learn about IoWidgets, our testing methodology, and our mission to make smart home technology accessible to everyone with honest, beginner-friendly reviews."
     />
+    <link rel="canonical" href="https://iowidgets.com/about.html" />
+    <meta name="theme-color" content="#10b981" />
+    <meta
+      property="og:title"
+      content="About IoWidgets - Smart Home IoT Reviews You Can Trust"
+    />
+    <meta
+      property="og:description"
+      content="Learn about IoWidgets, our testing methodology, and our mission to make smart home technology accessible to everyone."
+    />
+    <meta property="og:url" content="https://iowidgets.com/about.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://iowidgets.com/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-    <style>
-      :root {
-        --bg-primary: #fafbff;
-        --bg-secondary: #f0f4ff;
-        --bg-card: #ffffff;
-        --bg-nav: rgba(255, 255, 255, 0.9);
-        --text-primary: #1e293b;
-        --text-secondary: #64748b;
-        --text-muted: #94a3b8;
-        --border-color: rgba(0, 0, 0, 0.08);
-        --border-light: #e2e8f0;
-        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-        --card-hover-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
-        --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      }
-
-      [data-theme="dark"] {
-        --bg-primary: #0f0f1a;
-        --bg-secondary: #1a1a2e;
-        --bg-card: rgba(255, 255, 255, 0.03);
-        --bg-nav: rgba(15, 15, 26, 0.9);
-        --text-primary: #ffffff;
-        --text-secondary: rgba(255, 255, 255, 0.7);
-        --text-muted: rgba(255, 255, 255, 0.5);
-        --border-color: rgba(255, 255, 255, 0.08);
-        --border-light: rgba(255, 255, 255, 0.1);
-        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        --card-hover-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-      }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family:
-          "Inter",
-          -apple-system,
-          BlinkMacSystemFont,
-          sans-serif;
-      }
-
-      body {
-        background: var(--bg-primary);
-        color: var(--text-primary);
-        min-height: 100vh;
-        transition:
-          background 0.3s ease,
-          color 0.3s ease;
-      }
-
-      .container {
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 0 1.5rem;
-      }
-
-      .nav {
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        padding: 0.875rem 0;
-        background: var(--bg-nav);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border-bottom: 1px solid var(--border-color);
-        transition: background 0.3s ease;
-      }
-
-      .nav-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 0 1.5rem;
-      }
-
-      .logo {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        text-decoration: none;
-        transition: transform 0.3s ease;
-      }
-
-      .logo:hover {
-        transform: scale(1.02);
-      }
-
-      .logo-icon {
-        width: 44px;
-        height: 44px;
-        background: var(--gradient-primary);
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-      }
-
-      .logo-text {
-        font-size: 1.5rem;
-        font-weight: 800;
-        background: var(--gradient-primary);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-
-      .main-nav {
-        display: flex;
-        align-items: center;
-        gap: 0.25rem;
-      }
-
-      .main-nav-link {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.625rem 1.25rem;
-        border-radius: 12px;
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: var(--text-secondary);
-        text-decoration: none;
-        transition: all 0.2s ease;
-      }
-
-      .main-nav-link:hover {
-        color: #6366f1;
-        background: rgba(99, 102, 241, 0.1);
-      }
-
-      .main-nav-link.active {
-        background: var(--gradient-primary);
-        color: white;
-        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-      }
-
-      .main-nav-link .nav-icon {
-        font-size: 1.1rem;
-      }
-
-      .nav-right {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-      }
-
-      .nav-link {
-        text-decoration: none;
-        color: var(--text-secondary);
-        font-weight: 500;
-        padding: 0.5rem 1rem;
-        border-radius: 10px;
-        transition: all 0.2s ease;
-      }
-
-      .nav-link:hover {
-        color: #6366f1;
-        background: rgba(99, 102, 241, 0.1);
-      }
-      .nav-link.active {
-        color: #6366f1;
-      }
-
-      .theme-toggle {
-        width: 44px;
-        height: 44px;
-        border-radius: 12px;
-        border: 2px solid var(--border-light);
-        background: var(--bg-card);
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.25rem;
-        transition: all 0.3s ease;
-        color: var(--text-primary);
-      }
-
-      .theme-toggle:hover {
-        border-color: #6366f1;
-        transform: rotate(15deg);
-      }
-      .theme-toggle .sun-icon {
-        display: block;
-      }
-      .theme-toggle .moon-icon {
-        display: none;
-      }
-      [data-theme="dark"] .theme-toggle .sun-icon {
-        display: none;
-      }
-      [data-theme="dark"] .theme-toggle .moon-icon {
-        display: block;
-      }
-
-      .mobile-menu-btn {
-        display: none;
-        width: 44px;
-        height: 44px;
-        border-radius: 12px;
-        border: 2px solid var(--border-light);
-        background: var(--bg-card);
-        cursor: pointer;
-        font-size: 1.25rem;
-        color: var(--text-primary);
-      }
-
-      .page-hero {
-        padding: 4rem 0 3rem;
-        text-align: center;
-        background: linear-gradient(
-          180deg,
-          rgba(102, 126, 234, 0.08) 0%,
-          transparent 100%
-        );
-      }
-
-      .page-hero h1 {
-        font-size: 3rem;
-        font-weight: 800;
-        margin-bottom: 1rem;
-        background: var(--gradient-primary);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-
-      .page-hero p {
-        font-size: 1.25rem;
-        color: var(--text-secondary);
-        max-width: 600px;
-        margin: 0 auto;
-      }
-
-      .about-section {
-        padding: 3rem 0 5rem;
-      }
-
-      .about-content {
-        max-width: 800px;
-        margin: 0 auto;
-      }
-
-      .about-card {
-        background: var(--bg-card);
-        border-radius: 20px;
-        padding: 2.5rem;
-        border: 1px solid var(--border-color);
-        box-shadow: var(--card-shadow);
-        margin-bottom: 2rem;
-      }
-
-      .about-card h2 {
-        font-size: 1.5rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-        color: var(--text-primary);
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-      }
-
-      .about-card p {
-        color: var(--text-secondary);
-        line-height: 1.8;
-        margin-bottom: 1rem;
-      }
-
-      .about-card p:last-child {
-        margin-bottom: 0;
-      }
-
-      .features-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 1.5rem;
-        margin-top: 2rem;
-      }
-
-      .feature-item {
-        text-align: center;
-        padding: 1.5rem;
-        background: var(--bg-secondary);
-        border-radius: 16px;
-        border: 1px solid var(--border-color);
-      }
-
-      [data-theme="dark"] .feature-item {
-        background: rgba(255, 255, 255, 0.02);
-      }
-
-      .feature-icon {
-        font-size: 2.5rem;
-        margin-bottom: 0.75rem;
-      }
-
-      .feature-item h3 {
-        font-size: 1rem;
-        font-weight: 600;
-        color: var(--text-primary);
-        margin-bottom: 0.25rem;
-      }
-
-      .feature-item p {
-        font-size: 0.875rem;
-        color: var(--text-muted);
-        margin: 0;
-      }
-
-      .mobile-nav {
-        display: none;
-        position: fixed;
-        inset: 0;
-        z-index: 2000;
-        background: var(--bg-primary);
-        flex-direction: column;
-        padding: 1.5rem;
-      }
-
-      .mobile-nav.active {
-        display: flex;
-      }
-
-      .mobile-nav-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 2rem;
-      }
-
-      .mobile-nav-close {
-        width: 44px;
-        height: 44px;
-        border-radius: 12px;
-        border: 2px solid var(--border-light);
-        background: var(--bg-card);
-        cursor: pointer;
-        font-size: 1.25rem;
-        color: var(--text-primary);
-      }
-
-      .mobile-nav-links {
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-      }
-
-      .mobile-nav-link {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        padding: 1rem 1.25rem;
-        border-radius: 16px;
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: var(--text-primary);
-        text-decoration: none;
-        background: var(--bg-card);
-        border: 1px solid var(--border-color);
-        transition: all 0.2s ease;
-      }
-
-      .mobile-nav-link:hover,
-      .mobile-nav-link.active {
-        background: rgba(99, 102, 241, 0.1);
-        color: #6366f1;
-        border-color: #6366f1;
-      }
-
-      .footer {
-        background: var(--bg-card);
-        padding: 3rem 0;
-        border-top: 1px solid var(--border-light);
-      }
-
-      .footer-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 1.5rem;
-      }
-      .footer-links {
-        display: flex;
-        gap: 2rem;
-      }
-      .footer-links a {
-        color: var(--text-secondary);
-        text-decoration: none;
-        font-weight: 500;
-        transition: color 0.2s;
-      }
-      .footer-links a:hover {
-        color: #6366f1;
-      }
-      .footer-copy {
-        text-align: center;
-        color: var(--text-muted);
-        margin-top: 2rem;
-        font-size: 0.875rem;
-      }
-
-      @media (max-width: 768px) {
-        .main-nav,
-        .nav-link {
-          display: none;
-        }
-        .mobile-menu-btn {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        .page-hero {
-          padding: 3rem 0 2rem;
-        }
-        .page-hero h1 {
-          font-size: 2rem;
-        }
-        .about-card {
-          padding: 1.5rem;
-        }
-        .features-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-        .footer-content {
-          flex-direction: column;
-          text-align: center;
-        }
-        .footer-links {
-          justify-content: center;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <!-- Navigation -->
     <nav class="nav">
       <div class="nav-content">
-        <a href="index.html" class="logo">
-          <div class="logo-icon">⚡</div>
-          <span class="logo-text">MiniApps</span>
+        <a href="/" class="logo">
+          <div class="logo-icon">🏠</div>
+          <span class="logo-text">IoWidgets</span>
         </a>
         <div class="main-nav">
-          <a href="tools.html" class="main-nav-link"
-            ><span class="nav-icon">🛠️</span><span>Tools</span></a
+          <a href="/reviews.html" class="main-nav-link">📝 Reviews</a>
+          <a href="/categories/smart-plugs.html" class="main-nav-link"
+            >🔌 Smart Plugs</a
           >
-          <a href="games.html" class="main-nav-link"
-            ><span class="nav-icon">🎮</span><span>Games</span></a
+          <a href="/categories/smart-lights.html" class="main-nav-link"
+            >💡 Lights</a
           >
-          <a href="learn.html" class="main-nav-link"
-            ><span class="nav-icon">📚</span><span>Learn</span></a
+          <a href="/categories/security-cameras.html" class="main-nav-link"
+            >📷 Cameras</a
           >
+          <a href="/categories/smart-hubs.html" class="main-nav-link"
+            >🎛️ Hubs</a
+          >
+          <a href="/about.html" class="main-nav-link active">About</a>
         </div>
         <div class="nav-right">
-          <a href="about.html" class="nav-link active">About</a>
-          <a href="contact.html" class="nav-link">Contact</a>
           <button
             class="theme-toggle"
             onclick="toggleTheme()"
             aria-label="Toggle theme"
           >
-            <span class="sun-icon">🌙</span>
-            <span class="moon-icon">☀️</span>
+            <span class="sun-icon">☀️</span>
+            <span class="moon-icon">🌙</span>
           </button>
-          <button class="mobile-menu-btn" onclick="openMobileNav()">☰</button>
+          <button
+            class="mobile-menu-btn"
+            onclick="toggleMobileMenu()"
+            aria-label="Menu"
+          >
+            ☰
+          </button>
         </div>
+      </div>
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="/reviews.html">📝 All Reviews</a>
+        <a href="/categories/smart-plugs.html">🔌 Smart Plugs</a>
+        <a href="/categories/smart-lights.html">💡 Smart Lights</a>
+        <a href="/categories/security-cameras.html">📷 Security Cameras</a>
+        <a href="/about.html">About Us</a>
+        <a href="/contact.html">Contact</a>
       </div>
     </nav>
 
-    <div class="mobile-nav" id="mobileNav">
-      <div class="mobile-nav-header">
-        <a href="index.html" class="logo"
-          ><div class="logo-icon">⚡</div>
-          <span class="logo-text">MiniApps</span></a
-        >
-        <button class="mobile-nav-close" onclick="closeMobileNav()">✕</button>
-      </div>
-      <div class="mobile-nav-links">
-        <a href="tools.html" class="mobile-nav-link"
-          ><span>🛠️</span><span>Tools</span></a
-        >
-        <a href="games.html" class="mobile-nav-link"
-          ><span>🎮</span><span>Games</span></a
-        >
-        <a href="learn.html" class="mobile-nav-link"
-          ><span>📚</span><span>Learn</span></a
-        >
-        <a href="about.html" class="mobile-nav-link active"
-          ><span>ℹ️</span><span>About</span></a
-        >
-        <a href="contact.html" class="mobile-nav-link"
-          ><span>💬</span><span>Contact</span></a
-        >
-      </div>
-    </div>
-
-    <section class="page-hero">
+    <!-- Page Header -->
+    <section class="page-header">
       <div class="container">
-        <h1>ℹ️ About MiniApps</h1>
-        <p>Simple, fast, and free tools for everyone</p>
+        <h1>About IoWidgets</h1>
+        <p>IoT Made Simple — Honest reviews for real people</p>
       </div>
     </section>
 
-    <section class="about-section">
-      <div class="container">
-        <div class="about-content">
-          <div class="about-card">
-            <h2>🎯 Our Mission</h2>
-            <p>
-              MiniApps was created with a simple goal: to provide useful tools,
-              fun games, and educational content that anyone can access for
-              free, without ads, tracking, or account requirements.
-            </p>
-            <p>
-              We believe that great tools should be accessible to everyone,
-              regardless of their technical background or budget. That's why
-              everything on MiniApps runs directly in your browser—no downloads,
-              no installations, no hassle.
-            </p>
-          </div>
+    <main class="container">
+      <section class="section" style="max-width: 800px; margin: 0 auto">
+        <article>
+          <h2>Our Mission</h2>
+          <p>
+            Smart home technology shouldn't be confusing. At IoWidgets, we
+            believe everyone deserves clear, honest information to make smart
+            buying decisions — without needing an engineering degree.
+          </p>
 
-          <div class="about-card">
-            <h2>✨ What Makes Us Different</h2>
-            <div class="features-grid">
-              <div class="feature-item">
-                <div class="feature-icon">🚫</div>
-                <h3>No Ads</h3>
-                <p>Clean, distraction-free experience</p>
-              </div>
-              <div class="feature-item">
-                <div class="feature-icon">🔒</div>
-                <h3>Privacy First</h3>
-                <p>No tracking or data collection</p>
-              </div>
-              <div class="feature-item">
-                <div class="feature-icon">⚡</div>
-                <h3>Lightning Fast</h3>
-                <p>Optimized for speed</p>
-              </div>
-              <div class="feature-item">
-                <div class="feature-icon">📱</div>
-                <h3>Works Everywhere</h3>
-                <p>Desktop, tablet, and mobile</p>
-              </div>
-              <div class="feature-item">
-                <div class="feature-icon">🌐</div>
-                <h3>Works Offline</h3>
-                <p>Use without internet</p>
-              </div>
-              <div class="feature-item">
-                <div class="feature-icon">💯</div>
-                <h3>100% Free</h3>
-                <p>No hidden costs ever</p>
-              </div>
-            </div>
-          </div>
+          <p>
+            We test every device ourselves, in real homes, with real-world
+            usage. No sponsored fluff. No manufacturer bias. Just
+            straightforward reviews that help you choose the right gear for your
+            needs and budget.
+          </p>
 
-          <div class="about-card">
-            <h2>🛠️ Built With Love</h2>
-            <p>
-              Every tool on MiniApps is crafted with attention to detail and a
-              focus on user experience. We use modern web technologies to ensure
-              everything works smoothly and looks beautiful.
-            </p>
-            <p>
-              Have a suggestion for a new tool or feature? We'd love to hear
-              from you! Check out our contact page to get in touch.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+          <h2>What Makes Us Different</h2>
 
+          <h3>🔬 Real Testing, Real Results</h3>
+          <p>
+            We don't just read spec sheets. Every product we review is tested in
+            actual homes for at least 2-4 weeks. We check reliability, app
+            experience, compatibility with Alexa/Google/HomeKit, and long-term
+            performance.
+          </p>
+
+          <h3>📊 Data-Driven Ratings</h3>
+          <p>
+            Our scoring system weighs multiple factors: setup ease (15%), daily
+            usability (25%), reliability (25%), features (20%), and value for
+            money (15%). No arbitrary scores — every rating is backed by our
+            testing data.
+          </p>
+
+          <h3>🎯 Beginner-Friendly Approach</h3>
+          <p>
+            Technical jargon doesn't help anyone. We explain everything in plain
+            language so you understand exactly what you're buying, whether it's
+            your first smart plug or your tenth security camera.
+          </p>
+
+          <h3>💰 Transparent Affiliate Model</h3>
+          <p>
+            Yes, we earn commissions from Amazon and other retailers when you
+            buy through our links. This is how we fund our testing and keep the
+            site free. But here's our promise: our recommendations are always
+            based on merit, not commission rates. We've recommended cheaper
+            products over expensive ones countless times when they performed
+            better.
+          </p>
+
+          <h2>Our Testing Lab</h2>
+          <p>Our test environment includes:</p>
+          <ul>
+            <li>
+              Multiple Wi-Fi setups (mesh, single router, congested networks)
+            </li>
+            <li>
+              All major voice assistants (Alexa, Google Assistant, Siri/HomeKit)
+            </li>
+            <li>Smart home hubs (SmartThings, Hubitat, Home Assistant)</li>
+            <li>Real power monitoring equipment</li>
+            <li>Security testing for cameras and locks</li>
+          </ul>
+
+          <h2>The Team</h2>
+          <p>
+            IoWidgets was founded by smart home enthusiasts who got tired of
+            confusing, contradictory reviews. Our team includes:
+          </p>
+          <ul>
+            <li>
+              <strong>Tech testers</strong> with 10+ years in consumer
+              electronics
+            </li>
+            <li>
+              <strong>Home automation experts</strong> running 100+ device
+              setups
+            </li>
+            <li>
+              <strong>Writers</strong> who can explain Zigbee vs. Z-Wave without
+              making you fall asleep
+            </li>
+          </ul>
+
+          <h2>Contact Us</h2>
+          <p>
+            Have questions, feedback, or product suggestions? We'd love to hear
+            from you.
+          </p>
+          <p>
+            <a href="/contact.html" class="btn btn-primary">Get in Touch →</a>
+          </p>
+
+          <div class="affiliate-notice" style="margin-top: 3rem">
+            <strong>Editorial Independence:</strong> Manufacturers cannot pay
+            for reviews or influence our ratings. We may receive review samples,
+            but this never affects our honest assessment. Read our full
+            <a href="/affiliate-disclosure.html">affiliate disclosure</a>.
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <!-- Footer -->
     <footer class="footer">
       <div class="container">
-        <div class="footer-content">
-          <a href="index.html" class="logo"
-            ><div class="logo-icon">⚡</div>
-            <span class="logo-text">MiniApps</span></a
-          >
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="/" class="logo">
+              <div class="logo-icon">🏠</div>
+              <span class="logo-text">IoWidgets</span>
+            </a>
+            <p>
+              Honest, beginner-friendly reviews of smart home IoT devices. We
+              test everything ourselves so you can buy with confidence.
+            </p>
+          </div>
           <div class="footer-links">
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-            <a href="privacy-policy.html">Privacy</a>
-            <a href="terms-of-service.html">Terms</a>
+            <h4>Categories</h4>
+            <a href="/categories/smart-plugs.html">Smart Plugs</a>
+            <a href="/categories/smart-lights.html">Smart Lights</a>
+            <a href="/categories/security-cameras.html">Security Cameras</a>
+            <a href="/categories/smart-locks.html">Smart Locks</a>
+          </div>
+          <div class="footer-links">
+            <h4>Resources</h4>
+            <a href="/reviews.html">All Reviews</a>
+            <a href="#">Buying Guides</a>
+            <a href="#">Setup Tutorials</a>
+          </div>
+          <div class="footer-links">
+            <h4>Company</h4>
+            <a href="/about.html">About Us</a>
+            <a href="/contact.html">Contact</a>
+            <a href="/affiliate-disclosure.html">Affiliate Disclosure</a>
+            <a href="/privacy-policy.html">Privacy Policy</a>
           </div>
         </div>
-        <p class="footer-copy">© 2025 MiniApps. Made with ❤️ for everyone.</p>
+        <div class="footer-bottom">
+          <span>© 2026 IoWidgets. All rights reserved.</span>
+          <span
+            >As an Amazon Associate, we earn from qualifying purchases.</span
+          >
+        </div>
       </div>
     </footer>
 
     <script>
-      function getPreferredTheme() {
-        const saved = localStorage.getItem("miniapps-theme");
-        if (saved) return saved;
-        return window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "dark"
-          : "light";
-      }
-
-      function setTheme(theme) {
-        document.documentElement.setAttribute("data-theme", theme);
-        localStorage.setItem("miniapps-theme", theme);
-      }
-
       function toggleTheme() {
-        const current =
-          document.documentElement.getAttribute("data-theme") || "light";
-        setTheme(current === "dark" ? "light" : "dark");
+        const html = document.documentElement;
+        const newTheme =
+          html.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        html.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
       }
-
-      setTheme(getPreferredTheme());
-
-      function openMobileNav() {
-        document.getElementById("mobileNav").classList.add("active");
-        document.body.style.overflow = "hidden";
+      function toggleMobileMenu() {
+        document.getElementById("mobileMenu").classList.toggle("active");
       }
-
-      function closeMobileNav() {
-        document.getElementById("mobileNav").classList.remove("active");
-        document.body.style.overflow = "";
-      }
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme)
+        document.documentElement.setAttribute("data-theme", savedTheme);
+      else if (window.matchMedia("(prefers-color-scheme: dark)").matches)
+        document.documentElement.setAttribute("data-theme", "dark");
     </script>
   </body>
 </html>

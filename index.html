@@ -14,1498 +14,594 @@
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
-
       gtag("config", "G-S15806B1HW");
     </script>
-    <title>LearnAnything - Free Flashcard Games to Learn Any Subject</title>
+    <title>IoWidgets - Smart Home IoT Device Reviews | IoT Made Simple</title>
     <meta
       name="description"
-      content="Learn anything with free interactive flashcard games. Master languages, business, technology, history, science, and more with fun bite-sized lessons."
+      content="Honest, beginner-friendly reviews of smart home IoT devices. Find the best smart plugs, lights, cameras, locks, and more with our expert comparisons and buying guides."
     />
     <meta
       name="keywords"
-      content="learn online, free flashcards, language learning, business skills, technology basics, history facts, science learning, educational games"
+      content="smart home reviews, IoT devices, smart plug reviews, smart lights, security cameras, smart locks, smart home hub, best IoT devices 2026"
     />
+    <meta name="author" content="IoWidgets" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://iowidgets.com/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://iowidgets.com/" />
+    <meta
+      property="og:title"
+      content="IoWidgets - Smart Home IoT Device Reviews"
+    />
+    <meta
+      property="og:description"
+      content="Honest, beginner-friendly reviews of smart home IoT devices. Find the best smart plugs, lights, cameras, and more."
+    />
+    <meta property="og:site_name" content="IoWidgets" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="IoWidgets - Smart Home IoT Device Reviews"
+    />
+    <meta
+      name="twitter:description"
+      content="Honest, beginner-friendly reviews of smart home IoT devices."
+    />
+
+    <meta name="theme-color" content="#10b981" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-    <style>
-      /* ========================================
-         CSS VARIABLES - Light & Dark Themes
-         ======================================== */
-      :root {
-        --bg-primary: #fafbff;
-        --bg-secondary: #f0f4ff;
-        --bg-card: #ffffff;
-        --bg-nav: rgba(255, 255, 255, 0.9);
-        --text-primary: #1e293b;
-        --text-secondary: #64748b;
-        --text-muted: #94a3b8;
-        --border-color: rgba(0, 0, 0, 0.08);
-        --border-light: #e2e8f0;
-        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-        --card-hover-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
-        --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        --gradient-hero: linear-gradient(
-          135deg,
-          #667eea 0%,
-          #764ba2 30%,
-          #f093fb 70%,
-          #f5576c 100%
-        );
-      }
-
-      [data-theme="dark"] {
-        --bg-primary: #0f0f1a;
-        --bg-secondary: #1a1a2e;
-        --bg-card: rgba(255, 255, 255, 0.03);
-        --bg-nav: rgba(15, 15, 26, 0.9);
-        --text-primary: #ffffff;
-        --text-secondary: rgba(255, 255, 255, 0.7);
-        --text-muted: rgba(255, 255, 255, 0.5);
-        --border-color: rgba(255, 255, 255, 0.08);
-        --border-light: rgba(255, 255, 255, 0.1);
-        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        --card-hover-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-      }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family:
-          "Inter",
-          -apple-system,
-          BlinkMacSystemFont,
-          sans-serif;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        background: var(--bg-primary);
-        color: var(--text-primary);
-        min-height: 100vh;
-        transition:
-          background 0.3s ease,
-          color 0.3s ease;
-      }
-
-      .container {
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 0 1.5rem;
-      }
-
-      /* ========================================
-         NAVIGATION
-         ======================================== */
-      .nav {
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        padding: 0.875rem 0;
-        background: var(--bg-nav);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border-bottom: 1px solid var(--border-color);
-        transition: background 0.3s ease;
-      }
-
-      .nav-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 0 1.5rem;
-      }
-
-      .logo {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        text-decoration: none;
-        transition: transform 0.3s ease;
-      }
-
-      .logo:hover {
-        transform: scale(1.02);
-      }
-
-      .logo-icon {
-        width: 44px;
-        height: 44px;
-        background: var(--gradient-primary);
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-        transition: transform 0.3s ease;
-      }
-
-      .logo:hover .logo-icon {
-        transform: rotate(-5deg) scale(1.05);
-      }
-
-      .logo-text {
-        font-size: 1.5rem;
-        font-weight: 800;
-        background: var(--gradient-primary);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-
-      .main-nav {
-        display: flex;
-        align-items: center;
-        gap: 0.25rem;
-      }
-
-      .main-nav-link {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.625rem 1.25rem;
-        border-radius: 12px;
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: var(--text-secondary);
-        text-decoration: none;
-        transition: all 0.2s ease;
-      }
-
-      .main-nav-link:hover {
-        color: #6366f1;
-        background: rgba(99, 102, 241, 0.1);
-      }
-
-      .main-nav-link .nav-icon {
-        font-size: 1.1rem;
-      }
-
-      .nav-right {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-      }
-
-      .nav-link {
-        text-decoration: none;
-        color: var(--text-secondary);
-        font-weight: 500;
-        padding: 0.5rem 1rem;
-        border-radius: 10px;
-        transition: all 0.2s ease;
-      }
-
-      .nav-link:hover {
-        color: #6366f1;
-        background: rgba(99, 102, 241, 0.1);
-      }
-
-      /* Theme Toggle Button */
-      .theme-toggle {
-        width: 44px;
-        height: 44px;
-        border-radius: 12px;
-        border: 2px solid var(--border-light);
-        background: var(--bg-card);
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.25rem;
-        transition: all 0.3s ease;
-        color: var(--text-primary);
-      }
-
-      .theme-toggle:hover {
-        border-color: #6366f1;
-        transform: rotate(15deg);
-      }
-
-      .theme-toggle .sun-icon {
-        display: block;
-      }
-      .theme-toggle .moon-icon {
-        display: none;
-      }
-
-      [data-theme="dark"] .theme-toggle .sun-icon {
-        display: none;
-      }
-      [data-theme="dark"] .theme-toggle .moon-icon {
-        display: block;
-      }
-
-      .mobile-menu-btn {
-        display: none;
-        width: 44px;
-        height: 44px;
-        border-radius: 12px;
-        border: none;
-        background: var(--bg-card);
-        border: 2px solid var(--border-light);
-        cursor: pointer;
-        font-size: 1.25rem;
-        color: var(--text-primary);
-      }
-
-      /* ========================================
-         HERO SECTION
-         ======================================== */
-      .hero {
-        background: var(--gradient-hero);
-        padding: 5rem 0 6rem;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .hero::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background:
-          radial-gradient(
-            circle at 20% 50%,
-            rgba(255, 255, 255, 0.15) 0%,
-            transparent 50%
-          ),
-          radial-gradient(
-            circle at 80% 20%,
-            rgba(255, 255, 255, 0.1) 0%,
-            transparent 40%
-          );
-        animation: pulse 8s ease-in-out infinite;
-      }
-
-      @keyframes pulse {
-        0%,
-        100% {
-          opacity: 0.5;
-          transform: scale(1);
-        }
-        50% {
-          opacity: 1;
-          transform: scale(1.05);
-        }
-      }
-
-      .floating-shapes {
-        position: absolute;
-        inset: 0;
-        overflow: hidden;
-        pointer-events: none;
-      }
-
-      .shape {
-        position: absolute;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.1);
-        animation: float 20s infinite ease-in-out;
-      }
-
-      .shape-1 {
-        width: 300px;
-        height: 300px;
-        top: -100px;
-        left: -50px;
-      }
-      .shape-2 {
-        width: 200px;
-        height: 200px;
-        top: 50%;
-        right: -50px;
-        animation-delay: -5s;
-      }
-      .shape-3 {
-        width: 150px;
-        height: 150px;
-        bottom: -50px;
-        left: 30%;
-        animation-delay: -10s;
-      }
-      .shape-4 {
-        width: 100px;
-        height: 100px;
-        top: 20%;
-        right: 20%;
-        animation-delay: -15s;
-      }
-
-      @keyframes float {
-        0%,
-        100% {
-          transform: translate(0, 0) rotate(0deg);
-        }
-        25% {
-          transform: translate(30px, -30px) rotate(90deg);
-        }
-        50% {
-          transform: translate(0, -60px) rotate(180deg);
-        }
-        75% {
-          transform: translate(-30px, -30px) rotate(270deg);
-        }
-      }
-
-      .hero-content {
-        position: relative;
-        z-index: 1;
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 0 1.5rem;
-      }
-
-      .hero-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.625rem;
-        padding: 0.625rem 1.25rem;
-        background: rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        border-radius: 100px;
-        font-size: 0.875rem;
-        font-weight: 600;
-        color: white;
-        margin-bottom: 1.5rem;
-        animation: fadeInUp 0.6s ease-out;
-      }
-
-      .hero-badge-dot {
-        width: 8px;
-        height: 8px;
-        background: #4ade80;
-        border-radius: 50%;
-        animation: blink 2s infinite;
-      }
-
-      @keyframes blink {
-        0%,
-        100% {
-          opacity: 1;
-        }
-        50% {
-          opacity: 0.5;
-        }
-      }
-
-      .hero h1 {
-        font-size: clamp(2.5rem, 6vw, 4rem);
-        font-weight: 900;
-        margin-bottom: 1.25rem;
-        color: white;
-        letter-spacing: -0.03em;
-        line-height: 1.1;
-        text-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
-        animation: fadeInUp 0.6s ease-out 0.1s both;
-      }
-
-      .hero p {
-        font-size: 1.25rem;
-        color: rgba(255, 255, 255, 0.9);
-        max-width: 550px;
-        margin: 0 auto 2.5rem;
-        line-height: 1.6;
-        animation: fadeInUp 0.6s ease-out 0.2s both;
-      }
-
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .hero-stats {
-        display: flex;
-        justify-content: center;
-        gap: 1.5rem;
-        flex-wrap: wrap;
-        animation: fadeInUp 0.6s ease-out 0.3s both;
-      }
-
-      .hero-stat {
-        text-align: center;
-        padding: 1rem 1.5rem;
-        background: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(10px);
-        border-radius: 16px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        transition: transform 0.3s ease;
-      }
-
-      .hero-stat:hover {
-        transform: translateY(-5px);
-      }
-
-      .hero-stat-number {
-        font-size: 2rem;
-        font-weight: 800;
-        color: white;
-        line-height: 1;
-        margin-bottom: 0.25rem;
-      }
-
-      .hero-stat-label {
-        font-size: 0.8rem;
-        font-weight: 500;
-        color: rgba(255, 255, 255, 0.8);
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-      }
-
-      /* ========================================
-         TAB NAVIGATION FOR SLIDER
-         ======================================== */
-      .content-section {
-        padding: 3rem 0 4rem;
-      }
-
-      .tab-nav {
-        display: flex;
-        justify-content: center;
-        gap: 0.75rem;
-        margin-bottom: 2.5rem;
-        flex-wrap: wrap;
-      }
-
-      .tab-btn {
-        display: flex;
-        align-items: center;
-        gap: 0.625rem;
-        padding: 1rem 1.75rem;
-        border-radius: 16px;
-        font-size: 1rem;
-        font-weight: 600;
-        color: var(--text-secondary);
-        background: var(--bg-card);
-        border: 2px solid var(--border-light);
-        cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: var(--card-shadow);
-      }
-
-      .tab-btn:hover {
-        border-color: #6366f1;
-        color: #6366f1;
-        transform: translateY(-3px);
-        box-shadow: 0 8px 25px rgba(99, 102, 241, 0.2);
-      }
-
-      .tab-btn.active {
-        background: var(--gradient-primary);
-        border-color: transparent;
-        color: white;
-        box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
-        transform: translateY(-3px);
-      }
-
-      .tab-btn .tab-icon {
-        font-size: 1.35rem;
-      }
-
-      .tab-btn .tab-count {
-        background: rgba(255, 255, 255, 0.25);
-        padding: 0.2rem 0.6rem;
-        border-radius: 100px;
-        font-size: 0.75rem;
-        font-weight: 700;
-      }
-
-      .tab-btn:not(.active) .tab-count {
-        background: var(--border-light);
-        color: var(--text-muted);
-      }
-
-      /* ========================================
-         SLIDER
-         ======================================== */
-      .slider-container {
-        overflow: hidden;
-        position: relative;
-      }
-
-      .slider-wrapper {
-        display: flex;
-        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .slide {
-        min-width: 100%;
-        padding: 0.5rem 0;
-      }
-
-      /* ========================================
-         APPS GRID & CARDS
-         ======================================== */
-      .apps-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 1.5rem;
-      }
-
-      .app-card {
-        background: var(--bg-card);
-        border-radius: 20px;
-        padding: 1.75rem;
-        border: 1px solid var(--border-color);
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        cursor: pointer;
-        text-decoration: none;
-        color: inherit;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        position: relative;
-        overflow: hidden;
-        box-shadow: var(--card-shadow);
-      }
-
-      .app-card::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          135deg,
-          rgba(102, 126, 234, 0.05) 0%,
-          rgba(118, 75, 162, 0.05) 100%
-        );
-        opacity: 0;
-        transition: opacity 0.4s ease;
-      }
-
-      .app-card:hover {
-        transform: translateY(-8px) scale(1.01);
-        box-shadow: var(--card-hover-shadow);
-        border-color: rgba(102, 126, 234, 0.3);
-      }
-
-      .app-card:hover::before {
-        opacity: 1;
-      }
-
-      .app-card:hover .app-icon {
-        transform: scale(1.1) rotate(-5deg);
-      }
-
-      .app-icon {
-        width: 64px;
-        height: 64px;
-        border-radius: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.75rem;
-        transition: transform 0.4s ease;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-        position: relative;
-        z-index: 1;
-      }
-
-      .app-card h3 {
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: var(--text-primary);
-        position: relative;
-        z-index: 1;
-      }
-
-      .app-card p {
-        color: var(--text-secondary);
-        font-size: 0.95rem;
-        line-height: 1.6;
-        position: relative;
-        z-index: 1;
-      }
-
-      .app-tag {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.375rem;
-        padding: 0.375rem 0.875rem;
-        border-radius: 100px;
-        font-size: 0.75rem;
-        font-weight: 600;
-        align-self: flex-start;
-        position: relative;
-        z-index: 1;
-        text-transform: uppercase;
-        letter-spacing: 0.03em;
-      }
-
-      .app-tag.new {
-        background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
-        color: #16a34a;
-      }
-
-      .app-tag.popular {
-        background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-        color: #d97706;
-      }
-
-      [data-theme="dark"] .app-tag.new {
-        background: rgba(16, 185, 129, 0.2);
-        color: #10b981;
-      }
-
-      [data-theme="dark"] .app-tag.popular {
-        background: rgba(245, 158, 11, 0.2);
-        color: #f59e0b;
-      }
-
-      .app-card::after {
-        content: "→";
-        position: absolute;
-        bottom: 1.75rem;
-        right: 1.75rem;
-        font-size: 1.25rem;
-        color: var(--text-muted);
-        transition: all 0.3s ease;
-        transform: translateX(-5px);
-        opacity: 0;
-      }
-
-      .app-card:hover::after {
-        transform: translateX(0);
-        opacity: 1;
-        color: #6366f1;
-      }
-
-      .icon-blue {
-        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-      }
-      .icon-purple {
-        background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
-      }
-      .icon-pink {
-        background: linear-gradient(135deg, #ec4899 0%, #d946ef 100%);
-      }
-      .icon-orange {
-        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-      }
-      .icon-red {
-        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-      }
-      .icon-green {
-        background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
-      }
-      .icon-teal {
-        background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
-      }
-      .icon-cyan {
-        background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
-      }
-      .icon-indigo {
-        background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
-      }
-      .icon-dark {
-        background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
-      }
-      .icon-yellow {
-        background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);
-      }
-      .icon-rose {
-        background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
-      }
-      .icon-emerald {
-        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-      }
-      .icon-sky {
-        background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
-      }
-      .icon-violet {
-        background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%);
-      }
-      .icon-amber {
-        background: linear-gradient(135deg, #f59e0b 0%, #b45309 100%);
-      }
-
-      /* ========================================
-         MOBILE NAVIGATION
-         ======================================== */
-      .mobile-nav {
-        display: none;
-        position: fixed;
-        inset: 0;
-        z-index: 2000;
-        background: var(--bg-primary);
-        flex-direction: column;
-        padding: 1.5rem;
-        animation: fadeIn 0.3s ease;
-      }
-
-      .mobile-nav.active {
-        display: flex;
-      }
-
-      .mobile-nav-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 2rem;
-      }
-
-      .mobile-nav-close {
-        width: 44px;
-        height: 44px;
-        border-radius: 12px;
-        border: none;
-        background: var(--bg-card);
-        border: 2px solid var(--border-light);
-        cursor: pointer;
-        font-size: 1.25rem;
-        color: var(--text-primary);
-      }
-
-      .mobile-nav-links {
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-      }
-
-      .mobile-nav-link {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        padding: 1rem 1.25rem;
-        border-radius: 16px;
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: var(--text-primary);
-        text-decoration: none;
-        background: var(--bg-card);
-        border: 1px solid var(--border-color);
-        transition: all 0.2s ease;
-      }
-
-      .mobile-nav-link:hover {
-        background: rgba(99, 102, 241, 0.1);
-        color: #6366f1;
-        border-color: #6366f1;
-      }
-
-      .mobile-nav-link .nav-icon {
-        font-size: 1.5rem;
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-
-      /* ========================================
-         FOOTER
-         ======================================== */
-      .footer {
-        background: var(--bg-card);
-        padding: 3rem 0;
-        border-top: 1px solid var(--border-light);
-        margin-top: 4rem;
-      }
-
-      .footer-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 1.5rem;
-      }
-
-      .footer-links {
-        display: flex;
-        gap: 2rem;
-      }
-
-      .footer-links a {
-        color: var(--text-secondary);
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 0.95rem;
-        transition: color 0.2s ease;
-      }
-
-      .footer-links a:hover {
-        color: #6366f1;
-      }
-
-      .footer-copy {
-        color: var(--text-muted);
-        font-size: 0.875rem;
-        margin-top: 2rem;
-        text-align: center;
-      }
-
-      /* ========================================
-         RESPONSIVE
-         ======================================== */
-      @media (max-width: 768px) {
-        .hero {
-          padding: 3rem 0 4rem;
-        }
-
-        .hero h1 {
-          font-size: 2.25rem;
-        }
-
-        .hero p {
-          font-size: 1rem;
-        }
-
-        .hero-stats {
-          gap: 0.75rem;
-        }
-
-        .hero-stat {
-          padding: 0.75rem 1rem;
-        }
-
-        .hero-stat-number {
-          font-size: 1.5rem;
-        }
-
-        .main-nav,
-        .nav-link {
-          display: none;
-        }
-
-        .mobile-menu-btn {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .tab-nav {
-          gap: 0.5rem;
-        }
-
-        .tab-btn {
-          padding: 0.75rem 1.25rem;
-          font-size: 0.9rem;
-        }
-
-        .tab-btn .tab-count {
-          display: none;
-        }
-
-        .apps-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .footer-content {
-          flex-direction: column;
-          text-align: center;
-        }
-
-        .footer-links {
-          justify-content: center;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .tab-btn {
-          padding: 0.625rem 1rem;
-          font-size: 0.85rem;
-        }
-
-        .tab-btn .tab-icon {
-          font-size: 1.1rem;
-        }
-      }
-
-      .tab-btn:focus-visible,
-      .app-card:focus-visible,
-      .nav-link:focus-visible,
-      .theme-toggle:focus-visible {
-        outline: 2px solid #6366f1;
-        outline-offset: 2px;
-      }
-
-      ::selection {
-        background: rgba(102, 126, 234, 0.2);
-        color: var(--text-primary);
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <!-- Navigation -->
     <nav class="nav">
       <div class="nav-content">
-        <a href="index.html" class="logo">
-          <div class="logo-icon">🧠</div>
-          <span class="logo-text">LearnAnything</span>
+        <a href="/" class="logo">
+          <div class="logo-icon">🏠</div>
+          <span class="logo-text">IoWidgets</span>
         </a>
 
         <div class="main-nav">
-          <a href="#languages" class="main-nav-link" onclick="switchSlide(0)">
-            <span class="nav-icon">🌍</span>
-            <span>Languages</span>
-          </a>
-          <a href="#business" class="main-nav-link" onclick="switchSlide(1)">
-            <span class="nav-icon">💼</span>
-            <span>Business</span>
-          </a>
-          <a href="#technology" class="main-nav-link" onclick="switchSlide(2)">
-            <span class="nav-icon">💻</span>
-            <span>Technology</span>
-          </a>
-          <a href="#general" class="main-nav-link" onclick="switchSlide(3)">
-            <span class="nav-icon">📚</span>
-            <span>General</span>
-          </a>
+          <a href="/reviews.html" class="main-nav-link">📝 Reviews</a>
+          <a href="/categories/smart-plugs.html" class="main-nav-link"
+            >🔌 Smart Plugs</a
+          >
+          <a href="/categories/smart-lights.html" class="main-nav-link"
+            >💡 Lights</a
+          >
+          <a href="/categories/security-cameras.html" class="main-nav-link"
+            >📷 Cameras</a
+          >
+          <a href="/categories/smart-hubs.html" class="main-nav-link"
+            >🎛️ Hubs</a
+          >
+          <a href="/about.html" class="main-nav-link">About</a>
         </div>
 
         <div class="nav-right">
-          <a href="about.html" class="nav-link">About</a>
-          <a href="contact.html" class="nav-link">Contact</a>
-
           <button
             class="theme-toggle"
             onclick="toggleTheme()"
             aria-label="Toggle theme"
           >
-            <span class="sun-icon">🌙</span>
-            <span class="moon-icon">☀️</span>
+            <span class="sun-icon">☀️</span>
+            <span class="moon-icon">🌙</span>
           </button>
-
-          <button class="mobile-menu-btn" onclick="openMobileNav()">☰</button>
+          <button
+            class="mobile-menu-btn"
+            onclick="toggleMobileMenu()"
+            aria-label="Menu"
+          >
+            ☰
+          </button>
         </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="/reviews.html">📝 All Reviews</a>
+        <a href="/categories/smart-plugs.html">🔌 Smart Plugs</a>
+        <a href="/categories/smart-lights.html">💡 Smart Lights</a>
+        <a href="/categories/security-cameras.html">📷 Security Cameras</a>
+        <a href="/categories/smart-locks.html">🔐 Smart Locks</a>
+        <a href="/categories/smart-hubs.html">🎛️ Smart Hubs</a>
+        <a href="/categories/smart-doorbells.html">🚪 Video Doorbells</a>
+        <a href="/about.html">About Us</a>
+        <a href="/contact.html">Contact</a>
       </div>
     </nav>
 
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav" id="mobileNav">
-      <div class="mobile-nav-header">
-        <a href="index.html" class="logo">
-          <div class="logo-icon">🧠</div>
-          <span class="logo-text">LearnAnything</span>
-        </a>
-        <button class="mobile-nav-close" onclick="closeMobileNav()">✕</button>
-      </div>
-      <div class="mobile-nav-links">
-        <a href="#languages" class="mobile-nav-link" onclick="switchSlide(0); closeMobileNav();">
-          <span class="nav-icon">🌍</span>
-          <span>Languages</span>
-        </a>
-        <a href="#business" class="mobile-nav-link" onclick="switchSlide(1); closeMobileNav();">
-          <span class="nav-icon">💼</span>
-          <span>Business</span>
-        </a>
-        <a href="#technology" class="mobile-nav-link" onclick="switchSlide(2); closeMobileNav();">
-          <span class="nav-icon">💻</span>
-          <span>Technology</span>
-        </a>
-        <a href="#general" class="mobile-nav-link" onclick="switchSlide(3); closeMobileNav();">
-          <span class="nav-icon">📚</span>
-          <span>General</span>
-        </a>
-        <a href="about.html" class="mobile-nav-link">
-          <span class="nav-icon">ℹ️</span>
-          <span>About</span>
-        </a>
-        <a href="contact.html" class="mobile-nav-link">
-          <span class="nav-icon">💬</span>
-          <span>Contact</span>
-        </a>
-      </div>
-    </div>
-
     <!-- Hero Section -->
     <section class="hero">
-      <div class="floating-shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
-        <div class="shape shape-4"></div>
-      </div>
-
       <div class="hero-content">
         <div class="hero-badge">
-          <span class="hero-badge-dot"></span>
-          100% Free • Interactive Flashcards
+          <span>🚀</span>
+          <span>IoT Made Simple</span>
         </div>
-        <h1>Learn Anything, Anytime</h1>
-        <p>
-          Master new skills with interactive flashcard games. Languages, business, technology, and more — all free, all fun.
+        <h1 class="hero-title">Smart Home Reviews<br />You Can Trust</h1>
+        <p class="hero-subtitle">
+          Honest, beginner-friendly reviews of smart plugs, lights, cameras,
+          locks, and all IoT devices. No jargon, just clear buying advice.
         </p>
+
+        <div class="hero-search">
+          <input
+            type="text"
+            placeholder="Search for devices (e.g., smart plug, security camera)..."
+          />
+          <button type="button">Search</button>
+        </div>
+
         <div class="hero-stats">
           <div class="hero-stat">
-            <div class="hero-stat-number">50+</div>
-            <div class="hero-stat-label">Topics</div>
+            <div class="hero-stat-number">100+</div>
+            <div class="hero-stat-label">Device Reviews</div>
           </div>
           <div class="hero-stat">
-            <div class="hero-stat-number">4</div>
+            <div class="hero-stat-number">15+</div>
             <div class="hero-stat-label">Categories</div>
           </div>
           <div class="hero-stat">
-            <div class="hero-stat-number">1000+</div>
-            <div class="hero-stat-label">Flashcards</div>
-          </div>
-          <div class="hero-stat">
-            <div class="hero-stat-number">∞</div>
-            <div class="hero-stat-label">Learning</div>
+            <div class="hero-stat-number">50k+</div>
+            <div class="hero-stat-label">Happy Readers</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Content Section with Tabs -->
-    <section class="content-section">
-      <div class="container">
-        <div class="tab-nav">
-          <button
-            class="tab-btn active"
-            onclick="switchSlide(0)"
-            id="tab-languages"
+    <main class="container">
+      <!-- Affiliate Disclosure -->
+      <div class="affiliate-notice">
+        <strong>Affiliate Disclosure:</strong> IoWidgets earns commissions from
+        qualifying purchases through Amazon and other affiliate partners. This
+        helps us keep testing devices and creating free content.
+        <a href="/affiliate-disclosure.html">Learn more</a>
+      </div>
+
+      <!-- Categories Section -->
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Browse by Category</h2>
+          <p class="section-subtitle">
+            Find the perfect smart home device for your needs
+          </p>
+        </div>
+
+        <div class="categories-grid">
+          <a href="/categories/smart-plugs.html" class="category-card">
+            <div class="category-icon">🔌</div>
+            <div class="category-name">Smart Plugs</div>
+            <div class="category-count">24 Reviews</div>
+          </a>
+          <a href="/categories/smart-lights.html" class="category-card">
+            <div class="category-icon">💡</div>
+            <div class="category-name">Smart Lights</div>
+            <div class="category-count">31 Reviews</div>
+          </a>
+          <a href="/categories/security-cameras.html" class="category-card">
+            <div class="category-icon">📷</div>
+            <div class="category-name">Security Cameras</div>
+            <div class="category-count">18 Reviews</div>
+          </a>
+          <a href="/categories/smart-locks.html" class="category-card">
+            <div class="category-icon">🔐</div>
+            <div class="category-name">Smart Locks</div>
+            <div class="category-count">12 Reviews</div>
+          </a>
+          <a href="/categories/smart-hubs.html" class="category-card">
+            <div class="category-icon">🎛️</div>
+            <div class="category-name">Smart Hubs</div>
+            <div class="category-count">9 Reviews</div>
+          </a>
+          <a href="/categories/smart-doorbells.html" class="category-card">
+            <div class="category-icon">🚪</div>
+            <div class="category-name">Video Doorbells</div>
+            <div class="category-count">11 Reviews</div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Ad Slot -->
+      <div class="ad-slot ad-slot-horizontal">
+        <!-- Google AdSense - Horizontal Ad Unit -->
+        <span>Ad Space - 728x90 Leaderboard</span>
+      </div>
+
+      <!-- Featured Review -->
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Editor's Choice</h2>
+          <p class="section-subtitle">Our top pick this month</p>
+        </div>
+
+        <div class="featured-review">
+          <div class="featured-image">📷</div>
+          <div class="featured-content">
+            <div class="featured-badge">⭐ Editor's Choice 2026</div>
+            <h3 class="featured-title">
+              Ring Video Doorbell Pro 2 Review: The Gold Standard
+            </h3>
+            <p class="featured-excerpt">
+              After testing 15+ video doorbells over 6 months, the Ring Video
+              Doorbell Pro 2 stands out with its exceptional 1536p HD video, 3D
+              motion detection, and seamless Alexa integration. Perfect for most
+              smart homes.
+            </p>
+
+            <div class="pros-cons">
+              <div class="pros">
+                <div class="pros-title">✅ Pros</div>
+                <ul>
+                  <li>Crystal-clear 1536p video</li>
+                  <li>Advanced 3D motion detection</li>
+                  <li>Bird's eye view mapping</li>
+                </ul>
+              </div>
+              <div class="cons">
+                <div class="cons-title">❌ Cons</div>
+                <ul>
+                  <li>Requires Ring Protect plan</li>
+                  <li>Hardwired installation only</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="featured-meta">
+              <div class="review-rating">
+                <span class="stars">★★★★★</span>
+                <span class="rating-score">9.2/10</span>
+              </div>
+              <span class="review-price">$249.99</span>
+            </div>
+
+            <div class="cta-buttons">
+              <a href="#" class="btn btn-amazon">🛒 Check Price on Amazon</a>
+              <a href="#" class="btn btn-secondary">Read Full Review →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Best For Section -->
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Best Smart Plugs for Every Need</h2>
+          <p class="section-subtitle">Quick picks based on your priorities</p>
+        </div>
+
+        <div class="best-for-grid">
+          <div class="best-for-card">
+            <div class="best-for-label">🏆 Best Overall</div>
+            <div class="best-for-title">TP-Link Kasa Smart Plug Mini EP25</div>
+            <div class="best-for-product">
+              <div class="best-for-thumb">🔌</div>
+              <div>
+                <div class="best-for-price">$14.99</div>
+                <div class="stars" style="font-size: 0.75rem">★★★★★ 9.1/10</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="best-for-card">
+            <div class="best-for-label">💰 Best Budget</div>
+            <div class="best-for-title">Wyze Plug (2-Pack)</div>
+            <div class="best-for-product">
+              <div class="best-for-thumb">🔌</div>
+              <div>
+                <div class="best-for-price">$11.98</div>
+                <div class="stars" style="font-size: 0.75rem">★★★★☆ 8.5/10</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="best-for-card">
+            <div class="best-for-label">📊 Best Energy Monitoring</div>
+            <div class="best-for-title">TP-Link Kasa KP125M</div>
+            <div class="best-for-product">
+              <div class="best-for-thumb">🔌</div>
+              <div>
+                <div class="best-for-price">$17.99</div>
+                <div class="stars" style="font-size: 0.75rem">★★★★★ 9.0/10</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="best-for-card">
+            <div class="best-for-label">🍎 Best for Apple Home</div>
+            <div class="best-for-title">Eve Energy Smart Plug</div>
+            <div class="best-for-product">
+              <div class="best-for-thumb">🔌</div>
+              <div>
+                <div class="best-for-price">$39.95</div>
+                <div class="stars" style="font-size: 0.75rem">★★★★☆ 8.7/10</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Comparison Table -->
+      <section class="section">
+        <div class="comparison-section">
+          <div class="section-header" style="margin-bottom: 1rem">
+            <h2 class="section-title">Smart Plug Comparison 2026</h2>
+            <p class="section-subtitle">Side-by-side specs of our top picks</p>
+          </div>
+
+          <div class="table-wrapper">
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Price</th>
+                  <th>Voice Control</th>
+                  <th>Energy Monitor</th>
+                  <th>Matter</th>
+                  <th>Rating</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="product-cell">
+                      <div class="product-thumb">🔌</div>
+                      <div class="product-info">
+                        <h4>TP-Link Kasa EP25</h4>
+                        <span>Best Overall</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td><strong>$14.99</strong></td>
+                  <td class="check">✓ Alexa, Google</td>
+                  <td class="check">✓ Yes</td>
+                  <td class="check">✓</td>
+                  <td><span class="stars">★★★★★</span> 9.1</td>
+                  <td>
+                    <a href="#" class="btn btn-amazon table-btn"
+                      >View on Amazon</a
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="product-cell">
+                      <div class="product-thumb">🔌</div>
+                      <div class="product-info">
+                        <h4>Wyze Plug</h4>
+                        <span>Best Budget</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td><strong>$5.99</strong></td>
+                  <td class="check">✓ Alexa, Google</td>
+                  <td class="cross">✗ No</td>
+                  <td class="cross">✗</td>
+                  <td><span class="stars">★★★★☆</span> 8.5</td>
+                  <td>
+                    <a href="#" class="btn btn-amazon table-btn"
+                      >View on Amazon</a
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="product-cell">
+                      <div class="product-thumb">🔌</div>
+                      <div class="product-info">
+                        <h4>Amazon Smart Plug</h4>
+                        <span>Best for Alexa</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td><strong>$24.99</strong></td>
+                  <td class="check">✓ Alexa only</td>
+                  <td class="cross">✗ No</td>
+                  <td class="check">✓</td>
+                  <td><span class="stars">★★★★☆</span> 8.3</td>
+                  <td>
+                    <a href="#" class="btn btn-amazon table-btn"
+                      >View on Amazon</a
+                    >
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Latest Reviews -->
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Latest Reviews</h2>
+          <p class="section-subtitle">
+            Fresh takes on the newest smart home gear
+          </p>
+        </div>
+
+        <div class="reviews-grid">
+          <a href="#" class="review-card">
+            <div class="review-image">
+              💡
+              <span class="review-badge">New</span>
+            </div>
+            <div class="review-content">
+              <div class="review-category">Smart Lights</div>
+              <h3 class="review-title">
+                Philips Hue Gradient Lightstrip Review
+              </h3>
+              <p class="review-excerpt">
+                The ultimate ambient lighting solution? We tested it for 3 weeks
+                with movies, gaming, and everyday use.
+              </p>
+              <div class="review-meta">
+                <div class="review-rating">
+                  <span class="stars">★★★★★</span>
+                  <span class="rating-score">9.0/10</span>
+                </div>
+                <span class="review-price">$229</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" class="review-card">
+            <div class="review-image">
+              📷
+              <span class="review-badge editors-choice">Editor's Pick</span>
+            </div>
+            <div class="review-content">
+              <div class="review-category">Security Cameras</div>
+              <h3 class="review-title">
+                Arlo Pro 5S 2K Review: Worth the Premium?
+              </h3>
+              <p class="review-excerpt">
+                Premium pricing meets premium features. Here's whether the Arlo
+                Pro 5S justifies its cost.
+              </p>
+              <div class="review-meta">
+                <div class="review-rating">
+                  <span class="stars">★★★★☆</span>
+                  <span class="rating-score">8.8/10</span>
+                </div>
+                <span class="review-price">$249</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" class="review-card">
+            <div class="review-image">🔐</div>
+            <div class="review-content">
+              <div class="review-category">Smart Locks</div>
+              <h3 class="review-title">August Wi-Fi Smart Lock (4th Gen)</h3>
+              <p class="review-excerpt">
+                Keep your existing deadbolt and go keyless. We tested
+                reliability, app, and auto-unlock features.
+              </p>
+              <div class="review-meta">
+                <div class="review-rating">
+                  <span class="stars">★★★★☆</span>
+                  <span class="rating-score">8.6/10</span>
+                </div>
+                <span class="review-price">$229</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div style="text-align: center; margin-top: 2rem">
+          <a href="/reviews.html" class="btn btn-secondary"
+            >View All Reviews →</a
           >
-            <span class="tab-icon">🌍</span>
-            <span>Languages</span>
-            <span class="tab-count">8</span>
-          </button>
-          <button class="tab-btn" onclick="switchSlide(1)" id="tab-business">
-            <span class="tab-icon">💼</span>
-            <span>Business</span>
-            <span class="tab-count">8</span>
-          </button>
-          <button class="tab-btn" onclick="switchSlide(2)" id="tab-technology">
-            <span class="tab-icon">💻</span>
-            <span>Technology</span>
-            <span class="tab-count">8</span>
-          </button>
-          <button class="tab-btn" onclick="switchSlide(3)" id="tab-general">
-            <span class="tab-icon">📚</span>
-            <span>General Knowledge</span>
-            <span class="tab-count">8</span>
-          </button>
         </div>
+      </section>
 
-        <div class="slider-container">
-          <div class="slider-wrapper" id="slider">
-            <!-- LANGUAGES SLIDE -->
-            <div class="slide" id="languages-slide">
-              <div class="apps-grid">
-                <a href="learn/spanish.html" class="app-card">
-                  <div class="app-icon icon-orange">🇪🇸</div>
-                  <span class="app-tag popular">Popular</span>
-                  <h3>Spanish Basics</h3>
-                  <p>
-                    Learn essential Spanish words and phrases with interactive flashcards.
-                  </p>
-                </a>
-                <a href="learn/french.html" class="app-card">
-                  <div class="app-icon icon-blue">🇫🇷</div>
-                  <span class="app-tag popular">Popular</span>
-                  <h3>French Basics</h3>
-                  <p>
-                    Master common French vocabulary and everyday expressions.
-                  </p>
-                </a>
-                <a href="learn/german.html" class="app-card">
-                  <div class="app-icon icon-dark">🇩🇪</div>
-                  <h3>German Basics</h3>
-                  <p>
-                    Start your German journey with essential words and grammar.
-                  </p>
-                </a>
-                <a href="learn/japanese.html" class="app-card">
-                  <div class="app-icon icon-red">🇯🇵</div>
-                  <span class="app-tag new">New</span>
-                  <h3>Japanese Basics</h3>
-                  <p>
-                    Learn hiragana, katakana, and basic Japanese vocabulary.
-                  </p>
-                </a>
-                <a href="learn/mandarin.html" class="app-card">
-                  <div class="app-icon icon-rose">🇨🇳</div>
-                  <h3>Mandarin Chinese</h3>
-                  <p>
-                    Essential Mandarin phrases, tones, and character basics.
-                  </p>
-                </a>
-                <a href="learn/italian.html" class="app-card">
-                  <div class="app-icon icon-green">🇮🇹</div>
-                  <h3>Italian Basics</h3>
-                  <p>
-                    Beautiful Italian phrases for travel and conversation.
-                  </p>
-                </a>
-                <a href="learn/portuguese.html" class="app-card">
-                  <div class="app-icon icon-emerald">🇵🇹</div>
-                  <h3>Portuguese Basics</h3>
-                  <p>
-                    Learn Brazilian and European Portuguese essentials.
-                  </p>
-                </a>
-                <a href="learn/korean.html" class="app-card">
-                  <div class="app-icon icon-sky">🇰🇷</div>
-                  <span class="app-tag new">New</span>
-                  <h3>Korean Basics</h3>
-                  <p>
-                    Hangul alphabet and essential Korean vocabulary.
-                  </p>
-                </a>
-              </div>
-            </div>
-
-            <!-- BUSINESS SLIDE -->
-            <div class="slide" id="business-slide">
-              <div class="apps-grid">
-                <a href="learn/business/email.html" class="app-card">
-                  <div class="app-icon icon-blue">📧</div>
-                  <span class="app-tag popular">Popular</span>
-                  <h3>Business Email</h3>
-                  <p>
-                    Professional email phrases, templates, and etiquette.
-                  </p>
-                </a>
-                <a href="learn/business/interview.html" class="app-card">
-                  <div class="app-icon icon-purple">🎯</div>
-                  <span class="app-tag popular">Popular</span>
-                  <h3>Interview Skills</h3>
-                  <p>
-                    Common interview questions and winning responses.
-                  </p>
-                </a>
-                <a href="learn/business/negotiation.html" class="app-card">
-                  <div class="app-icon icon-orange">🤝</div>
-                  <h3>Negotiation</h3>
-                  <p>
-                    Key negotiation tactics and persuasion techniques.
-                  </p>
-                </a>
-                <a href="learn/business/presentation.html" class="app-card">
-                  <div class="app-icon icon-pink">📊</div>
-                  <h3>Presentations</h3>
-                  <p>
-                    Delivery tips, structure, and engaging your audience.
-                  </p>
-                </a>
-                <a href="learn/business/networking.html" class="app-card">
-                  <div class="app-icon icon-teal">🌐</div>
-                  <span class="app-tag new">New</span>
-                  <h3>Networking</h3>
-                  <p>
-                    Build connections with effective networking strategies.
-                  </p>
-                </a>
-                <a href="learn/business/meetings.html" class="app-card">
-                  <div class="app-icon icon-indigo">📅</div>
-                  <h3>Meeting Skills</h3>
-                  <p>
-                    Run effective meetings and communicate clearly.
-                  </p>
-                </a>
-                <a href="learn/business/reports.html" class="app-card">
-                  <div class="app-icon icon-cyan">📄</div>
-                  <h3>Business Writing</h3>
-                  <p>
-                    Reports, memos, and professional documentation.
-                  </p>
-                </a>
-                <a href="learn/business/calls.html" class="app-card">
-                  <div class="app-icon icon-green">📞</div>
-                  <h3>Phone & Video Calls</h3>
-                  <p>
-                    Professional communication on calls and video meetings.
-                  </p>
-                </a>
-              </div>
-            </div>
-
-            <!-- TECHNOLOGY SLIDE -->
-            <div class="slide" id="technology-slide">
-              <div class="apps-grid">
-                <a href="learn/coding.html" class="app-card">
-                  <div class="app-icon icon-indigo">💻</div>
-                  <span class="app-tag popular">Popular</span>
-                  <h3>Coding Basics</h3>
-                  <p>
-                    HTML, CSS, JavaScript fundamentals for beginners.
-                  </p>
-                </a>
-                <a href="learn/python.html" class="app-card">
-                  <div class="app-icon icon-yellow">🐍</div>
-                  <span class="app-tag popular">Popular</span>
-                  <h3>Python Basics</h3>
-                  <p>
-                    Learn Python programming from scratch with examples.
-                  </p>
-                </a>
-                <a href="learn/git.html" class="app-card">
-                  <div class="app-icon icon-orange">🔀</div>
-                  <h3>Git & GitHub</h3>
-                  <p>
-                    Version control basics and collaboration workflows.
-                  </p>
-                </a>
-                <a href="learn/ai-basics.html" class="app-card">
-                  <div class="app-icon icon-purple">🤖</div>
-                  <span class="app-tag new">New</span>
-                  <h3>AI Fundamentals</h3>
-                  <p>
-                    Understand AI, machine learning, and ChatGPT basics.
-                  </p>
-                </a>
-                <a href="learn/cybersecurity.html" class="app-card">
-                  <div class="app-icon icon-red">🔒</div>
-                  <h3>Cybersecurity</h3>
-                  <p>
-                    Security concepts, threats, and how to stay safe online.
-                  </p>
-                </a>
-                <a href="learn/cloud.html" class="app-card">
-                  <div class="app-icon icon-sky">☁️</div>
-                  <h3>Cloud Computing</h3>
-                  <p>
-                    AWS, Azure, Google Cloud basics and key concepts.
-                  </p>
-                </a>
-                <a href="learn/databases.html" class="app-card">
-                  <div class="app-icon icon-emerald">🗃️</div>
-                  <h3>Database Basics</h3>
-                  <p>
-                    SQL, NoSQL, and how data storage works.
-                  </p>
-                </a>
-                <a href="learn/typing.html" class="app-card">
-                  <div class="app-icon icon-dark">⌨️</div>
-                  <h3>Typing Speed</h3>
-                  <p>
-                    Improve your typing speed and accuracy with practice.
-                  </p>
-                </a>
-              </div>
-            </div>
-
-            <!-- GENERAL KNOWLEDGE SLIDE -->
-            <div class="slide" id="general-slide">
-              <div class="apps-grid">
-                <a href="learn/geography.html" class="app-card">
-                  <div class="app-icon icon-teal">🗺️</div>
-                  <span class="app-tag popular">Popular</span>
-                  <h3>World Geography</h3>
-                  <p>
-                    Countries, capitals, flags, and landmarks worldwide.
-                  </p>
-                </a>
-                <a href="learn/history.html" class="app-card">
-                  <div class="app-icon icon-amber">📜</div>
-                  <h3>World History</h3>
-                  <p>
-                    Major events, eras, and historical figures.
-                  </p>
-                </a>
-                <a href="learn/science.html" class="app-card">
-                  <div class="app-icon icon-purple">🔬</div>
-                  <span class="app-tag popular">Popular</span>
-                  <h3>Science Facts</h3>
-                  <p>
-                    Physics, chemistry, biology basics and discoveries.
-                  </p>
-                </a>
-                <a href="learn/math.html" class="app-card">
-                  <div class="app-icon icon-green">➕</div>
-                  <h3>Math Practice</h3>
-                  <p>
-                    Arithmetic, algebra, and math concepts made easy.
-                  </p>
-                </a>
-                <a href="learn/vocabulary.html" class="app-card">
-                  <div class="app-icon icon-rose">📖</div>
-                  <h3>Vocabulary Builder</h3>
-                  <p>
-                    Expand your English vocabulary with daily words.
-                  </p>
-                </a>
-                <a href="learn/politics.html" class="app-card">
-                  <div class="app-icon icon-blue">🏛️</div>
-                  <span class="app-tag new">New</span>
-                  <h3>Political Systems</h3>
-                  <p>
-                    Governments, politics, and how democracies work.
-                  </p>
-                </a>
-                <a href="learn/economics.html" class="app-card">
-                  <div class="app-icon icon-orange">📈</div>
-                  <h3>Economics Basics</h3>
-                  <p>
-                    Supply, demand, markets, and economic concepts.
-                  </p>
-                </a>
-                <a href="learn/philosophy.html" class="app-card">
-                  <div class="app-icon icon-violet">🤔</div>
-                  <span class="app-tag new">New</span>
-                  <h3>Philosophy 101</h3>
-                  <p>
-                    Key thinkers, ideas, and philosophical concepts.
-                  </p>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
+      <!-- Ad Slot -->
+      <div class="ad-slot ad-slot-horizontal">
+        <!-- Google AdSense - Horizontal Ad Unit -->
+        <span>Ad Space - 728x90 Leaderboard</span>
       </div>
-    </section>
+
+      <!-- Newsletter -->
+      <section class="section">
+        <div class="newsletter">
+          <h3>🚀 Get Smart Home Tips Weekly</h3>
+          <p>
+            Join 10,000+ readers. New reviews, deals & setup guides — no spam,
+            ever.
+          </p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Enter your email" required />
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+      </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
       <div class="container">
-        <div class="footer-content">
-          <a href="index.html" class="logo">
-            <div class="logo-icon">🧠</div>
-            <span class="logo-text">LearnAnything</span>
-          </a>
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="/" class="logo">
+              <div class="logo-icon">🏠</div>
+              <span class="logo-text">IoWidgets</span>
+            </a>
+            <p>
+              Honest, beginner-friendly reviews of smart home IoT devices. We
+              test everything ourselves so you can buy with confidence.
+            </p>
+          </div>
+
           <div class="footer-links">
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-            <a href="privacy-policy.html">Privacy</a>
-            <a href="terms-of-service.html">Terms</a>
+            <h4>Categories</h4>
+            <a href="/categories/smart-plugs.html">Smart Plugs</a>
+            <a href="/categories/smart-lights.html">Smart Lights</a>
+            <a href="/categories/security-cameras.html">Security Cameras</a>
+            <a href="/categories/smart-locks.html">Smart Locks</a>
+            <a href="/categories/smart-hubs.html">Smart Hubs</a>
+          </div>
+
+          <div class="footer-links">
+            <h4>Resources</h4>
+            <a href="/reviews.html">All Reviews</a>
+            <a href="#">Buying Guides</a>
+            <a href="#">Setup Tutorials</a>
+            <a href="#">Deals</a>
+          </div>
+
+          <div class="footer-links">
+            <h4>Company</h4>
+            <a href="/about.html">About Us</a>
+            <a href="/contact.html">Contact</a>
+            <a href="/affiliate-disclosure.html">Affiliate Disclosure</a>
+            <a href="/privacy-policy.html">Privacy Policy</a>
+            <a href="/terms-of-service.html">Terms of Service</a>
           </div>
         </div>
-        <p class="footer-copy">© 2026 LearnAnything. Made with ❤️ for lifelong learners.</p>
+
+        <div class="footer-bottom">
+          <span>© 2026 IoWidgets. All rights reserved.</span>
+          <span
+            >As an Amazon Associate, we earn from qualifying purchases.</span
+          >
+        </div>
       </div>
     </footer>
 
     <script>
-      // ========================================
-      // THEME MANAGEMENT
-      // ========================================
-      function getPreferredTheme() {
-        const saved = localStorage.getItem("learnanything-theme");
-        if (saved) return saved;
-        return window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "dark"
-          : "light";
-      }
-
-      function setTheme(theme) {
-        document.documentElement.setAttribute("data-theme", theme);
-        localStorage.setItem("learnanything-theme", theme);
-      }
-
+      // Theme Toggle
       function toggleTheme() {
-        const current =
-          document.documentElement.getAttribute("data-theme") || "light";
-        const next = current === "dark" ? "light" : "dark";
-        setTheme(next);
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute("data-theme");
+        const newTheme = currentTheme === "dark" ? "light" : "dark";
+        html.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
       }
 
-      // Initialize theme
-      setTheme(getPreferredTheme());
-
-      // ========================================
-      // SLIDER FUNCTIONALITY
-      // ========================================
-      let currentSlide = 0;
-      const totalSlides = 4;
-      const tabIds = ["tab-languages", "tab-business", "tab-technology", "tab-general"];
-
-      function switchSlide(index) {
-        currentSlide = index;
-        updateSlider();
+      // Mobile Menu Toggle
+      function toggleMobileMenu() {
+        const menu = document.getElementById("mobileMenu");
+        menu.classList.toggle("active");
       }
 
-      function updateSlider() {
-        const slider = document.getElementById("slider");
-        slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-
-        tabIds.forEach((id, i) => {
-          const btn = document.getElementById(id);
-          if (btn) {
-            btn.classList.toggle("active", i === currentSlide);
-          }
-        });
+      // Load saved theme
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme) {
+        document.documentElement.setAttribute("data-theme", savedTheme);
+      } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        document.documentElement.setAttribute("data-theme", "dark");
       }
-
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "ArrowLeft") {
-          currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-          updateSlider();
-        }
-        if (e.key === "ArrowRight") {
-          currentSlide = (currentSlide + 1) % totalSlides;
-          updateSlider();
-        }
-      });
-
-      let touchStartX = 0;
-      const sliderContainer = document.querySelector(".slider-container");
-
-      sliderContainer.addEventListener(
-        "touchstart",
-        (e) => {
-          touchStartX = e.changedTouches[0].screenX;
-        },
-        { passive: true },
-      );
-
-      sliderContainer.addEventListener(
-        "touchend",
-        (e) => {
-          const touchEndX = e.changedTouches[0].screenX;
-          const diff = touchStartX - touchEndX;
-          if (Math.abs(diff) > 50) {
-            if (diff > 0) {
-              currentSlide = (currentSlide + 1) % totalSlides;
-            } else {
-              currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            }
-            updateSlider();
-          }
-        },
-        { passive: true },
-      );
-
-      // ========================================
-      // MOBILE NAVIGATION
-      // ========================================
-      function openMobileNav() {
-        document.getElementById("mobileNav").classList.add("active");
-        document.body.style.overflow = "hidden";
-      }
-
-      function closeMobileNav() {
-        document.getElementById("mobileNav").classList.remove("active");
-        document.body.style.overflow = "";
-      }
-
-      // ========================================
-      // CARD ANIMATIONS
-      // ========================================
-      document.addEventListener("DOMContentLoaded", () => {
-        const cards = document.querySelectorAll(".app-card");
-        cards.forEach((card, index) => {
-          card.style.opacity = "0";
-          card.style.transform = "translateY(20px)";
-          setTimeout(
-            () => {
-              card.style.transition = "opacity 0.5s ease, transform 0.5s ease";
-              card.style.opacity = "1";
-              card.style.transform = "translateY(0)";
-            },
-            100 + (index % 8) * 50,
-          );
-        });
-      });
     </script>
   </body>
 </html>

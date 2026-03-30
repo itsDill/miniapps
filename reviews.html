@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-S15806B1HW"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-S15806B1HW");
+    </script>
+    <title>All Smart Home Reviews | IoWidgets</title>
+    <meta
+      name="description"
+      content="Browse all our smart home device reviews. Find expert ratings and comparisons for smart plugs, lights, cameras, locks, hubs, and more."
+    />
+    <link rel="canonical" href="https://iowidgets.com/reviews.html" />
+    <meta name="theme-color" content="#10b981" />
+    <meta property="og:title" content="All Smart Home Reviews | IoWidgets" />
+    <meta
+      property="og:description"
+      content="Browse all our smart home device reviews. Find expert ratings and comparisons for smart plugs, lights, cameras, locks, hubs, and more."
+    />
+    <meta property="og:url" content="https://iowidgets.com/reviews.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://iowidgets.com/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-content">
+        <a href="/" class="logo">
+          <div class="logo-icon">🏠</div>
+          <span class="logo-text">IoWidgets</span>
+        </a>
+        <div class="main-nav">
+          <a href="/reviews.html" class="main-nav-link active">📝 Reviews</a>
+          <a href="/categories/smart-plugs.html" class="main-nav-link"
+            >🔌 Smart Plugs</a
+          >
+          <a href="/categories/smart-lights.html" class="main-nav-link"
+            >💡 Lights</a
+          >
+          <a href="/categories/security-cameras.html" class="main-nav-link"
+            >📷 Cameras</a
+          >
+          <a href="/categories/smart-hubs.html" class="main-nav-link"
+            >🎛️ Hubs</a
+          >
+          <a href="/about.html" class="main-nav-link">About</a>
+        </div>
+        <div class="nav-right">
+          <button
+            class="theme-toggle"
+            onclick="toggleTheme()"
+            aria-label="Toggle theme"
+          >
+            <span class="sun-icon">☀️</span>
+            <span class="moon-icon">🌙</span>
+          </button>
+          <button
+            class="mobile-menu-btn"
+            onclick="toggleMobileMenu()"
+            aria-label="Menu"
+          >
+            ☰
+          </button>
+        </div>
+      </div>
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="/reviews.html">📝 All Reviews</a>
+        <a href="/categories/smart-plugs.html">🔌 Smart Plugs</a>
+        <a href="/categories/smart-lights.html">💡 Smart Lights</a>
+        <a href="/categories/security-cameras.html">📷 Security Cameras</a>
+        <a href="/about.html">About Us</a>
+      </div>
+    </nav>
+
+    <section class="page-header">
+      <div class="container">
+        <h1>All Reviews</h1>
+        <p>100+ in-depth smart home device reviews</p>
+      </div>
+    </section>
+
+    <main class="container">
+      <div class="affiliate-notice">
+        <strong>Affiliate Disclosure:</strong> We earn commissions from
+        qualifying purchases. This doesn't affect our ratings.
+        <a href="/affiliate-disclosure.html">Learn more</a>
+      </div>
+
+      <!-- Filter Bar -->
+      <section class="section" style="padding-top: 2rem; padding-bottom: 1rem">
+        <div
+          style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center"
+        >
+          <span style="font-weight: 600">Filter by:</span>
+          <select
+            aria-label="Filter by category"
+            style="
+              padding: 0.5rem 1rem;
+              border-radius: 8px;
+              border: 1px solid var(--border-light);
+              background: var(--bg-card);
+            "
+          >
+            <option>All Categories</option>
+            <option>Smart Plugs</option>
+            <option>Smart Lights</option>
+            <option>Security Cameras</option>
+            <option>Smart Locks</option>
+            <option>Smart Hubs</option>
+            <option>Video Doorbells</option>
+          </select>
+          <select
+            aria-label="Sort reviews"
+            style="
+              padding: 0.5rem 1rem;
+              border-radius: 8px;
+              border: 1px solid var(--border-light);
+              background: var(--bg-card);
+            "
+          >
+            <option>Sort: Latest</option>
+            <option>Sort: Highest Rated</option>
+            <option>Sort: Price Low-High</option>
+            <option>Sort: Price High-Low</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- Reviews Grid -->
+      <section class="section" style="padding-top: 1rem">
+        <div class="reviews-grid">
+          <a href="#" class="review-card">
+            <div class="review-image">
+              📷<span class="review-badge editors-choice">Editor's Pick</span>
+            </div>
+            <div class="review-content">
+              <div class="review-category">Video Doorbells</div>
+              <h3 class="review-title">Ring Video Doorbell Pro 2 Review</h3>
+              <p class="review-excerpt">
+                The gold standard in video doorbells with 3D motion detection
+                and crisp 1536p video.
+              </p>
+              <div class="review-meta">
+                <div class="review-rating">
+                  <span class="stars">★★★★★</span
+                  ><span class="rating-score">9.2/10</span>
+                </div>
+                <span class="review-price">$249</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" class="review-card">
+            <div class="review-image">
+              💡<span class="review-badge">New</span>
+            </div>
+            <div class="review-content">
+              <div class="review-category">Smart Lights</div>
+              <h3 class="review-title">
+                Philips Hue Gradient Lightstrip Review
+              </h3>
+              <p class="review-excerpt">
+                Premium ambient lighting that transforms your entertainment
+                setup.
+              </p>
+              <div class="review-meta">
+                <div class="review-rating">
+                  <span class="stars">★★★★★</span
+                  ><span class="rating-score">9.0/10</span>
+                </div>
+                <span class="review-price">$229</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" class="review-card">
+            <div class="review-image">🔌</div>
+            <div class="review-content">
+              <div class="review-category">Smart Plugs</div>
+              <h3 class="review-title">TP-Link Kasa EP25 Smart Plug Review</h3>
+              <p class="review-excerpt">
+                Our top pick for smart plugs — reliable, affordable, and
+                feature-rich.
+              </p>
+              <div class="review-meta">
+                <div class="review-rating">
+                  <span class="stars">★★★★★</span
+                  ><span class="rating-score">9.1/10</span>
+                </div>
+                <span class="review-price">$15</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" class="review-card">
+            <div class="review-image">📷</div>
+            <div class="review-content">
+              <div class="review-category">Security Cameras</div>
+              <h3 class="review-title">Arlo Pro 5S 2K Review</h3>
+              <p class="review-excerpt">
+                Premium outdoor security with stunning video quality and smart
+                detection.
+              </p>
+              <div class="review-meta">
+                <div class="review-rating">
+                  <span class="stars">★★★★☆</span
+                  ><span class="rating-score">8.8/10</span>
+                </div>
+                <span class="review-price">$249</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" class="review-card">
+            <div class="review-image">🔐</div>
+            <div class="review-content">
+              <div class="review-category">Smart Locks</div>
+              <h3 class="review-title">August Wi-Fi Smart Lock (4th Gen)</h3>
+              <p class="review-excerpt">
+                Retrofit your existing deadbolt with this sleek, reliable smart
+                lock.
+              </p>
+              <div class="review-meta">
+                <div class="review-rating">
+                  <span class="stars">★★★★☆</span
+                  ><span class="rating-score">8.6/10</span>
+                </div>
+                <span class="review-price">$229</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" class="review-card">
+            <div class="review-image">🎛️</div>
+            <div class="review-content">
+              <div class="review-category">Smart Hubs</div>
+              <h3 class="review-title">Amazon Echo Hub Review</h3>
+              <p class="review-excerpt">
+                A dedicated smart home control panel with Alexa and Matter
+                support.
+              </p>
+              <div class="review-meta">
+                <div class="review-rating">
+                  <span class="stars">★★★★☆</span
+                  ><span class="rating-score">8.4/10</span>
+                </div>
+                <span class="review-price">$180</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" class="review-card">
+            <div class="review-image">🔌</div>
+            <div class="review-content">
+              <div class="review-category">Smart Plugs</div>
+              <h3 class="review-title">Wyze Plug Review</h3>
+              <p class="review-excerpt">
+                The best budget smart plug that doesn't compromise on features.
+              </p>
+              <div class="review-meta">
+                <div class="review-rating">
+                  <span class="stars">★★★★☆</span
+                  ><span class="rating-score">8.5/10</span>
+                </div>
+                <span class="review-price">$6</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" class="review-card">
+            <div class="review-image">💡</div>
+            <div class="review-content">
+              <div class="review-category">Smart Lights</div>
+              <h3 class="review-title">Govee RGBIC LED Strip Lights Review</h3>
+              <p class="review-excerpt">
+                Affordable mood lighting with impressive color accuracy and app
+                control.
+              </p>
+              <div class="review-meta">
+                <div class="review-rating">
+                  <span class="stars">★★★★☆</span
+                  ><span class="rating-score">8.3/10</span>
+                </div>
+                <span class="review-price">$30</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" class="review-card">
+            <div class="review-image">🚪</div>
+            <div class="review-content">
+              <div class="review-category">Video Doorbells</div>
+              <h3 class="review-title">
+                Google Nest Doorbell (Battery) Review
+              </h3>
+              <p class="review-excerpt">
+                Excellent person detection and Google Home integration in a
+                wire-free design.
+              </p>
+              <div class="review-meta">
+                <div class="review-rating">
+                  <span class="stars">★★★★☆</span
+                  ><span class="rating-score">8.5/10</span>
+                </div>
+                <span class="review-price">$180</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem">
+          <button class="btn btn-secondary">Load More Reviews</button>
+        </div>
+      </section>
+
+      <!-- Ad Slot -->
+      <div class="ad-slot ad-slot-horizontal">
+        <span>Ad Space - 728x90 Leaderboard</span>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="/" class="logo">
+              <div class="logo-icon">🏠</div>
+              <span class="logo-text">IoWidgets</span>
+            </a>
+            <p>Honest, beginner-friendly reviews of smart home IoT devices.</p>
+          </div>
+          <div class="footer-links">
+            <h4>Categories</h4>
+            <a href="/categories/smart-plugs.html">Smart Plugs</a>
+            <a href="/categories/smart-lights.html">Smart Lights</a>
+            <a href="/categories/security-cameras.html">Security Cameras</a>
+            <a href="/categories/smart-locks.html">Smart Locks</a>
+          </div>
+          <div class="footer-links">
+            <h4>Resources</h4>
+            <a href="/reviews.html">All Reviews</a>
+            <a href="#">Buying Guides</a>
+            <a href="#">Setup Tutorials</a>
+          </div>
+          <div class="footer-links">
+            <h4>Company</h4>
+            <a href="/about.html">About Us</a>
+            <a href="/contact.html">Contact</a>
+            <a href="/affiliate-disclosure.html">Affiliate Disclosure</a>
+            <a href="/privacy-policy.html">Privacy Policy</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2026 IoWidgets. All rights reserved.</span>
+          <span
+            >As an Amazon Associate, we earn from qualifying purchases.</span
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      function toggleTheme() {
+        const html = document.documentElement;
+        const newTheme =
+          html.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        html.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+      }
+      function toggleMobileMenu() {
+        document.getElementById("mobileMenu").classList.toggle("active");
+      }
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme)
+        document.documentElement.setAttribute("data-theme", savedTheme);
+      else if (window.matchMedia("(prefers-color-scheme: dark)").matches)
+        document.documentElement.setAttribute("data-theme", "dark");
+    </script>
+  </body>
+</html>

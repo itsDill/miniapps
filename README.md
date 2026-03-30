@@ -1,62 +1,60 @@
-# ⚡ MiniApps
+# 🏠 IoWidgets
 
-A collection of useful browser tools and fun games. Simple, fast, and free.
+Smart home IoT device reviews made simple. Honest, beginner-friendly reviews to help you build the perfect smart home.
 
-**🌐 Live Site:** [miniapps.io](https://miniapps.io)
+**🌐 Live Site:** [iowidgets.com](https://iowidgets.com)
 
-## 🛠️ Tools
+## 📦 Categories
 
-- **Calculator** - Scientific calculator with history
-- **Quick Notes** - Auto-saving notepad with markdown
-- **Timer & Stopwatch** - Pomodoro, countdown, and stopwatch
-- **Color Picker** - Pick colors and generate palettes
-- **Unit Converter** - Length, weight, temperature, and more
-- **QR Generator** - Create QR codes instantly
-- **Password Generator** - Secure password creation
-- **JSON Formatter** - Format, validate, and minify JSON
+- **Smart Plugs** - WiFi and Matter-enabled plugs with energy monitoring
+- **Smart Lights** - Bulbs, light strips, and smart switches
+- **Security Cameras** - Indoor, outdoor, and doorbell cameras
+- **Smart Locks** - Keyless entry and smart deadbolts
+- **Smart Hubs** - Control centers for your connected home
+- **Video Doorbells** - See who's at your door from anywhere
 
-## 🎮 Games
+## 🎯 What We Cover
 
-- **Tic Tac Toe** - Classic X's and O's
-- **Memory Match** - Card matching game
-- **Snake** - Classic snake game
-- **2048** - Number puzzle game
-- **Word Guess** - Daily word guessing game
-- **Breakout** - Brick breaker arcade game
-- **Sudoku** - Number puzzle
-- **Trivia Quiz** - Test your knowledge
+- In-depth product reviews with real-world testing
+- Comparison tables and "Best For" recommendations
+- Setup guides and compatibility information
+- Price tracking and deal alerts
 
 ## 🚀 Quick Start
 
-Just open `index.html` in your browser. No installation required!
-
 ```bash
-# Or use a local server
+# Open locally
 python -m http.server 8000
 # Visit http://localhost:8000
 ```
 
-## 📁 File Structure
+## 📁 Project Structure
 
 ```
-miniapps/
-├── index.html          # Main page with slider
-├── tools.html          # All tools page
-├── games.html          # All games page
-├── about.html          # About page
-├── contact.html        # Contact page
-├── styles.css          # Global styles
-├── privacy-policy.html # Privacy policy
-└── terms-of-service.html # Terms of service
+iowidgets/
+├── index.html              # Homepage
+├── styles.css              # Global styles
+├── reviews.html            # All reviews listing
+├── about.html              # About us
+├── contact.html            # Contact form
+├── affiliate-disclosure.html
+├── privacy-policy.html
+├── terms-of-service.html
+└── categories/
+    ├── smart-plugs.html
+    ├── smart-lights.html
+    ├── security-cameras.html
+    ├── smart-locks.html
+    ├── smart-hubs.html
+    └── smart-doorbells.html
 ```
 
-## ✨ Features
+## 💰 Monetization
 
-- **No frameworks** - Pure HTML, CSS, and JavaScript
-- **Works offline** - Most tools work without internet
-- **Privacy focused** - No tracking, no analytics
-- **100% free** - No ads, no subscriptions
+- Google AdSense display ads
+- Amazon Associates affiliate links
+- Direct brand partnerships
 
-## 📄 License
+## 📝 License
 
-MIT License - feel free to use and modify!
+© 2026 IoWidgets. All rights reserved.
