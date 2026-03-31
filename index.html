@@ -72,10 +72,8 @@
         </a>
 
         <div class="main-nav">
-          <a href="/reviews.html" class="main-nav-link">📝 Reviews</a>
-          <a href="/blog.html" class="main-nav-link">📰 Blog</a>
           <a href="/categories/smart-plugs.html" class="main-nav-link"
-            >🔌 Smart Plugs</a
+            >🔌 Plugs</a
           >
           <a href="/categories/smart-lights.html" class="main-nav-link"
             >💡 Lights</a
@@ -83,9 +81,13 @@
           <a href="/categories/security-cameras.html" class="main-nav-link"
             >📷 Cameras</a
           >
+          <a href="/categories/smart-locks.html" class="main-nav-link"
+            >🔐 Locks</a
+          >
           <a href="/categories/smart-hubs.html" class="main-nav-link"
             >🎛️ Hubs</a
           >
+          <a href="/blog.html" class="main-nav-link">📰 Blog</a>
           <a href="/about.html" class="main-nav-link">About</a>
         </div>
 
@@ -110,15 +112,14 @@
 
       <!-- Mobile Menu -->
       <div class="mobile-menu" id="mobileMenu">
-        <a href="/reviews.html">📝 All Reviews</a>
         <a href="/categories/smart-plugs.html">🔌 Smart Plugs</a>
         <a href="/categories/smart-lights.html">💡 Smart Lights</a>
         <a href="/categories/security-cameras.html">📷 Security Cameras</a>
         <a href="/categories/smart-locks.html">🔐 Smart Locks</a>
         <a href="/categories/smart-hubs.html">🎛️ Smart Hubs</a>
         <a href="/categories/smart-doorbells.html">🚪 Video Doorbells</a>
+        <a href="/blog.html">📰 Blog</a>
         <a href="/about.html">About Us</a>
-        <a href="/contact.html">Contact</a>
       </div>
     </nav>
 
@@ -138,9 +139,11 @@
         <div class="hero-search">
           <input
             type="text"
+            id="heroSearchInput"
             placeholder="Search for devices (e.g., smart plug, security camera)..."
+            onkeypress="if (event.key === 'Enter') performSearch();"
           />
-          <button type="button">Search</button>
+          <button type="button" onclick="performSearch()">Search</button>
         </div>
 
         <div class="hero-stats">
@@ -569,6 +572,154 @@
     </footer>
 
     <script>
+      // Search functionality
+      const searchData = [
+        {
+          keywords: [
+            "plug",
+            "plugs",
+            "smart plug",
+            "outlet",
+            "socket",
+            "kasa",
+            "wyze",
+            "meross",
+            "eve",
+            "matter plug",
+          ],
+          url: "/categories/smart-plugs.html",
+          title: "Smart Plugs",
+        },
+        {
+          keywords: [
+            "light",
+            "lights",
+            "bulb",
+            "bulbs",
+            "smart light",
+            "led",
+            "philips",
+            "hue",
+            "lamp",
+          ],
+          url: "/categories/smart-lights.html",
+          title: "Smart Lights",
+        },
+        {
+          keywords: [
+            "camera",
+            "cameras",
+            "security camera",
+            "surveillance",
+            "outdoor camera",
+            "indoor camera",
+            "ring",
+            "arlo",
+            "nest",
+          ],
+          url: "/categories/security-cameras.html",
+          title: "Security Cameras",
+        },
+        {
+          keywords: [
+            "lock",
+            "locks",
+            "smart lock",
+            "door lock",
+            "deadbolt",
+            "august",
+            "schlage",
+            "yale",
+          ],
+          url: "/categories/smart-locks.html",
+          title: "Smart Locks",
+        },
+        {
+          keywords: [
+            "hub",
+            "hubs",
+            "smart hub",
+            "bridge",
+            "controller",
+            "smartthings",
+            "homepod",
+            "echo",
+          ],
+          url: "/categories/smart-hubs.html",
+          title: "Smart Hubs",
+        },
+        {
+          keywords: [
+            "doorbell",
+            "doorbells",
+            "video doorbell",
+            "ring doorbell",
+          ],
+          url: "/categories/smart-doorbells.html",
+          title: "Video Doorbells",
+        },
+        {
+          keywords: [
+            "matter",
+            "thread",
+            "homekit",
+            "alexa",
+            "google home",
+            "smart home",
+          ],
+          url: "/blog/matter-explained.html",
+          title: "Matter Explained",
+        },
+        {
+          keywords: [
+            "budget",
+            "cheap",
+            "affordable",
+            "starter",
+            "beginner",
+            "getting started",
+          ],
+          url: "/blog/smart-home-budget-guide.html",
+          title: "Budget Guide",
+        },
+      ];
+
+      function performSearch() {
+        const input = document.getElementById("heroSearchInput");
+        const query = input.value.toLowerCase().trim();
+
+        if (!query) {
+          input.focus();
+          return;
+        }
+
+        // Find best match
+        let bestMatch = null;
+        let bestScore = 0;
+
+        for (const item of searchData) {
+          for (const keyword of item.keywords) {
+            if (query.includes(keyword) || keyword.includes(query)) {
+              const score =
+                keyword === query ? 100 : keyword.includes(query) ? 50 : 25;
+              if (score > bestScore) {
+                bestScore = score;
+                bestMatch = item;
+              }
+            }
+          }
+        }
+
+        if (bestMatch) {
+          window.location.href = bestMatch.url;
+        } else {
+          // Default to smart plugs for unrecognized queries
+          alert(
+            "No exact match found. Try: plug, light, camera, lock, hub, or doorbell",
+          );
+        }
+      }
+
       // Theme Toggle
       function toggleTheme() {
         const html = document.documentElement;
